@@ -1,0 +1,6 @@
+framework module Pods_mNemeTests {
+  umbrella header "Pods-mNemeTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

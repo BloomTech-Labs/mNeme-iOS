@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13F5F34F9C9627ECA701EC5C /* Pods_mNemeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11354B8AFCA77E9B1CE8292E /* Pods_mNemeTests.framework */; };
+		6E1A19C692A40780C18AE71F /* Pods_mNeme.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 625928B0143B44879A17FF25 /* Pods_mNeme.framework */; };
 		95EEEAE123FB45DA00B283E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EEEAE023FB45DA00B283E9 /* AppDelegate.swift */; };
 		95EEEAE323FB45DA00B283E9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EEEAE223FB45DA00B283E9 /* SceneDelegate.swift */; };
 		95EEEAE523FB45DA00B283E9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EEEAE423FB45DA00B283E9 /* ViewController.swift */; };
@@ -16,6 +18,7 @@
 		95EEEAF023FB45DC00B283E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95EEEAEE23FB45DC00B283E9 /* LaunchScreen.storyboard */; };
 		95EEEAFB23FB45DC00B283E9 /* mNemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EEEAFA23FB45DC00B283E9 /* mNemeTests.swift */; };
 		95EEEB0623FB45DC00B283E9 /* mNemeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EEEB0523FB45DC00B283E9 /* mNemeUITests.swift */; };
+		EC5F1912C220845743B332D3 /* Pods_mNeme_mNemeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D891E381A8CC75CAB70F1DED /* Pods_mNeme_mNemeUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +39,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C61661E270DF9F177148EA4 /* Pods-mNemeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mNemeTests.release.xcconfig"; path = "Target Support Files/Pods-mNemeTests/Pods-mNemeTests.release.xcconfig"; sourceTree = "<group>"; };
+		11354B8AFCA77E9B1CE8292E /* Pods_mNemeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mNemeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E7E4BC2E3DF3D2666993AC0 /* Pods-mNemeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mNemeTests.debug.xcconfig"; path = "Target Support Files/Pods-mNemeTests/Pods-mNemeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5A231593762C0B0497140987 /* Pods-mNeme.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mNeme.debug.xcconfig"; path = "Target Support Files/Pods-mNeme/Pods-mNeme.debug.xcconfig"; sourceTree = "<group>"; };
+		625928B0143B44879A17FF25 /* Pods_mNeme.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mNeme.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		95EEEADD23FB45DA00B283E9 /* mNeme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mNeme.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95EEEAE023FB45DA00B283E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95EEEAE223FB45DA00B283E9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +59,10 @@
 		95EEEB0123FB45DC00B283E9 /* mNemeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mNemeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		95EEEB0523FB45DC00B283E9 /* mNemeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mNemeUITests.swift; sourceTree = "<group>"; };
 		95EEEB0723FB45DC00B283E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		96E43B73731FDF6ABC35B793 /* Pods-mNeme.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mNeme.release.xcconfig"; path = "Target Support Files/Pods-mNeme/Pods-mNeme.release.xcconfig"; sourceTree = "<group>"; };
+		C15B2EDE4B3663AAE166E8D3 /* Pods-mNeme-mNemeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mNeme-mNemeUITests.debug.xcconfig"; path = "Target Support Files/Pods-mNeme-mNemeUITests/Pods-mNeme-mNemeUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		D891E381A8CC75CAB70F1DED /* Pods_mNeme_mNemeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mNeme_mNemeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E96B940EA3749EE3E4E58C4E /* Pods-mNeme-mNemeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mNeme-mNemeUITests.release.xcconfig"; path = "Target Support Files/Pods-mNeme-mNemeUITests/Pods-mNeme-mNemeUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E1A19C692A40780C18AE71F /* Pods_mNeme.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13F5F34F9C9627ECA701EC5C /* Pods_mNemeTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC5F1912C220845743B332D3 /* Pods_mNeme_mNemeUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +100,8 @@
 				95EEEAF923FB45DC00B283E9 /* mNemeTests */,
 				95EEEB0423FB45DC00B283E9 /* mNemeUITests */,
 				95EEEADE23FB45DA00B283E9 /* Products */,
+				964CD0A8F4958E553DA7DA00 /* Pods */,
+				FE948281FDB097CA034C713C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -131,6 +148,30 @@
 			path = mNemeUITests;
 			sourceTree = "<group>";
 		};
+		964CD0A8F4958E553DA7DA00 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5A231593762C0B0497140987 /* Pods-mNeme.debug.xcconfig */,
+				96E43B73731FDF6ABC35B793 /* Pods-mNeme.release.xcconfig */,
+				C15B2EDE4B3663AAE166E8D3 /* Pods-mNeme-mNemeUITests.debug.xcconfig */,
+				E96B940EA3749EE3E4E58C4E /* Pods-mNeme-mNemeUITests.release.xcconfig */,
+				3E7E4BC2E3DF3D2666993AC0 /* Pods-mNemeTests.debug.xcconfig */,
+				0C61661E270DF9F177148EA4 /* Pods-mNemeTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		FE948281FDB097CA034C713C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				625928B0143B44879A17FF25 /* Pods_mNeme.framework */,
+				D891E381A8CC75CAB70F1DED /* Pods_mNeme_mNemeUITests.framework */,
+				11354B8AFCA77E9B1CE8292E /* Pods_mNemeTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -138,9 +179,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 95EEEB0A23FB45DC00B283E9 /* Build configuration list for PBXNativeTarget "mNeme" */;
 			buildPhases = (
+				2A5FC591E02568D0380579A2 /* [CP] Check Pods Manifest.lock */,
 				95EEEAD923FB45DA00B283E9 /* Sources */,
 				95EEEADA23FB45DA00B283E9 /* Frameworks */,
 				95EEEADB23FB45DA00B283E9 /* Resources */,
+				E9393FF20BEDF18A14AF7B7E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -155,6 +198,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 95EEEB0D23FB45DC00B283E9 /* Build configuration list for PBXNativeTarget "mNemeTests" */;
 			buildPhases = (
+				45A166993E092F828E5C9E42 /* [CP] Check Pods Manifest.lock */,
 				95EEEAF223FB45DC00B283E9 /* Sources */,
 				95EEEAF323FB45DC00B283E9 /* Frameworks */,
 				95EEEAF423FB45DC00B283E9 /* Resources */,
@@ -173,9 +217,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 95EEEB1023FB45DC00B283E9 /* Build configuration list for PBXNativeTarget "mNemeUITests" */;
 			buildPhases = (
+				B053A23B7FF31721D5E6045C /* [CP] Check Pods Manifest.lock */,
 				95EEEAFD23FB45DC00B283E9 /* Sources */,
 				95EEEAFE23FB45DC00B283E9 /* Frameworks */,
 				95EEEAFF23FB45DC00B283E9 /* Resources */,
+				B764819EDB54505B16EDE1AE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -256,6 +302,109 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2A5FC591E02568D0380579A2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-mNeme-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		45A166993E092F828E5C9E42 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-mNemeTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B053A23B7FF31721D5E6045C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-mNeme-mNemeUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B764819EDB54505B16EDE1AE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-mNeme-mNemeUITests/Pods-mNeme-mNemeUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-mNeme-mNemeUITests/Pods-mNeme-mNemeUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-mNeme-mNemeUITests/Pods-mNeme-mNemeUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E9393FF20BEDF18A14AF7B7E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-mNeme/Pods-mNeme-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-mNeme/Pods-mNeme-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-mNeme/Pods-mNeme-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		95EEEAD923FB45DA00B283E9 /* Sources */ = {
@@ -436,6 +585,7 @@
 		};
 		95EEEB0B23FB45DC00B283E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5A231593762C0B0497140987 /* Pods-mNeme.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -453,6 +603,7 @@
 		};
 		95EEEB0C23FB45DC00B283E9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 96E43B73731FDF6ABC35B793 /* Pods-mNeme.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -470,6 +621,7 @@
 		};
 		95EEEB0E23FB45DC00B283E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3E7E4BC2E3DF3D2666993AC0 /* Pods-mNemeTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -491,6 +643,7 @@
 		};
 		95EEEB0F23FB45DC00B283E9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C61661E270DF9F177148EA4 /* Pods-mNemeTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -512,6 +665,7 @@
 		};
 		95EEEB1123FB45DC00B283E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C15B2EDE4B3663AAE166E8D3 /* Pods-mNeme-mNemeUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -531,6 +685,7 @@
 		};
 		95EEEB1223FB45DC00B283E9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E96B940EA3749EE3E4E58C4E /* Pods-mNeme-mNemeUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
