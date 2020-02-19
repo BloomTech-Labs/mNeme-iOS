@@ -8,6 +8,7 @@ target 'mNeme' do
   # Pods for mNeme
 pod 'Firebase'
 pod 'Firebase/Auth'
+pod 'Firebase/Analytics'
 pod 'SOTabBar'
   target 'mNemeTests' do
     inherit! :search_paths

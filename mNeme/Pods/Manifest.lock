@@ -1,6 +1,8 @@
 PODS:
   - Firebase (6.14.0):
     - Firebase/Core (= 6.14.0)
+  - Firebase/Analytics (6.14.0):
+    - Firebase/Core
   - Firebase/Auth (6.14.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 6.4.1)
@@ -79,6 +81,7 @@ PODS:
 
 DEPENDENCIES:
   - Firebase
+  - Firebase/Analytics
   - Firebase/Auth
   - SOTabBar
 
@@ -117,6 +120,6 @@ SPEC CHECKSUMS:
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   SOTabBar: 27aea95bd6b39d1be3535c867a2cd3b5adc172e6
 
-PODFILE CHECKSUM: 84ac1533798d4e9fba5102231282fa44ef022da7
+PODFILE CHECKSUM: 684923bac1b14d4bf542e4a63ea9b598bfd81ee7
 
 COCOAPODS: 1.8.4
