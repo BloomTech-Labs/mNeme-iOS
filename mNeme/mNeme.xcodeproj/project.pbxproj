@@ -19,6 +19,9 @@
 		95EEEAF023FB45DC00B283E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95EEEAEE23FB45DC00B283E9 /* LaunchScreen.storyboard */; };
 		95EEEAFB23FB45DC00B283E9 /* mNemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EEEAFA23FB45DC00B283E9 /* mNemeTests.swift */; };
 		95EEEB0623FB45DC00B283E9 /* mNemeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EEEB0523FB45DC00B283E9 /* mNemeUITests.swift */; };
+		BBD8A2E923FDDD8E00F5534E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2E823FDDD8E00F5534E /* ProfileViewController.swift */; };
+		BBD8A2EB23FDDDE600F5534E /* DeckCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2EA23FDDDE600F5534E /* DeckCreateViewController.swift */; };
+		BBD8A2ED23FDDE0500F5534E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2EC23FDDE0500F5534E /* HomeViewController.swift */; };
 		EC5F1912C220845743B332D3 /* Pods_mNeme_mNemeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D891E381A8CC75CAB70F1DED /* Pods_mNeme_mNemeUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +65,9 @@
 		95EEEB0523FB45DC00B283E9 /* mNemeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mNemeUITests.swift; sourceTree = "<group>"; };
 		95EEEB0723FB45DC00B283E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96E43B73731FDF6ABC35B793 /* Pods-mNeme.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mNeme.release.xcconfig"; path = "Target Support Files/Pods-mNeme/Pods-mNeme.release.xcconfig"; sourceTree = "<group>"; };
+		BBD8A2E823FDDD8E00F5534E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		BBD8A2EA23FDDDE600F5534E /* DeckCreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCreateViewController.swift; sourceTree = "<group>"; };
+		BBD8A2EC23FDDE0500F5534E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		C15B2EDE4B3663AAE166E8D3 /* Pods-mNeme-mNemeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mNeme-mNemeUITests.debug.xcconfig"; path = "Target Support Files/Pods-mNeme-mNemeUITests/Pods-mNeme-mNemeUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		D891E381A8CC75CAB70F1DED /* Pods_mNeme_mNemeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mNeme_mNemeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E96B940EA3749EE3E4E58C4E /* Pods-mNeme-mNemeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mNeme-mNemeUITests.release.xcconfig"; path = "Target Support Files/Pods-mNeme-mNemeUITests/Pods-mNeme-mNemeUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -177,6 +183,9 @@
 				4B8A2A2D23FCA47400116BF9 /* View Controllers */,
 				4B8A2A2B23FCA3B700116BF9 /* Storyboards */,
 				4B8A2A2A23FCA39D00116BF9 /* Resources */,
+				BBD8A2E823FDDD8E00F5534E /* ProfileViewController.swift */,
+				BBD8A2EA23FDDDE600F5534E /* DeckCreateViewController.swift */,
+				BBD8A2EC23FDDE0500F5534E /* HomeViewController.swift */,
 			);
 			path = mNeme;
 			sourceTree = "<group>";
@@ -465,7 +474,10 @@
 			files = (
 				95EEEAEB23FB45DA00B283E9 /* mNeme.xcdatamodeld in Sources */,
 				95EEEAE123FB45DA00B283E9 /* AppDelegate.swift in Sources */,
+				BBD8A2E923FDDD8E00F5534E /* ProfileViewController.swift in Sources */,
+				BBD8A2EB23FDDDE600F5534E /* DeckCreateViewController.swift in Sources */,
 				95EEEAE323FB45DA00B283E9 /* SceneDelegate.swift in Sources */,
+				BBD8A2ED23FDDE0500F5534E /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
