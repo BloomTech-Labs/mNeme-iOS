@@ -1,26 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="MZ1-7T-tRX">
             <objects>
-                <viewController id="DpI-jA-uac" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginStoryboard" id="DpI-jA-uac" customClass="LoginViewController" customModule="mNeme" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KFO-Lj-uWq">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="oeN-Xv-qsX">
+                                <rect key="frame" x="112.66666666666669" y="341.33333333333326" width="150" height="126"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c28-zM-D6Q" customClass="GIDSignInButton">
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="55"/>
+                                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="googleSignInPressed:" destination="DpI-jA-uac" eventType="touchUpInside" id="BlZ-8o-8qO"/>
+                                        </connections>
+                                    </view>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IBG-GC-5Wl" customClass="FBSDKLoginButton">
+                                        <rect key="frame" x="0.0" y="71" width="150" height="55"/>
+                                        <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                            <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YPi-qz-hld">
+                                <rect key="frame" x="0.0" y="0.0" width="411.66666666666669" height="280.33333333333331"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="N0P-oR-Rtk">
+                                        <rect key="frame" x="20" y="117.00000000000001" width="371.66666666666669" height="48.666666666666671"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to mNeme Flashcards!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F0o-2a-nNc">
+                                                <rect key="frame" x="62.333333333333314" y="0.0" width="247" height="20.333333333333332"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="An effective, fun, and easy to use flashcards app" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LFE-7q-Jfj">
+                                                <rect key="frame" x="0.0" y="28.333333333333343" width="371.66666666666669" height="20.333333333333329"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="N0P-oR-Rtk" firstAttribute="top" secondItem="YPi-qz-hld" secondAttribute="top" constant="117" id="FZ4-dC-60s"/>
+                                    <constraint firstAttribute="width" secondItem="YPi-qz-hld" secondAttribute="height" multiplier="69:47" id="LWv-Uv-H7S"/>
+                                    <constraint firstAttribute="trailing" secondItem="N0P-oR-Rtk" secondAttribute="trailing" constant="20" id="gTd-ij-2ov"/>
+                                    <constraint firstItem="N0P-oR-Rtk" firstAttribute="leading" secondItem="YPi-qz-hld" secondAttribute="leading" constant="20" id="gYI-az-gL8"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="oeN-Xv-qsX" firstAttribute="centerX" secondItem="KFO-Lj-uWq" secondAttribute="centerX" id="f5g-V0-59r"/>
+                            <constraint firstItem="YPi-qz-hld" firstAttribute="leading" secondItem="KFO-Lj-uWq" secondAttribute="leading" id="sRK-dh-8mb"/>
+                            <constraint firstItem="YPi-qz-hld" firstAttribute="top" secondItem="KFO-Lj-uWq" secondAttribute="top" id="wyl-SZ-MNY"/>
+                            <constraint firstItem="oeN-Xv-qsX" firstAttribute="centerY" secondItem="KFO-Lj-uWq" secondAttribute="centerY" id="xE4-Fa-VkJ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="mzF-YM-ldz"/>
                     </view>
+                    <navigationItem key="navigationItem" id="x6H-0m-fa4"/>
+                    <connections>
+                        <outlet property="facebookLoginButton" destination="IBG-GC-5Wl" id="UZk-XQ-8ef"/>
+                        <outlet property="googleSignButton" destination="c28-zM-D6Q" id="DIK-ub-7w7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rXE-jq-x5k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="141" y="120"/>
+            <point key="canvasLocation" x="1050.7246376811595" y="119.86607142857142"/>
         </scene>
     </scenes>
 </document>
