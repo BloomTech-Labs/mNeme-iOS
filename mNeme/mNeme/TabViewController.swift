@@ -11,9 +11,13 @@ import SOTabBar
 
 class TabViewController: SOTabBarController {
 
+    // Changes the settings for the tab bar
     override func loadView() {
         super.loadView()
         SOTabBarSetting.tabBarTintColor = UIColor.mNeme.orangeBlaze
+        SOTabBarSetting.tabBarAnimationDurationTime = 0.25
+        SOTabBarSetting.tabBarHeight = 60
+        SOTabBarSetting.tabBarCircleSize = CGSize(width: 60.0, height: 60.0)
     }
 
     override func viewDidLoad() {

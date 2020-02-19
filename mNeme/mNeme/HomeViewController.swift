@@ -28,6 +28,7 @@ class HomeViewController: UIViewController {
         // deck create button
         deckCreateButton.setTitleColor(UIColor.white, for: .normal)
         deckCreateButton.backgroundColor = UIColor.mNeme.orangeBlaze
+        deckCreateButton.layer.cornerRadius = 15
     }
 
     /*

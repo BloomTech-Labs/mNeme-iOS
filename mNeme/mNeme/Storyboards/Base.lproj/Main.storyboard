@@ -39,17 +39,19 @@
                                 </segments>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nta-iK-UMt">
-                                <rect key="frame" x="0.0" y="191" width="414" height="685"/>
+                                <rect key="frame" x="0.0" y="201" width="414" height="675"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="p6h-x1-val">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="75"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KAl-f6-PEp">
-                                            <rect key="frame" x="82" y="7" width="250" height="30"/>
+                                            <rect key="frame" x="82" y="12.5" width="250" height="50"/>
                                             <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="1Z6-4n-bA0"/>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="e62-gZ-6WL"/>
                                             </constraints>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                             <state key="normal" title="Create New Deck"/>
                                         </button>
                                     </subviews>
@@ -61,7 +63,7 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DeckCell" id="fbc-Ib-J92">
-                                        <rect key="frame" x="0.0" y="72" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="103" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fbc-Ib-J92" id="j9N-Ec-ikp">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -75,7 +77,7 @@
                         <constraints>
                             <constraint firstItem="nta-iK-UMt" firstAttribute="leading" secondItem="Cnh-dz-aFs" secondAttribute="leading" id="4ZF-7p-TNO"/>
                             <constraint firstAttribute="bottom" secondItem="nta-iK-UMt" secondAttribute="bottom" constant="20" symbolic="YES" id="Piz-sm-ga4"/>
-                            <constraint firstItem="nta-iK-UMt" firstAttribute="top" secondItem="Ill-w4-v4v" secondAttribute="bottom" constant="10" id="So5-ib-NEY"/>
+                            <constraint firstItem="nta-iK-UMt" firstAttribute="top" secondItem="Ill-w4-v4v" secondAttribute="bottom" constant="20" id="So5-ib-NEY"/>
                             <constraint firstItem="Ill-w4-v4v" firstAttribute="leading" secondItem="Cnh-dz-aFs" secondAttribute="leading" constant="40" id="VnD-yR-NGB"/>
                             <constraint firstItem="nta-iK-UMt" firstAttribute="trailing" secondItem="Cnh-dz-aFs" secondAttribute="trailing" id="asi-WE-dwW"/>
                             <constraint firstItem="Ill-w4-v4v" firstAttribute="top" secondItem="zke-uv-d7A" secondAttribute="topMargin" constant="10" id="gPK-ev-0tj"/>
