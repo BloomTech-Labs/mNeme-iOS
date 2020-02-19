@@ -10,12 +10,20 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+    // MARK: IBOutlets
+    @IBOutlet private weak var segmentedControl: UISegmentedControl!
+    @IBOutlet private weak var deckCreateButton: UIButton!
+    @IBOutlet private weak var deckTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupOutlets()
         // Do any additional setup after loading the view.
     }
-    
+
+    private func setupOutlets() {
+        segmentedControl.selectedSegmentTintColor = UIColor.mNeme.orangeBlaze
+    }
 
     /*
     // MARK: - Navigation

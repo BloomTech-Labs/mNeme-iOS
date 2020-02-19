@@ -29,10 +29,53 @@
                     <view key="view" contentMode="scaleToFill" id="zke-uv-d7A">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ill-w4-v4v">
+                                <rect key="frame" x="40" y="150" width="334" height="32"/>
+                                <segments>
+                                    <segment title="Today"/>
+                                    <segment title="This Week"/>
+                                    <segment title="This Month"/>
+                                </segments>
+                            </segmentedControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nta-iK-UMt">
+                                <rect key="frame" x="0.0" y="191" width="414" height="685"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <button key="tableHeaderView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0bl-Lc-MBi">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="Create a New Deck"/>
+                                </button>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="fbc-Ib-J92">
+                                        <rect key="frame" x="0.0" y="72" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fbc-Ib-J92" id="j9N-Ec-ikp">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="nta-iK-UMt" firstAttribute="leading" secondItem="Cnh-dz-aFs" secondAttribute="leading" id="4ZF-7p-TNO"/>
+                            <constraint firstAttribute="bottom" secondItem="nta-iK-UMt" secondAttribute="bottom" constant="20" symbolic="YES" id="Piz-sm-ga4"/>
+                            <constraint firstItem="nta-iK-UMt" firstAttribute="top" secondItem="Ill-w4-v4v" secondAttribute="bottom" constant="10" id="So5-ib-NEY"/>
+                            <constraint firstItem="Ill-w4-v4v" firstAttribute="leading" secondItem="Cnh-dz-aFs" secondAttribute="leading" constant="40" id="VnD-yR-NGB"/>
+                            <constraint firstItem="nta-iK-UMt" firstAttribute="trailing" secondItem="Cnh-dz-aFs" secondAttribute="trailing" id="asi-WE-dwW"/>
+                            <constraint firstItem="Ill-w4-v4v" firstAttribute="top" secondItem="zke-uv-d7A" secondAttribute="topMargin" constant="10" id="gPK-ev-0tj"/>
+                            <constraint firstItem="Cnh-dz-aFs" firstAttribute="trailing" secondItem="Ill-w4-v4v" secondAttribute="trailing" constant="40" id="z1s-CR-OmB"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Cnh-dz-aFs"/>
                     </view>
                     <navigationItem key="navigationItem" title="mNeme" id="MeO-iT-phN"/>
+                    <connections>
+                        <outlet property="deckCreateButton" destination="0bl-Lc-MBi" id="b5c-M4-lMd"/>
+                        <outlet property="deckTableView" destination="nta-iK-UMt" id="MA2-9a-rlC"/>
+                        <outlet property="segmentedControl" destination="Ill-w4-v4v" id="JWW-lH-oSb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aZN-Q4-f7l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
