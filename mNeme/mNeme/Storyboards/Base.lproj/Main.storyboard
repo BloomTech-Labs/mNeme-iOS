@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="AUf-Ax-bf4">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Tab View Controller-->
         <scene sceneID="Ujs-HT-bgk">
             <objects>
-                <viewController id="AUf-Ax-bf4" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TabViewController" id="AUf-Ax-bf4" customClass="TabViewController" customModule="mNeme" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ACI-EJ-vTM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -25,7 +25,7 @@
         <!--mNeme-->
         <scene sceneID="M06-rH-LGW">
             <objects>
-                <viewController id="jZT-BD-3aZ" customClass="HomeViewController" customModule="mNeme" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" id="jZT-BD-3aZ" customClass="HomeViewController" customModule="mNeme" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zke-uv-d7A">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -41,7 +41,7 @@
         <!--Create a New Deck-->
         <scene sceneID="y9i-ty-qtP">
             <objects>
-                <viewController id="6Co-dg-dy7" customClass="DeckCreateViewController" customModule="mNeme" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DeckCreateViewController" id="6Co-dg-dy7" customClass="DeckCreateViewController" customModule="mNeme" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="D5W-wd-Ay6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -57,7 +57,7 @@
         <!--Profile-->
         <scene sceneID="6Hg-Qn-xZX">
             <objects>
-                <viewController id="W3P-QC-u31" customClass="ProfileViewController" customModule="mNeme" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" id="W3P-QC-u31" customClass="ProfileViewController" customModule="mNeme" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rQu-Iw-T0Q">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -73,7 +73,7 @@
         <!--Navigation Controller-->
         <scene sceneID="asD-AL-335">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LEI-Ad-gvb" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="HomeNavController" automaticallyAdjustsScrollViewInsets="NO" id="LEI-Ad-gvb" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Iji-Lx-WKr">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
@@ -91,7 +91,7 @@
         <!--Navigation Controller-->
         <scene sceneID="kHn-6E-BWW">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4DX-HR-N0x" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ProfileNavController" automaticallyAdjustsScrollViewInsets="NO" id="4DX-HR-N0x" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Aln-Nd-59N">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
@@ -109,7 +109,7 @@
         <!--Navigation Controller-->
         <scene sceneID="4QT-AX-2Sw">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DcR-7z-B2h" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="DeckCreateNavController" automaticallyAdjustsScrollViewInsets="NO" id="DcR-7z-B2h" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="nHu-yR-NEm">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
