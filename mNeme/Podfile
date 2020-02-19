@@ -10,6 +10,7 @@ pod 'Firebase'
 pod 'Firebase/Auth'
 pod 'Firebase/Analytics'
 pod 'SOTabBar'
+pod 'GoogleSignIn'
   target 'mNemeTests' do
     inherit! :search_paths
     # Pods for testing

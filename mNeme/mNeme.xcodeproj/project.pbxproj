@@ -234,6 +234,7 @@
 				95EEEADA23FB45DA00B283E9 /* Frameworks */,
 				95EEEADB23FB45DA00B283E9 /* Resources */,
 				E9393FF20BEDF18A14AF7B7E /* [CP] Embed Pods Frameworks */,
+				468793CBFA56CEB9E607A434 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -272,6 +273,7 @@
 				95EEEAFE23FB45DC00B283E9 /* Frameworks */,
 				95EEEAFF23FB45DC00B283E9 /* Resources */,
 				B764819EDB54505B16EDE1AE /* [CP] Embed Pods Frameworks */,
+				DB27A51A185DD4A6A9EA9FBB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -400,6 +402,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		468793CBFA56CEB9E607A434 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-mNeme/Pods-mNeme-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-mNeme/Pods-mNeme-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-mNeme/Pods-mNeme-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B053A23B7FF31721D5E6045C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -437,6 +456,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-mNeme-mNemeUITests/Pods-mNeme-mNemeUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DB27A51A185DD4A6A9EA9FBB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-mNeme-mNemeUITests/Pods-mNeme-mNemeUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-mNeme-mNemeUITests/Pods-mNeme-mNemeUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-mNeme-mNemeUITests/Pods-mNeme-mNemeUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E9393FF20BEDF18A14AF7B7E /* [CP] Embed Pods Frameworks */ = {
