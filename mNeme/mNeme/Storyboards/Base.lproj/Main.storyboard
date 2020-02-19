@@ -41,13 +41,26 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nta-iK-UMt">
                                 <rect key="frame" x="0.0" y="191" width="414" height="685"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <button key="tableHeaderView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0bl-Lc-MBi">
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="p6h-x1-val">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="Create a New Deck"/>
-                                </button>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KAl-f6-PEp">
+                                            <rect key="frame" x="82" y="7" width="250" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="e62-gZ-6WL"/>
+                                            </constraints>
+                                            <state key="normal" title="Create New Deck"/>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    <constraints>
+                                        <constraint firstItem="KAl-f6-PEp" firstAttribute="centerY" secondItem="p6h-x1-val" secondAttribute="centerY" id="IS0-CH-4na"/>
+                                        <constraint firstItem="KAl-f6-PEp" firstAttribute="centerX" secondItem="p6h-x1-val" secondAttribute="centerX" id="c46-g5-P7L"/>
+                                    </constraints>
+                                </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="fbc-Ib-J92">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DeckCell" id="fbc-Ib-J92">
                                         <rect key="frame" x="0.0" y="72" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fbc-Ib-J92" id="j9N-Ec-ikp">
@@ -72,7 +85,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="mNeme" id="MeO-iT-phN"/>
                     <connections>
-                        <outlet property="deckCreateButton" destination="0bl-Lc-MBi" id="b5c-M4-lMd"/>
+                        <outlet property="deckCreateButton" destination="KAl-f6-PEp" id="iJ5-KT-VOi"/>
                         <outlet property="deckTableView" destination="nta-iK-UMt" id="MA2-9a-rlC"/>
                         <outlet property="segmentedControl" destination="Ill-w4-v4v" id="JWW-lH-oSb"/>
                     </connections>

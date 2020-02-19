@@ -22,7 +22,12 @@ class HomeViewController: UIViewController {
     }
 
     private func setupOutlets() {
+        // segmented control
         segmentedControl.selectedSegmentTintColor = UIColor.mNeme.orangeBlaze
+
+        // deck create button
+        deckCreateButton.setTitleColor(UIColor.white, for: .normal)
+        deckCreateButton.backgroundColor = UIColor.mNeme.orangeBlaze
     }
 
     /*
