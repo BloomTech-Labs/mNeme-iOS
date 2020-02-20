@@ -173,7 +173,6 @@
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X5B-8X-epg">
                                                         <rect key="frame" x="0.0" y="0.0" width="32" height="30"/>
-                                                        <accessibility key="accessibilityConfiguration" identifier="mobileButton"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="32" id="OkV-Jb-ncP"/>
                                                             <constraint firstAttribute="height" constant="30" id="qY7-JJ-d11"/>
@@ -181,7 +180,7 @@
                                                         <state key="normal" image="square" catalog="system"/>
                                                         <state key="selected" image="checkmark.square.fill" catalog="system"/>
                                                         <connections>
-                                                            <action selector="mobileButtonTapped:" destination="W3P-QC-u31" eventType="touchUpInside" id="fPj-KS-J4S"/>
+                                                            <action selector="devicePreferencesTapped:" destination="W3P-QC-u31" eventType="touchUpInside" id="ypt-Hn-aDL"/>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mobile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DbN-tz-AI9">
@@ -197,7 +196,6 @@
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hxi-92-mFP">
                                                         <rect key="frame" x="0.0" y="0.0" width="32" height="30"/>
-                                                        <accessibility key="accessibilityConfiguration" identifier="desktopButton"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="mbh-dZ-yRY"/>
                                                             <constraint firstAttribute="width" constant="32" id="p7r-yp-MPv"/>
@@ -205,7 +203,7 @@
                                                         <state key="normal" image="square" catalog="system"/>
                                                         <state key="selected" image="checkmark.square.fill" catalog="system"/>
                                                         <connections>
-                                                            <action selector="desktopButtonTapped:" destination="W3P-QC-u31" eventType="touchUpInside" id="o1k-U4-kst"/>
+                                                            <action selector="devicePreferencesTapped:" destination="W3P-QC-u31" eventType="touchUpInside" id="AqZ-bV-W8a"/>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Desktop" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iQK-cl-egd">
@@ -244,7 +242,7 @@
                                                         <state key="normal" image="square" catalog="system"/>
                                                         <state key="selected" image="checkmark.square.fill" catalog="system"/>
                                                         <connections>
-                                                            <action selector="preMadeDeckButtonTapped:" destination="W3P-QC-u31" eventType="touchUpInside" id="7w6-Xq-EA1"/>
+                                                            <action selector="deckPreferenceTapped:" destination="W3P-QC-u31" eventType="touchUpInside" id="rsV-HN-n9r"/>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pre-made" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wF0-15-qPr">
@@ -267,7 +265,7 @@
                                                         <state key="normal" image="square" catalog="system"/>
                                                         <state key="selected" image="checkmark.square.fill" catalog="system"/>
                                                         <connections>
-                                                            <action selector="customDeckButtonTapped:" destination="W3P-QC-u31" eventType="touchUpInside" id="OIK-2f-9kg"/>
+                                                            <action selector="deckPreferenceTapped:" destination="W3P-QC-u31" eventType="touchUpInside" id="lYe-m5-u5i"/>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Custom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oDm-XM-Kre">

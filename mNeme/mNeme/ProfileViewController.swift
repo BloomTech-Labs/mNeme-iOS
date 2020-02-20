@@ -39,38 +39,31 @@ class ProfileViewController: UIViewController {
     }
 
     // MARK: IBActions
-    @IBAction private func mobileButtonTapped(_ sender: UIButton) {
-        studyDevicePreferences(sender)
+    @IBAction private func devicePreferencesTapped(_ sender: UIButton) {
+        studyDevicePreferences(sender.accessibilityIdentifier)
     }
 
-    @IBAction private func desktopButtonTapped(_ sender: UIButton) {
-        studyDevicePreferences(sender)
-    }
-
-    @IBAction private func preMadeDeckButtonTapped(_ sender: UIButton) {
-        flashcardDeckPreferences(sender)
-    }
-
-    @IBAction private func customDeckButtonTapped(_ sender: UIButton) {
-        flashcardDeckPreferences(sender)
+    @IBAction private func deckPreferenceTapped(_ sender: UIButton) {
+        flashcardDeckPreferences(sender.accessibilityIdentifier)
     }
 
     // MARK: Private methods
-    private func studyDevicePreferences(_ sender: UIButton) {
+    private func studyDevicePreferences(_ identifier: String?) {
+        guard let identifier = identifier else { return }
         if !mobileButton.isSelected && !desktopButton.isSelected {
-            if sender.accessibilityIdentifier == "mobileButtonID" {
+            if identifier == "mobileButtonID" {
                 mobileButton.isSelected.toggle()
-            } else if sender.accessibilityIdentifier == "desktopButtonID" {
+            } else if identifier == "desktopButtonID" {
                 desktopButton.isSelected.toggle()
             }
         }
 
-        if sender.accessibilityIdentifier == "desktopButtonID" {
+        if identifier == "desktopButtonID" {
             if !desktopButton.isSelected {
                 desktopButton.isSelected.toggle()
                 mobileButton.isSelected.toggle()
             }
-        } else if sender.accessibilityIdentifier == "mobileButtonID" {
+        } else if identifier == "mobileButtonID" {
             if !mobileButton.isSelected {
                 mobileButton.isSelected.toggle()
                 desktopButton.isSelected.toggle()
@@ -78,21 +71,22 @@ class ProfileViewController: UIViewController {
         }
     }
 
-    private func flashcardDeckPreferences(_ sender: UIButton) {
+    private func flashcardDeckPreferences(_ identifier: String?) {
+        guard let identifier = identifier else { return }
         if !preMadeDeckButton.isSelected && !customDeckButton.isSelected {
-            if sender.accessibilityIdentifier == "preMadeDeckButtonID" {
+            if identifier == "preMadeDeckButtonID" {
                 preMadeDeckButton.isSelected.toggle()
-            } else if sender.accessibilityIdentifier == "customDeckButtonID" {
+            } else if identifier == "customDeckButtonID" {
                 customDeckButton.isSelected.toggle()
             }
         }
 
-        if sender.accessibilityIdentifier == "preMadeDeckButtonID" {
+        if identifier == "preMadeDeckButtonID" {
             if !preMadeDeckButton.isSelected {
                 preMadeDeckButton.isSelected.toggle()
                 customDeckButton.isSelected.toggle()
             }
-        } else if sender.accessibilityIdentifier == "customDeckButtonID" {
+        } else if identifier == "customDeckButtonID" {
             if !customDeckButton.isSelected {
                 preMadeDeckButton.isSelected.toggle()
                 customDeckButton.isSelected.toggle()
