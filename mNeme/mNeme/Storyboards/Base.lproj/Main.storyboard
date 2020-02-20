@@ -39,7 +39,7 @@
                                 </segments>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nta-iK-UMt">
-                                <rect key="frame" x="0.0" y="201" width="414" height="675"/>
+                                <rect key="frame" x="0.0" y="201" width="414" height="695"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="p6h-x1-val">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="75"/>
@@ -76,7 +76,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="nta-iK-UMt" firstAttribute="leading" secondItem="Cnh-dz-aFs" secondAttribute="leading" id="4ZF-7p-TNO"/>
-                            <constraint firstAttribute="bottom" secondItem="nta-iK-UMt" secondAttribute="bottom" constant="20" symbolic="YES" id="Piz-sm-ga4"/>
+                            <constraint firstAttribute="bottom" secondItem="nta-iK-UMt" secondAttribute="bottom" id="Piz-sm-ga4"/>
                             <constraint firstItem="nta-iK-UMt" firstAttribute="top" secondItem="Ill-w4-v4v" secondAttribute="bottom" constant="20" id="So5-ib-NEY"/>
                             <constraint firstItem="Ill-w4-v4v" firstAttribute="leading" secondItem="Cnh-dz-aFs" secondAttribute="leading" constant="40" id="VnD-yR-NGB"/>
                             <constraint firstItem="nta-iK-UMt" firstAttribute="trailing" secondItem="Cnh-dz-aFs" secondAttribute="trailing" id="asi-WE-dwW"/>

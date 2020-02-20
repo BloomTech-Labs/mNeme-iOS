@@ -17,13 +17,21 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupOutlets()
+        updateViews()
         // Do any additional setup after loading the view.
+    }
+
+    private func updateViews() {
+        self.navigationController?.navigationBar.backgroundColor = UIColor.mNeme.orangeBlaze
+        self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        view.backgroundColor = UIColor.mNeme.orangeBlaze
+        setupOutlets()
     }
 
     private func setupOutlets() {
         // segmented control
         segmentedControl.selectedSegmentTintColor = UIColor.mNeme.orangeBlaze
+        segmentedControl.setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
 
         // deck create button
         deckCreateButton.setTitleColor(UIColor.white, for: .normal)
