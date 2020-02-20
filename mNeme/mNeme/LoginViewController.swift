@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 import GoogleSignIn
-import FacebookLogin
+import FBSDKLoginKit
 
 class LoginViewController: UIViewController, GIDSignInDelegate {
     
@@ -22,7 +22,6 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailSignInButton: UIButton!
     @IBOutlet weak var emailCancelButton: UIButton!
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -121,7 +120,7 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
         passwordTextField.isHidden.toggle()
         emailSignInButton.isHidden.toggle()
         emailCancelButton.isHidden.toggle()
-
+        
     }
     
     private func hideEmailButtons() {
@@ -133,11 +132,11 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
     
     private func emailButtonText() {
         if signingUp {
-            emailButton.titleLabel?.text = "Sign Up with Email"
-            emailSignInButton.titleLabel?.text = "Sign Up"
+            emailButton.setTitle("Sign Up with Email", for: .normal)
+            emailSignInButton.setTitle("Sign Up with Email", for: .normal)
         } else {
-            emailButton.titleLabel?.text = "Sign In with Email"
-            emailSignInButton.titleLabel?.text = "Sign In"
+            emailButton.setTitle("Sign In with Email", for: .normal)
+            emailSignInButton.setTitle("Sign In with Email", for: .normal)
         }
     }
     
