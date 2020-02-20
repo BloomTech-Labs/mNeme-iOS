@@ -20,7 +20,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sign Up"/>
                                 <connections>
-                                    <segue destination="a6j-4v-pA4" kind="presentation" identifier="SignUpSegue" modalPresentationStyle="fullScreen" id="Zpy-vJ-Biw"/>
+                                    <segue destination="a6j-4v-pA4" kind="presentation" identifier="SignUpSegue" modalPresentationStyle="fullScreen" id="fra-ST-gmF"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tW5-Zv-bkI">
@@ -28,28 +28,49 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sign In"/>
                                 <connections>
-                                    <segue destination="a6j-4v-pA4" kind="presentation" identifier="SignInSegue" modalPresentationStyle="fullScreen" id="1sQ-YL-TGl"/>
+                                    <segue destination="a6j-4v-pA4" kind="presentation" identifier="SignInSegue" modalPresentationStyle="fullScreen" id="Tem-8C-0xI"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="Vdy-ef-WZk"/>
                     </view>
+                    <navigationItem key="navigationItem" id="cHr-HY-dQo"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MSE-IE-r6u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136" y="134"/>
+            <point key="canvasLocation" x="1955.072463768116" y="133.92857142857142"/>
         </scene>
         <!--Login-->
         <scene sceneID="h6t-3m-xUR">
             <objects>
-                <viewControllerPlaceholder storyboardName="Login" id="a6j-4v-pA4" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Login" id="a6j-4v-pA4" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="DA3-Iu-WOl"/>
+                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ggo-zS-3gH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="833" y="117"/>
+            <point key="canvasLocation" x="2892.0289855072465" y="87.723214285714278"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="5xf-zg-Qt5">
+            <objects>
+                <navigationController storyboardIdentifier="PreLoginNav" automaticallyAdjustsScrollViewInsets="NO" id="dKL-9E-ep2" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qpK-5L-1bF">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="QIZ-JK-9Ae" kind="relationship" relationship="rootViewController" id="1b9-zr-ypD"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LJf-Ql-vAh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1044.9275362318842" y="133.92857142857142"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="1sQ-YL-TGl"/>
+        <segue reference="Tem-8C-0xI"/>
     </inferredMetricsTieBreakers>
 </document>

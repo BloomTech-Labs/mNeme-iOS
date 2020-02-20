@@ -35,11 +35,20 @@
                                             </label>
                                         </subviews>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZ7-8K-227">
+                                        <rect key="frame" x="20" y="38" width="29" height="23"/>
+                                        <state key="normal" title=" " image="arrow left"/>
+                                        <connections>
+                                            <action selector="backButtonPressed:" destination="DpI-jA-uac" eventType="touchUpInside" id="ahi-1S-PAq"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="N0P-oR-Rtk" firstAttribute="top" secondItem="YPi-qz-hld" secondAttribute="top" constant="117" id="FZ4-dC-60s"/>
                                     <constraint firstAttribute="width" secondItem="YPi-qz-hld" secondAttribute="height" multiplier="69:47" constant="1.4680851063830005" id="LWv-Uv-H7S"/>
+                                    <constraint firstItem="CZ7-8K-227" firstAttribute="leading" secondItem="YPi-qz-hld" secondAttribute="leading" constant="20" id="YtF-Zi-U9D"/>
+                                    <constraint firstItem="CZ7-8K-227" firstAttribute="top" secondItem="YPi-qz-hld" secondAttribute="top" constant="38" id="cGl-w5-6UI"/>
                                     <constraint firstAttribute="trailing" secondItem="N0P-oR-Rtk" secondAttribute="trailing" constant="22.5" id="gTd-ij-2ov"/>
                                     <constraint firstItem="N0P-oR-Rtk" firstAttribute="leading" secondItem="YPi-qz-hld" secondAttribute="leading" constant="20" id="gYI-az-gL8"/>
                                 </constraints>
@@ -122,6 +131,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="x6H-0m-fa4"/>
                     <connections>
+                        <outlet property="backButton" destination="CZ7-8K-227" id="zsg-eG-ZyT"/>
                         <outlet property="emailButton" destination="I2J-FE-w39" id="nmC-M2-xr8"/>
                         <outlet property="emailCancelButton" destination="f3i-D6-FqJ" id="Mjl-zk-kRq"/>
                         <outlet property="emailSignInButton" destination="Z3q-Wu-JUu" id="KB2-0U-bou"/>
@@ -136,4 +146,7 @@
             <point key="canvasLocation" x="1960.8695652173915" y="119.86607142857142"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="arrow left" width="24" height="23"/>
+    </resources>
 </document>

@@ -22,6 +22,7 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailSignInButton: UIButton!
     @IBOutlet weak var emailCancelButton: UIButton!
+    @IBOutlet weak var backButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +36,9 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
         passwordTextField.delegate = self
         facebookLoginButton.delegate = self
         
+    }
+    @IBAction func backButtonPressed(_ sender: Any) {
+        self.dismiss(animated: true)
     }
     
     @IBAction func emailButtonPressed(_ sender: Any) {
