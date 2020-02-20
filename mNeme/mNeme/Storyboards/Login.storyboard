@@ -63,9 +63,9 @@
                                     <action selector="googleSignInPressed:" destination="DpI-jA-uac" eventType="touchUpInside" id="BlZ-8o-8qO"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IBG-GC-5Wl" customClass="FBSDKLoginButton">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IBG-GC-5Wl">
                                 <rect key="frame" x="132" y="494" width="150" height="53"/>
-                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I2J-FE-w39">
                                 <rect key="frame" x="132" y="372" width="150" height="30"/>
@@ -126,7 +126,7 @@
                         <outlet property="emailCancelButton" destination="f3i-D6-FqJ" id="Mjl-zk-kRq"/>
                         <outlet property="emailSignInButton" destination="Z3q-Wu-JUu" id="KB2-0U-bou"/>
                         <outlet property="emailTextField" destination="syg-Uc-Sp2" id="How-fe-Nhr"/>
-                        <outlet property="facebookLoginButton" destination="IBG-GC-5Wl" id="UZk-XQ-8ef"/>
+                        <outlet property="facebookView" destination="IBG-GC-5Wl" id="aCN-uQ-6ji"/>
                         <outlet property="googleSignButton" destination="c28-zM-D6Q" id="DIK-ub-7w7"/>
                         <outlet property="passwordTextField" destination="eyS-fG-bqU" id="Gsk-wN-eVE"/>
                     </connections>

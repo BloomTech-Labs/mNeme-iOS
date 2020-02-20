@@ -15,8 +15,8 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
     
     var signingUp = false
     
+    @IBOutlet weak var facebookView: UIView!
     @IBOutlet weak var googleSignButton: GIDSignInButton!
-    @IBOutlet weak var facebookLoginButton: FBLoginButton!
     @IBOutlet weak var emailButton: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -26,9 +26,10 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let facebookLoginButton = FBLoginButton()
+        facebookView.addSubview(facebookLoginButton)
         hideEmailButtons()
-        
-        emailButton.titleLabel?.text = "Log In with Email"
+        emailButtonText()
         GIDSignIn.sharedInstance()?.presentingViewController = self
         GIDSignIn.sharedInstance().delegate = self
         emailTextField.delegate = self
@@ -43,8 +44,11 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
     }
     
     @IBAction func emailSignInButton(_ sender: Any) {
-        createAccountWithEmail()
-        
+        if signingUp {
+            createAccountWithEmail()
+        } else {
+            signInWithEmail()
+        }
     }
     
     @IBAction func emailCancelButton(_ sender: Any) {
@@ -85,7 +89,7 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
             }
             
             if let authResult = authResult {
-                print("Auth Result has succeeded \(String(describing: authResult.credential))")
+                print("Sign up Auth Result has succeeded \(String(describing: authResult.credential))")
             }
         }
         
@@ -93,10 +97,26 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
         
     }
     
+    private func signInWithEmail() {
+        guard let email = emailTextField.text, !email.isEmpty else { return }
+        guard let password = passwordTextField.text, !password.isEmpty else { return }
+        
+        Auth.auth().signIn(withEmail: email, password: password) { (authResult, error) in
+            if let error = error {
+                NSLog("Error dealing with email sign in: \(error)" )
+                return
+            }
+            
+            if let authResult = authResult {
+                print("Sign in Auth Result has succeeded \(String(describing: authResult.credential))")
+            }
+        }
+    }
+    
     private func toggleAllButtons() {
         emailButton.isHidden.toggle()
         googleSignButton.isHidden.toggle()
-        facebookLoginButton.isHidden.toggle()
+        facebookView.isHidden.toggle()
         emailTextField.isHidden.toggle()
         passwordTextField.isHidden.toggle()
         emailSignInButton.isHidden.toggle()
@@ -109,6 +129,16 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
         passwordTextField.isHidden = true
         emailSignInButton.isHidden = true
         emailCancelButton.isHidden = true
+    }
+    
+    private func emailButtonText() {
+        if signingUp {
+            emailButton.titleLabel?.text = "Sign Up with Email"
+            emailSignInButton.titleLabel?.text = "Sign Up"
+        } else {
+            emailButton.titleLabel?.text = "Sign In with Email"
+            emailSignInButton.titleLabel?.text = "Sign In"
+        }
     }
     
     
@@ -142,6 +172,8 @@ extension LoginViewController: LoginButtonDelegate {
             }
         }
     }
+    
+    // :TODO fix cancel
     
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
         

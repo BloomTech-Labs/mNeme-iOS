@@ -3,13 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		13F5F34F9C9627ECA701EC5C /* Pods_mNemeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11354B8AFCA77E9B1CE8292E /* Pods_mNemeTests.framework */; };
 		4B8A2A3123FCA5C700116BF9 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B8A2A3023FCA5C700116BF9 /* Login.storyboard */; };
-		4BA65EE823FDEFF200C0CA11 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 4BA65EE723FDEFF200C0CA11 /* FacebookLogin */; };
 		6E1A19C692A40780C18AE71F /* Pods_mNeme.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 625928B0143B44879A17FF25 /* Pods_mNeme.framework */; };
 		95773B8823FF032A009B4EFE /* Onboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95773B8723FF032A009B4EFE /* Onboard.storyboard */; };
 		95773B8A23FF041A009B4EFE /* PreLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95773B8923FF041A009B4EFE /* PreLoginViewController.swift */; };
@@ -89,7 +88,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BA65EE823FDEFF200C0CA11 /* FacebookLogin in Frameworks */,
 				6E1A19C692A40780C18AE71F /* Pods_mNeme.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -268,7 +266,6 @@
 			);
 			name = mNeme;
 			packageProductDependencies = (
-				4BA65EE723FDEFF200C0CA11 /* FacebookLogin */,
 			);
 			productName = mNeme;
 			productReference = 95EEEADD23FB45DA00B283E9 /* mNeme.app */;
@@ -347,7 +344,6 @@
 			);
 			mainGroup = 95EEEAD423FB45D900B283E9;
 			packageReferences = (
-				4BA65EE623FDEFF200C0CA11 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 			);
 			productRefGroup = 95EEEADE23FB45DA00B283E9 /* Products */;
 			projectDirPath = "";
@@ -870,25 +866,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		4BA65EE623FDEFF200C0CA11 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		4BA65EE723FDEFF200C0CA11 /* FacebookLogin */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4BA65EE623FDEFF200C0CA11 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
-			productName = FacebookLogin;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		95EEEAE923FB45DA00B283E9 /* mNeme.xcdatamodeld */ = {
