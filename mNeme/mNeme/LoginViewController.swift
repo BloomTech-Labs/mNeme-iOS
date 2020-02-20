@@ -13,6 +13,8 @@ import FacebookLogin
 
 class LoginViewController: UIViewController, GIDSignInDelegate {
     
+    var signingUp = false
+    
     @IBOutlet weak var googleSignButton: GIDSignInButton!
     @IBOutlet weak var facebookLoginButton: FBLoginButton!
     @IBOutlet weak var emailButton: UIButton!
