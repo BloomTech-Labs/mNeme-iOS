@@ -197,7 +197,6 @@
 				BBD8A2EE23FDDF5D00F5534E /* TabViewController.swift */,
 				BBD8A2F023FDE4BD00F5534E /* UIColor+Extension.swift */,
 				958A6B0B23FDE17700FDC959 /* LoginViewController.swift */,
-
 			);
 			path = mNeme;
 			sourceTree = "<group>";

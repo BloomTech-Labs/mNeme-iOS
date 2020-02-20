@@ -177,6 +177,7 @@
                                                             <constraint firstAttribute="width" constant="32" id="OkV-Jb-ncP"/>
                                                             <constraint firstAttribute="height" constant="30" id="qY7-JJ-d11"/>
                                                         </constraints>
+                                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" image="square" catalog="system"/>
                                                         <state key="selected" image="checkmark.square.fill" catalog="system"/>
                                                         <connections>

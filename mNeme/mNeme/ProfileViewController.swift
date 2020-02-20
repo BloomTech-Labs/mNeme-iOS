@@ -32,6 +32,10 @@ class ProfileViewController: UIViewController {
     }
 
     private func buttonViews() {
+        mobileButton.tintColor = UIColor.mNeme.orangeBlaze
+        desktopButton.tintColor = UIColor.mNeme.orangeBlaze
+        preMadeDeckButton.tintColor = UIColor.mNeme.orangeBlaze
+        customDeckButton.tintColor = UIColor.mNeme.orangeBlaze
         mobileButton.accessibilityIdentifier = "mobileButtonID"
         desktopButton.accessibilityIdentifier = "desktopButtonID"
         preMadeDeckButton.accessibilityIdentifier = "preMadeDeckButtonID"
