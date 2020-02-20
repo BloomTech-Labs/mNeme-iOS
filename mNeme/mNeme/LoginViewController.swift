@@ -161,7 +161,8 @@ extension LoginViewController: LoginButtonDelegate {
             return
         }
         
-        let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
+        guard let accessToken = AccessToken.current?.tokenString else { return }
+        let credential = FacebookAuthProvider.credential(withAccessToken: accessToken)
         Auth.auth().signIn(with: credential) { (authResult, error) in
             if let error = error {
                 print(error.localizedDescription)
@@ -171,9 +172,7 @@ extension LoginViewController: LoginButtonDelegate {
             }
         }
     }
-    
-    // :TODO fix cancel
-    
+        
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
         
     }
