@@ -22,9 +22,8 @@ class HomeViewController: UIViewController {
     }
 
     private func updateViews() {
-        self.navigationController?.navigationBar.backgroundColor = UIColor.mNeme.orangeBlaze
-        self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        view.backgroundColor = UIColor.mNeme.orangeBlaze
+        
+        //view.backgroundColor = UIColor.mNeme.orangeBlaze
         setupOutlets()
     }
 
