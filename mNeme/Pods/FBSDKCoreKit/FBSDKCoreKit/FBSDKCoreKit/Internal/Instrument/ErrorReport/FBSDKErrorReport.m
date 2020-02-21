@@ -36,7 +36,7 @@ NSString *const kFBSDKErrorTimestamp = @"timestamp";
 
 # pragma mark - Class Methods
 
-+ (void)enable
++ (void)initialize
 {
   NSString *dirPath = [NSTemporaryDirectory() stringByAppendingPathComponent:ErrorReportStorageDirName];
   if (![[NSFileManager defaultManager] fileExistsAtPath:dirPath]) {
@@ -45,6 +45,10 @@ NSString *const kFBSDKErrorTimestamp = @"timestamp";
     }
   }
   directoryPath = dirPath;
+}
+
++ (void)enable
+{
   [self uploadError];
   [FBSDKError enableErrorReport];
 }
@@ -89,7 +93,7 @@ NSString *const kFBSDKErrorTimestamp = @"timestamp";
   NSArray<NSString *> *fileNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:directoryPath error:NULL];
   NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
     NSString *str = (NSString *)evaluatedObject;
-    return [str hasPrefix:@"error_report_"] && [str hasSuffix:@".json"];
+    return [str hasPrefix:@"error_report_"] && [str hasSuffix:@".plist"];
   }];
   fileNames = [fileNames filteredArrayUsingPredicate:predicate];
   fileNames = [fileNames sortedArrayUsingComparator:^NSComparisonResult(id _Nonnull obj1, id _Nonnull obj2){
@@ -98,16 +102,9 @@ NSString *const kFBSDKErrorTimestamp = @"timestamp";
   if (fileNames.count > 0){
     fileNames = [fileNames subarrayWithRange:NSMakeRange(0, MIN(fileNames.count, FBSDK_MAX_ERROR_REPORT_LOGS))];
     for (NSUInteger i = 0; i < fileNames.count; i++) {
-      NSData *data = [NSData dataWithContentsOfFile:[directoryPath stringByAppendingPathComponent:fileNames[i]]
-                                            options:NSDataReadingMappedIfSafe
-                                              error:nil];
-      if (data) {
-        NSDictionary<NSString *, id> *errorReport =  [NSJSONSerialization JSONObjectWithData:data
-                                                                                     options:0
-                                                                                       error:nil];
-        if (errorReport) {
-          [errorReportArr addObject:errorReport];
-        }
+      NSDictionary<NSString *, id> *errorReport =  [NSDictionary dictionaryWithContentsOfFile:[directoryPath stringByAppendingPathComponent:fileNames[i]]];
+      if (errorReport) {
+        [errorReportArr addObject:errorReport];
       }
     }
   }
@@ -128,16 +125,13 @@ NSString *const kFBSDKErrorTimestamp = @"timestamp";
 
 + (void)saveErrorInfoToDisk:(NSDictionary<NSString *, id> *)errorInfo
 {
-  if (errorInfo.count > 0) {
-    NSData *data = [NSJSONSerialization dataWithJSONObject:errorInfo options:0 error:nil];
-    [data writeToFile:[self pathToErrorInfoFile]
-           atomically:YES];
-  }
+  [errorInfo writeToFile:[self pathToErrorInfoFile]
+              atomically:YES];
 }
 
 + (NSString *)pathToErrorInfoFile
 {
   NSString *timestamp = [NSString stringWithFormat:@"%.0lf", [[NSDate date] timeIntervalSince1970]];
-  return [directoryPath stringByAppendingPathComponent:[NSString stringWithFormat:@"error_report_%@.json",timestamp]];
+  return [directoryPath stringByAppendingPathComponent:[NSString stringWithFormat:@"error_report_%@.plist",timestamp]];
 }
 @end

@@ -54,37 +54,19 @@
                                 </constraints>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="syg-Uc-Sp2">
-                                <rect key="frame" x="50" y="431" width="314" height="34"/>
+                                <rect key="frame" x="50" y="357" width="314" height="34"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Your Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eyS-fG-bqU">
-                                <rect key="frame" x="50" y="494" width="314" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Your Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eyS-fG-bqU">
+                                <rect key="frame" x="50" y="418" width="314" height="34"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c28-zM-D6Q" customClass="GIDSignInButton">
-                                <rect key="frame" x="132" y="420" width="150" height="55"/>
-                                <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <action selector="googleSignInPressed:" destination="DpI-jA-uac" eventType="touchUpInside" id="BlZ-8o-8qO"/>
-                                </connections>
-                            </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IBG-GC-5Wl">
-                                <rect key="frame" x="132" y="494" width="150" height="53"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I2J-FE-w39">
-                                <rect key="frame" x="132" y="372" width="150" height="30"/>
-                                <state key="normal" title="Email Sign In"/>
-                                <connections>
-                                    <action selector="emailButtonPressed:" destination="DpI-jA-uac" eventType="touchUpInside" id="LNO-Z0-w5o"/>
-                                </connections>
-                            </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="L58-Gh-k8y">
-                                <rect key="frame" x="50" y="536" width="314" height="68"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="L58-Gh-k8y">
+                                <rect key="frame" x="50" y="472" width="314" height="68"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z3q-Wu-JUu">
                                         <rect key="frame" x="0.0" y="0.0" width="314" height="30"/>
@@ -102,42 +84,63 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Hh-ae-R8P">
+                                <rect key="frame" x="76" y="411" width="259" height="56"/>
+                                <state key="normal" image="FacebookButton"/>
+                                <connections>
+                                    <action selector="loginWithReadPermissions" destination="DpI-jA-uac" eventType="touchUpInside" id="LhR-wd-G1N"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6mZ-QA-5IS">
+                                <rect key="frame" x="76" y="347" width="259" height="56"/>
+                                <state key="normal" image="EmailButton"/>
+                                <connections>
+                                    <action selector="emailButtonPressed:" destination="DpI-jA-uac" eventType="touchUpInside" id="xk9-XK-q28"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D9Y-Et-lgF">
+                                <rect key="frame" x="76" y="475" width="259" height="56"/>
+                                <state key="normal" image="GoogleButton"/>
+                                <connections>
+                                    <action selector="googleSignInPressed:" destination="DpI-jA-uac" eventType="touchUpInside" id="mar-tJ-ZuY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="mzF-YM-ldz" firstAttribute="trailing" secondItem="c28-zM-D6Q" secondAttribute="trailing" constant="132" id="1gl-RC-95d"/>
-                            <constraint firstItem="eyS-fG-bqU" firstAttribute="top" secondItem="c28-zM-D6Q" secondAttribute="bottom" constant="20" id="5zG-ZZ-pqQ"/>
-                            <constraint firstItem="c28-zM-D6Q" firstAttribute="top" secondItem="I2J-FE-w39" secondAttribute="bottom" constant="8" id="9MD-iu-Qx6"/>
-                            <constraint firstItem="mzF-YM-ldz" firstAttribute="bottom" secondItem="IBG-GC-5Wl" secondAttribute="bottom" constant="315" id="CMA-Hh-9ix"/>
+                            <constraint firstItem="D9Y-Et-lgF" firstAttribute="leading" secondItem="mzF-YM-ldz" secondAttribute="leading" constant="76" id="2Na-YY-oXM"/>
+                            <constraint firstItem="mzF-YM-ldz" firstAttribute="trailing" secondItem="9Hh-ae-R8P" secondAttribute="trailing" constant="79" id="D8b-ot-LL0"/>
+                            <constraint firstItem="mzF-YM-ldz" firstAttribute="trailing" secondItem="D9Y-Et-lgF" secondAttribute="trailing" constant="79" id="Fa6-1P-QHs"/>
+                            <constraint firstItem="mzF-YM-ldz" firstAttribute="trailing" secondItem="6mZ-QA-5IS" secondAttribute="trailing" constant="79" id="FqJ-eA-tjI"/>
                             <constraint firstItem="mzF-YM-ldz" firstAttribute="trailing" secondItem="syg-Uc-Sp2" secondAttribute="trailing" constant="50" id="Go0-b9-gHF"/>
-                            <constraint firstItem="syg-Uc-Sp2" firstAttribute="top" secondItem="I2J-FE-w39" secondAttribute="bottom" constant="29" id="IKX-PR-5b5"/>
-                            <constraint firstItem="mzF-YM-ldz" firstAttribute="trailing" secondItem="I2J-FE-w39" secondAttribute="trailing" constant="132" id="RMU-Ch-U0x"/>
+                            <constraint firstItem="eyS-fG-bqU" firstAttribute="top" secondItem="syg-Uc-Sp2" secondAttribute="bottom" constant="27" id="Ksm-0g-Eue"/>
+                            <constraint firstItem="9Hh-ae-R8P" firstAttribute="top" secondItem="6mZ-QA-5IS" secondAttribute="bottom" constant="8" id="Mgj-sT-olf"/>
+                            <constraint firstItem="6mZ-QA-5IS" firstAttribute="top" secondItem="YPi-qz-hld" secondAttribute="bottom" constant="66" id="Q0d-ks-Zj6"/>
                             <constraint firstItem="mzF-YM-ldz" firstAttribute="trailing" secondItem="L58-Gh-k8y" secondAttribute="trailing" constant="50" id="SWG-qP-SF4"/>
                             <constraint firstItem="syg-Uc-Sp2" firstAttribute="leading" secondItem="mzF-YM-ldz" secondAttribute="leading" constant="50" id="Wmi-Xi-Lkb"/>
-                            <constraint firstItem="c28-zM-D6Q" firstAttribute="leading" secondItem="mzF-YM-ldz" secondAttribute="leading" constant="132" id="dtH-Td-caQ"/>
-                            <constraint firstItem="IBG-GC-5Wl" firstAttribute="leading" secondItem="mzF-YM-ldz" secondAttribute="leading" constant="132" id="gM5-jQ-a3C"/>
+                            <constraint firstItem="9Hh-ae-R8P" firstAttribute="leading" secondItem="mzF-YM-ldz" secondAttribute="leading" constant="76" id="fex-u7-etO"/>
+                            <constraint firstItem="D9Y-Et-lgF" firstAttribute="top" secondItem="9Hh-ae-R8P" secondAttribute="bottom" constant="8" id="gk3-pc-X6s"/>
                             <constraint firstItem="eyS-fG-bqU" firstAttribute="leading" secondItem="mzF-YM-ldz" secondAttribute="leading" constant="50" id="izw-Tw-zNj"/>
                             <constraint firstItem="mzF-YM-ldz" firstAttribute="trailing" secondItem="eyS-fG-bqU" secondAttribute="trailing" constant="50" id="kza-X6-j0e"/>
+                            <constraint firstItem="6mZ-QA-5IS" firstAttribute="leading" secondItem="mzF-YM-ldz" secondAttribute="leading" constant="76" id="lNM-9I-Jnf"/>
                             <constraint firstItem="L58-Gh-k8y" firstAttribute="leading" secondItem="mzF-YM-ldz" secondAttribute="leading" constant="50" id="m1Y-yj-tJO"/>
-                            <constraint firstItem="mzF-YM-ldz" firstAttribute="trailing" secondItem="IBG-GC-5Wl" secondAttribute="trailing" constant="132" id="og1-bK-qCY"/>
                             <constraint firstItem="L58-Gh-k8y" firstAttribute="top" secondItem="eyS-fG-bqU" secondAttribute="bottom" constant="20" id="pMx-Uk-aBZ"/>
-                            <constraint firstItem="I2J-FE-w39" firstAttribute="top" secondItem="YPi-qz-hld" secondAttribute="bottom" constant="91" id="rZr-bp-egw"/>
+                            <constraint firstItem="syg-Uc-Sp2" firstAttribute="top" secondItem="YPi-qz-hld" secondAttribute="bottom" constant="76" id="s2j-Jf-0tP"/>
                             <constraint firstItem="YPi-qz-hld" firstAttribute="leading" secondItem="KFO-Lj-uWq" secondAttribute="leading" id="sRK-dh-8mb"/>
                             <constraint firstItem="YPi-qz-hld" firstAttribute="top" secondItem="KFO-Lj-uWq" secondAttribute="top" id="wyl-SZ-MNY"/>
-                            <constraint firstItem="IBG-GC-5Wl" firstAttribute="top" secondItem="c28-zM-D6Q" secondAttribute="bottom" constant="19" id="xM2-57-SXJ"/>
-                            <constraint firstItem="I2J-FE-w39" firstAttribute="leading" secondItem="mzF-YM-ldz" secondAttribute="leading" constant="132" id="yPL-hS-h2y"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mzF-YM-ldz"/>
                     </view>
                     <navigationItem key="navigationItem" id="x6H-0m-fa4"/>
                     <connections>
                         <outlet property="backButton" destination="CZ7-8K-227" id="zsg-eG-ZyT"/>
-                        <outlet property="emailButton" destination="I2J-FE-w39" id="nmC-M2-xr8"/>
+                        <outlet property="emailButton" destination="6mZ-QA-5IS" id="YVt-je-ikV"/>
                         <outlet property="emailCancelButton" destination="f3i-D6-FqJ" id="Mjl-zk-kRq"/>
                         <outlet property="emailSignInButton" destination="Z3q-Wu-JUu" id="KB2-0U-bou"/>
                         <outlet property="emailTextField" destination="syg-Uc-Sp2" id="How-fe-Nhr"/>
-                        <outlet property="facebookView" destination="IBG-GC-5Wl" id="aCN-uQ-6ji"/>
-                        <outlet property="googleSignButton" destination="c28-zM-D6Q" id="DIK-ub-7w7"/>
+                        <outlet property="facebookLoginButton" destination="9Hh-ae-R8P" id="Y5f-xM-LEk"/>
+                        <outlet property="googleLoginButton" destination="D9Y-Et-lgF" id="g3V-RX-KaR"/>
+                        <outlet property="mainView" destination="KFO-Lj-uWq" id="Kqo-Os-20H"/>
                         <outlet property="passwordTextField" destination="eyS-fG-bqU" id="Gsk-wN-eVE"/>
                     </connections>
                 </viewController>
@@ -147,6 +150,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="EmailButton" width="259" height="56"/>
+        <image name="FacebookButton" width="259" height="56"/>
+        <image name="GoogleButton" width="259" height="56"/>
         <image name="arrow left" width="24" height="23"/>
     </resources>
 </document>

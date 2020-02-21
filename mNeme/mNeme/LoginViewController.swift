@@ -10,33 +10,34 @@ import UIKit
 import FirebaseAuth
 import GoogleSignIn
 import FBSDKLoginKit
+import FacebookLogin
 
 class LoginViewController: UIViewController, GIDSignInDelegate {
     
     var signingUp = false
     
-    @IBOutlet weak var facebookView: UIView!
-    @IBOutlet weak var googleSignButton: GIDSignInButton!
+    
+    @IBOutlet weak var facebookLoginButton: UIButton!
+    @IBOutlet weak var googleLoginButton: UIButton!
     @IBOutlet weak var emailButton: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailSignInButton: UIButton!
     @IBOutlet weak var emailCancelButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
+    @IBOutlet var mainView: UIView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let facebookLoginButton = FBLoginButton()
-        facebookView.addSubview(facebookLoginButton)
         hideEmailButtons()
         emailButtonText()
         GIDSignIn.sharedInstance()?.presentingViewController = self
         GIDSignIn.sharedInstance().delegate = self
         emailTextField.delegate = self
         passwordTextField.delegate = self
-        facebookLoginButton.delegate = self
-        
     }
+    
     @IBAction func backButtonPressed(_ sender: Any) {
         self.dismiss(animated: true)
     }
@@ -64,6 +65,37 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
     }
     
     
+    
+    
+    func loginManagerDidComplete(_ result: LoginResult) {
+        
+        switch result {
+        case .cancelled:
+            print("cancelled")
+
+        case .failed(let error):
+           print("failed")
+
+        case .success(let grantedPermissions, _, _):
+            print("success")
+        }
+    }
+
+    @IBAction private func loginWithReadPermissions() {
+        let loginManager = LoginManager()
+        loginManager.logIn(
+            viewController: self
+        ) { result in
+            self.loginManagerDidComplete(result)
+        }
+    }
+
+//    @IBAction private func logOut() {
+//        let loginManager = LoginManager()
+//        loginManager.logOut()
+//    }
+    
+    
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
             print(error.localizedDescription)
@@ -76,7 +108,6 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
                 print(error.localizedDescription)
             } else {
                 print("Login Successful.")
-                //                self.performSegue(withIdentifier: "LoginSegue", sender: self)
             }
         }
     }
@@ -118,8 +149,8 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
     
     private func toggleAllButtons() {
         emailButton.isHidden.toggle()
-        googleSignButton.isHidden.toggle()
-        facebookView.isHidden.toggle()
+        googleLoginButton.isHidden.toggle()
+        facebookLoginButton.isHidden.toggle()
         emailTextField.isHidden.toggle()
         passwordTextField.isHidden.toggle()
         emailSignInButton.isHidden.toggle()
@@ -143,8 +174,6 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
             emailSignInButton.setTitle("Sign In with Email", for: .normal)
         }
     }
-    
-    
     
     /*
      // MARK: - Navigation
@@ -187,3 +216,4 @@ extension LoginViewController: LoginButtonDelegate {
 extension LoginViewController: UITextFieldDelegate {
     
 }
+
