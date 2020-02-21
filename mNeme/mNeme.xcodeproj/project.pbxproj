@@ -3,14 +3,27 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		13F5F34F9C9627ECA701EC5C /* Pods_mNemeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11354B8AFCA77E9B1CE8292E /* Pods_mNemeTests.framework */; };
 		4B8A2A3123FCA5C700116BF9 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B8A2A3023FCA5C700116BF9 /* Login.storyboard */; };
-		4BA65EE823FDEFF200C0CA11 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 4BA65EE723FDEFF200C0CA11 /* FacebookLogin */; };
 		6E1A19C692A40780C18AE71F /* Pods_mNeme.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 625928B0143B44879A17FF25 /* Pods_mNeme.framework */; };
+		95773B8823FF032A009B4EFE /* Onboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95773B8723FF032A009B4EFE /* Onboard.storyboard */; };
+		95773B8A23FF041A009B4EFE /* PreLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95773B8923FF041A009B4EFE /* PreLoginViewController.swift */; };
+		95773B9823FF4119009B4EFE /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95773B8C23FF4114009B4EFE /* Roboto-Black.ttf */; };
+		95773B9923FF4119009B4EFE /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95773B8D23FF4114009B4EFE /* Roboto-Thin.ttf */; };
+		95773B9A23FF4119009B4EFE /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95773B8E23FF4115009B4EFE /* Roboto-ThinItalic.ttf */; };
+		95773B9B23FF4119009B4EFE /* Roboto-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95773B8F23FF4115009B4EFE /* Roboto-BoldItalic.ttf */; };
+		95773B9C23FF4119009B4EFE /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95773B9023FF4116009B4EFE /* Roboto-Italic.ttf */; };
+		95773B9D23FF4119009B4EFE /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95773B9123FF4116009B4EFE /* Roboto-BlackItalic.ttf */; };
+		95773B9E23FF4119009B4EFE /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95773B9223FF4117009B4EFE /* Roboto-Regular.ttf */; };
+		95773B9F23FF4119009B4EFE /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95773B9323FF4117009B4EFE /* Roboto-Bold.ttf */; };
+		95773BA023FF4119009B4EFE /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95773B9423FF4117009B4EFE /* Roboto-MediumItalic.ttf */; };
+		95773BA123FF4119009B4EFE /* Roboto-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95773B9523FF4118009B4EFE /* Roboto-LightItalic.ttf */; };
+		95773BA223FF4119009B4EFE /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95773B9623FF4118009B4EFE /* Roboto-Medium.ttf */; };
+		95773BA323FF4119009B4EFE /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95773B9723FF4118009B4EFE /* Roboto-Light.ttf */; };
 		958A6B0A23FDBAA300FDC959 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 958A6B0923FDBAA200FDC959 /* GoogleService-Info.plist */; };
 		958A6B0C23FDE17700FDC959 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958A6B0B23FDE17700FDC959 /* LoginViewController.swift */; };
 		95EEEAE123FB45DA00B283E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EEEAE023FB45DA00B283E9 /* AppDelegate.swift */; };
@@ -54,6 +67,20 @@
 		4B8A2A3023FCA5C700116BF9 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		5A231593762C0B0497140987 /* Pods-mNeme.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mNeme.debug.xcconfig"; path = "Target Support Files/Pods-mNeme/Pods-mNeme.debug.xcconfig"; sourceTree = "<group>"; };
 		625928B0143B44879A17FF25 /* Pods_mNeme.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mNeme.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		95773B8723FF032A009B4EFE /* Onboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboard.storyboard; sourceTree = "<group>"; };
+		95773B8923FF041A009B4EFE /* PreLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreLoginViewController.swift; sourceTree = "<group>"; };
+		95773B8C23FF4114009B4EFE /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
+		95773B8D23FF4114009B4EFE /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		95773B8E23FF4115009B4EFE /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
+		95773B8F23FF4115009B4EFE /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BoldItalic.ttf"; sourceTree = "<group>"; };
+		95773B9023FF4116009B4EFE /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
+		95773B9123FF4116009B4EFE /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
+		95773B9223FF4117009B4EFE /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		95773B9323FF4117009B4EFE /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		95773B9423FF4117009B4EFE /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
+		95773B9523FF4118009B4EFE /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-LightItalic.ttf"; sourceTree = "<group>"; };
+		95773B9623FF4118009B4EFE /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		95773B9723FF4118009B4EFE /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
 		958A6B0923FDBAA200FDC959 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		958A6B0B23FDE17700FDC959 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		95EEEADD23FB45DA00B283E9 /* mNeme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mNeme.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,7 +114,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BA65EE823FDEFF200C0CA11 /* FacebookLogin in Frameworks */,
 				6E1A19C692A40780C18AE71F /* Pods_mNeme.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -126,6 +152,7 @@
 		4B8A2A2B23FCA3B700116BF9 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				95773B8723FF032A009B4EFE /* Onboard.storyboard */,
 				4B8A2A3023FCA5C700116BF9 /* Login.storyboard */,
 				95EEEAE623FB45DA00B283E9 /* Main.storyboard */,
 				95EEEAEE23FB45DC00B283E9 /* LaunchScreen.storyboard */,
@@ -163,6 +190,25 @@
 			path = "Model Controller";
 			sourceTree = "<group>";
 		};
+		95773B8B23FF40FA009B4EFE /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				95773B8C23FF4114009B4EFE /* Roboto-Black.ttf */,
+				95773B9123FF4116009B4EFE /* Roboto-BlackItalic.ttf */,
+				95773B9323FF4117009B4EFE /* Roboto-Bold.ttf */,
+				95773B8F23FF4115009B4EFE /* Roboto-BoldItalic.ttf */,
+				95773B9023FF4116009B4EFE /* Roboto-Italic.ttf */,
+				95773B9723FF4118009B4EFE /* Roboto-Light.ttf */,
+				95773B9523FF4118009B4EFE /* Roboto-LightItalic.ttf */,
+				95773B9623FF4118009B4EFE /* Roboto-Medium.ttf */,
+				95773B9423FF4117009B4EFE /* Roboto-MediumItalic.ttf */,
+				95773B9223FF4117009B4EFE /* Roboto-Regular.ttf */,
+				95773B8D23FF4114009B4EFE /* Roboto-Thin.ttf */,
+				95773B8E23FF4115009B4EFE /* Roboto-ThinItalic.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		95EEEAD423FB45D900B283E9 = {
 			isa = PBXGroup;
 			children = (
@@ -188,6 +234,7 @@
 		95EEEADF23FB45DA00B283E9 /* mNeme */ = {
 			isa = PBXGroup;
 			children = (
+				95773B8B23FF40FA009B4EFE /* Fonts */,
 				4B8A2A2C23FCA3C400116BF9 /* Models */,
 				4B8A2A2F23FCA49D00116BF9 /* Model Controller */,
 				4B8A2A2E23FCA49100116BF9 /* Networking */,
@@ -200,6 +247,8 @@
 				BBD8A2EE23FDDF5D00F5534E /* TabViewController.swift */,
 				BBD8A2F023FDE4BD00F5534E /* UIColor+Extension.swift */,
 				958A6B0B23FDE17700FDC959 /* LoginViewController.swift */,
+				95773B8923FF041A009B4EFE /* PreLoginViewController.swift */,
+
 			);
 			path = mNeme;
 			sourceTree = "<group>";
@@ -265,7 +314,6 @@
 			);
 			name = mNeme;
 			packageProductDependencies = (
-				4BA65EE723FDEFF200C0CA11 /* FacebookLogin */,
 			);
 			productName = mNeme;
 			productReference = 95EEEADD23FB45DA00B283E9 /* mNeme.app */;
@@ -344,7 +392,6 @@
 			);
 			mainGroup = 95EEEAD423FB45D900B283E9;
 			packageReferences = (
-				4BA65EE623FDEFF200C0CA11 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 			);
 			productRefGroup = 95EEEADE23FB45DA00B283E9 /* Products */;
 			projectDirPath = "";
@@ -362,10 +409,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95773B9F23FF4119009B4EFE /* Roboto-Bold.ttf in Resources */,
+				95773BA023FF4119009B4EFE /* Roboto-MediumItalic.ttf in Resources */,
+				95773BA123FF4119009B4EFE /* Roboto-LightItalic.ttf in Resources */,
+				95773BA223FF4119009B4EFE /* Roboto-Medium.ttf in Resources */,
+				95773B9923FF4119009B4EFE /* Roboto-Thin.ttf in Resources */,
 				958A6B0A23FDBAA300FDC959 /* GoogleService-Info.plist in Resources */,
 				4B8A2A3123FCA5C700116BF9 /* Login.storyboard in Resources */,
 				95EEEAF023FB45DC00B283E9 /* LaunchScreen.storyboard in Resources */,
+				95773BA323FF4119009B4EFE /* Roboto-Light.ttf in Resources */,
 				95EEEAED23FB45DC00B283E9 /* Assets.xcassets in Resources */,
+				95773B9823FF4119009B4EFE /* Roboto-Black.ttf in Resources */,
+				95773B9A23FF4119009B4EFE /* Roboto-ThinItalic.ttf in Resources */,
+				95773B9D23FF4119009B4EFE /* Roboto-BlackItalic.ttf in Resources */,
+				95773B8823FF032A009B4EFE /* Onboard.storyboard in Resources */,
+				95773B9B23FF4119009B4EFE /* Roboto-BoldItalic.ttf in Resources */,
+				95773B9E23FF4119009B4EFE /* Roboto-Regular.ttf in Resources */,
+				95773B9C23FF4119009B4EFE /* Roboto-Italic.ttf in Resources */,
 				95EEEAE823FB45DA00B283E9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -532,6 +592,7 @@
 				95EEEAEB23FB45DA00B283E9 /* mNeme.xcdatamodeld in Sources */,
 				95EEEAE123FB45DA00B283E9 /* AppDelegate.swift in Sources */,
 				BBD8A2E923FDDD8E00F5534E /* ProfileViewController.swift in Sources */,
+				95773B8A23FF041A009B4EFE /* PreLoginViewController.swift in Sources */,
 				BBD8A2EB23FDDDE600F5534E /* DeckCreateViewController.swift in Sources */,
 				95EEEAE323FB45DA00B283E9 /* SceneDelegate.swift in Sources */,
 				BBD8A2EF23FDDF5D00F5534E /* TabViewController.swift in Sources */,
@@ -866,25 +927,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		4BA65EE623FDEFF200C0CA11 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		4BA65EE723FDEFF200C0CA11 /* FacebookLogin */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4BA65EE623FDEFF200C0CA11 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
-			productName = FacebookLogin;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		95EEEAE923FB45DA00B283E9 /* mNeme.xcdatamodeld */ = {
