@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let vc = loginStoryBoard.instantiateViewController(withIdentifier: "PreLoginStoryboard")
         self.window!.rootViewController = vc
         self.window!.makeKeyAndVisible()
-        
+
         guard let _ = (scene as? UIWindowScene) else { return }
     }
 
