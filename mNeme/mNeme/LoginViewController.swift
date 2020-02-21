@@ -16,7 +16,6 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
     
     var signingUp = false
     
-    
     @IBOutlet weak var facebookLoginButton: UIButton!
     @IBOutlet weak var googleLoginButton: UIButton!
     @IBOutlet weak var emailButton: UIButton!
@@ -24,14 +23,19 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailSignInButton: UIButton!
     @IBOutlet weak var emailCancelButton: UIButton!
-    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet var mainView: UIView!
+    @IBOutlet weak var largeNavView: UIView!
+    @IBOutlet weak var navBar: UINavigationBar!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         hideEmailButtons()
         emailButtonText()
+//        navBar.titleTextAttributes = [kCTForegroundColorAttributeName as NSAttributedString.Key: UIColor.white]
+        navBar.backgroundColor = UIColor.mNeme.orangeBlaze
+        largeNavView.backgroundColor = UIColor.mNeme.orangeBlaze
         GIDSignIn.sharedInstance()?.presentingViewController = self
         GIDSignIn.sharedInstance().delegate = self
         emailTextField.delegate = self
@@ -73,10 +77,10 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
         case .cancelled:
             print("cancelled")
 
-        case .failed(let error):
+        case .failed:
            print("failed")
 
-        case .success(let grantedPermissions, _, _):
+        case .success:
             print("success")
         }
     }
@@ -167,11 +171,15 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
     
     private func emailButtonText() {
         if signingUp {
-            emailButton.setTitle("Sign Up with Email", for: .normal)
-            emailSignInButton.setTitle("Sign Up with Email", for: .normal)
+            facebookLoginButton.setImage(UIImage(named: "Sign Up with Facebook"), for: .normal)
+            googleLoginButton.setImage(UIImage(named: "Sign Up with Google"), for: .normal)
+            emailButton.setImage(UIImage(named: "Sign Up with Email"), for: .normal)
+            emailSignInButton.setImage(UIImage(named: "Sign Up"), for: .normal)
         } else {
-            emailButton.setTitle("Sign In with Email", for: .normal)
-            emailSignInButton.setTitle("Sign In with Email", for: .normal)
+            facebookLoginButton.setImage(UIImage(named: "Sign in with Facebook"), for: .normal)
+            googleLoginButton.setImage(UIImage(named: "Sign in with Google"), for: .normal)
+            emailButton.setImage(UIImage(named: "Sign in with Email"), for: .normal)
+            emailSignInButton.setImage(UIImage(named: "Sign In"), for: .normal)
         }
     }
     
