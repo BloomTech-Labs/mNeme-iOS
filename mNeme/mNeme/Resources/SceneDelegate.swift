@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
       
         self.window = self.window ?? UIWindow()
         let loginStoryBoard = UIStoryboard(name: "Onboard", bundle: nil)
-        let vc = loginStoryBoard.instantiateViewController(withIdentifier: "PreLoginNav")
+        let vc = loginStoryBoard.instantiateViewController(withIdentifier: "PreLoginStoryboard")
         self.window!.rootViewController = vc
         self.window!.makeKeyAndVisible()
         
