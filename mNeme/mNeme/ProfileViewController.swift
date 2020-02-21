@@ -8,15 +8,24 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UITextFieldDelegate {
+
+    // MARK: Properties
+    private var studyFrequency = ["Once a day",
+                                  "Twice a day"]
+    private var notificationFrequency = ["When I haven't met my goal in a day",
+                                         "When I haven't met my goal in a week",
+                                         "Everyday"]
+    var selectedStudyFrequency: String?
+    var selectedNotificationFrequency: String?
 
     // MARK: IBOutlets
-    @IBOutlet private weak var studyFrequencyButton: UIButton!
+    @IBOutlet private weak var studyFrequencyTextField: UITextField!
     @IBOutlet private weak var mobileButton: UIButton!
     @IBOutlet private weak var desktopButton: UIButton!
     @IBOutlet private weak var preMadeDeckButton: UIButton!
     @IBOutlet private weak var customDeckButton: UIButton!
-    @IBOutlet private weak var notificationButton: UIButton!
+    @IBOutlet private weak var notificationFrequencyTextField: UITextField!
     @IBOutlet private weak var saveButton: UIButton!
 
     // MARK: Views
@@ -29,6 +38,8 @@ class ProfileViewController: UIViewController {
     private func updateViews() {
         //view.backgroundColor = UIColor.mNeme.orangeBlaze
         buttonViews()
+        createStudyFrequencyPicker()
+        createNotificationFrequencyPicker()
     }
 
     private func buttonViews() {
@@ -97,14 +108,73 @@ class ProfileViewController: UIViewController {
             }
         }
     }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func createStudyFrequencyPicker() {
+        let studyFrequencyPicker = UIPickerView()
+        studyFrequencyPicker.accessibilityIdentifier = "studyPickerID"
+        studyFrequencyPicker.delegate = self
+
+        studyFrequencyTextField.inputView = studyFrequencyPicker
     }
-    */
+
+    private func createNotificationFrequencyPicker() {
+        let notificationFrequencyPicker = UIPickerView()
+        notificationFrequencyPicker.accessibilityIdentifier = "notificaionPickerID"
+        notificationFrequencyPicker.delegate = self
+
+        notificationFrequencyTextField.inputView = notificationFrequencyPicker
+    }
+    /*
+     // MARK: - Navigation
+
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+}
+
+extension ProfileViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if let identifier = pickerView.accessibilityIdentifier {
+            if identifier == "studyPickerID" {
+                return studyFrequency.count
+            } else if identifier == "notificaionPickerID" {
+                return notificationFrequency.count
+            }
+        }
+        return 0
+    }
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if let identifier = pickerView.accessibilityIdentifier {
+            if identifier == "studyPickerID" {
+                return studyFrequency[row]
+            } else if identifier == "notificaionPickerID" {
+                return notificationFrequency[row]
+            }
+        }
+        return nil
+    }
+
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if let identifier = pickerView.accessibilityIdentifier {
+            if identifier == "studyPickerID" {
+                selectedStudyFrequency = studyFrequency[row]
+                studyFrequencyTextField.text = selectedStudyFrequency
+            } else if identifier == "notificaionPickerID" {
+                selectedNotificationFrequency = notificationFrequency[row]
+                notificationFrequencyTextField.text = selectedNotificationFrequency
+            }
+        }
+
+    }
+
+
 
 }
