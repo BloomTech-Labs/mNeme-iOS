@@ -145,6 +145,7 @@
 				95EEEAF123FB45DC00B283E9 /* Info.plist */,
 				958A6B0923FDBAA200FDC959 /* GoogleService-Info.plist */,
 				95EEEAEC23FB45DC00B283E9 /* Assets.xcassets */,
+				95773B8B23FF40FA009B4EFE /* Fonts */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -169,25 +170,25 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		4B8A2A2D23FCA47400116BF9 /* View Controllers */ = {
+		95204335240095F80072F4DA /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				BBD8A2E823FDDD8E00F5534E /* ProfileViewController.swift */,
+				BBD8A2EA23FDDDE600F5534E /* DeckCreateViewController.swift */,
+				BBD8A2EC23FDDE0500F5534E /* HomeViewController.swift */,
+				BBD8A2EE23FDDF5D00F5534E /* TabViewController.swift */,
+				958A6B0B23FDE17700FDC959 /* LoginViewController.swift */,
+				95773B8923FF041A009B4EFE /* PreLoginViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
-		4B8A2A2E23FCA49100116BF9 /* Networking */ = {
+		95204336240096350072F4DA /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				BBD8A2F023FDE4BD00F5534E /* UIColor+Extension.swift */,
 			);
-			path = Networking;
-			sourceTree = "<group>";
-		};
-		4B8A2A2F23FCA49D00116BF9 /* Model Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Model Controller";
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		95773B8B23FF40FA009B4EFE /* Fonts */ = {
@@ -234,21 +235,11 @@
 		95EEEADF23FB45DA00B283E9 /* mNeme */ = {
 			isa = PBXGroup;
 			children = (
-				95773B8B23FF40FA009B4EFE /* Fonts */,
 				4B8A2A2C23FCA3C400116BF9 /* Models */,
-				4B8A2A2F23FCA49D00116BF9 /* Model Controller */,
-				4B8A2A2E23FCA49100116BF9 /* Networking */,
-				4B8A2A2D23FCA47400116BF9 /* View Controllers */,
+				95204335240095F80072F4DA /* View Controllers */,
 				4B8A2A2B23FCA3B700116BF9 /* Storyboards */,
+				95204336240096350072F4DA /* Helper */,
 				4B8A2A2A23FCA39D00116BF9 /* Resources */,
-				BBD8A2E823FDDD8E00F5534E /* ProfileViewController.swift */,
-				BBD8A2EA23FDDDE600F5534E /* DeckCreateViewController.swift */,
-				BBD8A2EC23FDDE0500F5534E /* HomeViewController.swift */,
-				BBD8A2EE23FDDF5D00F5534E /* TabViewController.swift */,
-				BBD8A2F023FDE4BD00F5534E /* UIColor+Extension.swift */,
-				958A6B0B23FDE17700FDC959 /* LoginViewController.swift */,
-				95773B8923FF041A009B4EFE /* PreLoginViewController.swift */,
-
 			);
 			path = mNeme;
 			sourceTree = "<group>";

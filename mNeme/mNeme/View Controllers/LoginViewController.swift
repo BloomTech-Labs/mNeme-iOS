@@ -111,7 +111,7 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
             if let error = error {
                 print(error.localizedDescription)
             } else {
-                print("Login Successful.")
+                self.performSegue(withIdentifier: "MainSegue", sender: self)
             }
         }
     }
@@ -128,6 +128,7 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
             
             if let authResult = authResult {
                 print("Sign up Auth Result has succeeded \(String(describing: authResult.credential))")
+                self.performSegue(withIdentifier: "MainSegue", sender: self)
             }
         }
         
@@ -147,6 +148,7 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
             
             if let authResult = authResult {
                 print("Sign in Auth Result has succeeded \(String(describing: authResult.credential))")
+                self.performSegue(withIdentifier: "MainSegue", sender: self)
             }
         }
     }
