@@ -156,8 +156,34 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Lbe-rA-htN">
-                                <rect key="frame" x="20" y="347.5" width="364" height="62"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="BWb-cy-KTa" userLabel="Subject Stack">
+                                <rect key="frame" x="30" y="216.5" width="354" height="113.5"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Subjects:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8oU-Tl-0DY">
+                                        <rect key="frame" x="0.0" y="0.0" width="354" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="PBt-oQ-z6m" userLabel="Study Pref stack">
+                                        <rect key="frame" x="0.0" y="74" width="354" height="39.5"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Please choose one" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XBy-Gr-WgZ">
+                                                <rect key="frame" x="0.0" y="0.0" width="354" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How often would you like to study" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKa-6s-fKR">
+                                                <rect key="frame" x="0.0" y="25" width="354" height="14.5"/>
+                                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="12"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Lbe-rA-htN" userLabel="Device Pref Stack">
+                                <rect key="frame" x="20" y="370" width="364" height="62"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mobile or desktop preference" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cc7-P2-raM">
                                         <rect key="frame" x="0.0" y="0.0" width="253.5" height="24"/>
@@ -219,8 +245,8 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="QGD-CG-l3B">
-                                <rect key="frame" x="20" y="449.5" width="364" height="62"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="QGD-CG-l3B" userLabel="Flashcard Deck Stack">
+                                <rect key="frame" x="20" y="472" width="364" height="62"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flashcard deck preference" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="616-cv-L99">
                                         <rect key="frame" x="0.0" y="0.0" width="229.5" height="24"/>
@@ -282,54 +308,50 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hxq-Ry-bhX">
-                                <rect key="frame" x="30" y="608.5" width="354" height="30"/>
+                                <rect key="frame" x="30" y="653.5" width="354" height="30"/>
                                 <state key="normal" title="Save"/>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="BWb-cy-KTa">
-                                <rect key="frame" x="30" y="216.5" width="354" height="91"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="WXC-ab-pbv" userLabel="Notification Frequency Stack">
+                                <rect key="frame" x="30" y="574" width="354" height="39.5"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Subjects:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8oU-Tl-0DY">
-                                        <rect key="frame" x="0.0" y="0.0" width="354" height="34"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Notification Frequency" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="evm-WD-ACF">
+                                        <rect key="frame" x="0.0" y="0.0" width="354" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Study frequency" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XBy-Gr-WgZ">
-                                        <rect key="frame" x="0.0" y="74" width="354" height="17"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How often would you like to be notified" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jsk-So-ztz">
+                                        <rect key="frame" x="0.0" y="25" width="354" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                             </stackView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Notification Frequency" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="evm-WD-ACF">
-                                <rect key="frame" x="30" y="551.5" width="354" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="QGD-CG-l3B" firstAttribute="top" secondItem="Lbe-rA-htN" secondAttribute="bottom" constant="40" id="0eH-ya-pMy"/>
+                            <constraint firstItem="hxq-Ry-bhX" firstAttribute="top" secondItem="WXC-ab-pbv" secondAttribute="bottom" constant="40" id="14U-1g-vwf"/>
                             <constraint firstItem="BWb-cy-KTa" firstAttribute="leading" secondItem="mUf-Eb-mdB" secondAttribute="leading" constant="30" id="Bro-Jq-MCq"/>
+                            <constraint firstItem="hxq-Ry-bhX" firstAttribute="trailing" secondItem="WXC-ab-pbv" secondAttribute="trailing" id="C6N-Hf-8Ns"/>
                             <constraint firstItem="mUf-Eb-mdB" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="c9R-Tq-tql" secondAttribute="trailing" constant="20" id="Evf-u6-pHs"/>
-                            <constraint firstItem="evm-WD-ACF" firstAttribute="top" secondItem="QGD-CG-l3B" secondAttribute="bottom" constant="40" id="FCg-fp-bmk"/>
+                            <constraint firstItem="WXC-ab-pbv" firstAttribute="trailing" secondItem="BWb-cy-KTa" secondAttribute="trailing" id="FAc-vJ-PhO"/>
                             <constraint firstItem="QGD-CG-l3B" firstAttribute="leading" secondItem="Lbe-rA-htN" secondAttribute="leading" id="N41-gU-izh"/>
                             <constraint firstItem="jQd-Pb-Kb7" firstAttribute="trailing" secondItem="mUf-Eb-mdB" secondAttribute="trailing" id="N5j-f5-qYr"/>
                             <constraint firstItem="jQd-Pb-Kb7" firstAttribute="leading" secondItem="mUf-Eb-mdB" secondAttribute="leading" id="NCv-dF-QeO"/>
-                            <constraint firstItem="hxq-Ry-bhX" firstAttribute="leading" secondItem="evm-WD-ACF" secondAttribute="leading" id="PeD-jJ-rd2"/>
                             <constraint firstItem="BWb-cy-KTa" firstAttribute="top" secondItem="c9R-Tq-tql" secondAttribute="bottom" constant="30" id="Pv9-I4-9vy"/>
-                            <constraint firstItem="evm-WD-ACF" firstAttribute="leading" secondItem="BWb-cy-KTa" secondAttribute="leading" id="U6f-S7-sYk"/>
                             <constraint firstItem="Lbe-rA-htN" firstAttribute="trailing" secondItem="BWb-cy-KTa" secondAttribute="trailing" id="UT4-98-faB"/>
                             <constraint firstItem="c9R-Tq-tql" firstAttribute="leading" secondItem="mUf-Eb-mdB" secondAttribute="leading" constant="20" id="Upn-DO-RTc"/>
                             <constraint firstItem="QGD-CG-l3B" firstAttribute="trailing" secondItem="Lbe-rA-htN" secondAttribute="trailing" id="Xm6-bk-tEh"/>
-                            <constraint firstItem="hxq-Ry-bhX" firstAttribute="top" secondItem="evm-WD-ACF" secondAttribute="bottom" constant="40" id="bE5-X0-ICa"/>
-                            <constraint firstItem="hxq-Ry-bhX" firstAttribute="trailing" secondItem="evm-WD-ACF" secondAttribute="trailing" id="eOy-aB-esA"/>
+                            <constraint firstItem="WXC-ab-pbv" firstAttribute="leading" secondItem="BWb-cy-KTa" secondAttribute="leading" id="a9U-wA-mDE"/>
                             <constraint firstItem="Lbe-rA-htN" firstAttribute="top" secondItem="BWb-cy-KTa" secondAttribute="bottom" constant="40" id="emX-LU-cVE"/>
                             <constraint firstItem="mUf-Eb-mdB" firstAttribute="trailing" secondItem="BWb-cy-KTa" secondAttribute="trailing" constant="30" id="etB-IG-gLr"/>
                             <constraint firstItem="jQd-Pb-Kb7" firstAttribute="top" secondItem="mUf-Eb-mdB" secondAttribute="top" id="fK3-Rw-3ch"/>
                             <constraint firstItem="Lbe-rA-htN" firstAttribute="leading" secondItem="c9R-Tq-tql" secondAttribute="leading" id="gQO-MQ-kjX"/>
                             <constraint firstItem="mD9-le-i9P" firstAttribute="leading" secondItem="jB8-NY-UJE" secondAttribute="leading" id="hWh-lV-QeN"/>
-                            <constraint firstItem="evm-WD-ACF" firstAttribute="trailing" secondItem="BWb-cy-KTa" secondAttribute="trailing" id="rmg-KK-qNT"/>
+                            <constraint firstItem="hxq-Ry-bhX" firstAttribute="leading" secondItem="WXC-ab-pbv" secondAttribute="leading" id="jCa-L6-0h4"/>
                             <constraint firstItem="c9R-Tq-tql" firstAttribute="top" secondItem="jQd-Pb-Kb7" secondAttribute="bottom" constant="20" id="xmJ-6w-kOi"/>
+                            <constraint firstItem="WXC-ab-pbv" firstAttribute="top" secondItem="QGD-CG-l3B" secondAttribute="bottom" constant="40" id="zJs-ht-Wrs"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mUf-Eb-mdB"/>
                     </view>
@@ -338,7 +360,7 @@
                         <outlet property="customDeckButton" destination="2PZ-kN-Z0l" id="uzP-bZ-gXe"/>
                         <outlet property="desktopButton" destination="hxi-92-mFP" id="0b2-8q-sGO"/>
                         <outlet property="mobileButton" destination="X5B-8X-epg" id="aiH-bx-OYS"/>
-                        <outlet property="notificationFrequencyTextField" destination="evm-WD-ACF" id="mzM-Cc-37A"/>
+                        <outlet property="notificationFrequencyTextField" destination="evm-WD-ACF" id="O4o-My-e2h"/>
                         <outlet property="preMadeDeckButton" destination="N2c-Jz-VL7" id="XIp-uY-Y7i"/>
                         <outlet property="saveButton" destination="hxq-Ry-bhX" id="AAq-9p-UMc"/>
                         <outlet property="studyFrequencyTextField" destination="XBy-Gr-WgZ" id="oGh-Vi-I4R"/>

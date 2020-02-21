@@ -12,10 +12,15 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
 
     // MARK: Properties
     private var studyFrequency = ["Once a day",
-                                  "Twice a day"]
+                                  "Twice a day",
+                                  "Once a week",
+                                  "Three times a week",
+                                  "Everyday",
+                                  "Other"]
     private var notificationFrequency = ["When I haven't met my goal in a day",
                                          "When I haven't met my goal in a week",
-                                         "Everyday"]
+                                         "Everyday",
+                                         "Don't send me notifications"]
     var selectedStudyFrequency: String?
     var selectedNotificationFrequency: String?
 
@@ -124,15 +129,6 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
 
         notificationFrequencyTextField.inputView = notificationFrequencyPicker
     }
-    /*
-     // MARK: - Navigation
-
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
 }
 
 extension ProfileViewController: UIPickerViewDelegate, UIPickerViewDataSource {
