@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Sets up the navigation bar to be the same throughout the app
         let navigationBarAppearace = UINavigationBar.appearance()
-        navigationBarAppearace.prefersLargeTitles = true
+        //navigationBarAppearace.prefersLargeTitles = true
         navigationBarAppearace.backgroundColor = UIColor.mNeme.orangeBlaze
         navigationBarAppearace.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         

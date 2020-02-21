@@ -45,6 +45,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         buttonViews()
         createStudyFrequencyPicker()
         createNotificationFrequencyPicker()
+        createToolBar()
     }
 
     private func buttonViews() {
@@ -128,6 +129,27 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         notificationFrequencyPicker.delegate = self
 
         notificationFrequencyTextField.inputView = notificationFrequencyPicker
+    }
+
+    private func createToolBar() {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(dismissKeyboard))
+
+        toolbar.setItems([doneButton], animated: false)
+        toolbar.isUserInteractionEnabled = true
+        toolbar.translatesAutoresizingMaskIntoConstraints = false
+        studyFrequencyTextField.inputAccessoryView = toolbar
+        notificationFrequencyTextField.inputAccessoryView = toolbar
+    }
+
+    @objc private func dismissKeyboard() {
+        view.endEditing(true)
+    }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
 }
 
