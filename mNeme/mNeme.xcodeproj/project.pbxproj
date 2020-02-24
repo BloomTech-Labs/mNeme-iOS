@@ -40,6 +40,7 @@
 		BBD8A2EF23FDDF5D00F5534E /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2EE23FDDF5D00F5534E /* TabViewController.swift */; };
 		BBD8A2F123FDE4BE00F5534E /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2F023FDE4BD00F5534E /* UIColor+Extension.swift */; };
 		BBD8A2F524008A8500F5534E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2F424008A8500F5534E /* User.swift */; };
+		BBD8A2F72404387500F5534E /* UserNetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2F62404387500F5534E /* UserNetworkController.swift */; };
 		EC5F1912C220845743B332D3 /* Pods_mNeme_mNemeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D891E381A8CC75CAB70F1DED /* Pods_mNeme_mNemeUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -104,6 +105,7 @@
 		BBD8A2EE23FDDF5D00F5534E /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		BBD8A2F023FDE4BD00F5534E /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		BBD8A2F424008A8500F5534E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		BBD8A2F62404387500F5534E /* UserNetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNetworkController.swift; sourceTree = "<group>"; };
 		C15B2EDE4B3663AAE166E8D3 /* Pods-mNeme-mNemeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mNeme-mNemeUITests.debug.xcconfig"; path = "Target Support Files/Pods-mNeme-mNemeUITests/Pods-mNeme-mNemeUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		D891E381A8CC75CAB70F1DED /* Pods_mNeme_mNemeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mNeme_mNemeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E96B940EA3749EE3E4E58C4E /* Pods-mNeme-mNemeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mNeme-mNemeUITests.release.xcconfig"; path = "Target Support Files/Pods-mNeme-mNemeUITests/Pods-mNeme-mNemeUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				4B8A2A2B23FCA3B700116BF9 /* Storyboards */,
 				95204336240096350072F4DA /* Helper */,
 				4B8A2A2A23FCA39D00116BF9 /* Resources */,
+				BBD8A2F82404388000F5534E /* Network Controllers */,
 			);
 			path = mNeme;
 			sourceTree = "<group>";
@@ -273,6 +276,14 @@
 				0C61661E270DF9F177148EA4 /* Pods-mNemeTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		BBD8A2F82404388000F5534E /* Network Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BBD8A2F62404387500F5534E /* UserNetworkController.swift */,
+			);
+			path = "Network Controllers";
 			sourceTree = "<group>";
 		};
 		FE948281FDB097CA034C713C /* Frameworks */ = {
@@ -590,6 +601,7 @@
 				BBD8A2ED23FDDE0500F5534E /* HomeViewController.swift in Sources */,
 				BBD8A2F524008A8500F5534E /* User.swift in Sources */,
 				BBD8A2F123FDE4BE00F5534E /* UIColor+Extension.swift in Sources */,
+				BBD8A2F72404387500F5534E /* UserNetworkController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

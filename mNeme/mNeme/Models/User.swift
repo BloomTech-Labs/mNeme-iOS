@@ -9,7 +9,7 @@
 import Foundation
 
 class User {
-    let id: String
+    let id: String?
     let data: UserData
 
     init(_ id: String, _ data: UserData) {
