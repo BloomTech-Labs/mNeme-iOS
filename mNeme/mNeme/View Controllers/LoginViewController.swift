@@ -13,7 +13,8 @@ import GoogleSignIn
 import FacebookLogin
 
 class LoginViewController: UIViewController, GIDSignInDelegate {
-    
+
+    let userController = UserController()
     var signingUp = false
     
     @IBOutlet weak var facebookLoginButton: UIButton!
@@ -75,6 +76,15 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
         bottomImageViewandLabel()
     
     }
+
+    private func signInWithAuthResultUID(uid: String) {
+        userController.user = User(uid)
+        userController.getUserPreferences {
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "MainSegue", sender: self)
+            }
+        }
+    }
     
     
     func loginManagerDidComplete(_ result: LoginResult) {
@@ -129,7 +139,10 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
             if let error = error {
                 print(error.localizedDescription)
             } else {
-                self.performSegue(withIdentifier: "MainSegue", sender: self)
+                if let uid = authResult?.user.uid {
+                    self.signInWithAuthResultUID(uid: uid)
+                }
+                //self.performSegue(withIdentifier: "MainSegue", sender: self)
             }
         }
     }
@@ -215,15 +228,19 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
         }
     }
     
-    /*
+
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      // Get the new view controller using segue.destination.
      // Pass the selected object to the new view controller.
+        if segue.identifier == "MainSegue" {
+            if let destinationVC = segue.destination as? TabViewController {
+                destinationVC.userController = self.userController
+            }
+        }
      }
-     */
     
 }
 

@@ -11,6 +11,8 @@ import SOTabBar
 
 class TabViewController: SOTabBarController {
 
+    var userController: UserController?
+
     // Changes the settings for the tab bar
     override func loadView() {
         super.loadView()
