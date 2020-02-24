@@ -95,6 +95,11 @@
                                                         <action selector="backButtonPressed:" destination="DpI-jA-uac" id="5YB-vn-loa"/>
                                                     </connections>
                                                 </barButtonItem>
+                                                <barButtonItem key="rightBarButtonItem" title="Facebook Logout" id="Snv-ZX-hSM">
+                                                    <connections>
+                                                        <action selector="logOut" destination="DpI-jA-uac" id="Vtc-17-uN5"/>
+                                                    </connections>
+                                                </barButtonItem>
                                             </navigationItem>
                                         </items>
                                     </navigationBar>
