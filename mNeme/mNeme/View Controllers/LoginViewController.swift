@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 import GoogleSignIn
-import FBSDKLoginKit
+//import FBSDKLoginKit
 import FacebookLogin
 
 class LoginViewController: UIViewController, GIDSignInDelegate {
@@ -82,13 +82,14 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
 
         case .success:
             print("success")
-//            self.performSegue(withIdentifier: "MainSegue", sender: self)
+            self.performSegue(withIdentifier: "MainSegue", sender: self)
         }
     }
 
     @IBAction private func loginWithReadPermissions() {
         let loginManager = LoginManager()
         loginManager.logIn(
+            permissions: [.publicProfile, .email],
             viewController: self
         ) { result in
             self.loginManagerDidComplete(result)
