@@ -82,6 +82,7 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
 
         case .success:
             print("success")
+//            self.performSegue(withIdentifier: "MainSegue", sender: self)
         }
     }
 
@@ -91,13 +92,28 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
             viewController: self
         ) { result in
             self.loginManagerDidComplete(result)
+            guard let accessToken = AccessToken.current?.tokenString else { return
+                print("no token")
+            }
+            print("\(AccessToken.current?.appID)")
+            let credential = FacebookAuthProvider.credential(withAccessToken: accessToken)
+            
+            Auth.auth().signIn(with: credential) { (authResult, error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                } else {
+                    print(authResult?.credential as Any)
+                    print("Login Successful")
+                }
+            }
         }
     }
 
-//    @IBAction private func logOut() {
-//        let loginManager = LoginManager()
-//        loginManager.logOut()
-//    }
+    @IBAction private func logOut() {
+        let loginManager = LoginManager()
+        loginManager.logOut()
+    }
     
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
