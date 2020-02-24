@@ -8,21 +8,20 @@
 
 import Foundation
 
-class User {
-    let id: String?
-    let data: UserData
+class User: Codable {
+    let id: String
+    var data: UserData?
 
-    init(_ id: String, _ data: UserData) {
+    init(_ id: String) {
         self.id = id
-        self.data = data
     }
 
 }
 
-struct UserData {
-    let notificationFrequency: String?
-    let favSubjects: String?
-    let studyFrequency: String?
-    let MobileOrDesktop: String?
-    let customOrPremade: String?
+struct UserData: Codable {
+    var notificationFrequency: String?
+    var favSubjects: String?
+    var studyFrequency: String?
+    var MobileOrDesktop: String?
+    var customOrPremade: String?
 }
