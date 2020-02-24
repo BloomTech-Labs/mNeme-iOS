@@ -30,4 +30,22 @@ class UserPreferencesTests: XCTestCase {
         XCTAssertEqual(controller.user?.data?.MobileOrDesktop, "Desktop")
     }
 
+    func testGetUserWithoutData() {
+        let mock = ModckDataLoader()
+        mock.data = userWithoutData
+
+        let controller = UserController(networkDataLoader: mock)
+        controller.user = User("r4Ok4g9OA5UHtpXnDRqF5XFCduH3")
+
+        let expect = expectation(description: "Wait for User Preferences to return from API")
+
+        controller.getUserPreferences() {
+            expect.fulfill()
+        }
+
+        wait(for: [expect], timeout: 2)
+
+        XCTAssertNotNil(controller.user?.data)
+    }
+
 }
