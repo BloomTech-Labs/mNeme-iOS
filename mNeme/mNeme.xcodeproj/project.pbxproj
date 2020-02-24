@@ -10,6 +10,8 @@
 		13F5F34F9C9627ECA701EC5C /* Pods_mNemeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11354B8AFCA77E9B1CE8292E /* Pods_mNemeTests.framework */; };
 		4B8A2A3123FCA5C700116BF9 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B8A2A3023FCA5C700116BF9 /* Login.storyboard */; };
 		6E1A19C692A40780C18AE71F /* Pods_mNeme.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 625928B0143B44879A17FF25 /* Pods_mNeme.framework */; };
+		954AB142240439C100FD385F /* DeckCard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 954AB141240439C100FD385F /* DeckCard.storyboard */; };
+		954AB14424043D8D00FD385F /* DeckCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954AB14324043D8D00FD385F /* DeckCardViewController.swift */; };
 		95773B8823FF032A009B4EFE /* Onboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95773B8723FF032A009B4EFE /* Onboard.storyboard */; };
 		95773B8A23FF041A009B4EFE /* PreLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95773B8923FF041A009B4EFE /* PreLoginViewController.swift */; };
 		95773B9823FF4119009B4EFE /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95773B8C23FF4114009B4EFE /* Roboto-Black.ttf */; };
@@ -67,6 +69,8 @@
 		4B8A2A3023FCA5C700116BF9 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		5A231593762C0B0497140987 /* Pods-mNeme.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mNeme.debug.xcconfig"; path = "Target Support Files/Pods-mNeme/Pods-mNeme.debug.xcconfig"; sourceTree = "<group>"; };
 		625928B0143B44879A17FF25 /* Pods_mNeme.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mNeme.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		954AB141240439C100FD385F /* DeckCard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DeckCard.storyboard; sourceTree = "<group>"; };
+		954AB14324043D8D00FD385F /* DeckCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCardViewController.swift; sourceTree = "<group>"; };
 		95773B8723FF032A009B4EFE /* Onboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboard.storyboard; sourceTree = "<group>"; };
 		95773B8923FF041A009B4EFE /* PreLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreLoginViewController.swift; sourceTree = "<group>"; };
 		95773B8C23FF4114009B4EFE /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
@@ -145,6 +149,7 @@
 				95EEEAF123FB45DC00B283E9 /* Info.plist */,
 				958A6B0923FDBAA200FDC959 /* GoogleService-Info.plist */,
 				95EEEAEC23FB45DC00B283E9 /* Assets.xcassets */,
+				95773B8B23FF40FA009B4EFE /* Fonts */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -155,6 +160,7 @@
 				95773B8723FF032A009B4EFE /* Onboard.storyboard */,
 				4B8A2A3023FCA5C700116BF9 /* Login.storyboard */,
 				95EEEAE623FB45DA00B283E9 /* Main.storyboard */,
+				954AB141240439C100FD385F /* DeckCard.storyboard */,
 				95EEEAEE23FB45DC00B283E9 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
@@ -169,25 +175,26 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		4B8A2A2D23FCA47400116BF9 /* View Controllers */ = {
+		95204335240095F80072F4DA /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				BBD8A2E823FDDD8E00F5534E /* ProfileViewController.swift */,
+				BBD8A2EA23FDDDE600F5534E /* DeckCreateViewController.swift */,
+				BBD8A2EC23FDDE0500F5534E /* HomeViewController.swift */,
+				BBD8A2EE23FDDF5D00F5534E /* TabViewController.swift */,
+				958A6B0B23FDE17700FDC959 /* LoginViewController.swift */,
+				95773B8923FF041A009B4EFE /* PreLoginViewController.swift */,
+				954AB14324043D8D00FD385F /* DeckCardViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
-		4B8A2A2E23FCA49100116BF9 /* Networking */ = {
+		95204336240096350072F4DA /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				BBD8A2F023FDE4BD00F5534E /* UIColor+Extension.swift */,
 			);
-			path = Networking;
-			sourceTree = "<group>";
-		};
-		4B8A2A2F23FCA49D00116BF9 /* Model Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Model Controller";
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		95773B8B23FF40FA009B4EFE /* Fonts */ = {
@@ -234,21 +241,11 @@
 		95EEEADF23FB45DA00B283E9 /* mNeme */ = {
 			isa = PBXGroup;
 			children = (
-				95773B8B23FF40FA009B4EFE /* Fonts */,
 				4B8A2A2C23FCA3C400116BF9 /* Models */,
-				4B8A2A2F23FCA49D00116BF9 /* Model Controller */,
-				4B8A2A2E23FCA49100116BF9 /* Networking */,
-				4B8A2A2D23FCA47400116BF9 /* View Controllers */,
+				95204335240095F80072F4DA /* View Controllers */,
 				4B8A2A2B23FCA3B700116BF9 /* Storyboards */,
+				95204336240096350072F4DA /* Helper */,
 				4B8A2A2A23FCA39D00116BF9 /* Resources */,
-				BBD8A2E823FDDD8E00F5534E /* ProfileViewController.swift */,
-				BBD8A2EA23FDDDE600F5534E /* DeckCreateViewController.swift */,
-				BBD8A2EC23FDDE0500F5534E /* HomeViewController.swift */,
-				BBD8A2EE23FDDF5D00F5534E /* TabViewController.swift */,
-				BBD8A2F023FDE4BD00F5534E /* UIColor+Extension.swift */,
-				958A6B0B23FDE17700FDC959 /* LoginViewController.swift */,
-				95773B8923FF041A009B4EFE /* PreLoginViewController.swift */,
-
 			);
 			path = mNeme;
 			sourceTree = "<group>";
@@ -411,6 +408,7 @@
 			files = (
 				95773B9F23FF4119009B4EFE /* Roboto-Bold.ttf in Resources */,
 				95773BA023FF4119009B4EFE /* Roboto-MediumItalic.ttf in Resources */,
+				954AB142240439C100FD385F /* DeckCard.storyboard in Resources */,
 				95773BA123FF4119009B4EFE /* Roboto-LightItalic.ttf in Resources */,
 				95773BA223FF4119009B4EFE /* Roboto-Medium.ttf in Resources */,
 				95773B9923FF4119009B4EFE /* Roboto-Thin.ttf in Resources */,
@@ -591,6 +589,7 @@
 				958A6B0C23FDE17700FDC959 /* LoginViewController.swift in Sources */,
 				95EEEAEB23FB45DA00B283E9 /* mNeme.xcdatamodeld in Sources */,
 				95EEEAE123FB45DA00B283E9 /* AppDelegate.swift in Sources */,
+				954AB14424043D8D00FD385F /* DeckCardViewController.swift in Sources */,
 				BBD8A2E923FDDD8E00F5534E /* ProfileViewController.swift in Sources */,
 				95773B8A23FF041A009B4EFE /* PreLoginViewController.swift in Sources */,
 				BBD8A2EB23FDDDE600F5534E /* DeckCreateViewController.swift in Sources */,

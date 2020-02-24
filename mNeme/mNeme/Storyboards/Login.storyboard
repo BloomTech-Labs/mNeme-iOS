@@ -89,10 +89,15 @@
                                         </textAttributes>
                                         <items>
                                             <navigationItem title="mNeme" id="39b-CH-Rob">
-                                                <barButtonItem key="leftBarButtonItem" image="arrowshape.turn.up.left.2" catalog="system" id="Pkg-8l-rFR">
+                                                <barButtonItem key="leftBarButtonItem" image="arrowshape.turn.up.left.fill" catalog="system" id="Pkg-8l-rFR">
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <connections>
                                                         <action selector="backButtonPressed:" destination="DpI-jA-uac" id="5YB-vn-loa"/>
+                                                    </connections>
+                                                </barButtonItem>
+                                                <barButtonItem key="rightBarButtonItem" title="Facebook Logout" id="Snv-ZX-hSM">
+                                                    <connections>
+                                                        <action selector="logOut" destination="DpI-jA-uac" id="Vtc-17-uN5"/>
                                                     </connections>
                                                 </barButtonItem>
                                             </navigationItem>
@@ -168,11 +173,22 @@
                         <outlet property="mainView" destination="KFO-Lj-uWq" id="Kqo-Os-20H"/>
                         <outlet property="navBar" destination="bn3-Ch-5x9" id="6tS-ZW-9VJ"/>
                         <outlet property="passwordTextField" destination="eyS-fG-bqU" id="Gsk-wN-eVE"/>
+                        <segue destination="sYo-Vg-ntK" kind="presentation" identifier="MainSegue" animates="NO" modalPresentationStyle="fullScreen" id="d1y-b6-i6s"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rXE-jq-x5k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1960.8695652173915" y="119.86607142857142"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="B0K-n1-KDx">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="sYo-Vg-ntK" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="ENe-iZ-lZP"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="97a-gv-AsP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2754" y="114"/>
         </scene>
     </scenes>
     <resources>
@@ -181,6 +197,6 @@
         <image name="Sign in with Email" width="259" height="56"/>
         <image name="Sign in with Facebook" width="259" height="56"/>
         <image name="Sign in with Google" width="259" height="56"/>
-        <image name="arrowshape.turn.up.left.2" catalog="system" width="64" height="42"/>
+        <image name="arrowshape.turn.up.left.fill" catalog="system" width="64" height="52"/>
     </resources>
 </document>
