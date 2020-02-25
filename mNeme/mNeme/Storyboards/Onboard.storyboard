@@ -95,7 +95,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="eLL-TU-3N2" kind="presentation" id="869-C7-b8A"/>
+                                    <segue destination="GPV-VB-bQF" kind="presentation" modalPresentationStyle="fullScreen" id="d7B-Ew-NWq"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -145,30 +145,15 @@
             </objects>
             <point key="canvasLocation" x="2892.0289855072465" y="87.723214285714278"/>
         </scene>
-        <!--Deck Card View Controller-->
-        <scene sceneID="Zb8-c9-E01">
+        <!--DeckCard-->
+        <scene sceneID="urW-JL-9F6">
             <objects>
-                <viewController id="eLL-TU-3N2" customClass="DeckCardViewController" customModule="mNeme" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="KK7-S7-Gjb">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nta-3X-TA3">
-                                <rect key="frame" x="59" y="191" width="297" height="224"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="CBQ-P2-ySz"/>
-                    </view>
-                    <connections>
-                        <outlet property="containerView" destination="Nta-3X-TA3" id="erh-lW-TUT"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SIt-10-FeI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardIdentifier="DeckCard.storyboard" storyboardName="DeckCard" id="GPV-VB-bQF" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="gr0-zF-8wg"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="76g-qx-eYW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3550.7246376811595" y="-11.383928571428571"/>
+            <point key="canvasLocation" x="3170" y="-38"/>
         </scene>
     </scenes>
     <resources>

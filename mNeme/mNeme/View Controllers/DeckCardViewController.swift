@@ -18,6 +18,8 @@ class DeckCardViewController: UIViewController {
     @IBOutlet weak var nextCardButton: UIButton!
     @IBOutlet weak var wellKnownQuestion: UILabel!
     
+    
+    // MARK: - Variables
     private var frontLabel: UILabel!
     private var backLabel: UILabel!
     
@@ -28,13 +30,18 @@ class DeckCardViewController: UIViewController {
     
     var mockDemoDeckController = MockDemoDeckController()
     
-    private var showingBack = false
+    private var showingBack = false {
+        didSet {
+            
+        }
+    }
     
-
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
-        testDemoDeck()
+        deck = mockDemoDeckController.decodeMockData()
+        updateDemoDeck()
 
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(flip))
         singleTap.numberOfTapsRequired = 1
@@ -44,18 +51,42 @@ class DeckCardViewController: UIViewController {
     // MARK: - IB Actions
 
     @IBAction func badRatingTapped(_ sender: Any) {
-        
+        badRating?.isHidden.toggle()
+        okayRating?.isHidden.toggle()
+        greatRating?.isHidden.toggle()
+        nextCardButton.isHidden.toggle()
+        wellKnownQuestion?.isHidden.toggle()
+
     }
     
     @IBAction func okayRatingTapped(_ sender: Any) {
+        badRating?.isHidden.toggle()
+        okayRating?.isHidden.toggle()
+        greatRating?.isHidden.toggle()
+        nextCardButton.isHidden.toggle()
+        wellKnownQuestion?.isHidden.toggle()
+
     }
     
     @IBAction func greatRatingTapped(_ sender: Any) {
-        
+        badRating?.isHidden.toggle()
+        okayRating?.isHidden.toggle()
+        greatRating?.isHidden.toggle()
+        nextCardButton.isHidden.toggle()
+        wellKnownQuestion?.isHidden.toggle()
+
     }
     
     @IBAction func nextCardButtonTapped(_ sender: Any) {
-        wellKnownQuestion?.isHidden.toggle()
+        currentCardIndex += 1
+        backLabel?.isHidden = true
+        frontLabel.isHidden = false
+        nextCardButton?.isHidden = true
+        wellKnownQuestion?.isHidden = true
+        badRating?.isHidden = true
+        okayRating?.isHidden = true
+        greatRating?.isHidden = true
+        updateDemoDeck()
     }
 
     @objc func flip() {
@@ -72,13 +103,19 @@ class DeckCardViewController: UIViewController {
         showingBack = !showingBack
     }
     
-    private func testDemoDeck() {
-        deck = mockDemoDeckController.decodeMockData()
+    private func updateDemoDeck() {
+        let currentCardInfo = deck?.data[currentCardIndex].data
         
-        var currentCardInfo = deck?.data[currentCardIndex].data
+        if !frontLabel.isHidden{
+            print("FRONT LABEL IS NOT HIDDEN")
+        } else {
+            print("FRONT LABEL IS HIDDEN")
+        }
         
         frontLabel?.text = currentCardInfo?.front
         backLabel?.text = currentCardInfo?.back
+        
+        
             
     }
     
@@ -86,12 +123,12 @@ class DeckCardViewController: UIViewController {
         frontLabel = UILabel(frame: CGRect(x: self.containerView.frame.width/2, y: self.containerView.frame.height/2, width: 80, height: 50))
         backLabel = UILabel(frame: CGRect(x: self.containerView.frame.width/2, y: self.containerView.frame.height/2, width: 80, height: 50))
 
-//        backLabel?.isHidden = true
-//        nextCardButton?.isHidden = true
-//        wellKnownQuestion?.isHidden = true
-//        badRating?.isHidden = true
-//        okayRating?.isHidden = true
-//        greatRating?.isHidden = true
+        backLabel?.isHidden = true
+        nextCardButton?.isHidden = true
+        wellKnownQuestion?.isHidden = true
+        badRating?.isHidden = true
+        okayRating?.isHidden = true
+        greatRating?.isHidden = true
 
         containerView.addSubview(frontLabel!)
         containerView.addSubview(backLabel!)
