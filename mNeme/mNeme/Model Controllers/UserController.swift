@@ -49,7 +49,7 @@ class UserController {
         }
     }
 
-    func putUserPreferences(completion: @escaping () -> Void) {
+    func putUserPreferences(_ changes: [String: UserData?], completion: @escaping () -> Void) {
         guard let user = user else {
             completion()
             return
@@ -62,7 +62,7 @@ class UserController {
 
         do {
             let jsonEncoder = JSONEncoder()
-            request.httpBody = try jsonEncoder.encode(user)
+            request.httpBody = try jsonEncoder.encode(changes)
         } catch {
             print("Error entry!")
             completion()
@@ -70,10 +70,16 @@ class UserController {
         }
 
         dataLoader.loadData(using: request) { (data, response, error) in
-            if let response = response as? HTTPURLResponse,
-                response.statusCode == 404 {
-                print("User not found")
-                return
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 500 {
+                    print("Internal server error")
+                    completion()
+                    return
+                } else if response.statusCode == 404 {
+                    print("User not found")
+                    completion()
+                    return
+                }
             }
 
             if let error = error {
@@ -91,12 +97,14 @@ class UserController {
                     mobileOrDesktop: String?, customOrPremade: String?,
                     notificationFrequency: String?) {
         guard let user = user else { return }
-        user.data?.favSubjects = subjects
-        user.data?.studyFrequency = studyFrequency
-        user.data?.MobileOrDesktop = mobileOrDesktop
-        user.data?.customOrPremade = customOrPremade
-        user.data?.notificationFrequency = notificationFrequency
-        putUserPreferences {
+        user.data?.favSubjects = subjects ?? ""
+        user.data?.studyFrequency = studyFrequency ?? ""
+        user.data?.MobileOrDesktop = mobileOrDesktop ?? ""
+        user.data?.customOrPremade = customOrPremade ?? ""git
+        user.data?.notificationFrequency = notificationFrequency ?? ""
+
+        let userChanges: [String: UserData?] = ["changes" : user.data]
+        putUserPreferences(userChanges) {
             print("User Preferences Saved!")
         }
     }

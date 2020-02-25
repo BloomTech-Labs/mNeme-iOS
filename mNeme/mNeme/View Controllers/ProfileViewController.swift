@@ -73,21 +73,21 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         studyFrequencyTextField.text = userData.studyFrequency
         notificationFrequencyTextField.text = userData.notificationFrequency
 
-        if let device = userData.MobileOrDesktop {
-            if device == "Desktop" {
+        //if let device = userData.MobileOrDesktop {
+            if userData.MobileOrDesktop == "Desktop" {
                 desktopButton.isSelected = true
-            } else if device == "Mobile" {
+            } else if userData.MobileOrDesktop == "Mobile" {
                 mobileButton.isSelected = true
             }
-        }
+        //}
 
-        if let deckPreference = userData.customOrPremade {
-            if deckPreference == "pre-made" {
+        //if let deckPreference = userData.customOrPremade {
+            if userData.customOrPremade == "pre-made" {
                 preMadeDeckButton.isSelected = true
-            } else if deckPreference == "custom" {
+            } else if userData.customOrPremade == "custom" {
                 customDeckButton.isSelected = true
             }
-        }
+        //}
     }
 
     // MARK: IBActions

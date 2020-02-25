@@ -10,6 +10,8 @@ import Foundation
 
 class User: Codable {
     let id: String
+    //var changes: UserData?
+    var changes: UserData?
     var data: UserData?
 
     init(_ id: String) {
@@ -18,11 +20,11 @@ class User: Codable {
 
 }
 
-struct UserData: Codable {
-    var id: String?
-    var notificationFrequency: String?
-    var favSubjects: String?
-    var studyFrequency: String?
-    var MobileOrDesktop: String?
-    var customOrPremade: String?
+struct UserData: Equatable, Codable {
+    var id: String
+    var notificationFrequency: String
+    var favSubjects: String
+    var studyFrequency: String
+    var MobileOrDesktop: String
+    var customOrPremade: String
 }
