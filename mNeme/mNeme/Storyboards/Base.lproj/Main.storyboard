@@ -403,6 +403,7 @@
                         <outlet property="preMadeDeckButton" destination="N2c-Jz-VL7" id="XIp-uY-Y7i"/>
                         <outlet property="saveButton" destination="hxq-Ry-bhX" id="AAq-9p-UMc"/>
                         <outlet property="studyFrequencyTextField" destination="XBy-Gr-WgZ" id="oGh-Vi-I4R"/>
+                        <outlet property="subjectTextField" destination="8oU-Tl-0DY" id="Idq-tA-kBV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2S2-DJ-EKq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

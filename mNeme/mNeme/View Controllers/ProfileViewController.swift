@@ -23,8 +23,11 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
                                          "Don't send me notifications"]
     var selectedStudyFrequency: String?
     var selectedNotificationFrequency: String?
+    var userController: UserController?
+    var user: User?
 
     // MARK: IBOutlets
+    @IBOutlet private weak var subjectTextField: UITextField!
     @IBOutlet private weak var studyFrequencyTextField: UITextField!
     @IBOutlet private weak var mobileButton: UIButton!
     @IBOutlet private weak var desktopButton: UIButton!
@@ -46,8 +49,10 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         createStudyFrequencyPicker()
         createNotificationFrequencyPicker()
         createToolBar()
+        userPreferences()
     }
 
+    // Set the views for the checkmark buttons
     private func buttonViews() {
         mobileButton.tintColor = UIColor.mNeme.orangeBlaze
         desktopButton.tintColor = UIColor.mNeme.orangeBlaze
@@ -57,6 +62,32 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         desktopButton.accessibilityIdentifier = "desktopButtonID"
         preMadeDeckButton.accessibilityIdentifier = "preMadeDeckButtonID"
         customDeckButton.accessibilityIdentifier = "customDeckButtonID"
+    }
+
+    // sets up the outlets based on the user preferences set up
+    private func userPreferences() {
+        guard let user = user,
+            let userData = user.data else { return }
+
+        subjectTextField.text = userData.favSubjects
+        studyFrequencyTextField.text = userData.studyFrequency
+        notificationFrequencyTextField.text = userData.notificationFrequency
+
+        if let device = userData.MobileOrDesktop {
+            if device == "Desktop" {
+                desktopButton.isSelected = true
+            } else if device == "Mobile" {
+                mobileButton.isSelected = true
+            }
+        }
+
+        if let deckPreference = userData.customOrPremade {
+            if deckPreference == "pre-made" {
+                preMadeDeckButton.isSelected = true
+            } else if deckPreference == "custom" {
+                customDeckButton.isSelected = true
+            }
+        }
     }
 
     // MARK: IBActions

@@ -52,5 +52,15 @@ class TabViewController: SOTabBarController {
         profileVC.tabBarItem = UITabBarItem(title: "Profile", image: profileImage, selectedImage: profileImageSelected)
 
         viewControllers = [homeVC, deckCreateVC, profileVC]
+        tabBarViewControllerProperties()
+    }
+
+    private func tabBarViewControllerProperties() {
+        guard let _ = self.viewControllers[0] as? HomeViewController,
+            let _ = self.viewControllers[1] as? DeckCreateViewController,
+            let profileVC = self.viewControllers[2] as? ProfileViewController else { return }
+
+        profileVC.userController = self.userController
+        profileVC.user = self.userController?.user
     }
 }
