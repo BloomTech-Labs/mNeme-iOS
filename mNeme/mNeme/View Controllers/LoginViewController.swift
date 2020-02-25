@@ -23,23 +23,17 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailSignInButton: UIButton!
     @IBOutlet weak var emailCancelButton: UIButton!
-    @IBOutlet weak var backButton: UIBarButtonItem!
+    @IBOutlet weak var backButton: UIButton!
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var largeNavView: UIView!
-    @IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var bottomTextLabel: UILabel!
+    @IBOutlet weak var bottomImageView: UIImageView!
+    @IBOutlet weak var bottomNavView: UIView!
     
     
-    override func viewDidLoad() {
+    override func viewDidLoad() { 
         super.viewDidLoad()
-        hideEmailButtons()
-        emailButtonText()
-//        navBar.titleTextAttributes = [kCTForegroundColorAttributeName as NSAttributedString.Key: UIColor.white]
-        navBar.backgroundColor = UIColor.mNeme.orangeBlaze
-        largeNavView.backgroundColor = UIColor.mNeme.orangeBlaze
-        GIDSignIn.sharedInstance()?.presentingViewController = self
-        GIDSignIn.sharedInstance().delegate = self
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
+        updateViews()
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
@@ -69,6 +63,18 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
     }
     
     
+    private func updateViews() {
+        hideEmailButtons()
+        emailButtonText()
+        largeNavView.backgroundColor = UIColor.mNeme.orangeBlaze
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+        GIDSignIn.sharedInstance().delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        bottomNavView.backgroundColor = UIColor.mNeme.orangeBlaze
+        bottomImageViewandLabel()
+    
+    }
     
     
     func loginManagerDidComplete(_ result: LoginResult) {
@@ -109,11 +115,6 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
                 }
             }
         }
-    }
-
-    @IBAction private func logOut() {
-        let loginManager = LoginManager()
-        loginManager.logOut()
     }
     
     
@@ -199,6 +200,18 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
             googleLoginButton.setImage(UIImage(named: "Sign in with Google"), for: .normal)
             emailButton.setImage(UIImage(named: "Sign in with Email"), for: .normal)
             emailSignInButton.setImage(UIImage(named: "Sign In"), for: .normal)
+        }
+    }
+    
+    private func bottomImageViewandLabel() {
+        if signingUp {
+            bottomImageView.image = UIImage(named: "Basketball-Mastery-Illustrations")
+            // bottom constraint = 133
+            bottomTextLabel.text = "Join mNeme Today"
+        } else {
+            bottomImageView.image = UIImage(named: "Banner Illustration")
+            // bottom constraint = 111
+            bottomTextLabel.text = "The best way to study efficiently 😎"
         }
     }
     
