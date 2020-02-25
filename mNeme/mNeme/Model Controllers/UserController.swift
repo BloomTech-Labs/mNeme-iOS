@@ -100,9 +100,10 @@ class UserController {
         user.data?.favSubjects = subjects ?? ""
         user.data?.studyFrequency = studyFrequency ?? ""
         user.data?.MobileOrDesktop = mobileOrDesktop ?? ""
-        user.data?.customOrPremade = customOrPremade ?? ""git
+        user.data?.customOrPremade = customOrPremade ?? ""
         user.data?.notificationFrequency = notificationFrequency ?? ""
 
+        // makes a dictionary with the userData to write to the database
         let userChanges: [String: UserData?] = ["changes" : user.data]
         putUserPreferences(userChanges) {
             print("User Preferences Saved!")

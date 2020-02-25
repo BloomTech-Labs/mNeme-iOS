@@ -98,7 +98,7 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
 
         case .success:
             print("success")
-            self.performSegue(withIdentifier: "MainSegue", sender: self)
+            //self.performSegue(withIdentifier: "MainSegue", sender: self)
         }
     }
 
@@ -121,6 +121,9 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
                     return
                 } else {
                     print(authResult?.credential as Any)
+                    if let uid = authResult?.user.uid {
+                        self.signInWithAuthResultUID(uid: uid)
+                    }
                     print("Login Successful")
                 }
             }
@@ -142,7 +145,6 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
                 if let uid = authResult?.user.uid {
                     self.signInWithAuthResultUID(uid: uid)
                 }
-                //self.performSegue(withIdentifier: "MainSegue", sender: self)
             }
         }
     }
@@ -159,7 +161,9 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
             
             if let authResult = authResult {
                 print("Sign up Auth Result has succeeded \(String(describing: authResult.credential))")
-                self.performSegue(withIdentifier: "MainSegue", sender: self)
+                let uid = authResult.user.uid
+                self.signInWithAuthResultUID(uid: uid)
+                //self.performSegue(withIdentifier: "MainSegue", sender: self)
             }
         }
         
@@ -179,7 +183,9 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
             
             if let authResult = authResult {
                 print("Sign in Auth Result has succeeded \(String(describing: authResult.credential))")
-                self.performSegue(withIdentifier: "MainSegue", sender: self)
+                let uid = authResult.user.uid
+                self.signInWithAuthResultUID(uid: uid)
+                //self.performSegue(withIdentifier: "MainSegue", sender: self)
             }
         }
     }
