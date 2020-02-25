@@ -20,10 +20,72 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="43" translatesAutoresizingMaskIntoConstraints="NO" id="AFw-Sg-dol">
+                                <rect key="frame" x="80" y="611.5" width="254" height="170.5"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="we2-mU-heS">
+                                        <rect key="frame" x="92.5" y="0.0" width="69" height="30"/>
+                                        <state key="normal" title="Next Card"/>
+                                        <connections>
+                                            <action selector="nextCardButtonTapped:" destination="WEZ-12-rM9" eventType="touchUpInside" id="2AL-eh-q6G"/>
+                                        </connections>
+                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="47" translatesAutoresizingMaskIntoConstraints="NO" id="0Hy-dP-gfT">
+                                        <rect key="frame" x="3" y="73" width="248.5" height="97.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How well do you know this card?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vw2-RI-mAI">
+                                                <rect key="frame" x="0.0" y="0.0" width="248.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="66" translatesAutoresizingMaskIntoConstraints="NO" id="yRP-LY-FkD">
+                                                <rect key="frame" x="6.5" y="67.5" width="235" height="30"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HYU-lm-Hwz">
+                                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                                        <state key="normal" title="Bad"/>
+                                                        <connections>
+                                                            <action selector="badRatingTapped:" destination="WEZ-12-rM9" eventType="touchUpInside" id="gZb-ui-VCT"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B8E-8s-AFN">
+                                                        <rect key="frame" x="96" y="0.0" width="35" height="30"/>
+                                                        <state key="normal" title="Okay"/>
+                                                        <connections>
+                                                            <action selector="okayRatingTapped:" destination="WEZ-12-rM9" eventType="touchUpInside" id="6Ja-PW-vLQ"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Meg-hN-FrA">
+                                                        <rect key="frame" x="197" y="0.0" width="38" height="30"/>
+                                                        <state key="normal" title="Great"/>
+                                                        <connections>
+                                                            <action selector="greatRatingTapped:" destination="WEZ-12-rM9" eventType="touchUpInside" id="as5-n5-b5K"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Lhf-i2-Vdx" firstAttribute="bottom" secondItem="AFw-Sg-dol" secondAttribute="bottom" constant="80" id="D5I-XV-Nw5"/>
+                            <constraint firstItem="AFw-Sg-dol" firstAttribute="leading" secondItem="Lhf-i2-Vdx" secondAttribute="leading" constant="80" id="i6d-gF-coH"/>
+                            <constraint firstItem="Lhf-i2-Vdx" firstAttribute="trailing" secondItem="AFw-Sg-dol" secondAttribute="trailing" constant="80" id="u2D-Yt-uTn"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Lhf-i2-Vdx"/>
                     </view>
+                    <connections>
+                        <outlet property="badRating" destination="HYU-lm-Hwz" id="dGk-kh-Nj2"/>
+                        <outlet property="containerView" destination="gqS-l0-Tjd" id="fsH-p9-X70"/>
+                        <outlet property="greatRating" destination="Meg-hN-FrA" id="m3o-ka-Y8w"/>
+                        <outlet property="nextCardButton" destination="we2-mU-heS" id="lsh-Dv-2es"/>
+                        <outlet property="okayRating" destination="B8E-8s-AFN" id="YcV-2k-dAJ"/>
+                        <outlet property="wellKnownQuestion" destination="vw2-RI-mAI" id="lZT-Ec-Tzl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zYL-f1-8v8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
