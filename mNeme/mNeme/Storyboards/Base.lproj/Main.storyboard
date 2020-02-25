@@ -349,6 +349,9 @@
                                 <state key="normal" title="Save" backgroundImage="buttonImage">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="saveButtonTapped:" destination="W3P-QC-u31" eventType="touchUpInside" id="UpW-jn-2XC"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="WXC-ab-pbv" userLabel="Notification Frequency Stack">
                                 <rect key="frame" x="30" y="645.5" width="354" height="43.5"/>

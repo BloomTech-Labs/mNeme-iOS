@@ -19,6 +19,7 @@ class User: Codable {
 }
 
 struct UserData: Codable {
+    var id: String?
     var notificationFrequency: String?
     var favSubjects: String?
     var studyFrequency: String?

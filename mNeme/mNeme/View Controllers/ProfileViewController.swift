@@ -99,6 +99,10 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         flashcardDeckPreferences(sender.accessibilityIdentifier)
     }
 
+    @IBAction private func saveButtonTapped(_ sender: UIButton) {
+        saveUserPreferences()
+    }
+
     // MARK: Private methods
     private func studyDevicePreferences(_ identifier: String?) {
         guard let identifier = identifier else { return }
@@ -173,6 +177,24 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         toolbar.translatesAutoresizingMaskIntoConstraints = false
         studyFrequencyTextField.inputAccessoryView = toolbar
         notificationFrequencyTextField.inputAccessoryView = toolbar
+    }
+
+    private func saveUserPreferences() {
+        guard let userController = userController else { return }
+
+        var mobileOrDesktop: String?
+        var customOrPremade: String?
+
+        if mobileButton.isSelected { mobileOrDesktop = "Mobile" }
+        if desktopButton.isSelected { mobileOrDesktop = "Desktop" }
+        if customDeckButton.isSelected { customOrPremade = "custom" }
+        if preMadeDeckButton.isSelected { customOrPremade = "pre-made" }
+
+        userController.updateUser(subjects: subjectTextField.text,
+                                  studyFrequency: studyFrequencyTextField.text,
+                                  mobileOrDesktop: mobileOrDesktop,
+                                  customOrPremade: customOrPremade,
+                                  notificationFrequency: notificationFrequencyTextField.text)
     }
 
     @objc private func dismissKeyboard() {

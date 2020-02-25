@@ -55,6 +55,7 @@ class TabViewController: SOTabBarController {
         tabBarViewControllerProperties()
     }
 
+    // set up the view controllers on the tab bars with property data as needed
     private func tabBarViewControllerProperties() {
         guard let _ = self.viewControllers[0] as? HomeViewController,
             let _ = self.viewControllers[1] as? DeckCreateViewController,
