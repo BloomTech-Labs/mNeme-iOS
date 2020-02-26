@@ -79,21 +79,48 @@
                                     <action selector="backButtonTapped:" destination="WEZ-12-rM9" eventType="touchUpInside" id="rBC-WX-APc"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RMf-4w-a6Q">
+                                <rect key="frame" x="183" y="359" width="48" height="22"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CWC-u5-SR3">
+                                        <rect key="frame" x="0.0" y="0.0" width="20" height="22"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" image="backward.end.fill" catalog="system">
+                                            <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="backACard:" destination="WEZ-12-rM9" eventType="touchUpInside" id="mfo-EY-6Lf"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VYA-62-jN3">
+                                        <rect key="frame" x="28" y="0.0" width="20" height="22"/>
+                                        <state key="normal" image="forward.end.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="forwardACard:" destination="WEZ-12-rM9" eventType="touchUpInside" id="M4m-L5-098"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Lhf-i2-Vdx" firstAttribute="trailing" secondItem="gqS-l0-Tjd" secondAttribute="trailing" constant="35" id="4Iz-pf-U9B"/>
+                            <constraint firstItem="RMf-4w-a6Q" firstAttribute="top" secondItem="gqS-l0-Tjd" secondAttribute="bottom" constant="14.5" id="8DH-qA-Q9z"/>
                             <constraint firstItem="gqS-l0-Tjd" firstAttribute="top" secondItem="Lhf-i2-Vdx" secondAttribute="top" constant="82" id="9aP-FO-781"/>
                             <constraint firstItem="gqS-l0-Tjd" firstAttribute="leading" secondItem="Lhf-i2-Vdx" secondAttribute="leading" constant="35" id="EJw-Sc-M1k"/>
+                            <constraint firstItem="Lhf-i2-Vdx" firstAttribute="trailing" secondItem="RMf-4w-a6Q" secondAttribute="trailing" constant="183" id="GZF-eg-oMp"/>
                             <constraint firstItem="AFw-Sg-dol" firstAttribute="top" secondItem="gqS-l0-Tjd" secondAttribute="bottom" constant="45" id="Ocw-Ta-gjX"/>
+                            <constraint firstItem="RMf-4w-a6Q" firstAttribute="leading" secondItem="Lhf-i2-Vdx" secondAttribute="leading" constant="183" id="eCO-7S-c1j"/>
                             <constraint firstItem="AFw-Sg-dol" firstAttribute="leading" secondItem="Lhf-i2-Vdx" secondAttribute="leading" constant="50" id="iyk-Xn-dmS"/>
                             <constraint firstItem="Lhf-i2-Vdx" firstAttribute="trailing" secondItem="AFw-Sg-dol" secondAttribute="trailing" constant="50" id="pBj-de-kqy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Lhf-i2-Vdx"/>
                     </view>
                     <connections>
+                        <outlet property="backCard" destination="CWC-u5-SR3" id="6kh-JR-IVX"/>
                         <outlet property="badRating" destination="HYU-lm-Hwz" id="dGk-kh-Nj2"/>
                         <outlet property="containerView" destination="gqS-l0-Tjd" id="fsH-p9-X70"/>
+                        <outlet property="forwardCard" destination="VYA-62-jN3" id="eo2-8S-uvT"/>
                         <outlet property="greatRating" destination="Meg-hN-FrA" id="m3o-ka-Y8w"/>
                         <outlet property="nextCardButton" destination="we2-mU-heS" id="lsh-Dv-2es"/>
                         <outlet property="okayRating" destination="B8E-8s-AFN" id="YcV-2k-dAJ"/>
@@ -105,4 +132,8 @@
             <point key="canvasLocation" x="40.579710144927539" y="76.339285714285708"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="backward.end.fill" catalog="system" width="64" height="50"/>
+        <image name="forward.end.fill" catalog="system" width="64" height="50"/>
+    </resources>
 </document>
