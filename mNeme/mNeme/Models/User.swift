@@ -18,7 +18,8 @@ class User: Codable {
 
 }
 
-struct UserData: Codable {
+struct UserData: Equatable, Codable {
+    let id: String
     var notificationFrequency: String?
     var favSubjects: String?
     var studyFrequency: String?

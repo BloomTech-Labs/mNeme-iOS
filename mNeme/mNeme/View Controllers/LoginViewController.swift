@@ -13,7 +13,8 @@ import GoogleSignIn
 import FacebookLogin
 
 class LoginViewController: UIViewController, GIDSignInDelegate {
-    
+
+    let userController = UserController()
     var signingUp = false
     
     @IBOutlet weak var facebookLoginButton: UIButton!
@@ -23,23 +24,17 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailSignInButton: UIButton!
     @IBOutlet weak var emailCancelButton: UIButton!
-    @IBOutlet weak var backButton: UIBarButtonItem!
+    @IBOutlet weak var backButton: UIButton!
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var largeNavView: UIView!
-    @IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var bottomTextLabel: UILabel!
+    @IBOutlet weak var bottomImageView: UIImageView!
+    @IBOutlet weak var bottomNavView: UIView!
     
     
-    override func viewDidLoad() {
+    override func viewDidLoad() { 
         super.viewDidLoad()
-        hideEmailButtons()
-        emailButtonText()
-//        navBar.titleTextAttributes = [kCTForegroundColorAttributeName as NSAttributedString.Key: UIColor.white]
-        navBar.backgroundColor = UIColor.mNeme.orangeBlaze
-        largeNavView.backgroundColor = UIColor.mNeme.orangeBlaze
-        GIDSignIn.sharedInstance()?.presentingViewController = self
-        GIDSignIn.sharedInstance().delegate = self
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
+        updateViews()
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
@@ -69,6 +64,27 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
     }
     
     
+    private func updateViews() {
+        hideEmailButtons()
+        emailButtonText()
+        largeNavView.backgroundColor = UIColor.mNeme.orangeBlaze
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+        GIDSignIn.sharedInstance().delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        bottomNavView.backgroundColor = UIColor.mNeme.orangeBlaze
+        bottomImageViewandLabel()
+    
+    }
+
+    private func signInWithAuthResultUID(uid: String) {
+        userController.user = User(uid)
+        userController.getUserPreferences {
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "MainSegue", sender: self)
+            }
+        }
+    }
     
     
     func loginManagerDidComplete(_ result: LoginResult) {
@@ -82,7 +98,7 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
 
         case .success:
             print("success")
-            self.performSegue(withIdentifier: "MainSegue", sender: self)
+            //self.performSegue(withIdentifier: "MainSegue", sender: self)
         }
     }
 
@@ -105,15 +121,13 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
                     return
                 } else {
                     print(authResult?.credential as Any)
+                    if let uid = authResult?.user.uid {
+                        self.signInWithAuthResultUID(uid: uid)
+                    }
                     print("Login Successful")
                 }
             }
         }
-    }
-
-    @IBAction private func logOut() {
-        let loginManager = LoginManager()
-        loginManager.logOut()
     }
     
     
@@ -128,7 +142,9 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
             if let error = error {
                 print(error.localizedDescription)
             } else {
-                self.performSegue(withIdentifier: "MainSegue", sender: self)
+                if let uid = authResult?.user.uid {
+                    self.signInWithAuthResultUID(uid: uid)
+                }
             }
         }
     }
@@ -145,7 +161,9 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
             
             if let authResult = authResult {
                 print("Sign up Auth Result has succeeded \(String(describing: authResult.credential))")
-                self.performSegue(withIdentifier: "MainSegue", sender: self)
+                let uid = authResult.user.uid
+                self.signInWithAuthResultUID(uid: uid)
+                //self.performSegue(withIdentifier: "MainSegue", sender: self)
             }
         }
         
@@ -165,7 +183,9 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
             
             if let authResult = authResult {
                 print("Sign in Auth Result has succeeded \(String(describing: authResult.credential))")
-                self.performSegue(withIdentifier: "MainSegue", sender: self)
+                let uid = authResult.user.uid
+                self.signInWithAuthResultUID(uid: uid)
+                //self.performSegue(withIdentifier: "MainSegue", sender: self)
             }
         }
     }
@@ -202,15 +222,31 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
         }
     }
     
-    /*
+    private func bottomImageViewandLabel() {
+        if signingUp {
+            bottomImageView.image = UIImage(named: "Basketball-Mastery-Illustrations")
+            // bottom constraint = 133
+            bottomTextLabel.text = "Join mNeme Today"
+        } else {
+            bottomImageView.image = UIImage(named: "Banner Illustration")
+            // bottom constraint = 111
+            bottomTextLabel.text = "The best way to study efficiently 😎"
+        }
+    }
+    
+
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      // Get the new view controller using segue.destination.
      // Pass the selected object to the new view controller.
+        if segue.identifier == "MainSegue" {
+            if let destinationVC = segue.destination as? TabViewController {
+                destinationVC.userController = self.userController
+            }
+        }
      }
-     */
     
 }
 

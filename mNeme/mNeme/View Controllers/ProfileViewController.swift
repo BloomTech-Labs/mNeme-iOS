@@ -23,8 +23,10 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
                                          "Don't send me notifications"]
     var selectedStudyFrequency: String?
     var selectedNotificationFrequency: String?
+    var userController: UserController?
 
     // MARK: IBOutlets
+    @IBOutlet private weak var subjectTextField: UITextField!
     @IBOutlet private weak var studyFrequencyTextField: UITextField!
     @IBOutlet private weak var mobileButton: UIButton!
     @IBOutlet private weak var desktopButton: UIButton!
@@ -46,8 +48,10 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         createStudyFrequencyPicker()
         createNotificationFrequencyPicker()
         createToolBar()
+        userPreferences()
     }
 
+    // Set the views for the checkmark buttons
     private func buttonViews() {
         mobileButton.tintColor = UIColor.mNeme.orangeBlaze
         desktopButton.tintColor = UIColor.mNeme.orangeBlaze
@@ -59,6 +63,32 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         customDeckButton.accessibilityIdentifier = "customDeckButtonID"
     }
 
+    // sets up the outlets based on the user preferences set up
+    private func userPreferences() {
+        guard let user = userController?.user,
+            let userData = user.data else { return }
+
+        subjectTextField.text = userData.favSubjects
+        studyFrequencyTextField.text = userData.studyFrequency
+        notificationFrequencyTextField.text = userData.notificationFrequency
+
+        //if let device = userData.MobileOrDesktop {
+        if userData.MobileOrDesktop == "Desktop" {
+            desktopButton.isSelected = true
+        } else if userData.MobileOrDesktop == "Mobile" {
+            mobileButton.isSelected = true
+        }
+        //}
+
+        //if let deckPreference = userData.customOrPremade {
+        if userData.customOrPremade == "pre-made" {
+            preMadeDeckButton.isSelected = true
+        } else if userData.customOrPremade == "custom" {
+            customDeckButton.isSelected = true
+        }
+        //}
+    }
+
     // MARK: IBActions
     @IBAction private func devicePreferencesTapped(_ sender: UIButton) {
         studyDevicePreferences(sender.accessibilityIdentifier)
@@ -66,6 +96,10 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
 
     @IBAction private func deckPreferenceTapped(_ sender: UIButton) {
         flashcardDeckPreferences(sender.accessibilityIdentifier)
+    }
+
+    @IBAction private func saveButtonTapped(_ sender: UIButton) {
+        saveUserPreferences()
     }
 
     // MARK: Private methods
@@ -142,6 +176,41 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         toolbar.translatesAutoresizingMaskIntoConstraints = false
         studyFrequencyTextField.inputAccessoryView = toolbar
         notificationFrequencyTextField.inputAccessoryView = toolbar
+    }
+
+    private func saveUserPreferences() {
+        guard let userController = userController,
+            let user = userController.user else { return }
+
+        var mobileOrDesktop: String?
+        var customOrPremade: String?
+
+        if mobileButton.isSelected { mobileOrDesktop = "Mobile" }
+        if desktopButton.isSelected { mobileOrDesktop = "Desktop" }
+        if customDeckButton.isSelected { customOrPremade = "custom" }
+        if preMadeDeckButton.isSelected { customOrPremade = "pre-made" }
+
+        let shouldUpdateUser = userController.shouldUpdateUserWith(subjects: subjectTextField.text,
+                                                                   studyFrequency: studyFrequencyTextField.text,
+                                                                   mobileOrDesktop: mobileOrDesktop,
+                                                                   customOrPremade: customOrPremade,
+                                                                   notificationFrequency: notificationFrequencyTextField.text)
+
+        if shouldUpdateUser {
+            let userChanges: [String: UserData?] = ["changes" : user.data]
+            let alert = UIAlertController(title: "User Preferences Saved", message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { (action) in
+                alert.dismiss(animated: true, completion: nil)
+            }))
+            userController.putUserPreferences(userChanges) {
+                DispatchQueue.main.async {
+                    self.present(alert, animated: true, completion: nil)
+                }
+                print("User Preferences Saved!")
+            }
+        }
+
+
     }
 
     @objc private func dismissKeyboard() {

@@ -11,6 +11,8 @@ import SOTabBar
 
 class TabViewController: SOTabBarController {
 
+    var userController: UserController?
+
     // Changes the settings for the tab bar
     override func loadView() {
         super.loadView()
@@ -50,5 +52,15 @@ class TabViewController: SOTabBarController {
         profileVC.tabBarItem = UITabBarItem(title: "Profile", image: profileImage, selectedImage: profileImageSelected)
 
         viewControllers = [homeVC, deckCreateVC, profileVC]
+        tabBarViewControllerProperties()
+    }
+
+    // set up the view controllers on the tab bars with property data as needed
+    private func tabBarViewControllerProperties() {
+        guard let _ = self.viewControllers[0] as? HomeViewController,
+            let _ = self.viewControllers[1] as? DeckCreateViewController,
+            let profileVC = self.viewControllers[2] as? ProfileViewController else { return }
+
+        profileVC.userController = self.userController
     }
 }
