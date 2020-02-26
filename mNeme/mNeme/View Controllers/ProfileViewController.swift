@@ -198,7 +198,14 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
 
         if shouldUpdateUser {
             let userChanges: [String: UserData?] = ["changes" : user.data]
+            let alert = UIAlertController(title: "User Preferences Saved", message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { (action) in
+                alert.dismiss(animated: true, completion: nil)
+            }))
             userController.putUserPreferences(userChanges) {
+                DispatchQueue.main.async {
+                    self.present(alert, animated: true, completion: nil)
+                }
                 print("User Preferences Saved!")
             }
         }
