@@ -16,24 +16,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gqS-l0-Tjd">
-                                <rect key="frame" x="87" y="384" width="240" height="128"/>
+                                <rect key="frame" x="35" y="126" width="344" height="218.5"/>
                                 <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="gqS-l0-Tjd" secondAttribute="height" multiplier="15:8" id="zSY-Ph-k3U"/>
+                                    <constraint firstAttribute="width" secondItem="gqS-l0-Tjd" secondAttribute="height" multiplier="337:214" id="d85-oo-Tjp"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="43" translatesAutoresizingMaskIntoConstraints="NO" id="AFw-Sg-dol">
-                                <rect key="frame" x="80" y="611.5" width="254" height="170.5"/>
+                                <rect key="frame" x="50" y="389.5" width="314" height="170.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="we2-mU-heS">
-                                        <rect key="frame" x="92.5" y="0.0" width="69" height="30"/>
+                                        <rect key="frame" x="122.5" y="0.0" width="69" height="30"/>
                                         <state key="normal" title="Next Card"/>
                                         <connections>
                                             <action selector="nextCardButtonTapped:" destination="WEZ-12-rM9" eventType="touchUpInside" id="2AL-eh-q6G"/>
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="47" translatesAutoresizingMaskIntoConstraints="NO" id="0Hy-dP-gfT">
-                                        <rect key="frame" x="3" y="73" width="248.5" height="97.5"/>
+                                        <rect key="frame" x="33" y="73" width="248.5" height="97.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How well do you know this card?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vw2-RI-mAI">
                                                 <rect key="frame" x="0.0" y="0.0" width="248.5" height="20.5"/>
@@ -74,12 +74,12 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="gqS-l0-Tjd" firstAttribute="leading" secondItem="Lhf-i2-Vdx" secondAttribute="leading" constant="87" id="5FY-90-4sF"/>
-                            <constraint firstItem="Lhf-i2-Vdx" firstAttribute="bottom" secondItem="AFw-Sg-dol" secondAttribute="bottom" constant="80" id="D5I-XV-Nw5"/>
-                            <constraint firstItem="AFw-Sg-dol" firstAttribute="top" secondItem="gqS-l0-Tjd" secondAttribute="bottom" constant="99.5" id="EsQ-pj-kU4"/>
-                            <constraint firstItem="Lhf-i2-Vdx" firstAttribute="trailing" secondItem="gqS-l0-Tjd" secondAttribute="trailing" constant="87" id="Z9e-Wv-Mgd"/>
-                            <constraint firstItem="AFw-Sg-dol" firstAttribute="leading" secondItem="Lhf-i2-Vdx" secondAttribute="leading" constant="80" id="i6d-gF-coH"/>
-                            <constraint firstItem="Lhf-i2-Vdx" firstAttribute="trailing" secondItem="AFw-Sg-dol" secondAttribute="trailing" constant="80" id="u2D-Yt-uTn"/>
+                            <constraint firstItem="Lhf-i2-Vdx" firstAttribute="trailing" secondItem="gqS-l0-Tjd" secondAttribute="trailing" constant="35" id="4Iz-pf-U9B"/>
+                            <constraint firstItem="gqS-l0-Tjd" firstAttribute="top" secondItem="Lhf-i2-Vdx" secondAttribute="top" constant="82" id="9aP-FO-781"/>
+                            <constraint firstItem="gqS-l0-Tjd" firstAttribute="leading" secondItem="Lhf-i2-Vdx" secondAttribute="leading" constant="35" id="EJw-Sc-M1k"/>
+                            <constraint firstItem="AFw-Sg-dol" firstAttribute="top" secondItem="gqS-l0-Tjd" secondAttribute="bottom" constant="45" id="Ocw-Ta-gjX"/>
+                            <constraint firstItem="AFw-Sg-dol" firstAttribute="leading" secondItem="Lhf-i2-Vdx" secondAttribute="leading" constant="50" id="iyk-Xn-dmS"/>
+                            <constraint firstItem="Lhf-i2-Vdx" firstAttribute="trailing" secondItem="AFw-Sg-dol" secondAttribute="trailing" constant="50" id="pBj-de-kqy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Lhf-i2-Vdx"/>
                     </view>
