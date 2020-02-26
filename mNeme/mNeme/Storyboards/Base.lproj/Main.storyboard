@@ -7,6 +7,14 @@
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
+        <array key="Roboto-Light.ttf">
+            <string>Roboto-Light</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Tab View Controller-->
         <scene sceneID="Ujs-HT-bgk">
@@ -58,23 +66,53 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DeckCell" textLabel="SUc-LB-NPa" style="IBUITableViewCellStyleDefault" id="fbc-Ib-J92">
-                                        <rect key="frame" x="0.0" y="103" width="414" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DeckCell" rowHeight="50" id="fbc-Ib-J92" customClass="DeckTableViewCell" customModule="mNeme" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="103" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fbc-Ib-J92" id="j9N-Ec-ikp">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SUc-LB-NPa">
-                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deck Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Go0-3v-dFO">
+                                                    <rect key="frame" x="20" y="14" width="190" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="190" id="cg8-7Q-71v"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="uca-HI-Fx2">
+                                                    <rect key="frame" x="225" y="14" width="159" height="22"/>
+                                                    <subviews>
+                                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" verticalCompressionResistancePriority="751" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="klW-Bq-ao9">
+                                                            <rect key="frame" x="0.0" y="0.0" width="159" height="2"/>
+                                                            <color key="tintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </progressView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mastered X / Y cards" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vvc-Hi-PNp">
+                                                            <rect key="frame" x="0.0" y="10" width="159" height="12"/>
+                                                            <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="12"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Go0-3v-dFO" secondAttribute="bottom" constant="3" id="0vd-Kj-Rh3"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="uca-HI-Fx2" secondAttribute="trailing" constant="10" id="2dF-Vj-whJ"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="uca-HI-Fx2" secondAttribute="bottom" constant="3" id="NNo-nb-fmM"/>
+                                                <constraint firstItem="Go0-3v-dFO" firstAttribute="leading" secondItem="j9N-Ec-ikp" secondAttribute="leadingMargin" id="O1k-l5-sNr"/>
+                                                <constraint firstItem="uca-HI-Fx2" firstAttribute="leading" secondItem="Go0-3v-dFO" secondAttribute="trailing" constant="15" id="T2o-3f-pdQ"/>
+                                                <constraint firstItem="Go0-3v-dFO" firstAttribute="top" secondItem="j9N-Ec-ikp" secondAttribute="topMargin" constant="3" id="UGD-oX-Igd"/>
+                                                <constraint firstItem="uca-HI-Fx2" firstAttribute="top" secondItem="j9N-Ec-ikp" secondAttribute="topMargin" constant="3" id="ljc-Kh-q06"/>
+                                                <constraint firstItem="Go0-3v-dFO" firstAttribute="leading" secondItem="j9N-Ec-ikp" secondAttribute="leadingMargin" id="rsQ-cN-3CH"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="deckNameLabel" destination="Go0-3v-dFO" id="l44-Gm-T1h"/>
+                                            <outlet property="masteredCardsLabel" destination="Vvc-Hi-PNp" id="yZB-Vg-535"/>
+                                            <outlet property="progressBar" destination="klW-Bq-ao9" id="azZ-ld-Nh1"/>
                                             <segue destination="cOg-kt-g7J" kind="presentation" identifier="DeckSegue" modalPresentationStyle="fullScreen" id="cFp-ki-Sx8"/>
                                         </connections>
                                     </tableViewCell>

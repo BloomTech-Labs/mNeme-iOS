@@ -10,6 +10,7 @@
 		13F5F34F9C9627ECA701EC5C /* Pods_mNemeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11354B8AFCA77E9B1CE8292E /* Pods_mNemeTests.framework */; };
 		4B58980E2405914A00ECCD03 /* MockDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58980D2405914A00ECCD03 /* MockDeck.swift */; };
 		4B8A2A3123FCA5C700116BF9 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B8A2A3023FCA5C700116BF9 /* Login.storyboard */; };
+		4BDE6C972406FAA300DF8AB1 /* DeckTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDE6C962406FAA300DF8AB1 /* DeckTableViewCell.swift */; };
 		6E1A19C692A40780C18AE71F /* Pods_mNeme.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 625928B0143B44879A17FF25 /* Pods_mNeme.framework */; };
 		954AB142240439C100FD385F /* DeckCard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 954AB141240439C100FD385F /* DeckCard.storyboard */; };
 		954AB14424043D8D00FD385F /* DeckCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954AB14324043D8D00FD385F /* DeckCardViewController.swift */; };
@@ -75,6 +76,7 @@
 		3E7E4BC2E3DF3D2666993AC0 /* Pods-mNemeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mNemeTests.debug.xcconfig"; path = "Target Support Files/Pods-mNemeTests/Pods-mNemeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4B58980D2405914A00ECCD03 /* MockDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDeck.swift; sourceTree = "<group>"; };
 		4B8A2A3023FCA5C700116BF9 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		4BDE6C962406FAA300DF8AB1 /* DeckTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckTableViewCell.swift; sourceTree = "<group>"; };
 		5A231593762C0B0497140987 /* Pods-mNeme.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mNeme.debug.xcconfig"; path = "Target Support Files/Pods-mNeme/Pods-mNeme.debug.xcconfig"; sourceTree = "<group>"; };
 		625928B0143B44879A17FF25 /* Pods_mNeme.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mNeme.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		954AB141240439C100FD385F /* DeckCard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DeckCard.storyboard; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				BBD8A2E823FDDD8E00F5534E /* ProfileViewController.swift */,
+				4BDE6C962406FAA300DF8AB1 /* DeckTableViewCell.swift */,
 				BBD8A2EA23FDDDE600F5534E /* DeckCreateViewController.swift */,
 				BBD8A2EC23FDDE0500F5534E /* HomeViewController.swift */,
 				BBD8A2EE23FDDF5D00F5534E /* TabViewController.swift */,
@@ -625,6 +628,7 @@
 				95773B8A23FF041A009B4EFE /* PreLoginViewController.swift in Sources */,
 				BBD8A2EB23FDDDE600F5534E /* DeckCreateViewController.swift in Sources */,
 				BBD8A305240449D500F5534E /* HTTPMethod.swift in Sources */,
+				4BDE6C972406FAA300DF8AB1 /* DeckTableViewCell.swift in Sources */,
 				4B58980E2405914A00ECCD03 /* MockDeck.swift in Sources */,
 				95EEEAE323FB45DA00B283E9 /* SceneDelegate.swift in Sources */,
 				BBD8A2EF23FDDF5D00F5534E /* TabViewController.swift in Sources */,
