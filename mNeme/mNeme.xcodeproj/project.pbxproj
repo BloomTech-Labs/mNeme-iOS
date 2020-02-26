@@ -37,6 +37,7 @@
 		95EEEAF023FB45DC00B283E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95EEEAEE23FB45DC00B283E9 /* LaunchScreen.storyboard */; };
 		95EEEAFB23FB45DC00B283E9 /* mNemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EEEAFA23FB45DC00B283E9 /* mNemeTests.swift */; };
 		95EEEB0623FB45DC00B283E9 /* mNemeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EEEB0523FB45DC00B283E9 /* mNemeUITests.swift */; };
+		BB20E8E82406EC9700B60F24 /* DemoDeckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB20E8E72406EC9700B60F24 /* DemoDeckController.swift */; };
 		BBD8A2E923FDDD8E00F5534E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2E823FDDD8E00F5534E /* ProfileViewController.swift */; };
 		BBD8A2EB23FDDDE600F5534E /* DeckCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2EA23FDDDE600F5534E /* DeckCreateViewController.swift */; };
 		BBD8A2ED23FDDE0500F5534E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2EC23FDDE0500F5534E /* HomeViewController.swift */; };
@@ -110,6 +111,7 @@
 		95EEEB0523FB45DC00B283E9 /* mNemeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mNemeUITests.swift; sourceTree = "<group>"; };
 		95EEEB0723FB45DC00B283E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96E43B73731FDF6ABC35B793 /* Pods-mNeme.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mNeme.release.xcconfig"; path = "Target Support Files/Pods-mNeme/Pods-mNeme.release.xcconfig"; sourceTree = "<group>"; };
+		BB20E8E72406EC9700B60F24 /* DemoDeckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoDeckController.swift; sourceTree = "<group>"; };
 		BBD8A2E823FDDD8E00F5534E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		BBD8A2EA23FDDDE600F5534E /* DeckCreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCreateViewController.swift; sourceTree = "<group>"; };
 		BBD8A2EC23FDDE0500F5534E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 			isa = PBXGroup;
 			children = (
 				BBD8A3012404490B00F5534E /* UserController.swift */,
+				BB20E8E72406EC9700B60F24 /* DemoDeckController.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -620,6 +623,7 @@
 				95EEEAE123FB45DA00B283E9 /* AppDelegate.swift in Sources */,
 				954AB14424043D8D00FD385F /* DeckCardViewController.swift in Sources */,
 				BBD8A2E923FDDD8E00F5534E /* ProfileViewController.swift in Sources */,
+				BB20E8E82406EC9700B60F24 /* DemoDeckController.swift in Sources */,
 				BBD8A3022404490B00F5534E /* UserController.swift in Sources */,
 				BBD8A300240447E200F5534E /* NetworkDataLoader.swift in Sources */,
 				95773B8A23FF041A009B4EFE /* PreLoginViewController.swift in Sources */,

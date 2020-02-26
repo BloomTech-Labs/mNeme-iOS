@@ -9,11 +9,14 @@
 import UIKit
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+
     // MARK: IBOutlets
     @IBOutlet private weak var segmentedControl: UISegmentedControl!
     @IBOutlet private weak var deckCreateButton: UIButton!
     @IBOutlet private weak var deckTableView: UITableView!
+
+    // MARK: Properties
+    let demoDeckController = DemoDeckController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +24,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         deckTableView.delegate = self
         deckTableView.dataSource = self
         // Do any additional setup after loading the view.
+        demoDeckController.getDemoDecks {
+            
+        }
     }
 
     private func updateViews() {
