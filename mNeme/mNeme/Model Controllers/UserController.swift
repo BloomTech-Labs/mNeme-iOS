@@ -93,20 +93,36 @@ class UserController {
     }
 
     // MARK: CRUD Methods
-    func updateUser(subjects: String?, studyFrequency: String?,
+    // this function will return true if the user updates any fields that are not the same
+    func shouldUpdateUserWith(subjects: String?, studyFrequency: String?,
                     mobileOrDesktop: String?, customOrPremade: String?,
-                    notificationFrequency: String?) {
-        guard let user = user else { return }
-        user.data?.favSubjects = subjects ?? ""
-        user.data?.studyFrequency = studyFrequency
-        user.data?.MobileOrDesktop = mobileOrDesktop
-        user.data?.customOrPremade = customOrPremade
-        user.data?.notificationFrequency = notificationFrequency
+                    notificationFrequency: String?) -> Bool {
+        guard let user = user else { return false }
+
+        // must have an optional value and not be set to nil when updated data to return to the server
+        let updatedUserData = UserData(id: user.id,
+                                       notificationFrequency: notificationFrequency ?? "",
+                                       favSubjects: subjects ?? "",
+                                       studyFrequency: studyFrequency ?? "",
+                                       MobileOrDesktop: mobileOrDesktop ?? "",
+                                       customOrPremade: customOrPremade ?? "")
+
+        if updatedUserData != user.data {
+            user.data = updatedUserData
+            return true
+        }
+
+        return false
+//        user.data?.favSubjects = subjects ?? ""
+//        user.data?.studyFrequency = studyFrequency ?? ""
+//        user.data?.MobileOrDesktop = mobileOrDesktop ?? ""
+//        user.data?.customOrPremade = customOrPremade ?? ""
+//        user.data?.notificationFrequency = notificationFrequency ?? ""
 
         // makes a dictionary with the userData to write to the database
-        let userChanges: [String: UserData?] = ["changes" : user.data]
-        putUserPreferences(userChanges) {
-            print("User Preferences Saved!")
-        }
+//        let userChanges: [String: UserData?] = ["changes" : user.data]
+//        putUserPreferences(userChanges) {
+//            print("User Preferences Saved!")
+//        }
     }
 }

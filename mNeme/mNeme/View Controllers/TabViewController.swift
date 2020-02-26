@@ -62,6 +62,5 @@ class TabViewController: SOTabBarController {
             let profileVC = self.viewControllers[2] as? ProfileViewController else { return }
 
         profileVC.userController = self.userController
-        profileVC.user = self.userController?.user
     }
 }

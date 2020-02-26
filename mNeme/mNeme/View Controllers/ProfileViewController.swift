@@ -24,7 +24,6 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
     var selectedStudyFrequency: String?
     var selectedNotificationFrequency: String?
     var userController: UserController?
-    var user: User?
 
     // MARK: IBOutlets
     @IBOutlet private weak var subjectTextField: UITextField!
@@ -66,7 +65,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
 
     // sets up the outlets based on the user preferences set up
     private func userPreferences() {
-        guard let user = user,
+        guard let user = userController?.user,
             let userData = user.data else { return }
 
         subjectTextField.text = userData.favSubjects
@@ -74,19 +73,19 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         notificationFrequencyTextField.text = userData.notificationFrequency
 
         //if let device = userData.MobileOrDesktop {
-            if userData.MobileOrDesktop == "Desktop" {
-                desktopButton.isSelected = true
-            } else if userData.MobileOrDesktop == "Mobile" {
-                mobileButton.isSelected = true
-            }
+        if userData.MobileOrDesktop == "Desktop" {
+            desktopButton.isSelected = true
+        } else if userData.MobileOrDesktop == "Mobile" {
+            mobileButton.isSelected = true
+        }
         //}
 
         //if let deckPreference = userData.customOrPremade {
-            if userData.customOrPremade == "pre-made" {
-                preMadeDeckButton.isSelected = true
-            } else if userData.customOrPremade == "custom" {
-                customDeckButton.isSelected = true
-            }
+        if userData.customOrPremade == "pre-made" {
+            preMadeDeckButton.isSelected = true
+        } else if userData.customOrPremade == "custom" {
+            customDeckButton.isSelected = true
+        }
         //}
     }
 
@@ -180,7 +179,8 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
     }
 
     private func saveUserPreferences() {
-        guard let userController = userController else { return }
+        guard let userController = userController,
+            let user = userController.user else { return }
 
         var mobileOrDesktop: String?
         var customOrPremade: String?
@@ -190,11 +190,20 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         if customDeckButton.isSelected { customOrPremade = "custom" }
         if preMadeDeckButton.isSelected { customOrPremade = "pre-made" }
 
-        userController.updateUser(subjects: subjectTextField.text,
-                                  studyFrequency: studyFrequencyTextField.text,
-                                  mobileOrDesktop: mobileOrDesktop,
-                                  customOrPremade: customOrPremade,
-                                  notificationFrequency: notificationFrequencyTextField.text)
+        let shouldUpdateUser = userController.shouldUpdateUserWith(subjects: subjectTextField.text,
+                                                                   studyFrequency: studyFrequencyTextField.text,
+                                                                   mobileOrDesktop: mobileOrDesktop,
+                                                                   customOrPremade: customOrPremade,
+                                                                   notificationFrequency: notificationFrequencyTextField.text)
+
+        if shouldUpdateUser {
+            let userChanges: [String: UserData?] = ["changes" : user.data]
+            userController.putUserPreferences(userChanges) {
+                print("User Preferences Saved!")
+            }
+        }
+
+
     }
 
     @objc private func dismissKeyboard() {
