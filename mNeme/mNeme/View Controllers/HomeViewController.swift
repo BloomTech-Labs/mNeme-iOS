@@ -8,8 +8,8 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
-
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
     // MARK: IBOutlets
     @IBOutlet private weak var segmentedControl: UISegmentedControl!
     @IBOutlet private weak var deckCreateButton: UIButton!
@@ -18,6 +18,8 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
+        deckTableView.delegate = self
+        deckTableView.dataSource = self
         // Do any additional setup after loading the view.
     }
 
@@ -45,5 +47,22 @@ class HomeViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    // MARK: - TableView Functions
+
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DeckCell", for: indexPath)
+        
+        cell.textLabel?.text = "Demo Deck"
+        
+        return cell
+    }
+    
+    
 
 }

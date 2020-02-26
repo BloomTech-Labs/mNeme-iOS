@@ -74,6 +74,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="cOg-kt-g7J" kind="presentation" identifier="DeckSegue" modalPresentationStyle="fullScreen" id="cFp-ki-Sx8"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -119,6 +122,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aZN-Q4-f7l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2847.826086956522" y="-846.42857142857144"/>
+        </scene>
+        <!--DeckCard.storyboard-->
+        <scene sceneID="mRV-ah-QkT">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="DeckCard.storyboard" storyboardName="DeckCard" referencedIdentifier="DeckCard.storyboard" id="cOg-kt-g7J" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="prY-GV-ADX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3484" y="-931"/>
         </scene>
         <!--Create a New Deck-->
         <scene sceneID="y9i-ty-qtP">
