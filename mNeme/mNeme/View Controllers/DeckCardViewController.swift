@@ -45,6 +45,9 @@ class DeckCardViewController: UIViewController {
         updateDeckText()
     }
     // MARK: - IB Actions
+    @IBAction func backButtonTapped(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
     @IBAction func badRatingTapped(_ sender: Any) {
         ratingWasTapped()
     }
