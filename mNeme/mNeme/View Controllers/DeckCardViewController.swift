@@ -15,10 +15,17 @@ class DeckCardViewController: UIViewController {
     @IBOutlet weak var greatRating: UIButton!
     @IBOutlet weak var nextCardButton: UIButton!
     @IBOutlet weak var wellKnownQuestion: UILabel!
+    @IBOutlet weak var backCard: UIButton!
+    @IBOutlet weak var forwardCard: UIButton!
+    
     // MARK: - Variables
-    var deck: MockDemoDeck?
-    var cards: [CardData] = []
-    var currentCardInfo: CardInfo?
+    var deck: MockDemoDeck?{
+        didSet{
+            guard let total = deck?.data.count else { return }
+            currentCardTotal = total
+        }
+    }
+    var currentCardTotal = 0
     var currentCardIndex: Int = 0
     var mockDemoDeckController = MockDemoDeckController()
     var allowedToFlip = true
@@ -29,8 +36,10 @@ class DeckCardViewController: UIViewController {
         didSet {
             if self.showingBack {
                 showRatingStuff()
+                hideSteppers()
             } else {
                 hideRatingStuff()
+                showSteppers()
             }
         }
     }
@@ -38,13 +47,23 @@ class DeckCardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //fetching deck data data
-        deck = mockDemoDeckController.decodeMockData()
+        deck = mockDemoDeckController.decodeMockData(deckLength: .short)
         // Setting up view
         setupViews()
         hideOtherLabels()
         updateDeckText()
     }
     // MARK: - IB Actions
+    @IBAction func backACard(_ sender: UIButton) {
+        guard currentCardIndex > 0 else { return }
+        currentCardIndex -= 1
+        updateDeckText()
+    }
+    @IBAction func forwardACard(_ sender: UIButton) {
+        guard currentCardIndex < currentCardTotal-1 else { return }
+        currentCardIndex += 1
+        updateDeckText()
+    }
     @IBAction func backButtonTapped(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -58,6 +77,27 @@ class DeckCardViewController: UIViewController {
        ratingWasTapped()
     }
     @IBAction func nextCardButtonTapped(_ sender: Any) {
+        guard currentCardIndex < currentCardTotal-1 else {
+            let alert = UIAlertController(title: "You've reached the end of the deck!", message: "Would you like to reset the deck or stay here?", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Reset", style: .default, handler: { action in
+                self.currentCardIndex = 0
+                self.allowedToFlip = true
+                self.nextCardButton.isHidden = true
+                self.flip()
+                self.updateDeckText()
+            }))
+            
+            alert.addAction(UIAlertAction(title: "Stay here", style: .cancel, handler: { action in
+                self.allowedToFlip = true
+                self.nextCardButton.isHidden = true
+                self.flip()
+                self.updateDeckText()
+            }))
+            
+            self.present(alert, animated: true)
+            
+            return }
         currentCardIndex += 1
         allowedToFlip = true
         nextCardButton.isHidden = true
@@ -104,6 +144,14 @@ class DeckCardViewController: UIViewController {
         let leadConstraint = NSLayoutConstraint(item: view, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: containerView, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: 20)
         let trailConstraint = NSLayoutConstraint(item: view, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: containerView, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: -20)
         self.containerView.addConstraints([horizontalConstraint, verticalConstraint, leadConstraint, trailConstraint])
+    }
+    private func showSteppers() {
+        backCard.isHidden = false
+        forwardCard.isHidden = false
+    }
+    private func hideSteppers() {
+        backCard.isHidden = true
+        forwardCard.isHidden = true
     }
     private func ratingWasTapped() {
         wellKnownQuestion?.isHidden = true

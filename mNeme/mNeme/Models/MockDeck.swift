@@ -28,6 +28,35 @@ class MockDemoDeckController {
     
     var deck: MockDemoDeck?
     
+    let shortDeck = """
+    {
+      "deckName": "mNeme",
+      "data": [
+        {
+          "id": "9qzYSx8CK7AgLaOAgZ4a",
+          "data": {
+            "back": "Greg Johnston,  Tyler Thompson, William Berlin, Rayven Burns,  Ndawi Eke, Patrick Chow, Sarina Garg, Kyla Sweeney,",
+            "front": "mNeme Team"
+          }
+        },
+        {
+          "id": "DUXAdcb2lM2US70hJWeE",
+          "data": {
+            "back": "Spaced repetition is an evidence-based learning technique that is usually performed with flashcards",
+            "front": "Spaced Repetition"
+          }
+        },
+        {
+          "id": "K6iATp6sFPPF7Jl6VGR1",
+          "data": {
+            "front": "Flashcard",
+            "back": "a card containing a small amount of information; an aid to learning."
+          }
+        }
+      ]
+    }
+    """.data(using: .utf8)!
+    
     let deckData = """
     {
       "deckName": "mNeme",
@@ -111,13 +140,22 @@ class MockDemoDeckController {
     init(networkDataLoader: NetworkDataLoader = URLSession.shared) {
         self.dataLoader = networkDataLoader
     }
+    enum deckLength {
+        case short
+        case long
+    }
     
-    
-    func decodeMockData() -> MockDemoDeck? {
+    func decodeMockData(deckLength: deckLength) -> MockDemoDeck? {
         //        dataLoader.loadData(using: URLRequest(url: URL(string: "")!)) {data,_,_ in
+        var deckToUse = self.deckData
+        if deckLength == .long {
+            deckToUse = self.deckData
+        } else if deckLength == .short {
+            deckToUse = self.shortDeck
+        }
         let decoder = JSONDecoder()
         do {
-            let decodedMockData = try decoder.decode(MockDemoDeck.self, from: self.deckData)
+            let decodedMockData = try decoder.decode(MockDemoDeck.self, from: deckToUse)
             return decodedMockData
         } catch {
             NSLog("Did not work decoding mock data deck")
