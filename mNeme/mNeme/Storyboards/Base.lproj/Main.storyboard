@@ -206,12 +206,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" largeTitles="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jQd-Pb-Kb7">
-                                <rect key="frame" x="0.0" y="44" width="414" height="96"/>
-                                <items>
-                                    <navigationItem title="Profile" id="qnZ-Ua-9LE"/>
-                                </items>
-                            </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User preferences" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c9R-Tq-tql">
                                 <rect key="frame" x="20" y="160" width="162.5" height="26.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
@@ -418,6 +412,18 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <navigationBar contentMode="scaleToFill" largeTitles="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jQd-Pb-Kb7">
+                                <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                                <items>
+                                    <navigationItem title="Profile" id="qnZ-Ua-9LE">
+                                        <barButtonItem key="rightBarButtonItem" title="Logout" id="QO1-bI-gxm">
+                                            <connections>
+                                                <action selector="logoutTapped:" destination="W3P-QC-u31" id="nJh-Tk-dNF"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -450,6 +456,7 @@
                     <connections>
                         <outlet property="customDeckButton" destination="2PZ-kN-Z0l" id="uzP-bZ-gXe"/>
                         <outlet property="desktopButton" destination="hxi-92-mFP" id="0b2-8q-sGO"/>
+                        <outlet property="logoutButton" destination="QO1-bI-gxm" id="zeY-at-JTa"/>
                         <outlet property="mobileButton" destination="X5B-8X-epg" id="aiH-bx-OYS"/>
                         <outlet property="notificationFrequencyTextField" destination="evm-WD-ACF" id="O4o-My-e2h"/>
                         <outlet property="preMadeDeckButton" destination="N2c-Jz-VL7" id="XIp-uY-Y7i"/>
