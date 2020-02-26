@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ProfileViewController: UIViewController, UITextFieldDelegate {
 
@@ -34,11 +35,15 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet private weak var customDeckButton: UIButton!
     @IBOutlet private weak var notificationFrequencyTextField: UITextField!
     @IBOutlet private weak var saveButton: UIButton!
+    @IBOutlet private weak var logoutButton: UIBarButtonItem!
 
     // MARK: Views
     override func viewDidLoad() {
         super.viewDidLoad()
+        let textAttribute = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        logoutButton.setTitleTextAttributes(textAttribute, for: .normal)
         updateViews()
+        
         // Do any additional setup after loading the view.
     }
 
@@ -101,7 +106,11 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
     @IBAction private func saveButtonTapped(_ sender: UIButton) {
         saveUserPreferences()
     }
-
+    
+    @IBAction func logoutTapped(_ sender: UIBarButtonItem) {
+        setupAndDisplayLogoutAlerts()
+    }
+    
     // MARK: Private methods
     private func studyDevicePreferences(_ identifier: String?) {
         guard let identifier = identifier else { return }
@@ -209,8 +218,24 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
                 print("User Preferences Saved!")
             }
         }
-
-
+    }
+    
+    private func setupAndDisplayLogoutAlerts() {
+        let alert = UIAlertController(title: "Are you sure you want to logout?", message: "", preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "Logout", style: .destructive, handler: { action in
+            do {
+                try Auth.auth().signOut()
+                self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+            }catch {
+                let errorAlert = UIAlertController(title: "Error logging out", message: "Please restart the application", preferredStyle: .actionSheet)
+                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                self.present(errorAlert, animated: true)
+            }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
     }
 
     @objc private func dismissKeyboard() {
