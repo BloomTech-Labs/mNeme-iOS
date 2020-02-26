@@ -19,7 +19,7 @@ class DeckCardViewController: UIViewController {
     @IBOutlet weak var forwardCard: UIButton!
     
     // MARK: - Variables
-    var deck: MockDemoDeck?{
+    var deck: DemoDeck?{
         didSet{
             guard let total = deck?.data.count else { return }
             currentCardTotal = total
@@ -46,8 +46,6 @@ class DeckCardViewController: UIViewController {
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        //fetching deck data data
-        deck = mockDemoDeckController.decodeMockData(deckLength: .short)
         // Setting up view
         setupViews()
         hideOtherLabels()

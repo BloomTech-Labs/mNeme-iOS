@@ -14,8 +14,11 @@ class DeckTableViewCell: UITableViewCell {
     @IBOutlet weak var masteredCardsLabel: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
     
-    var deck: MockDemoDeck?
-    var controller: MockDemoDeckController?
+    var deck: DemoDeck? {
+        didSet {
+            updateViews()
+        }
+    }
     
     
     private func updateViews() {
