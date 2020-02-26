@@ -13,8 +13,9 @@ import GoogleSignIn
 import FacebookLogin
 
 class LoginViewController: UIViewController, GIDSignInDelegate {
-
+    
     let userController = UserController()
+    let demoDeckController = DemoDeckController()
     var signingUp = false
     
     @IBOutlet weak var facebookLoginButton: UIButton!
@@ -74,15 +75,19 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
         passwordTextField.delegate = self
         bottomNavView.backgroundColor = UIColor.mNeme.orangeBlaze
         bottomImageViewandLabel()
-    
+        
     }
-
+    
     private func signInWithAuthResultUID(uid: String) {
         userController.user = User(uid)
         userController.getUserPreferences {
-            DispatchQueue.main.async {
-                self.performSegue(withIdentifier: "MainSegue", sender: self)
+            self.demoDeckController.getDemoDecks {
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "MainSegue", sender: self)
+                }
             }
+            
+            
         }
     }
     
@@ -92,16 +97,16 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
         switch result {
         case .cancelled:
             print("cancelled")
-
+            
         case .failed:
-           print("failed")
-
+            print("failed")
+            
         case .success:
             print("success")
             //self.performSegue(withIdentifier: "MainSegue", sender: self)
         }
     }
-
+    
     @IBAction private func loginWithReadPermissions() {
         let loginManager = LoginManager()
         loginManager.logIn(
@@ -234,19 +239,20 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
         }
     }
     
-
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
+    
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
         if segue.identifier == "MainSegue" {
             if let destinationVC = segue.destination as? TabViewController {
                 destinationVC.userController = self.userController
+                destinationVC.demoDeckController = self.demoDeckController
             }
         }
-     }
+    }
     
 }
 
@@ -268,7 +274,7 @@ extension LoginViewController: LoginButtonDelegate {
             }
         }
     }
-        
+    
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
         
     }
