@@ -47,5 +47,15 @@ class UserPreferencesTests: XCTestCase {
 
         XCTAssertNotNil(controller.user?.data)
     }
+    
+    func testGetDeckData() {
+
+        let controller = MockDemoDeckController()
+        controller.decodeMockData()
+        
+        XCTAssertEqual(controller.deck?.data[0].id, "9qzYSx8CK7AgLaOAgZ4a")
+        
+        
+    }
 
 }

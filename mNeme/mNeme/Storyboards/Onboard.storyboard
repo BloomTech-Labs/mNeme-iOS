@@ -90,6 +90,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H5a-71-bOx">
+                                <rect key="frame" x="348" y="44" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="GPV-VB-bQF" kind="presentation" modalPresentationStyle="fullScreen" id="d7B-Ew-NWq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -136,6 +144,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ggo-zS-3gH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2892.0289855072465" y="87.723214285714278"/>
+        </scene>
+        <!--DeckCard-->
+        <scene sceneID="urW-JL-9F6">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="DeckCard.storyboard" storyboardName="DeckCard" id="GPV-VB-bQF" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="gr0-zF-8wg"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="76g-qx-eYW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3170" y="-38"/>
         </scene>
     </scenes>
     <resources>

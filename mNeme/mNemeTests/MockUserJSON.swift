@@ -22,6 +22,27 @@ let userWithData = """
 }
 """.data(using: .utf8)!
 
+let deckData = """
+{
+"deckName": "mNeme",
+"data": [
+  {
+    "id": "9qzYSx8CK7AgLaOAgZ4a",
+    "data": {
+      "back": "Greg Johnston,  Tyler Thompson, William Berlin, Rayven Burns,  Ndawi Eke, Patrick Chow, Sarina Garg, Kyla Sweeney,",
+      "front": "mNeme Team"
+    }
+  },
+  {
+    "id": "DUXAdcb2lM2US70hJWeE",
+    "data": {
+      "back": "Spaced repetition is an evidence-based learning technique that is usually performed with flashcards",
+      "front": "Spaced Repetition"
+    }
+  }
+}
+""".data(using: .utf8)!
+
 let userWithoutData = """
 {
   "id": "r4Ok4g9OA5UHtpXnDRqF5XFCduH3",
