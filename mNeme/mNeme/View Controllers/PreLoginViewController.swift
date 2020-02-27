@@ -12,6 +12,8 @@ class PreLoginViewController: UIViewController {
 
     @IBOutlet weak var bottomColorView: UIView!
     @IBOutlet weak var mNemeLogoLabel: UILabel!
+    @IBOutlet weak var signInButton: UIButton!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +21,7 @@ class PreLoginViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
         bottomColorView.backgroundColor = UIColor.mNeme.orangeBlaze
         mNemeLogoLabel.textColor = UIColor.mNeme.orangeBlaze
+        signInButton.setTitleColor(UIColor.mNeme.orangeBlaze, for: .normal)
     }
     
     override func viewWillAppear(_ animated: Bool) {
