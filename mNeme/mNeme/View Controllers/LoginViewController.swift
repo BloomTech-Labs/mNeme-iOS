@@ -32,6 +32,11 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
     @IBOutlet weak var bottomImageView: UIImageView!
     @IBOutlet weak var bottomNavView: UIView!
     
+    @IBOutlet weak var facebookLoginLabel: UILabel!
+    @IBOutlet weak var googleLoginLabel: UILabel!
+    @IBOutlet weak var emailLoginLabel: UILabel!
+
+    
     
     override func viewDidLoad() { 
         super.viewDidLoad()
@@ -215,15 +220,27 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
     
     private func emailButtonText() {
         if signingUp {
-            facebookLoginButton.setImage(UIImage(named: "Sign Up with Facebook"), for: .normal)
-            googleLoginButton.setImage(UIImage(named: "Sign Up with Google"), for: .normal)
-            emailButton.setImage(UIImage(named: "Sign Up with Email"), for: .normal)
-            emailSignInButton.setImage(UIImage(named: "Sign Up"), for: .normal)
+            facebookLoginButton.setBackgroundImage(UIImage(named: "Sign Up with Facebook"), for: .normal)
+//            facebookLoginButton.setTitle("Sign Up with Facebook", for: .normal)
+// TODO: Find out how to align title in center of button
+//            facebookLoginButton.titleLabel?.textAlignment = .center
+
+            googleLoginButton.setBackgroundImage(UIImage(named: "Sign Up with Google"), for: .normal)
+//            googleLoginButton.setTitle("Sign Up with Google", for: .normal)
+
+            emailButton.setBackgroundImage(UIImage(named: "Sign Up with Email"), for: .normal)
+//            emailButton.setTitle("Sign Up with Email", for: .normal)
+            emailSignInButton.setBackgroundImage(UIImage(named: "clearButtonSmall"), for: .normal)
         } else {
-            facebookLoginButton.setImage(UIImage(named: "Sign in with Facebook"), for: .normal)
-            googleLoginButton.setImage(UIImage(named: "Sign in with Google"), for: .normal)
-            emailButton.setImage(UIImage(named: "Sign in with Email"), for: .normal)
-            emailSignInButton.setImage(UIImage(named: "Sign In"), for: .normal)
+            facebookLoginButton.setBackgroundImage(UIImage(named: "Sign in with Facebook"), for: .normal)
+//            facebookLoginButton.setTitle("Sign In with Facebook", for: .normal)
+            googleLoginButton.setBackgroundImage(UIImage(named: "Sign in with Google"), for: .normal)
+//            googleLoginButton.setTitle("Sign In with Facebook", for: .normal)
+
+            emailButton.setBackgroundImage(UIImage(named: "Sign in with Email"), for: .normal)
+//            emailButton.setTitle("Sign In with Email", for: .normal)
+
+            emailSignInButton.setBackgroundImage(UIImage(named: "clearButtonSmall"), for: .normal)
         }
     }
     
