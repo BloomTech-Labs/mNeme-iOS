@@ -6,6 +6,14 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Deck Card View Controller-->
         <scene sceneID="lZA-p3-Sc8">
@@ -16,51 +24,57 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gqS-l0-Tjd">
-                                <rect key="frame" x="35" y="126" width="344" height="218.5"/>
+                                <rect key="frame" x="35" y="164" width="344" height="218.5"/>
                                 <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="gqS-l0-Tjd" secondAttribute="height" multiplier="337:214" id="d85-oo-Tjp"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="43" translatesAutoresizingMaskIntoConstraints="NO" id="AFw-Sg-dol">
-                                <rect key="frame" x="50" y="389.5" width="314" height="170.5"/>
+                                <rect key="frame" x="50" y="427.5" width="314" height="232.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="we2-mU-heS">
-                                        <rect key="frame" x="122.5" y="0.0" width="69" height="30"/>
-                                        <state key="normal" title="Next Card"/>
+                                        <rect key="frame" x="103.5" y="0.0" width="107" height="41"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="24"/>
+                                        <state key="normal" title="Next Card">
+                                            <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="nextCardButtonTapped:" destination="WEZ-12-rM9" eventType="touchUpInside" id="2AL-eh-q6G"/>
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="47" translatesAutoresizingMaskIntoConstraints="NO" id="0Hy-dP-gfT">
-                                        <rect key="frame" x="33" y="73" width="248.5" height="97.5"/>
+                                        <rect key="frame" x="2.5" y="84" width="309" height="148.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How well do you know this card?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vw2-RI-mAI">
-                                                <rect key="frame" x="0.0" y="0.0" width="248.5" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <rect key="frame" x="10" y="0.0" width="289.5" height="23.5"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="66" translatesAutoresizingMaskIntoConstraints="NO" id="yRP-LY-FkD">
-                                                <rect key="frame" x="6.5" y="67.5" width="235" height="30"/>
+                                                <rect key="frame" x="0.0" y="70.5" width="309" height="78"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HYU-lm-Hwz">
-                                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-                                                        <state key="normal" title="Bad"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="59" height="78"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="55"/>
+                                                        <state key="normal" title="😬"/>
                                                         <connections>
                                                             <action selector="badRatingTapped:" destination="WEZ-12-rM9" eventType="touchUpInside" id="gZb-ui-VCT"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B8E-8s-AFN">
-                                                        <rect key="frame" x="96" y="0.0" width="35" height="30"/>
-                                                        <state key="normal" title="Okay"/>
+                                                        <rect key="frame" x="125" y="0.0" width="59" height="78"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="55"/>
+                                                        <state key="normal" title="🙂"/>
                                                         <connections>
                                                             <action selector="okayRatingTapped:" destination="WEZ-12-rM9" eventType="touchUpInside" id="6Ja-PW-vLQ"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Meg-hN-FrA">
-                                                        <rect key="frame" x="197" y="0.0" width="38" height="30"/>
-                                                        <state key="normal" title="Great"/>
+                                                        <rect key="frame" x="250" y="0.0" width="59" height="78"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="55"/>
+                                                        <state key="normal" title="😎"/>
                                                         <connections>
                                                             <action selector="greatRatingTapped:" destination="WEZ-12-rM9" eventType="touchUpInside" id="as5-n5-b5K"/>
                                                         </connections>
@@ -72,55 +86,58 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RNO-gz-o60">
-                                <rect key="frame" x="26" y="44" width="34" height="30"/>
+                                <rect key="frame" x="29" y="39" width="31" height="72"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Back"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <state key="normal" title="↩︎">
+                                    <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="backButtonTapped:" destination="WEZ-12-rM9" eventType="touchUpInside" id="rBC-WX-APc"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RMf-4w-a6Q">
-                                <rect key="frame" x="183" y="359" width="48" height="22"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CWC-u5-SR3">
-                                        <rect key="frame" x="0.0" y="0.0" width="20" height="22"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" image="backward.end.fill" catalog="system">
-                                            <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="backACard:" destination="WEZ-12-rM9" eventType="touchUpInside" id="mfo-EY-6Lf"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VYA-62-jN3">
-                                        <rect key="frame" x="28" y="0.0" width="20" height="22"/>
-                                        <state key="normal" image="forward.end.fill" catalog="system"/>
-                                        <connections>
-                                            <action selector="forwardACard:" destination="WEZ-12-rM9" eventType="touchUpInside" id="M4m-L5-098"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XkQ-qS-l1x">
+                                <rect key="frame" x="90" y="398.5" width="46" height="72"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <state key="normal" title="←">
+                                    <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="backACard:" destination="WEZ-12-rM9" eventType="touchUpInside" id="CKD-J7-hmP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tov-TQ-0YC">
+                                <rect key="frame" x="278" y="398.5" width="46" height="72"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <state key="normal" title="→">
+                                    <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="forwardACard:" destination="WEZ-12-rM9" eventType="touchUpInside" id="32r-2U-Tkf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Lhf-i2-Vdx" firstAttribute="trailing" secondItem="gqS-l0-Tjd" secondAttribute="trailing" constant="35" id="4Iz-pf-U9B"/>
-                            <constraint firstItem="RMf-4w-a6Q" firstAttribute="top" secondItem="gqS-l0-Tjd" secondAttribute="bottom" constant="14.5" id="8DH-qA-Q9z"/>
-                            <constraint firstItem="gqS-l0-Tjd" firstAttribute="top" secondItem="Lhf-i2-Vdx" secondAttribute="top" constant="82" id="9aP-FO-781"/>
+                            <constraint firstItem="gqS-l0-Tjd" firstAttribute="top" secondItem="Lhf-i2-Vdx" secondAttribute="top" constant="120" id="9aP-FO-781"/>
+                            <constraint firstItem="XkQ-qS-l1x" firstAttribute="top" secondItem="gqS-l0-Tjd" secondAttribute="bottom" constant="16" id="AcX-hy-X0H"/>
                             <constraint firstItem="gqS-l0-Tjd" firstAttribute="leading" secondItem="Lhf-i2-Vdx" secondAttribute="leading" constant="35" id="EJw-Sc-M1k"/>
-                            <constraint firstItem="Lhf-i2-Vdx" firstAttribute="trailing" secondItem="RMf-4w-a6Q" secondAttribute="trailing" constant="183" id="GZF-eg-oMp"/>
                             <constraint firstItem="AFw-Sg-dol" firstAttribute="top" secondItem="gqS-l0-Tjd" secondAttribute="bottom" constant="45" id="Ocw-Ta-gjX"/>
-                            <constraint firstItem="RMf-4w-a6Q" firstAttribute="leading" secondItem="Lhf-i2-Vdx" secondAttribute="leading" constant="183" id="eCO-7S-c1j"/>
+                            <constraint firstItem="XkQ-qS-l1x" firstAttribute="leading" secondItem="Lhf-i2-Vdx" secondAttribute="leading" constant="90" id="QiR-TJ-8ab"/>
                             <constraint firstItem="AFw-Sg-dol" firstAttribute="leading" secondItem="Lhf-i2-Vdx" secondAttribute="leading" constant="50" id="iyk-Xn-dmS"/>
+                            <constraint firstItem="tov-TQ-0YC" firstAttribute="top" secondItem="gqS-l0-Tjd" secondAttribute="bottom" constant="16" id="kKA-SE-CGF"/>
                             <constraint firstItem="Lhf-i2-Vdx" firstAttribute="trailing" secondItem="AFw-Sg-dol" secondAttribute="trailing" constant="50" id="pBj-de-kqy"/>
+                            <constraint firstItem="Lhf-i2-Vdx" firstAttribute="trailing" secondItem="tov-TQ-0YC" secondAttribute="trailing" constant="90" id="vhk-sW-SwK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Lhf-i2-Vdx"/>
                     </view>
                     <connections>
-                        <outlet property="backCard" destination="CWC-u5-SR3" id="6kh-JR-IVX"/>
+                        <outlet property="backButton" destination="RNO-gz-o60" id="ZFc-Di-HHa"/>
+                        <outlet property="backCard" destination="XkQ-qS-l1x" id="8md-Ec-fQq"/>
                         <outlet property="badRating" destination="HYU-lm-Hwz" id="dGk-kh-Nj2"/>
                         <outlet property="containerView" destination="gqS-l0-Tjd" id="fsH-p9-X70"/>
-                        <outlet property="forwardCard" destination="VYA-62-jN3" id="eo2-8S-uvT"/>
+                        <outlet property="forwardCard" destination="tov-TQ-0YC" id="Glb-fk-bML"/>
                         <outlet property="greatRating" destination="Meg-hN-FrA" id="m3o-ka-Y8w"/>
                         <outlet property="nextCardButton" destination="we2-mU-heS" id="lsh-Dv-2es"/>
                         <outlet property="okayRating" destination="B8E-8s-AFN" id="YcV-2k-dAJ"/>
@@ -132,8 +149,4 @@
             <point key="canvasLocation" x="40.579710144927539" y="76.339285714285708"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="backward.end.fill" catalog="system" width="64" height="50"/>
-        <image name="forward.end.fill" catalog="system" width="64" height="50"/>
-    </resources>
 </document>

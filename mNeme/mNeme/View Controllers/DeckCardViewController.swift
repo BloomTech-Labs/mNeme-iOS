@@ -17,6 +17,7 @@ class DeckCardViewController: UIViewController {
     @IBOutlet weak var wellKnownQuestion: UILabel!
     @IBOutlet weak var backCard: UIButton!
     @IBOutlet weak var forwardCard: UIButton!
+    @IBOutlet weak var backButton: UIButton!
     
     // MARK: - Variables
     var deck: DemoDeck?{
@@ -128,6 +129,10 @@ class DeckCardViewController: UIViewController {
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(flip))
         singleTap.numberOfTapsRequired = 1
         containerView.addGestureRecognizer(singleTap)
+        backCard.titleLabel?.textColor = UIColor.mNeme.orangeBlaze
+        forwardCard.titleLabel?.textColor = UIColor.mNeme.orangeBlaze
+        backButton.titleLabel?.textColor = UIColor.mNeme.orangeBlaze
+        nextCardButton.titleLabel?.textColor = UIColor.mNeme.orangeBlaze
     }
     private func updateDeckText() {
         let currentCardInfo = deck?.data[currentCardIndex].data
