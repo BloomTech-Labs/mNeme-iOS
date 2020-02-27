@@ -206,6 +206,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <navigationBar contentMode="scaleToFill" largeTitles="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jQd-Pb-Kb7">
+                                <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                                <items>
+                                    <navigationItem title="Profile" id="qnZ-Ua-9LE">
+                                        <barButtonItem key="rightBarButtonItem" title="Logout" id="QO1-bI-gxm">
+                                            <connections>
+                                                <action selector="logoutTapped:" destination="W3P-QC-u31" id="nJh-Tk-dNF"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User preferences" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c9R-Tq-tql">
                                 <rect key="frame" x="20" y="160" width="162.5" height="26.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
@@ -213,7 +225,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="BWb-cy-KTa" userLabel="Subject Stack">
-                                <rect key="frame" x="30" y="216.5" width="354" height="140"/>
+                                <rect key="frame" x="30" y="216.5" width="354" height="153"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="MQh-Yc-Frv">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="56.5"/>
@@ -232,15 +244,21 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="PBt-oQ-z6m" userLabel="Study Pref stack">
-                                        <rect key="frame" x="0.0" y="96.5" width="354" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="96.5" width="354" height="56.5"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Please choose one" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XBy-Gr-WgZ">
-                                                <rect key="frame" x="0.0" y="0.0" width="354" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Please choose one" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XBy-Gr-WgZ" customClass="DesignableUITextField" customModule="mNeme" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="354" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="rightPadding">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="image" keyPath="rightImage" value="arrow.up.and.down" catalog="system"/>
+                                                </userDefinedRuntimeAttributes>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How often would you like to study" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKa-6s-fKR">
-                                                <rect key="frame" x="0.0" y="29" width="354" height="14.5"/>
+                                                <rect key="frame" x="0.0" y="42" width="354" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -250,7 +268,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Lbe-rA-htN" userLabel="Device Pref Stack">
-                                <rect key="frame" x="20" y="396.5" width="364" height="84.5"/>
+                                <rect key="frame" x="20" y="409.5" width="364" height="84.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mobile or desktop preference" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cc7-P2-raM">
                                         <rect key="frame" x="0.0" y="0.0" width="253.5" height="24"/>
@@ -319,7 +337,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="QGD-CG-l3B" userLabel="Flashcard Deck Stack">
-                                <rect key="frame" x="20" y="521" width="364" height="84.5"/>
+                                <rect key="frame" x="20" y="534" width="364" height="84.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flashcard deck preference" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="616-cv-L99">
                                         <rect key="frame" x="0.0" y="0.0" width="229.5" height="24"/>
@@ -386,8 +404,30 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="WXC-ab-pbv" userLabel="Notification Frequency Stack">
+                                <rect key="frame" x="30" y="658.5" width="354" height="56.5"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Please choose one" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="evm-WD-ACF" customClass="DesignableUITextField" customModule="mNeme" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="354" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="rightImage" value="arrow.up.and.down" catalog="system"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="rightPadding">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How often would you like to be notified" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jsk-So-ztz">
+                                        <rect key="frame" x="0.0" y="42" width="354" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hxq-Ry-bhX">
-                                <rect key="frame" x="30" y="729" width="354" height="46"/>
+                                <rect key="frame" x="30" y="755" width="354" height="46"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                 <state key="normal" title="Save" backgroundImage="buttonImage">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -396,34 +436,6 @@
                                     <action selector="saveButtonTapped:" destination="W3P-QC-u31" eventType="touchUpInside" id="UpW-jn-2XC"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="WXC-ab-pbv" userLabel="Notification Frequency Stack">
-                                <rect key="frame" x="30" y="645.5" width="354" height="43.5"/>
-                                <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Please choose one" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="evm-WD-ACF">
-                                        <rect key="frame" x="0.0" y="0.0" width="354" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How often would you like to be notified" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jsk-So-ztz">
-                                        <rect key="frame" x="0.0" y="29" width="354" height="14.5"/>
-                                        <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="12"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
-                            <navigationBar contentMode="scaleToFill" largeTitles="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jQd-Pb-Kb7">
-                                <rect key="frame" x="0.0" y="44" width="414" height="96"/>
-                                <items>
-                                    <navigationItem title="Profile" id="qnZ-Ua-9LE">
-                                        <barButtonItem key="rightBarButtonItem" title="Logout" id="QO1-bI-gxm">
-                                            <connections>
-                                                <action selector="logoutTapped:" destination="W3P-QC-u31" id="nJh-Tk-dNF"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -443,6 +455,7 @@
                             <constraint firstItem="WXC-ab-pbv" firstAttribute="leading" secondItem="BWb-cy-KTa" secondAttribute="leading" id="a9U-wA-mDE"/>
                             <constraint firstItem="Lbe-rA-htN" firstAttribute="top" secondItem="BWb-cy-KTa" secondAttribute="bottom" constant="40" id="emX-LU-cVE"/>
                             <constraint firstItem="mUf-Eb-mdB" firstAttribute="trailing" secondItem="BWb-cy-KTa" secondAttribute="trailing" constant="30" id="etB-IG-gLr"/>
+                            <constraint firstItem="mUf-Eb-mdB" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="hxq-Ry-bhX" secondAttribute="bottom" constant="87" id="fER-vG-Kdf"/>
                             <constraint firstItem="jQd-Pb-Kb7" firstAttribute="top" secondItem="mUf-Eb-mdB" secondAttribute="top" id="fK3-Rw-3ch"/>
                             <constraint firstItem="Lbe-rA-htN" firstAttribute="leading" secondItem="c9R-Tq-tql" secondAttribute="leading" id="gQO-MQ-kjX"/>
                             <constraint firstItem="mD9-le-i9P" firstAttribute="leading" secondItem="jB8-NY-UJE" secondAttribute="leading" id="hWh-lV-QeN"/>
@@ -471,6 +484,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.up.and.down" catalog="system" width="52" height="64"/>
         <image name="buttonImage" width="311" height="46"/>
         <image name="checkmark.square.fill" catalog="system" width="64" height="56"/>
         <image name="square" catalog="system" width="64" height="56"/>
