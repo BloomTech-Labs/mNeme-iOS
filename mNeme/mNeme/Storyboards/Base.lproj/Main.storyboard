@@ -41,7 +41,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nta-iK-UMt">
-                                <rect key="frame" x="0.0" y="211" width="414" height="685"/>
+                                <rect key="frame" x="0.0" y="219" width="414" height="677"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="p6h-x1-val">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="75"/>
@@ -119,7 +119,7 @@
                                 </prototypes>
                             </tableView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ill-w4-v4v">
-                                <rect key="frame" x="40" y="160" width="334" height="32"/>
+                                <rect key="frame" x="40" y="52" width="334" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="334" id="BiH-nb-dsu"/>
                                 </constraints>
@@ -129,24 +129,43 @@
                                     <segment title="This Month"/>
                                 </segments>
                             </segmentedControl>
-                            <navigationBar contentMode="scaleToFill" largeTitles="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C22-cP-TNu">
-                                <rect key="frame" x="0.0" y="44" width="414" height="96"/>
-                                <items>
-                                    <navigationItem title="mNeme" id="3Af-2w-2UR"/>
-                                </items>
-                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="37" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QF6-qw-Gbv">
+                                <rect key="frame" x="238" y="94" width="114" height="116.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="114" id="JQ2-7w-zgK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="99"/>
+                                <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="120" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nK5-sd-8dd">
+                                <rect key="frame" x="54" y="139.5" width="38" height="26"/>
+                                <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="22"/>
+                                <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Studied" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S56-Xw-P2B">
+                                <rect key="frame" x="49" y="172" width="48.5" height="16.5"/>
+                                <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="14"/>
+                                <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="nK5-sd-8dd" firstAttribute="leading" secondItem="Cnh-dz-aFs" secondAttribute="leading" constant="54" id="26Q-5M-lJD"/>
                             <constraint firstItem="nta-iK-UMt" firstAttribute="leading" secondItem="Cnh-dz-aFs" secondAttribute="leading" id="4ZF-7p-TNO"/>
+                            <constraint firstItem="Ill-w4-v4v" firstAttribute="top" secondItem="Cnh-dz-aFs" secondAttribute="top" constant="8" id="KEV-yv-307"/>
+                            <constraint firstItem="S56-Xw-P2B" firstAttribute="top" secondItem="nK5-sd-8dd" secondAttribute="bottom" constant="6.5" id="PYl-qk-IbC"/>
                             <constraint firstAttribute="bottom" secondItem="nta-iK-UMt" secondAttribute="bottom" id="Piz-sm-ga4"/>
-                            <constraint firstItem="nta-iK-UMt" firstAttribute="top" secondItem="Ill-w4-v4v" secondAttribute="bottom" constant="20" id="So5-ib-NEY"/>
-                            <constraint firstItem="Ill-w4-v4v" firstAttribute="centerX" secondItem="zke-uv-d7A" secondAttribute="centerX" id="YPs-Wv-26k"/>
+                            <constraint firstItem="Cnh-dz-aFs" firstAttribute="trailing" secondItem="Ill-w4-v4v" secondAttribute="trailing" constant="40" id="SEo-Br-Qvb"/>
+                            <constraint firstItem="nta-iK-UMt" firstAttribute="top" secondItem="QF6-qw-Gbv" secondAttribute="bottom" constant="8.5" id="Vnk-Si-czm"/>
                             <constraint firstItem="nta-iK-UMt" firstAttribute="trailing" secondItem="Cnh-dz-aFs" secondAttribute="trailing" id="asi-WE-dwW"/>
-                            <constraint firstItem="C22-cP-TNu" firstAttribute="trailing" secondItem="Cnh-dz-aFs" secondAttribute="trailing" id="chc-Eb-jpu"/>
-                            <constraint firstItem="C22-cP-TNu" firstAttribute="top" secondItem="Cnh-dz-aFs" secondAttribute="top" id="doA-ax-UVA"/>
-                            <constraint firstItem="Ill-w4-v4v" firstAttribute="top" secondItem="C22-cP-TNu" secondAttribute="bottom" constant="20" id="q5m-Cb-mU8"/>
-                            <constraint firstItem="C22-cP-TNu" firstAttribute="leading" secondItem="Cnh-dz-aFs" secondAttribute="leading" id="tqe-dC-eaS"/>
+                            <constraint firstItem="Ill-w4-v4v" firstAttribute="leading" secondItem="Cnh-dz-aFs" secondAttribute="leading" constant="40" id="ddL-1D-j50"/>
+                            <constraint firstItem="nK5-sd-8dd" firstAttribute="centerY" secondItem="QF6-qw-Gbv" secondAttribute="centerY" id="iri-uP-YMu"/>
+                            <constraint firstItem="nK5-sd-8dd" firstAttribute="centerX" secondItem="S56-Xw-P2B" secondAttribute="centerX" id="oc7-lc-gOY"/>
+                            <constraint firstItem="Cnh-dz-aFs" firstAttribute="trailing" secondItem="QF6-qw-Gbv" secondAttribute="trailing" constant="62" id="ohR-71-854"/>
+                            <constraint firstItem="QF6-qw-Gbv" firstAttribute="top" secondItem="Ill-w4-v4v" secondAttribute="bottom" constant="11" id="pda-bO-D8m"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Cnh-dz-aFs"/>
                     </view>
@@ -154,7 +173,10 @@
                     <connections>
                         <outlet property="deckCreateButton" destination="KAl-f6-PEp" id="iJ5-KT-VOi"/>
                         <outlet property="deckTableView" destination="nta-iK-UMt" id="MA2-9a-rlC"/>
+                        <outlet property="masteredLabel" destination="QF6-qw-Gbv" id="fLb-fA-gpS"/>
                         <outlet property="segmentedControl" destination="Ill-w4-v4v" id="JWW-lH-oSb"/>
+                        <outlet property="studiedCountLabel" destination="nK5-sd-8dd" id="Bva-VS-ZR7"/>
+                        <outlet property="studiedLabel" destination="S56-Xw-P2B" id="YR3-f7-UO3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aZN-Q4-f7l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
