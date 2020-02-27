@@ -18,6 +18,14 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
     let demoDeckController = DemoDeckController()
     var signingUp = false
     
+    @IBOutlet weak var googleView: UIView!
+    @IBOutlet weak var facebookView: UIView!
+    @IBOutlet weak var emailView: UIView!
+    
+    @IBOutlet weak var googleImageButton: UIImageView!
+    @IBOutlet weak var facebookImageButton: UIImageView!
+    @IBOutlet weak var emailImageButton: UIImageView!
+    
     @IBOutlet weak var facebookLoginButton: UIButton!
     @IBOutlet weak var googleLoginButton: UIButton!
     @IBOutlet weak var emailButton: UIButton!
@@ -35,84 +43,36 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
     @IBOutlet weak var facebookLoginLabel: UILabel!
     @IBOutlet weak var googleLoginLabel: UILabel!
     @IBOutlet weak var emailLoginLabel: UILabel!
-
+    
     
     
     override func viewDidLoad() { 
         super.viewDidLoad()
         updateViews()
+        setUpButtonTap()
     }
+    
+    // MARK: - IB Actions
     
     @IBAction func backButtonPressed(_ sender: Any) {
         self.dismiss(animated: true)
     }
     
-    @IBAction func emailButtonPressed(_ sender: Any) {
-        toggleAllButtons()
-        
-    }
-    
-    @IBAction func emailSignInButton(_ sender: Any) {
-        if signingUp {
-            createAccountWithEmail()
-        } else {
-            signInWithEmail()
-        }
-    }
-    
-    @IBAction func emailCancelButton(_ sender: Any) {
-        toggleAllButtons()
-    }
-    
-    
     @IBAction func googleSignInPressed(_ sender: Any) {
+        UIView.animate(withDuration: 0.3) {
+            self.googleView.backgroundColor = .darkGray
+            self.googleView.backgroundColor = .white
+        }
         GIDSignIn.sharedInstance().signIn()
+
     }
     
-    
-    private func updateViews() {
-        hideEmailButtons()
-        emailButtonText()
-        largeNavView.backgroundColor = UIColor.mNeme.orangeBlaze
-        GIDSignIn.sharedInstance()?.presentingViewController = self
-        GIDSignIn.sharedInstance().delegate = self
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
-        bottomNavView.backgroundColor = UIColor.mNeme.orangeBlaze
-        bottomImageViewandLabel()
-        
-    }
-    
-    private func signInWithAuthResultUID(uid: String) {
-        userController.user = User(uid)
-        userController.getUserPreferences {
-            self.demoDeckController.getDemoDecks {
-                DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: "MainSegue", sender: self)
-                }
-            }
-            
-            
+    @IBAction private func facebookSignInPressed() {
+        UIView.animate(withDuration: 0.3) {
+            self.facebookView.backgroundColor = .darkGray
+            self.facebookView.backgroundColor = UIColor(red: 23, green: 120, blue: 242)
         }
-    }
-    
-    
-    func loginManagerDidComplete(_ result: LoginResult) {
         
-        switch result {
-        case .cancelled:
-            print("cancelled")
-            
-        case .failed:
-            print("failed")
-            
-        case .success:
-            print("success")
-            //self.performSegue(withIdentifier: "MainSegue", sender: self)
-        }
-    }
-    
-    @IBAction private func loginWithReadPermissions() {
         let loginManager = LoginManager()
         loginManager.logIn(
             permissions: [.publicProfile, .email],
@@ -132,6 +92,7 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
                 } else {
                     print(authResult?.credential as Any)
                     if let uid = authResult?.user.uid {
+                        self.disableLoginButtons()
                         self.signInWithAuthResultUID(uid: uid)
                     }
                     print("Login Successful")
@@ -139,6 +100,137 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
             }
         }
     }
+    
+    @IBAction func emailSignInPressed(_ sender: Any) {
+        toggleAllButtons()
+    }
+
+    @IBAction func emailLogInButton(_ sender: Any) {
+        if signingUp {
+            createAccountWithEmail()
+        } else {
+            signInWithEmail()
+        }
+    }
+    
+    @IBAction func emailCancelButton(_ sender: Any) {
+        toggleAllButtons()
+    }
+    
+    private func updateViews() {
+        hideEmailButtons()
+        emailButtonText()
+        largeNavView.backgroundColor = UIColor.mNeme.orangeBlaze
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+        GIDSignIn.sharedInstance().delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        bottomNavView.backgroundColor = UIColor.mNeme.orangeBlaze
+        bottomImageViewandLabel()
+        
+        googleView.backgroundColor = .white
+        googleView.layer.cornerRadius = 5
+        googleView.layer.shadowRadius = CGFloat(integerLiteral: 5)
+        googleView.layer.shadowColor = UIColor.gray.cgColor
+        googleView.layer.shadowOpacity = 1
+        googleView.layer.shadowOffset = .zero
+        
+        facebookView.backgroundColor = UIColor(red: 23, green: 120, blue: 242)
+        facebookView.layer.cornerRadius = 5
+        facebookView.layer.shadowRadius = CGFloat(integerLiteral: 5)
+        facebookView.layer.shadowColor = UIColor.gray.cgColor
+        facebookView.layer.shadowOpacity = 1
+        facebookView.layer.shadowOffset = .zero
+
+        emailView.backgroundColor = UIColor.mNeme.orangeBlaze
+        emailView.layer.cornerRadius = 5
+        emailView.layer.shadowRadius = CGFloat(integerLiteral: 5)
+        emailView.layer.shadowColor = UIColor.gray.cgColor
+        emailView.layer.shadowOpacity = 1
+        emailView.layer.shadowOffset = .zero
+
+        
+    }
+    
+    // MARK: - Tap Gestures Creation
+    
+    private func setUpButtonTap() {
+        let googleViewTap = UITapGestureRecognizer(target: self, action: #selector(googleButtonTapped))
+        googleViewTap.numberOfTapsRequired = 1
+        googleView.addGestureRecognizer(googleViewTap)
+        
+        let googleImageViewTap = UITapGestureRecognizer(target: self, action: #selector(googleButtonTapped))
+        googleImageViewTap.numberOfTapsRequired = 1
+        googleImageButton.addGestureRecognizer(googleImageViewTap)
+        
+        let facebookViewTap = UITapGestureRecognizer(target: self, action: #selector(facebookButtonTapped))
+        facebookViewTap.numberOfTapsRequired = 1
+        facebookView.addGestureRecognizer(facebookViewTap)
+    
+        let facebookImageTap = UITapGestureRecognizer(target: self, action: #selector(facebookButtonTapped))
+        facebookImageTap.numberOfTapsRequired = 1
+        facebookImageButton.addGestureRecognizer(facebookImageTap)
+    
+        let emailViewTap = UITapGestureRecognizer(target: self, action: #selector(emailButtonTapped))
+        emailViewTap.numberOfTapsRequired = 1
+        emailView.addGestureRecognizer(emailViewTap)
+        
+        let emailImageTap = UITapGestureRecognizer(target: self, action: #selector(emailButtonTapped))
+        emailImageTap.numberOfTapsRequired = 1
+        emailImageButton.addGestureRecognizer(emailImageTap)
+    }
+    
+    @objc func googleButtonTapped() {
+        UIView.animate(withDuration: 0.3) {
+            self.googleView.backgroundColor = .darkGray
+            self.googleView.backgroundColor = .white
+        }
+        GIDSignIn.sharedInstance().signIn()
+    }
+    
+    @objc func facebookButtonTapped() {
+        UIView.animate(withDuration: 0.3) {
+            self.facebookView.backgroundColor = .darkGray
+            self.facebookView.backgroundColor = UIColor(red: 23, green: 120, blue: 242)
+        }
+        facebookSignInPressed()
+    }
+    
+    @objc func emailButtonTapped() {
+        UIView.animate(withDuration: 0.3) {
+            self.emailView.backgroundColor = .darkGray
+            self.emailView.backgroundColor = UIColor.mNeme.orangeBlaze
+        }
+        toggleAllButtons()
+    }
+    
+    private func signInWithAuthResultUID(uid: String) {
+        userController.user = User(uid)
+        userController.getUserPreferences {
+            self.demoDeckController.getDemoDecks {
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "MainSegue", sender: self)
+                }
+            }
+        }
+    }
+    
+    
+    func loginManagerDidComplete(_ result: LoginResult) {
+        
+        switch result {
+        case .cancelled:
+            print("cancelled")
+            
+        case .failed:
+            print("failed")
+            
+        case .success:
+            print("success")
+            //self.performSegue(withIdentifier: "MainSegue", sender: self)
+        }
+    }
+    
     
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
@@ -153,6 +245,7 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
                 print(error.localizedDescription)
             } else {
                 if let uid = authResult?.user.uid {
+                    self.disableLoginButtons()
                     self.signInWithAuthResultUID(uid: uid)
                 }
             }
@@ -208,6 +301,9 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
         passwordTextField.isHidden.toggle()
         emailSignInButton.isHidden.toggle()
         emailCancelButton.isHidden.toggle()
+        facebookView.isHidden.toggle()
+        googleView.isHidden.toggle()
+        emailView.isHidden.toggle()
         
     }
     
@@ -220,28 +316,36 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
     
     private func emailButtonText() {
         if signingUp {
-            facebookLoginButton.setBackgroundImage(UIImage(named: "Sign Up with Facebook"), for: .normal)
-//            facebookLoginButton.setTitle("Sign Up with Facebook", for: .normal)
-// TODO: Find out how to align title in center of button
-//            facebookLoginButton.titleLabel?.textAlignment = .center
-
-            googleLoginButton.setBackgroundImage(UIImage(named: "Sign Up with Google"), for: .normal)
-//            googleLoginButton.setTitle("Sign Up with Google", for: .normal)
-
-            emailButton.setBackgroundImage(UIImage(named: "Sign Up with Email"), for: .normal)
-//            emailButton.setTitle("Sign Up with Email", for: .normal)
-            emailSignInButton.setBackgroundImage(UIImage(named: "clearButtonSmall"), for: .normal)
+            //            facebookLoginButton.setBackgroundImage(UIImage(named: "Sign Up with Facebook"), for: .normal)
+            facebookLoginButton.setTitle("Sign up with Facebook", for: .normal)
+            
+            
+            //            googleLoginButton.setBackgroundImage(UIImage(named: "Sign Up with Google"), for: .normal)
+            googleLoginButton.setTitle("Sign up with Google", for: .normal)
+            
+            //            emailButton.setBackgroundImage(UIImage(named: "Sign Up with Email"), for: .normal)
+            emailButton.setTitle("Sign up with Email", for: .normal)
         } else {
-            facebookLoginButton.setBackgroundImage(UIImage(named: "Sign in with Facebook"), for: .normal)
-//            facebookLoginButton.setTitle("Sign In with Facebook", for: .normal)
-            googleLoginButton.setBackgroundImage(UIImage(named: "Sign in with Google"), for: .normal)
-//            googleLoginButton.setTitle("Sign In with Facebook", for: .normal)
-
-            emailButton.setBackgroundImage(UIImage(named: "Sign in with Email"), for: .normal)
-//            emailButton.setTitle("Sign In with Email", for: .normal)
-
-            emailSignInButton.setBackgroundImage(UIImage(named: "clearButtonSmall"), for: .normal)
+            //            facebookLoginButton.setBackgroundImage(UIImage(named: "Sign in with Facebook"), for: .normal)
+            facebookLoginButton.setTitle("Sign in with Facebook", for: .normal)
+            //            googleLoginButton.setBackgroundImage(UIImage(named: "Sign in with Google"), for: .normal)
+            googleLoginButton.setTitle("Sign in with Google", for: .normal)
+            
+            //            emailButton.setBackgroundImage(UIImage(named: "Sign in with Email"), for: .normal)
+            emailButton.setTitle("Sign in with Email", for: .normal)
+            
         }
+    }
+    
+    private func disableLoginButtons() {
+        facebookLoginButton.isUserInteractionEnabled = false
+        googleLoginButton.isUserInteractionEnabled = false
+        emailButton.isUserInteractionEnabled = false
+    }
+    private func enableLoginButtons() {
+        facebookLoginButton.isUserInteractionEnabled = true
+        googleLoginButton.isUserInteractionEnabled = true
+        emailButton.isUserInteractionEnabled = true
     }
     
     private func bottomImageViewandLabel() {
@@ -255,6 +359,9 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
             bottomTextLabel.text = "The best way to study efficiently 😎"
         }
     }
+    
+    
+    
     
     
     // MARK: - Navigation
