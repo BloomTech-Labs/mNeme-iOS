@@ -202,6 +202,7 @@
                         <outlet property="tapMid" destination="DBD-8S-CS4" id="ET9-5V-WVd"/>
                         <outlet property="tapRight" destination="EIA-R3-JbS" id="j2P-O1-GI2"/>
                         <outlet property="tapToFlipLabel" destination="3ir-KJ-UTd" id="AEq-Du-PxF"/>
+                        <outlet property="titleLabel" destination="iUA-lS-kzc" id="HFs-pN-7w4"/>
                         <outlet property="tutorialLabel" destination="xgY-AD-Ou4" id="mXh-d7-ozd"/>
                         <outlet property="wellKnownQuestion" destination="vw2-RI-mAI" id="lZT-Ec-Tzl"/>
                     </connections>

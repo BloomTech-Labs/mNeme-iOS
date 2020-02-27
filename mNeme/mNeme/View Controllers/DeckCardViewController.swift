@@ -23,6 +23,7 @@ class DeckCardViewController: UIViewController {
     @IBOutlet weak var tapRight: UIImageView!
     @IBOutlet weak var tutorialLabel: UILabel!
     @IBOutlet weak var tapToFlipLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     // MARK: - Variables
     var deck: DemoDeck?{
         didSet{
@@ -119,6 +120,7 @@ class DeckCardViewController: UIViewController {
     }
     // MARK: - Private Functions
     private func setupViews() {
+        titleLabel.text = deck?.deckName
         frontLabel = UILabel(frame: CGRect(x: self.containerView.frame.width, y: self.containerView.frame.height, width: 80, height: 50))
         backLabel = UILabel(frame: CGRect(x: self.containerView.frame.width/1, y: self.containerView.frame.height/2, width: 80, height: 50))
         containerView.addSubview(frontLabel!)
