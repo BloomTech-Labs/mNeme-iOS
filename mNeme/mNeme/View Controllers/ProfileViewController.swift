@@ -11,7 +11,7 @@ import FirebaseAuth
 
 class ProfileViewController: UIViewController, UITextFieldDelegate {
 
-    // MARK: Properties
+    // MARK: - Properties
     private var studyFrequency = ["Once a day",
                                   "Twice a day",
                                   "Once a week",
@@ -26,7 +26,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
     var selectedNotificationFrequency: String?
     var userController: UserController?
 
-    // MARK: IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet private weak var subjectTextField: UITextField!
     @IBOutlet private weak var studyFrequencyTextField: UITextField!
     @IBOutlet private weak var mobileButton: UIButton!
@@ -37,18 +37,16 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet private weak var saveButton: UIButton!
     @IBOutlet private weak var logoutButton: UIBarButtonItem!
 
-    // MARK: Views
+    // MARK: -  View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         let textAttribute = [NSAttributedString.Key.foregroundColor: UIColor.white]
         logoutButton.setTitleTextAttributes(textAttribute, for: .normal)
         updateViews()
-        
-        // Do any additional setup after loading the view.
+    
     }
 
     private func updateViews() {
-        //view.backgroundColor = UIColor.mNeme.orangeBlaze
         buttonViews()
         createStudyFrequencyPicker()
         createNotificationFrequencyPicker()
@@ -68,7 +66,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         customDeckButton.accessibilityIdentifier = "customDeckButtonID"
     }
 
-    // sets up the outlets based on the user preferences set up
+    // Sets up the outlets based on the user preferences set up
     private func userPreferences() {
         guard let user = userController?.user,
             let userData = user.data else { return }
@@ -77,24 +75,20 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         studyFrequencyTextField.text = userData.studyFrequency
         notificationFrequencyTextField.text = userData.notificationFrequency
 
-        //if let device = userData.MobileOrDesktop {
         if userData.MobileOrDesktop == "Desktop" {
             desktopButton.isSelected = true
         } else if userData.MobileOrDesktop == "Mobile" {
             mobileButton.isSelected = true
         }
-        //}
 
-        //if let deckPreference = userData.customOrPremade {
         if userData.customOrPremade == "pre-made" {
             preMadeDeckButton.isSelected = true
         } else if userData.customOrPremade == "custom" {
             customDeckButton.isSelected = true
         }
-        //}
     }
 
-    // MARK: IBActions
+    // MARK: - IBActions
     @IBAction private func devicePreferencesTapped(_ sender: UIButton) {
         studyDevicePreferences(sender.accessibilityIdentifier)
     }
@@ -111,7 +105,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         setupAndDisplayLogoutAlerts()
     }
     
-    // MARK: Private methods
+    // MARK: - Private methods - User Preferences Creation and Views for Each Setting
     private func studyDevicePreferences(_ identifier: String?) {
         guard let identifier = identifier else { return }
         if !mobileButton.isSelected && !desktopButton.isSelected {
@@ -220,7 +214,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    private func setupAndDisplayLogoutAlerts() {
+    private func setupAndDisplayLogoutAlerts() { // Log out Alert
         let alert = UIAlertController(title: "Are you sure you want to logout?", message: "", preferredStyle: .actionSheet)
         
         alert.addAction(UIAlertAction(title: "Logout", style: .destructive, handler: { action in
@@ -246,6 +240,8 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         view.endEditing(true)
     }
 }
+
+// MARK: - Extensions
 
 extension ProfileViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -286,7 +282,4 @@ extension ProfileViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         }
 
     }
-
-
-
 }
