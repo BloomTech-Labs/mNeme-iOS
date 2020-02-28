@@ -10,15 +10,19 @@ import Foundation
 
 class DemoDeckController {
 
+    // MARK: - Properties
+
     var demoDecks = [DemoDeck]()
     let dataLoader: NetworkDataLoader
     let baseURL = URL(string: "https://flashcards-be.herokuapp.com/api/demo/I2r2gejFYwCQfqafWlVy")!
 
-    // MARK: Init
+    // MARK: - Init
     init(networkDataLoader: NetworkDataLoader = URLSession.shared) {
         self.dataLoader = networkDataLoader
     }
 
+    // MARK: - Networking
+    // Getting All Demo Decks & their names
     func getDemoDecks(completion: @escaping () -> Void) {
 
         var request = URLRequest(url: baseURL)
@@ -49,7 +53,8 @@ class DemoDeckController {
             completion()
         }
     }
-
+    
+    // Getting specific cards from Demodecks
     func getDemoDeckCards(deckName: String, completion: @escaping () -> Void) {
         let requestURL = baseURL.appendingPathComponent(deckName)
         var request = URLRequest(url: requestURL)
@@ -74,7 +79,6 @@ class DemoDeckController {
             completion()
         }
     }
-
 }
 
 

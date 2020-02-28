@@ -10,11 +10,12 @@ import UIKit
 
 class PreLoginViewController: UIViewController {
 
+    // MARK: - Properties
     @IBOutlet weak var bottomColorView: UIView!
     @IBOutlet weak var mNemeLogoLabel: UILabel!
     @IBOutlet weak var signInButton: UIButton!
 
-    
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,8 +29,6 @@ class PreLoginViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
     }
     
-
-   
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

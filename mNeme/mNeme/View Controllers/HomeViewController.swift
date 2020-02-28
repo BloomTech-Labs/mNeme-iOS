@@ -10,7 +10,7 @@ import UIKit
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    // MARK: IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet private weak var segmentedControl: UISegmentedControl!
     @IBOutlet private weak var deckCreateButton: UIButton!
     @IBOutlet private weak var deckTableView: UITableView!
@@ -18,19 +18,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var studiedCountLabel: UILabel!
     @IBOutlet weak var studiedLabel: UILabel!
     
-    // MARK: Properties
+    // MARK: - Properties
     var demoDeckController: DemoDeckController?
-//    var mockController = MockDemoDeckController()
     
-//    var mockDeck: MockDemoDeck?
-    
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
         deckTableView.delegate = self
         deckTableView.dataSource = self
-        // Do any additional setup after loading the view.
-//        mockDeck = mockController.decodeMockData(deckLength: .short)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -39,8 +35,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         deckTableView.reloadData()
     }
     
+    // MARK: - Set Up Views
     private func updateViews() {
-        //view.backgroundColor = UIColor.mNeme.orangeBlaze
         setupOutlets()
     }
     
@@ -66,9 +62,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 deckCardVC.deck = demoDeckController?.demoDecks[indexPath.row]
             }
         }
-        
-        
-        
      }
     
     // MARK: - TableView Functions

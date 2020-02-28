@@ -10,17 +10,17 @@ import Foundation
 
 class UserController {
 
-    // MARK: Properties
+    // MARK: - Properties
     var user: User?
     let dataLoader: NetworkDataLoader
     let baseURL = URL(string: "https://flashcards-be.herokuapp.com/api/users/")!
 
-    // MARK: Init
+    // MARK: - Init
     init(networkDataLoader: NetworkDataLoader = URLSession.shared) {
         self.dataLoader = networkDataLoader
     }
 
-    // MARK: Network methods
+    // MARK: - Network methods
     func getUserPreferences(completion: @escaping () -> Void ) {
         guard let user = user else {
             completion()
@@ -92,7 +92,7 @@ class UserController {
         }
     }
 
-    // MARK: CRUD Methods
+    // MARK:  - CRUD Methods
     // this function will return true if the user updates any fields that are not the same
     func shouldUpdateUserWith(subjects: String?, studyFrequency: String?,
                     mobileOrDesktop: String?, customOrPremade: String?,
@@ -111,18 +111,6 @@ class UserController {
             user.data = updatedUserData
             return true
         }
-
         return false
-//        user.data?.favSubjects = subjects ?? ""
-//        user.data?.studyFrequency = studyFrequency ?? ""
-//        user.data?.MobileOrDesktop = mobileOrDesktop ?? ""
-//        user.data?.customOrPremade = customOrPremade ?? ""
-//        user.data?.notificationFrequency = notificationFrequency ?? ""
-
-        // makes a dictionary with the userData to write to the database
-//        let userChanges: [String: UserData?] = ["changes" : user.data]
-//        putUserPreferences(userChanges) {
-//            print("User Preferences Saved!")
-//        }
     }
 }
