@@ -17,7 +17,13 @@ class DeckCardViewController: UIViewController {
     @IBOutlet weak var wellKnownQuestion: UILabel!
     @IBOutlet weak var backCard: UIButton!
     @IBOutlet weak var forwardCard: UIButton!
-    
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var tapLeft: UIImageView!
+    @IBOutlet weak var tapMid: UIImageView!
+    @IBOutlet weak var tapRight: UIImageView!
+    @IBOutlet weak var tutorialLabel: UILabel!
+    @IBOutlet weak var tapToFlipLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     // MARK: - Variables
     var deck: DemoDeck?{
         didSet{
@@ -36,10 +42,10 @@ class DeckCardViewController: UIViewController {
         didSet {
             if self.showingBack {
                 showRatingStuff()
-                hideSteppers()
+                hideFrontViews()
             } else {
                 hideRatingStuff()
-                showSteppers()
+                showFrontViews()
             }
         }
     }
@@ -49,6 +55,7 @@ class DeckCardViewController: UIViewController {
         // Setting up view
         setupViews()
         hideOtherLabels()
+        showFrontViews()
         updateDeckText()
     }
     // MARK: - IB Actions
@@ -113,6 +120,7 @@ class DeckCardViewController: UIViewController {
     }
     // MARK: - Private Functions
     private func setupViews() {
+        titleLabel.text = deck?.deckName
         frontLabel = UILabel(frame: CGRect(x: self.containerView.frame.width, y: self.containerView.frame.height, width: 80, height: 50))
         backLabel = UILabel(frame: CGRect(x: self.containerView.frame.width/1, y: self.containerView.frame.height/2, width: 80, height: 50))
         containerView.addSubview(frontLabel!)
@@ -128,6 +136,10 @@ class DeckCardViewController: UIViewController {
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(flip))
         singleTap.numberOfTapsRequired = 1
         containerView.addGestureRecognizer(singleTap)
+        backCard.titleLabel?.textColor = UIColor.mNeme.orangeBlaze
+        forwardCard.titleLabel?.textColor = UIColor.mNeme.orangeBlaze
+        backButton.titleLabel?.textColor = UIColor.mNeme.orangeBlaze
+        nextCardButton.titleLabel?.textColor = UIColor.mNeme.orangeBlaze
     }
     private func updateDeckText() {
         let currentCardInfo = deck?.data[currentCardIndex].data
@@ -143,13 +155,16 @@ class DeckCardViewController: UIViewController {
         let trailConstraint = NSLayoutConstraint(item: view, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: containerView, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: -20)
         self.containerView.addConstraints([horizontalConstraint, verticalConstraint, leadConstraint, trailConstraint])
     }
-    private func showSteppers() {
+    private func showFrontViews() {
         backCard.isHidden = false
         forwardCard.isHidden = false
+        tapToFlipLabel.isHidden = false
+        tapMid.isHidden = false
     }
-    private func hideSteppers() {
+    private func hideFrontViews() {
         backCard.isHidden = true
         forwardCard.isHidden = true
+        tapToFlipLabel.isHidden = true
     }
     private func ratingWasTapped() {
         wellKnownQuestion?.isHidden = true
@@ -158,6 +173,11 @@ class DeckCardViewController: UIViewController {
         greatRating?.isHidden = true
         nextCardButton?.isHidden = false
         allowedToFlip = false
+        tapLeft.isHidden = true
+        tapRight.isHidden = true
+        tapMid.isHidden = true
+        tutorialLabel.isHidden = true
+        tapToFlipLabel.isHidden = true
     }
     private func hideOtherLabels() {
         nextCardButton?.isHidden = true
@@ -165,14 +185,26 @@ class DeckCardViewController: UIViewController {
         badRating?.isHidden = true
         okayRating?.isHidden = true
         greatRating?.isHidden = true
+        tapLeft.isHidden = true
+        tapRight.isHidden = true
+        tapMid.isHidden = true
+        tutorialLabel.isHidden = true
     }
     private func showRatingStuff() {
+        tapLeft.isHidden = false
+        tapRight.isHidden = false
+        tapMid.isHidden = false
+        tutorialLabel.isHidden = false
         wellKnownQuestion?.isHidden = false
         badRating?.isHidden = false
         okayRating?.isHidden = false
         greatRating?.isHidden = false
     }
     private func hideRatingStuff() {
+        tapLeft.isHidden = true
+        tapRight.isHidden = true
+        tapMid.isHidden = true
+        tutorialLabel.isHidden = true
         wellKnownQuestion?.isHidden = true
         badRating?.isHidden = true
         okayRating?.isHidden = true

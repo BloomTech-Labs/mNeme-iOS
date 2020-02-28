@@ -29,7 +29,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jlr-8B-32y">
                                         <rect key="frame" x="0.0" y="0.0" width="234" height="46"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
-                                        <state key="normal" title="Sign Up" backgroundImage="buttonImage"/>
+                                        <state key="normal" title="Sign Up" backgroundImage="clearButtonSmall"/>
                                         <connections>
                                             <segue destination="a6j-4v-pA4" kind="presentation" identifier="SignUpSegue" modalPresentationStyle="fullScreen" id="fra-ST-gmF"/>
                                         </connections>
@@ -124,6 +124,7 @@
                     <connections>
                         <outlet property="bottomColorView" destination="D0f-33-r3O" id="EVF-9D-By7"/>
                         <outlet property="mNemeLogoLabel" destination="oXo-51-Q6j" id="6bS-76-zWc"/>
+                        <outlet property="signInButton" destination="tW5-Zv-bkI" id="sfs-rE-zJn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MSE-IE-r6u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -143,8 +144,8 @@
     </scenes>
     <resources>
         <image name="Screens Illustrations" width="256" height="175"/>
-        <image name="buttonImage" width="311" height="46"/>
         <image name="clearButtonImage" width="232" height="46"/>
+        <image name="clearButtonSmall" width="232" height="46"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Tem-8C-0xI"/>
