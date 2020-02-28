@@ -9,7 +9,6 @@
 import UIKit
 import FirebaseAuth
 import GoogleSignIn
-//import FBSDKLoginKit
 import FacebookLogin
 
 class LoginViewController: UIViewController, GIDSignInDelegate {
@@ -52,6 +51,13 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
         setUpButtonTap()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        if Auth.auth().currentUser != nil {
+            self.performSegue(withIdentifier: "MainSegue", sender: self)
+        }
+    }
+    
     // MARK: - IB Actions
     
     @IBAction func backButtonPressed(_ sender: Any) {
@@ -79,25 +85,6 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
             viewController: self
         ) { result in
             self.loginManagerDidComplete(result)
-            guard let accessToken = AccessToken.current?.tokenString else { return
-                print("no token")
-            }
-            print("\(AccessToken.current?.appID)")
-            let credential = FacebookAuthProvider.credential(withAccessToken: accessToken)
-            
-            Auth.auth().signIn(with: credential) { (authResult, error) in
-                if let error = error {
-                    print(error.localizedDescription)
-                    return
-                } else {
-                    print(authResult?.credential as Any)
-                    if let uid = authResult?.user.uid {
-                        self.disableLoginButtons()
-                        self.signInWithAuthResultUID(uid: uid)
-                    }
-                    print("Login Successful")
-                }
-            }
         }
     }
     
@@ -227,7 +214,23 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
             
         case .success:
             print("success")
-            //self.performSegue(withIdentifier: "MainSegue", sender: self)
+            guard let accessToken = AccessToken.current?.tokenString else { return
+                print("no token")
+            }
+            let credential = FacebookAuthProvider.credential(withAccessToken: accessToken)
+            Auth.auth().signIn(with: credential) { (authResult, error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                } else {
+                    print(authResult?.credential as Any)
+                    if let uid = authResult?.user.uid {
+                        self.disableLoginButtons()
+                        self.signInWithAuthResultUID(uid: uid)
+                    }
+                    print("Login Successful")
+                }
+            }
         }
     }
     
