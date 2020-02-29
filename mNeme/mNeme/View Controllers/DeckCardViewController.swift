@@ -29,7 +29,7 @@ class DeckCardViewController: UIViewController {
     // MARK: - Properties
     var deck: DemoDeck?{
         didSet{
-            guard let total = deck?.data.count else { return }
+            guard let total = deck?.data?.count else { return }
             currentCardTotal = total
         }
     }
@@ -159,7 +159,7 @@ class DeckCardViewController: UIViewController {
     }
     
     private func updateDeckText() {
-        let currentCardInfo = deck?.data[currentCardIndex].data
+        let currentCardInfo = deck?.data?[currentCardIndex].data
         frontLabel?.text = currentCardInfo?.front
         print("\(String(describing: currentCardInfo?.front))")
         backLabel?.text = currentCardInfo?.back

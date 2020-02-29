@@ -15,6 +15,7 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
     
     // MARK: - Properties
     let userController = UserController()
+    let deckCardsDispatchGroup = DispatchGroup()
     let demoDeckController = DemoDeckController()
     var signingUp = false
     
@@ -57,7 +58,9 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         if Auth.auth().currentUser != nil {
-            self.performSegue(withIdentifier: "MainSegue", sender: self)
+            if let uid = Auth.auth().currentUser?.uid {
+                self.signInWithAuthResultUID(uid: uid)
+            }
         }
     }
     
@@ -197,11 +200,11 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
         let facebookViewTap = UITapGestureRecognizer(target: self, action: #selector(facebookButtonTapped))
         facebookViewTap.numberOfTapsRequired = 1
         facebookView.addGestureRecognizer(facebookViewTap)
-    
+
         let facebookImageTap = UITapGestureRecognizer(target: self, action: #selector(facebookButtonTapped))
         facebookImageTap.numberOfTapsRequired = 1
         facebookImageButton.addGestureRecognizer(facebookImageTap)
-    
+
         let emailViewTap = UITapGestureRecognizer(target: self, action: #selector(emailButtonTapped))
         emailViewTap.numberOfTapsRequired = 1
         emailView.addGestureRecognizer(emailViewTap)
@@ -242,22 +245,31 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
         userController.user = User(uid)
         userController.getUserPreferences {
             self.demoDeckController.getDemoDecks {
-                DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: "MainSegue", sender: self)
+                for decks in self.demoDeckController.demoDecks {
+                    self.deckCardsDispatchGroup.enter()
+                    self.demoDeckController.getDemoDeckCards(deckName: decks.deckName) {
+                        self.deckCardsDispatchGroup.leave()
+                    }
                 }
+                self.deckCardsDispatchGroup.notify(queue: .main) {
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "MainSegue", sender: self)
+                    }
+                }
+
             }
         }
     }
-    
+
     // Facebook Login Authentication Success // Error Handling
     func loginManagerDidComplete(_ result: LoginResult) {
         switch result {
         case .cancelled:
             print("cancelled")
-            
+
         case .failed:
             print("failed")
-            
+
         case .success:
             print("success")
             guard let accessToken = AccessToken.current?.tokenString else { return
@@ -278,8 +290,8 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
             }
         }
     }
-    
-    
+
+
     // Google Sign In Authentication Function
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
@@ -298,18 +310,18 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
             }
         }
     }
-    
+
     // Email Account Creation
     private func createAccountWithEmail() {
         guard let email = emailTextField.text, !email.isEmpty else { return }
         guard let password = passwordTextField.text, !password.isEmpty else { return }
-        
+
         Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
             if let error = error {
                 NSLog("Error dealing with email login creation: \(error)" )
                 return
             }
-            
+
             if let authResult = authResult {
                 print("Sign up Auth Result has succeeded \(String(describing: authResult.credential))")
                 let uid = authResult.user.uid
@@ -318,19 +330,19 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
         }
         // TODO: Create password length requirement / type password again
         // TODO: Create Alerts and notification
-        
+
     }
-    
+
     private func signInWithEmail() {
         guard let email = emailTextField.text, !email.isEmpty else { return }
         guard let password = passwordTextField.text, !password.isEmpty else { return }
-        
+
         Auth.auth().signIn(withEmail: email, password: password) { (authResult, error) in
             if let error = error {
                 NSLog("Error dealing with email sign in: \(error)" )
                 return
             }
-            
+
             if let authResult = authResult {
                 print("Sign in Auth Result has succeeded \(String(describing: authResult.credential))")
                 let uid = authResult.user.uid
@@ -338,7 +350,7 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
             }
         }
     }
-    
+
     // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -351,7 +363,7 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
             }
         }
     }
-    
+
 }
 
 // MARK: - Extensions
@@ -361,7 +373,7 @@ extension LoginViewController: LoginButtonDelegate {
             print(error.localizedDescription)
             return
         }
-        
+
         guard let accessToken = AccessToken.current?.tokenString else { return }
         let credential = FacebookAuthProvider.credential(withAccessToken: accessToken)
         Auth.auth().signIn(with: credential) { (authResult, error) in
@@ -373,15 +385,15 @@ extension LoginViewController: LoginButtonDelegate {
             }
         }
     }
-    
+
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
-        
+
     }
-    
-    
+
+
 }
 
 extension LoginViewController: UITextFieldDelegate {
-    
+
 }
 

@@ -25,7 +25,7 @@ class DeckTableViewCell: UITableViewCell {
         guard let deck = deck else { return }
     
         deckNameLabel.text = "\(deck.deckName.capitalized)"
-        masteredCardsLabel.text = "Mastered X of \(deck.data.count)"
+        masteredCardsLabel.text = "Mastered X of \(deck.data?.count ?? 0)"
     
     }
 
