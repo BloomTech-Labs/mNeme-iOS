@@ -168,10 +168,12 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
             facebookLoginButton.setTitle("Sign up with Facebook", for: .normal)
             googleLoginButton.setTitle("Sign up with Google", for: .normal)
             emailButton.setTitle("Sign up with Email", for: .normal)
+            emailSignInButton.setTitle("Sign Up", for: .normal)
         } else {
             facebookLoginButton.setTitle("Sign in with Facebook", for: .normal)
             googleLoginButton.setTitle("Sign in with Google", for: .normal)
             emailButton.setTitle("Sign in with Email", for: .normal)
+            emailSignInButton.setTitle("Sign In", for: .normal)
             
         }
     }
