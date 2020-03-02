@@ -44,7 +44,6 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         let textAttribute = [NSAttributedString.Key.foregroundColor: UIColor.white]
         logoutButton.setTitleTextAttributes(textAttribute, for: .normal)
         updateViews()
-    
     }
 
     private func updateViews() {
