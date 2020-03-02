@@ -342,6 +342,10 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
         Auth.auth().signIn(withEmail: email, password: password) { (authResult, error) in
             if let error = error {
                 NSLog("Error dealing with email sign in: \(error)" )
+                let alert = UIAlertController(title: "Invalid username or password", message: "Please sign in with an existing account or create a new one", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                self.present(alert, animated: true)
                 return
             }
 
