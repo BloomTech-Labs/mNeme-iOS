@@ -27,6 +27,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
     var userController: UserController?
 
     // MARK: - IBOutlets
+    @IBOutlet private weak var topView: UIView!
     @IBOutlet private weak var subjectTextField: UITextField!
     @IBOutlet private weak var studyFrequencyTextField: UITextField!
     @IBOutlet private weak var mobileButton: UIButton!
@@ -52,6 +53,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         createNotificationFrequencyPicker()
         createToolBar()
         userPreferences()
+        topView.backgroundColor = UIColor.mNeme.orangeBlaze
     }
 
     // Set the views for the checkmark buttons

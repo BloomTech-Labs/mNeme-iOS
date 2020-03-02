@@ -41,7 +41,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nta-iK-UMt">
-                                <rect key="frame" x="0.0" y="219" width="414" height="677"/>
+                                <rect key="frame" x="0.0" y="218" width="414" height="678"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="p6h-x1-val">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="75"/>
@@ -130,7 +130,7 @@
                                 </segments>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="37" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QF6-qw-Gbv">
-                                <rect key="frame" x="238" y="94" width="114" height="116.5"/>
+                                <rect key="frame" x="238" y="94" width="114" height="115.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="114" id="JQ2-7w-zgK"/>
                                 </constraints>
@@ -139,13 +139,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="120" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nK5-sd-8dd">
-                                <rect key="frame" x="54" y="139.5" width="38" height="26"/>
+                                <rect key="frame" x="54" y="139" width="37" height="26"/>
                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="22"/>
                                 <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Studied" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S56-Xw-P2B">
-                                <rect key="frame" x="49" y="172" width="48.5" height="16.5"/>
+                                <rect key="frame" x="48.5" y="171.5" width="48.5" height="16.5"/>
                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="14"/>
                                 <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -202,19 +202,30 @@
                             <navigationBar contentMode="scaleToFill" largeTitles="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wie-iu-VcJ">
                                 <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                                 <items>
-                                    <navigationItem title="Title" id="gBp-Ez-mPW"/>
+                                    <navigationItem title="Create a New Deck" id="gBp-Ez-mPW"/>
                                 </items>
                             </navigationBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yE7-ra-nIc">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="yE7-ra-nIc" secondAttribute="trailing" id="1BP-5V-MT2"/>
+                            <constraint firstItem="wie-iu-VcJ" firstAttribute="top" secondItem="yE7-ra-nIc" secondAttribute="bottom" symbolic="YES" id="7Xk-i3-cam"/>
                             <constraint firstItem="wie-iu-VcJ" firstAttribute="trailing" secondItem="dGi-WP-G8C" secondAttribute="trailing" id="SOh-bA-cPd"/>
                             <constraint firstItem="wie-iu-VcJ" firstAttribute="top" secondItem="dGi-WP-G8C" secondAttribute="top" id="c1O-hF-57A"/>
                             <constraint firstItem="wie-iu-VcJ" firstAttribute="leading" secondItem="dGi-WP-G8C" secondAttribute="leading" id="dUX-qm-UiX"/>
+                            <constraint firstItem="yE7-ra-nIc" firstAttribute="leading" secondItem="D5W-wd-Ay6" secondAttribute="leading" id="nsC-wp-Itl"/>
+                            <constraint firstItem="yE7-ra-nIc" firstAttribute="top" secondItem="D5W-wd-Ay6" secondAttribute="top" id="rsQ-b5-eTJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dGi-WP-G8C"/>
                     </view>
                     <navigationItem key="navigationItem" title="Create a New Deck" id="TCn-Wz-sPE"/>
+                    <connections>
+                        <outlet property="topView" destination="yE7-ra-nIc" id="nUH-TS-PqZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SKp-ww-4fx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -228,6 +239,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="acX-JZ-rij" userLabel="TopView">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User preferences" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c9R-Tq-tql">
                                 <rect key="frame" x="20" y="160" width="162.5" height="26.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
@@ -449,8 +464,10 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="acX-JZ-rij" firstAttribute="top" secondItem="rQu-Iw-T0Q" secondAttribute="top" id="0Va-0s-DgX"/>
                             <constraint firstItem="QGD-CG-l3B" firstAttribute="top" secondItem="Lbe-rA-htN" secondAttribute="bottom" constant="40" id="0eH-ya-pMy"/>
                             <constraint firstItem="hxq-Ry-bhX" firstAttribute="top" secondItem="WXC-ab-pbv" secondAttribute="bottom" constant="40" id="14U-1g-vwf"/>
+                            <constraint firstAttribute="trailing" secondItem="acX-JZ-rij" secondAttribute="trailing" id="5GH-Et-n2W"/>
                             <constraint firstItem="BWb-cy-KTa" firstAttribute="leading" secondItem="mUf-Eb-mdB" secondAttribute="leading" constant="30" id="Bro-Jq-MCq"/>
                             <constraint firstItem="hxq-Ry-bhX" firstAttribute="trailing" secondItem="WXC-ab-pbv" secondAttribute="trailing" id="C6N-Hf-8Ns"/>
                             <constraint firstItem="mUf-Eb-mdB" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="c9R-Tq-tql" secondAttribute="trailing" constant="20" id="Evf-u6-pHs"/>
@@ -463,12 +480,14 @@
                             <constraint firstItem="c9R-Tq-tql" firstAttribute="leading" secondItem="mUf-Eb-mdB" secondAttribute="leading" constant="20" id="Upn-DO-RTc"/>
                             <constraint firstItem="QGD-CG-l3B" firstAttribute="trailing" secondItem="Lbe-rA-htN" secondAttribute="trailing" id="Xm6-bk-tEh"/>
                             <constraint firstItem="WXC-ab-pbv" firstAttribute="leading" secondItem="BWb-cy-KTa" secondAttribute="leading" id="a9U-wA-mDE"/>
+                            <constraint firstItem="acX-JZ-rij" firstAttribute="leading" secondItem="rQu-Iw-T0Q" secondAttribute="leading" id="aOF-PF-OLj"/>
                             <constraint firstItem="Lbe-rA-htN" firstAttribute="top" secondItem="BWb-cy-KTa" secondAttribute="bottom" constant="40" id="emX-LU-cVE"/>
                             <constraint firstItem="mUf-Eb-mdB" firstAttribute="trailing" secondItem="BWb-cy-KTa" secondAttribute="trailing" constant="30" id="etB-IG-gLr"/>
                             <constraint firstItem="jQd-Pb-Kb7" firstAttribute="top" secondItem="mUf-Eb-mdB" secondAttribute="top" id="fK3-Rw-3ch"/>
                             <constraint firstItem="Lbe-rA-htN" firstAttribute="leading" secondItem="c9R-Tq-tql" secondAttribute="leading" id="gQO-MQ-kjX"/>
                             <constraint firstItem="mD9-le-i9P" firstAttribute="leading" secondItem="jB8-NY-UJE" secondAttribute="leading" id="hWh-lV-QeN"/>
                             <constraint firstItem="hxq-Ry-bhX" firstAttribute="leading" secondItem="WXC-ab-pbv" secondAttribute="leading" id="jCa-L6-0h4"/>
+                            <constraint firstItem="jQd-Pb-Kb7" firstAttribute="top" secondItem="acX-JZ-rij" secondAttribute="bottom" symbolic="YES" id="lWw-ly-XFt"/>
                             <constraint firstItem="c9R-Tq-tql" firstAttribute="top" secondItem="jQd-Pb-Kb7" secondAttribute="bottom" constant="20" id="xmJ-6w-kOi"/>
                             <constraint firstItem="WXC-ab-pbv" firstAttribute="top" secondItem="QGD-CG-l3B" secondAttribute="bottom" constant="40" id="zJs-ht-Wrs"/>
                         </constraints>
@@ -485,11 +504,12 @@
                         <outlet property="saveButton" destination="hxq-Ry-bhX" id="AAq-9p-UMc"/>
                         <outlet property="studyFrequencyTextField" destination="XBy-Gr-WgZ" id="oGh-Vi-I4R"/>
                         <outlet property="subjectTextField" destination="8oU-Tl-0DY" id="Idq-tA-kBV"/>
+                        <outlet property="topView" destination="acX-JZ-rij" id="7O3-rf-0FA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2S2-DJ-EKq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2848" y="558"/>
+            <point key="canvasLocation" x="2847.826086956522" y="557.8125"/>
         </scene>
     </scenes>
     <resources>
