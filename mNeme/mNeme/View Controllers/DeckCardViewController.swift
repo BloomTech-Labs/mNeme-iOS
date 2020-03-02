@@ -144,7 +144,7 @@ class DeckCardViewController: UIViewController {
         backLabel?.numberOfLines = 0
         
         containerView.layer.cornerRadius = 10
-        containerView.layer.borderColor = UIColor.lightGray.cgColor
+        containerView.layer.borderColor = UIColor.mNeme.orangeBlaze.cgColor
         containerView.layer.borderWidth = 1.0
         containerView.backgroundColor = .white
         
@@ -179,12 +179,14 @@ class DeckCardViewController: UIViewController {
         forwardCard.isHidden = false
         tapToFlipLabel.isHidden = false
         tapMid.isHidden = false
+        containerView.layer.borderColor = UIColor.mNeme.orangeBlaze.cgColor
     }
     
     private func hideFrontViews() {
         backCard.isHidden = true
         forwardCard.isHidden = true
         tapToFlipLabel.isHidden = true
+        containerView.layer.borderColor = UIColor.mNeme.goldenTaioni.cgColor
     }
     
     private func ratingWasTapped() {
