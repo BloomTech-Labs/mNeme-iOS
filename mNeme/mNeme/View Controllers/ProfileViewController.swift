@@ -11,7 +11,7 @@ import FirebaseAuth
 
 class ProfileViewController: UIViewController, UITextFieldDelegate {
 
-    // MARK: Properties
+    // MARK: - Properties
     private var studyFrequency = ["Once a day",
                                   "Twice a day",
                                   "Once a week",
@@ -26,7 +26,8 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
     var selectedNotificationFrequency: String?
     var userController: UserController?
 
-    // MARK: IBOutlets
+    // MARK: - IBOutlets
+    @IBOutlet private weak var topView: UIView!
     @IBOutlet private weak var subjectTextField: UITextField!
     @IBOutlet private weak var studyFrequencyTextField: UITextField!
     @IBOutlet private weak var mobileButton: UIButton!
@@ -37,7 +38,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet private weak var saveButton: UIButton!
     @IBOutlet private weak var logoutButton: UIBarButtonItem!
 
-    // MARK: Views
+    // MARK: -  View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         let textAttribute = [NSAttributedString.Key.foregroundColor: UIColor.white]
@@ -51,6 +52,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         createNotificationFrequencyPicker()
         createToolBar()
         userPreferences()
+        topView.backgroundColor = UIColor.mNeme.orangeBlaze
     }
 
     // Set the views for the checkmark buttons
@@ -65,7 +67,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         customDeckButton.accessibilityIdentifier = "customDeckButtonID"
     }
 
-    // sets up the outlets based on the user preferences set up
+    // Sets up the outlets based on the user preferences set up
     private func userPreferences() {
         guard let user = userController?.user,
             let userData = user.data else { return }
@@ -87,7 +89,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
-    // MARK: IBActions
+    // MARK: - IBActions
     @IBAction private func devicePreferencesTapped(_ sender: UIButton) {
         studyDevicePreferences(sender.accessibilityIdentifier)
     }
@@ -104,7 +106,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         setupAndDisplayLogoutAlerts()
     }
     
-    // MARK: Private methods
+    // MARK: - Private methods - User Preferences Creation and Views for Each Setting
     private func studyDevicePreferences(_ identifier: String?) {
         guard let identifier = identifier else { return }
         if !mobileButton.isSelected && !desktopButton.isSelected {
@@ -213,7 +215,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    private func setupAndDisplayLogoutAlerts() {
+    private func setupAndDisplayLogoutAlerts() { // Log out Alert
         let alert = UIAlertController(title: "Are you sure you want to logout?", message: "", preferredStyle: .actionSheet)
         
         alert.addAction(UIAlertAction(title: "Logout", style: .destructive, handler: { action in
@@ -239,6 +241,8 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         view.endEditing(true)
     }
 }
+
+// MARK: - Extensions
 
 extension ProfileViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -278,26 +282,5 @@ extension ProfileViewController: UIPickerViewDelegate, UIPickerViewDataSource {
             }
         }
 
-    }
-}
-
-extension UITextField {
-    func setPadding(left: CGFloat, right: CGFloat? = nil) {
-        setLeftPadding(left)
-        if let rightPadding = right {
-            setRightPadding(rightPadding)
-        }
-    }
-
-    private func setLeftPadding(_ padding: CGFloat) {
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: padding, height: self.frame.size.height))
-        self.leftView = paddingView
-        self.leftViewMode = .always
-    }
-
-    private func setRightPadding(_ padding: CGFloat) {
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: padding, height: self.frame.size.height))
-        self.rightView = paddingView
-        self.rightViewMode = .always
     }
 }

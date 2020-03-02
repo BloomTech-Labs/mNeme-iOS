@@ -8,6 +8,7 @@
 
 import Foundation
 
+// MARK: File is for testing data and the MockDeck JSON structure
 
 struct MockDemoDeck: Codable {
     var deckName: String
@@ -145,8 +146,8 @@ class MockDemoDeckController {
         case long
     }
     
+    // Decoding the JSON Mock DemoDeck
     func decodeMockData(deckLength: deckLength) -> MockDemoDeck? {
-        //        dataLoader.loadData(using: URLRequest(url: URL(string: "")!)) {data,_,_ in
         var deckToUse = self.deckData
         if deckLength == .long {
             deckToUse = self.deckData
@@ -161,7 +162,6 @@ class MockDemoDeckController {
             NSLog("Did not work decoding mock data deck")
             return nil
         }
-        //        }
     }
     
 }

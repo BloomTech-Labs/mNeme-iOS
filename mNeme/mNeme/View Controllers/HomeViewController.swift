@@ -10,27 +10,24 @@ import UIKit
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    // MARK: IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet private weak var segmentedControl: UISegmentedControl!
     @IBOutlet private weak var deckCreateButton: UIButton!
     @IBOutlet private weak var deckTableView: UITableView!
-    @IBOutlet weak var masteredLabel: UILabel!
+    @IBOutlet weak var masteredCountLabel: UILabel!
     @IBOutlet weak var studiedCountLabel: UILabel!
     @IBOutlet weak var studiedLabel: UILabel!
+    @IBOutlet weak var masteredLabel: UILabel!
     
-    // MARK: Properties
+    // MARK: - Properties
     var demoDeckController: DemoDeckController?
-//    var mockController = MockDemoDeckController()
     
-//    var mockDeck: MockDemoDeck?
-    
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
         deckTableView.delegate = self
         deckTableView.dataSource = self
-        // Do any additional setup after loading the view.
-//        mockDeck = mockController.decodeMockData(deckLength: .short)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -39,13 +36,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         deckTableView.reloadData()
     }
     
+    // MARK: - Set Up Views
     private func updateViews() {
-        //view.backgroundColor = UIColor.mNeme.orangeBlaze
         setupOutlets()
     }
     
     private func setupOutlets() {
         // setup colors for labels
+        masteredCountLabel.textColor = UIColor.mNeme.orangeBlaze.withAlphaComponent(0.25)
+        masteredCountLabel.isOpaque = false
         masteredLabel.textColor = UIColor.mNeme.orangeBlaze
         studiedCountLabel.textColor = UIColor.mNeme.orangeBlaze
         studiedLabel.textColor = UIColor.mNeme.orangeBlaze
@@ -66,9 +65,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 deckCardVC.deck = demoDeckController?.demoDecks[indexPath.row]
             }
         }
-        
-        
-        
      }
     
     // MARK: - TableView Functions

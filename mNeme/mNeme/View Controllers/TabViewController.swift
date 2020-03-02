@@ -11,9 +11,11 @@ import SOTabBar
 
 class TabViewController: SOTabBarController {
 
+    // MARK: - Properties
     var userController: UserController?
     var demoDeckController: DemoDeckController?
 
+    // MARK: - View Lifecycle
     // Changes the settings for the tab bar
     override func loadView() {
         super.loadView()
@@ -26,9 +28,9 @@ class TabViewController: SOTabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTabViewControllers()
-
     }
 
+    // MARK: - Private Functions
     private func setUpTabViewControllers() {
         // instantiating each navcontroller for view controller on tab bar
         let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController")

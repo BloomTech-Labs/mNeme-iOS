@@ -10,12 +10,17 @@ import UIKit
 
 class DeckCreateViewController: UIViewController {
 
+    // MARK: IBOutlets
+    @IBOutlet private weak var topView: UIView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        updateViews()
     }
-    
+
+    private func updateViews() {
+        topView.backgroundColor = UIColor.mNeme.orangeBlaze
+    }
 
     /*
     // MARK: - Navigation
