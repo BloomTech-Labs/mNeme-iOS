@@ -14,9 +14,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet private weak var segmentedControl: UISegmentedControl!
     @IBOutlet private weak var deckCreateButton: UIButton!
     @IBOutlet private weak var deckTableView: UITableView!
-    @IBOutlet weak var masteredLabel: UILabel!
+    @IBOutlet weak var masteredCountLabel: UILabel!
     @IBOutlet weak var studiedCountLabel: UILabel!
     @IBOutlet weak var studiedLabel: UILabel!
+    @IBOutlet weak var masteredLabel: UILabel!
     
     // MARK: - Properties
     var demoDeckController: DemoDeckController?
@@ -42,6 +43,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     private func setupOutlets() {
         // setup colors for labels
+        masteredCountLabel.textColor = UIColor.mNeme.orangeBlaze.withAlphaComponent(0.25)
+        masteredCountLabel.isOpaque = false
         masteredLabel.textColor = UIColor.mNeme.orangeBlaze
         studiedCountLabel.textColor = UIColor.mNeme.orangeBlaze
         studiedLabel.textColor = UIColor.mNeme.orangeBlaze

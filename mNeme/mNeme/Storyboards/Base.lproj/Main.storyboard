@@ -41,7 +41,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nta-iK-UMt">
-                                <rect key="frame" x="0.0" y="218" width="414" height="678"/>
+                                <rect key="frame" x="0.0" y="219" width="414" height="677"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="p6h-x1-val">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="75"/>
@@ -130,7 +130,7 @@
                                 </segments>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="37" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QF6-qw-Gbv">
-                                <rect key="frame" x="238" y="94" width="114" height="115.5"/>
+                                <rect key="frame" x="238" y="94" width="114" height="116.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="114" id="JQ2-7w-zgK"/>
                                 </constraints>
@@ -139,15 +139,21 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="120" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nK5-sd-8dd">
-                                <rect key="frame" x="54" y="139" width="37" height="26"/>
+                                <rect key="frame" x="54" y="139.5" width="38" height="26"/>
                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="22"/>
                                 <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Studied" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S56-Xw-P2B">
-                                <rect key="frame" x="48.5" y="171.5" width="48.5" height="16.5"/>
+                                <rect key="frame" x="49" y="172" width="48.5" height="16.5"/>
                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="14"/>
                                 <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mastered" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTq-30-8v7">
+                                <rect key="frame" x="292" y="173" width="60" height="16.5"/>
+                                <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="14"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -158,6 +164,7 @@
                             <constraint firstItem="Ill-w4-v4v" firstAttribute="top" secondItem="Cnh-dz-aFs" secondAttribute="top" constant="8" id="KEV-yv-307"/>
                             <constraint firstItem="S56-Xw-P2B" firstAttribute="top" secondItem="nK5-sd-8dd" secondAttribute="bottom" constant="6.5" id="PYl-qk-IbC"/>
                             <constraint firstAttribute="bottom" secondItem="nta-iK-UMt" secondAttribute="bottom" id="Piz-sm-ga4"/>
+                            <constraint firstItem="cTq-30-8v7" firstAttribute="trailing" secondItem="QF6-qw-Gbv" secondAttribute="trailing" id="Qe3-xs-UFx"/>
                             <constraint firstItem="Cnh-dz-aFs" firstAttribute="trailing" secondItem="Ill-w4-v4v" secondAttribute="trailing" constant="40" id="SEo-Br-Qvb"/>
                             <constraint firstItem="nta-iK-UMt" firstAttribute="top" secondItem="QF6-qw-Gbv" secondAttribute="bottom" constant="8.5" id="Vnk-Si-czm"/>
                             <constraint firstItem="nta-iK-UMt" firstAttribute="trailing" secondItem="Cnh-dz-aFs" secondAttribute="trailing" id="asi-WE-dwW"/>
@@ -166,6 +173,7 @@
                             <constraint firstItem="nK5-sd-8dd" firstAttribute="centerX" secondItem="S56-Xw-P2B" secondAttribute="centerX" id="oc7-lc-gOY"/>
                             <constraint firstItem="Cnh-dz-aFs" firstAttribute="trailing" secondItem="QF6-qw-Gbv" secondAttribute="trailing" constant="62" id="ohR-71-854"/>
                             <constraint firstItem="QF6-qw-Gbv" firstAttribute="top" secondItem="Ill-w4-v4v" secondAttribute="bottom" constant="11" id="pda-bO-D8m"/>
+                            <constraint firstItem="cTq-30-8v7" firstAttribute="top" secondItem="QF6-qw-Gbv" secondAttribute="bottom" constant="-37.5" id="tQB-pS-0Bq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Cnh-dz-aFs"/>
                     </view>
@@ -173,7 +181,8 @@
                     <connections>
                         <outlet property="deckCreateButton" destination="KAl-f6-PEp" id="iJ5-KT-VOi"/>
                         <outlet property="deckTableView" destination="nta-iK-UMt" id="MA2-9a-rlC"/>
-                        <outlet property="masteredLabel" destination="QF6-qw-Gbv" id="fLb-fA-gpS"/>
+                        <outlet property="masteredCountLabel" destination="QF6-qw-Gbv" id="Ccd-lI-30S"/>
+                        <outlet property="masteredLabel" destination="cTq-30-8v7" id="DIt-8q-0Mx"/>
                         <outlet property="segmentedControl" destination="Ill-w4-v4v" id="JWW-lH-oSb"/>
                         <outlet property="studiedCountLabel" destination="nK5-sd-8dd" id="Bva-VS-ZR7"/>
                         <outlet property="studiedLabel" destination="S56-Xw-P2B" id="YR3-f7-UO3"/>
