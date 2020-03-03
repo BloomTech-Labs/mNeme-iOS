@@ -38,6 +38,7 @@
 		95EEEAF023FB45DC00B283E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95EEEAEE23FB45DC00B283E9 /* LaunchScreen.storyboard */; };
 		95EEEAFB23FB45DC00B283E9 /* mNemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EEEAFA23FB45DC00B283E9 /* mNemeTests.swift */; };
 		95EEEB0623FB45DC00B283E9 /* mNemeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EEEB0523FB45DC00B283E9 /* mNemeUITests.swift */; };
+		BB1FAD05240F19D600D9887F /* ProfileScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1FAD04240F19D600D9887F /* ProfileScrollViewController.swift */; };
 		BB20E8E82406EC9700B60F24 /* DemoDeckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB20E8E72406EC9700B60F24 /* DemoDeckController.swift */; };
 		BB3A205024086A37007D6C86 /* DesignableUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3A204F24086A37007D6C86 /* DesignableUITextField.swift */; };
 		BBD8A2E923FDDD8E00F5534E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2E823FDDD8E00F5534E /* ProfileViewController.swift */; };
@@ -114,6 +115,7 @@
 		95EEEB0523FB45DC00B283E9 /* mNemeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mNemeUITests.swift; sourceTree = "<group>"; };
 		95EEEB0723FB45DC00B283E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96E43B73731FDF6ABC35B793 /* Pods-mNeme.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mNeme.release.xcconfig"; path = "Target Support Files/Pods-mNeme/Pods-mNeme.release.xcconfig"; sourceTree = "<group>"; };
+		BB1FAD04240F19D600D9887F /* ProfileScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScrollViewController.swift; sourceTree = "<group>"; };
 		BB20E8E72406EC9700B60F24 /* DemoDeckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoDeckController.swift; sourceTree = "<group>"; };
 		BB3A204F24086A37007D6C86 /* DesignableUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableUITextField.swift; sourceTree = "<group>"; };
 		BBD8A2E823FDDD8E00F5534E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				BBD8A2E823FDDD8E00F5534E /* ProfileViewController.swift */,
+				BB1FAD04240F19D600D9887F /* ProfileScrollViewController.swift */,
 				4BDE6C962406FAA300DF8AB1 /* DeckTableViewCell.swift */,
 				BBD8A2EA23FDDDE600F5534E /* DeckCreateViewController.swift */,
 				BBD8A2EC23FDDE0500F5534E /* HomeViewController.swift */,
@@ -625,6 +628,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				958A6B0C23FDE17700FDC959 /* LoginViewController.swift in Sources */,
+				BB1FAD05240F19D600D9887F /* ProfileScrollViewController.swift in Sources */,
 				95EEEAEB23FB45DA00B283E9 /* mNeme.xcdatamodeld in Sources */,
 				95EEEAE123FB45DA00B283E9 /* AppDelegate.swift in Sources */,
 				954AB14424043D8D00FD385F /* DeckCardViewController.swift in Sources */,
