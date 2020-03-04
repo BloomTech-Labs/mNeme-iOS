@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		13F5F34F9C9627ECA701EC5C /* Pods_mNemeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11354B8AFCA77E9B1CE8292E /* Pods_mNemeTests.framework */; };
+		4B0FCE0A24106A1E00192BCC /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0FCE0924106A1E00192BCC /* Deck.swift */; };
 		4B58980E2405914A00ECCD03 /* MockDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58980D2405914A00ECCD03 /* MockDeck.swift */; };
 		4B8A2A3123FCA5C700116BF9 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B8A2A3023FCA5C700116BF9 /* Login.storyboard */; };
 		4BDE6C972406FAA300DF8AB1 /* DeckTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDE6C962406FAA300DF8AB1 /* DeckTableViewCell.swift */; };
@@ -79,6 +80,7 @@
 		0C61661E270DF9F177148EA4 /* Pods-mNemeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mNemeTests.release.xcconfig"; path = "Target Support Files/Pods-mNemeTests/Pods-mNemeTests.release.xcconfig"; sourceTree = "<group>"; };
 		11354B8AFCA77E9B1CE8292E /* Pods_mNemeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mNemeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E7E4BC2E3DF3D2666993AC0 /* Pods-mNemeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mNemeTests.debug.xcconfig"; path = "Target Support Files/Pods-mNemeTests/Pods-mNemeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4B0FCE0924106A1E00192BCC /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		4B58980D2405914A00ECCD03 /* MockDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDeck.swift; sourceTree = "<group>"; };
 		4B8A2A3023FCA5C700116BF9 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		4BDE6C962406FAA300DF8AB1 /* DeckTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckTableViewCell.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 			children = (
 				95EEEAE923FB45DA00B283E9 /* mNeme.xcdatamodeld */,
 				BBD8A2F424008A8500F5534E /* User.swift */,
+				4B0FCE0924106A1E00192BCC /* Deck.swift */,
 				4B58980D2405914A00ECCD03 /* MockDeck.swift */,
 			);
 			path = Models;
@@ -654,6 +657,7 @@
 				BB3A205024086A37007D6C86 /* DesignableUITextField.swift in Sources */,
 				BBD8A2ED23FDDE0500F5534E /* HomeViewController.swift in Sources */,
 				BBD8A2F524008A8500F5534E /* User.swift in Sources */,
+				4B0FCE0A24106A1E00192BCC /* Deck.swift in Sources */,
 				BBD8A2F123FDE4BE00F5534E /* UIColor+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
