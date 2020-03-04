@@ -12,16 +12,16 @@ import Foundation
 
 struct MockDemoDeck: Codable {
     var deckName: String
-    var data: [CardData]
+    var data: [MockCardData]
     
 }
 
-struct CardData: Codable {
+struct MockCardData: Codable {
     var id: String
-    var data: CardInfo
+    var data: MockCardInfo
 }
 
-struct CardInfo: Codable {
+struct MockCardInfo: Codable {
     var back, front: String
 }
 
