@@ -21,20 +21,10 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
     
 
     // MARK: - IB Outlets
-    @IBOutlet weak var googleView: UIView!
-    @IBOutlet weak var googleImageButton: UIImageView!
     @IBOutlet weak var googleLoginButton: UIButton!
-    @IBOutlet weak var googleLoginLabel: UILabel!
-
-    @IBOutlet weak var facebookView: UIView!
-    @IBOutlet weak var facebookImageButton: UIImageView!
     @IBOutlet weak var facebookLoginButton: UIButton!
-    @IBOutlet weak var facebookLoginLabel: UILabel!
+    @IBOutlet weak var emailLoginButton: UIButton!
     
-    @IBOutlet weak var emailView: UIView!
-    @IBOutlet weak var emailImageButton: UIImageView!
-    @IBOutlet weak var emailLoginLabel: UILabel!
-    @IBOutlet weak var emailButton: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailSignInButton: UIButton!
@@ -52,7 +42,6 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
     override func viewDidLoad() { 
         super.viewDidLoad()
         updateViews()
-        setUpButtonTap()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -70,20 +59,11 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
     }
     
     @IBAction func googleSignInPressed(_ sender: Any) {
-        UIView.animate(withDuration: 0.3) {
-            self.googleView.backgroundColor = .darkGray
-            self.googleView.backgroundColor = .white
-        }
         GIDSignIn.sharedInstance().signIn()
 
     }
     
     @IBAction private func facebookSignInPressed() {
-        UIView.animate(withDuration: 0.3) {
-            self.facebookView.backgroundColor = .darkGray
-            self.facebookView.backgroundColor = UIColor(red: 23, green: 120, blue: 242)
-        }
-        
         let loginManager = LoginManager()
         loginManager.logIn(
             permissions: [.publicProfile, .email],
@@ -120,40 +100,16 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
         passwordTextField.delegate = self
         bottomNavView.backgroundColor = UIColor.mNeme.orangeBlaze
         bottomImageViewandLabel()
-        
-        googleView.backgroundColor = .white
-        googleView.layer.cornerRadius = 5
-        googleView.layer.shadowRadius = CGFloat(integerLiteral: 5)
-        googleView.layer.shadowColor = UIColor.gray.cgColor
-        googleView.layer.shadowOpacity = 1
-        googleView.layer.shadowOffset = .zero
-        
-        facebookView.backgroundColor = UIColor(red: 23, green: 120, blue: 242)
-        facebookView.layer.cornerRadius = 5
-        facebookView.layer.shadowRadius = CGFloat(integerLiteral: 5)
-        facebookView.layer.shadowColor = UIColor.gray.cgColor
-        facebookView.layer.shadowOpacity = 1
-        facebookView.layer.shadowOffset = .zero
-
-        emailView.backgroundColor = UIColor.mNeme.orangeBlaze
-        emailView.layer.cornerRadius = 5
-        emailView.layer.shadowRadius = CGFloat(integerLiteral: 5)
-        emailView.layer.shadowColor = UIColor.gray.cgColor
-        emailView.layer.shadowOpacity = 1
-        emailView.layer.shadowOffset = .zero
     }
     
     private func toggleAllButtons() {
-        emailButton.isHidden.toggle()
+        emailLoginButton.isHidden.toggle()
         googleLoginButton.isHidden.toggle()
         facebookLoginButton.isHidden.toggle()
         emailTextField.isHidden.toggle()
         passwordTextField.isHidden.toggle()
         emailSignInButton.isHidden.toggle()
         emailCancelButton.isHidden.toggle()
-        facebookView.isHidden.toggle()
-        googleView.isHidden.toggle()
-        emailView.isHidden.toggle()
     }
     
     private func hideEmailButtons() {
@@ -165,14 +121,14 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
     
     private func emailButtonText() {
         if signingUp {
-            facebookLoginButton.setTitle("Sign up with Facebook", for: .normal)
-            googleLoginButton.setTitle("Sign up with Google", for: .normal)
-            emailButton.setTitle("Sign up with Email", for: .normal)
+            facebookLoginButton.setImage(UIImage(named: "signupFB"), for: .normal)
+            googleLoginButton.setImage(UIImage(named: "signupGG"), for: .normal)
+            emailLoginButton.setImage(UIImage(named: "signupEM"), for: .normal)
             emailSignInButton.setTitle("Sign Up", for: .normal)
         } else {
-            facebookLoginButton.setTitle("Sign in with Facebook", for: .normal)
-            googleLoginButton.setTitle("Sign in with Google", for: .normal)
-            emailButton.setTitle("Sign in with Email", for: .normal)
+            facebookLoginButton.setImage(UIImage(named: "signinFB"), for: .normal)
+            googleLoginButton.setImage(UIImage(named: "signinGG"), for: .normal)
+            emailLoginButton.setImage(UIImage(named: "signinEM"), for: .normal)
             emailSignInButton.setTitle("Sign In", for: .normal)
             
         }
@@ -186,58 +142,6 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
             bottomImageView.image = UIImage(named: "Banner Illustration")
             bottomTextLabel.text = "The best way to study efficiently 😎"
         }
-    }
-    
-    // MARK: - Tap Gestures Creation
-    
-    private func setUpButtonTap() {
-        let googleViewTap = UITapGestureRecognizer(target: self, action: #selector(googleButtonTapped))
-        googleViewTap.numberOfTapsRequired = 1
-        googleView.addGestureRecognizer(googleViewTap)
-        
-        let googleImageViewTap = UITapGestureRecognizer(target: self, action: #selector(googleButtonTapped))
-        googleImageViewTap.numberOfTapsRequired = 1
-        googleImageButton.addGestureRecognizer(googleImageViewTap)
-        
-        let facebookViewTap = UITapGestureRecognizer(target: self, action: #selector(facebookButtonTapped))
-        facebookViewTap.numberOfTapsRequired = 1
-        facebookView.addGestureRecognizer(facebookViewTap)
-
-        let facebookImageTap = UITapGestureRecognizer(target: self, action: #selector(facebookButtonTapped))
-        facebookImageTap.numberOfTapsRequired = 1
-        facebookImageButton.addGestureRecognizer(facebookImageTap)
-
-        let emailViewTap = UITapGestureRecognizer(target: self, action: #selector(emailButtonTapped))
-        emailViewTap.numberOfTapsRequired = 1
-        emailView.addGestureRecognizer(emailViewTap)
-        
-        let emailImageTap = UITapGestureRecognizer(target: self, action: #selector(emailButtonTapped))
-        emailImageTap.numberOfTapsRequired = 1
-        emailImageButton.addGestureRecognizer(emailImageTap)
-    }
-    
-    @objc func googleButtonTapped() {
-        UIView.animate(withDuration: 0.3) {
-            self.googleView.backgroundColor = .darkGray
-            self.googleView.backgroundColor = .white
-        }
-        GIDSignIn.sharedInstance().signIn()
-    }
-    
-    @objc func facebookButtonTapped() {
-        UIView.animate(withDuration: 0.3) {
-            self.facebookView.backgroundColor = .darkGray
-            self.facebookView.backgroundColor = UIColor(red: 23, green: 120, blue: 242)
-        }
-        facebookSignInPressed()
-    }
-    
-    @objc func emailButtonTapped() {
-        UIView.animate(withDuration: 0.3) {
-            self.emailView.backgroundColor = .darkGray
-            self.emailView.backgroundColor = UIColor.mNeme.orangeBlaze
-        }
-        toggleAllButtons()
     }
     
     // MARK: - Private Functions
