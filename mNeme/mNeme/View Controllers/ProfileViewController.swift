@@ -12,6 +12,7 @@ import FirebaseAuth
 class ProfileViewController: UIViewController {
 
     // MARK: - Properties
+    var userController: UserController?
 
     // MARK: - IBOutlets
     @IBOutlet private weak var topView: UIView!
@@ -21,6 +22,10 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
+
+        if let userController = userController {
+            NotificationCenter.default.post(name: .homeViewHasLoaded, object: nil, userInfo: ["userController": userController] )
+        }
     }
 
     private func updateViews() {

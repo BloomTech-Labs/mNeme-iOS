@@ -37,7 +37,7 @@ class TabViewController: SOTabBarController {
 
         let deckCreateVC = UIStoryboard(name: "Main", bundle:nil).instantiateViewController(withIdentifier: "DeckCreateViewController")
 
-        let profileVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfileViewTest")
+        let profileVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfileViewController")
 
         // Constants for tab bar icons/selected
         let homeImage = UIImage(systemName: "house")?.withTintColor(UIColor.mNeme.orangeBlaze, renderingMode: .alwaysOriginal)
@@ -64,7 +64,7 @@ class TabViewController: SOTabBarController {
             let _ = self.viewControllers[1] as? DeckCreateViewController,
             let profileVC = self.viewControllers[2] as? ProfileViewController else { return }
 
-        //profileVC.userController = self.userController
+        profileVC.userController = self.userController
         homeVC.demoDeckController = self.demoDeckController
     }
 }

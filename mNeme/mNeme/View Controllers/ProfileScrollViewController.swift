@@ -41,6 +41,15 @@ class ProfileScrollViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
+
+        NotificationCenter.default.addObserver(self, selector: #selector(setModelControllers(_:)), name: .homeViewHasLoaded, object: nil)
+    }
+
+    @objc private func setModelControllers(_ data: Notification) {
+        if let userController = data.userInfo?["userController"] as? UserController {
+            self.userController = userController
+            updateViews()
+        }
     }
 
     private func updateViews() {
