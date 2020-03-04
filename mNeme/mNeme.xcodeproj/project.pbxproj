@@ -3,21 +3,57 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		13F5F34F9C9627ECA701EC5C /* Pods_mNemeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11354B8AFCA77E9B1CE8292E /* Pods_mNemeTests.framework */; };
+		4B58980E2405914A00ECCD03 /* MockDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58980D2405914A00ECCD03 /* MockDeck.swift */; };
+		4B8A2A3123FCA5C700116BF9 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B8A2A3023FCA5C700116BF9 /* Login.storyboard */; };
+		4BDE6C972406FAA300DF8AB1 /* DeckTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDE6C962406FAA300DF8AB1 /* DeckTableViewCell.swift */; };
 		6E1A19C692A40780C18AE71F /* Pods_mNeme.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 625928B0143B44879A17FF25 /* Pods_mNeme.framework */; };
+		954AB142240439C100FD385F /* DeckCard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 954AB141240439C100FD385F /* DeckCard.storyboard */; };
+		954AB14424043D8D00FD385F /* DeckCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954AB14324043D8D00FD385F /* DeckCardViewController.swift */; };
+		95773B8823FF032A009B4EFE /* Onboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95773B8723FF032A009B4EFE /* Onboard.storyboard */; };
+		95773B8A23FF041A009B4EFE /* PreLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95773B8923FF041A009B4EFE /* PreLoginViewController.swift */; };
+		95773B9823FF4119009B4EFE /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95773B8C23FF4114009B4EFE /* Roboto-Black.ttf */; };
+		95773B9923FF4119009B4EFE /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95773B8D23FF4114009B4EFE /* Roboto-Thin.ttf */; };
+		95773B9A23FF4119009B4EFE /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95773B8E23FF4115009B4EFE /* Roboto-ThinItalic.ttf */; };
+		95773B9B23FF4119009B4EFE /* Roboto-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95773B8F23FF4115009B4EFE /* Roboto-BoldItalic.ttf */; };
+		95773B9C23FF4119009B4EFE /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95773B9023FF4116009B4EFE /* Roboto-Italic.ttf */; };
+		95773B9D23FF4119009B4EFE /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95773B9123FF4116009B4EFE /* Roboto-BlackItalic.ttf */; };
+		95773B9E23FF4119009B4EFE /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95773B9223FF4117009B4EFE /* Roboto-Regular.ttf */; };
+		95773B9F23FF4119009B4EFE /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95773B9323FF4117009B4EFE /* Roboto-Bold.ttf */; };
+		95773BA023FF4119009B4EFE /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95773B9423FF4117009B4EFE /* Roboto-MediumItalic.ttf */; };
+		95773BA123FF4119009B4EFE /* Roboto-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95773B9523FF4118009B4EFE /* Roboto-LightItalic.ttf */; };
+		95773BA223FF4119009B4EFE /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95773B9623FF4118009B4EFE /* Roboto-Medium.ttf */; };
+		95773BA323FF4119009B4EFE /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95773B9723FF4118009B4EFE /* Roboto-Light.ttf */; };
+		958A6B0A23FDBAA300FDC959 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 958A6B0923FDBAA200FDC959 /* GoogleService-Info.plist */; };
+		958A6B0C23FDE17700FDC959 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958A6B0B23FDE17700FDC959 /* LoginViewController.swift */; };
 		95EEEAE123FB45DA00B283E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EEEAE023FB45DA00B283E9 /* AppDelegate.swift */; };
 		95EEEAE323FB45DA00B283E9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EEEAE223FB45DA00B283E9 /* SceneDelegate.swift */; };
-		95EEEAE523FB45DA00B283E9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EEEAE423FB45DA00B283E9 /* ViewController.swift */; };
 		95EEEAE823FB45DA00B283E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95EEEAE623FB45DA00B283E9 /* Main.storyboard */; };
 		95EEEAEB23FB45DA00B283E9 /* mNeme.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95EEEAE923FB45DA00B283E9 /* mNeme.xcdatamodeld */; };
 		95EEEAED23FB45DC00B283E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95EEEAEC23FB45DC00B283E9 /* Assets.xcassets */; };
 		95EEEAF023FB45DC00B283E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95EEEAEE23FB45DC00B283E9 /* LaunchScreen.storyboard */; };
 		95EEEAFB23FB45DC00B283E9 /* mNemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EEEAFA23FB45DC00B283E9 /* mNemeTests.swift */; };
 		95EEEB0623FB45DC00B283E9 /* mNemeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EEEB0523FB45DC00B283E9 /* mNemeUITests.swift */; };
+		BB1FAD05240F19D600D9887F /* ProfileScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1FAD04240F19D600D9887F /* ProfileScrollViewController.swift */; };
+		BB1FAD07240F246200D9887F /* NotificationName+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1FAD06240F246200D9887F /* NotificationName+Extension.swift */; };
+		BB20E8E82406EC9700B60F24 /* DemoDeckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB20E8E72406EC9700B60F24 /* DemoDeckController.swift */; };
+		BB3A205024086A37007D6C86 /* DesignableUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3A204F24086A37007D6C86 /* DesignableUITextField.swift */; };
+		BBD8A2E923FDDD8E00F5534E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2E823FDDD8E00F5534E /* ProfileViewController.swift */; };
+		BBD8A2EB23FDDDE600F5534E /* DeckCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2EA23FDDDE600F5534E /* DeckCreateViewController.swift */; };
+		BBD8A2ED23FDDE0500F5534E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2EC23FDDE0500F5534E /* HomeViewController.swift */; };
+		BBD8A2EF23FDDF5D00F5534E /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2EE23FDDF5D00F5534E /* TabViewController.swift */; };
+		BBD8A2F123FDE4BE00F5534E /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2F023FDE4BD00F5534E /* UIColor+Extension.swift */; };
+		BBD8A2F524008A8500F5534E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2F424008A8500F5534E /* User.swift */; };
+		BBD8A2FA24043E7100F5534E /* MockUserJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2F924043E7100F5534E /* MockUserJSON.swift */; };
+		BBD8A2FC240444A800F5534E /* MockDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2FB240444A800F5534E /* MockDataLoader.swift */; };
+		BBD8A2FE2404459B00F5534E /* UserPreferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2FD2404459B00F5534E /* UserPreferencesTests.swift */; };
+		BBD8A300240447E200F5534E /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2FF240447E200F5534E /* NetworkDataLoader.swift */; };
+		BBD8A3022404490B00F5534E /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A3012404490B00F5534E /* UserController.swift */; };
+		BBD8A305240449D500F5534E /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A304240449D500F5534E /* HTTPMethod.swift */; };
 		EC5F1912C220845743B332D3 /* Pods_mNeme_mNemeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D891E381A8CC75CAB70F1DED /* Pods_mNeme_mNemeUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,12 +78,32 @@
 		0C61661E270DF9F177148EA4 /* Pods-mNemeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mNemeTests.release.xcconfig"; path = "Target Support Files/Pods-mNemeTests/Pods-mNemeTests.release.xcconfig"; sourceTree = "<group>"; };
 		11354B8AFCA77E9B1CE8292E /* Pods_mNemeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mNemeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E7E4BC2E3DF3D2666993AC0 /* Pods-mNemeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mNemeTests.debug.xcconfig"; path = "Target Support Files/Pods-mNemeTests/Pods-mNemeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4B58980D2405914A00ECCD03 /* MockDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDeck.swift; sourceTree = "<group>"; };
+		4B8A2A3023FCA5C700116BF9 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		4BDE6C962406FAA300DF8AB1 /* DeckTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckTableViewCell.swift; sourceTree = "<group>"; };
 		5A231593762C0B0497140987 /* Pods-mNeme.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mNeme.debug.xcconfig"; path = "Target Support Files/Pods-mNeme/Pods-mNeme.debug.xcconfig"; sourceTree = "<group>"; };
 		625928B0143B44879A17FF25 /* Pods_mNeme.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mNeme.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		954AB141240439C100FD385F /* DeckCard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DeckCard.storyboard; sourceTree = "<group>"; };
+		954AB14324043D8D00FD385F /* DeckCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCardViewController.swift; sourceTree = "<group>"; };
+		95773B8723FF032A009B4EFE /* Onboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboard.storyboard; sourceTree = "<group>"; };
+		95773B8923FF041A009B4EFE /* PreLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreLoginViewController.swift; sourceTree = "<group>"; };
+		95773B8C23FF4114009B4EFE /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
+		95773B8D23FF4114009B4EFE /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		95773B8E23FF4115009B4EFE /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
+		95773B8F23FF4115009B4EFE /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BoldItalic.ttf"; sourceTree = "<group>"; };
+		95773B9023FF4116009B4EFE /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
+		95773B9123FF4116009B4EFE /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
+		95773B9223FF4117009B4EFE /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		95773B9323FF4117009B4EFE /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		95773B9423FF4117009B4EFE /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
+		95773B9523FF4118009B4EFE /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-LightItalic.ttf"; sourceTree = "<group>"; };
+		95773B9623FF4118009B4EFE /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		95773B9723FF4118009B4EFE /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		958A6B0923FDBAA200FDC959 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		958A6B0B23FDE17700FDC959 /* LoginViewController.swift */ = {isa = PBXFileReference; indentWidth = 5; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		95EEEADD23FB45DA00B283E9 /* mNeme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mNeme.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95EEEAE023FB45DA00B283E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95EEEAE223FB45DA00B283E9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		95EEEAE423FB45DA00B283E9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		95EEEAE723FB45DA00B283E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		95EEEAEA23FB45DA00B283E9 /* mNeme.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = mNeme.xcdatamodel; sourceTree = "<group>"; };
 		95EEEAEC23FB45DC00B283E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -60,6 +116,22 @@
 		95EEEB0523FB45DC00B283E9 /* mNemeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mNemeUITests.swift; sourceTree = "<group>"; };
 		95EEEB0723FB45DC00B283E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96E43B73731FDF6ABC35B793 /* Pods-mNeme.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mNeme.release.xcconfig"; path = "Target Support Files/Pods-mNeme/Pods-mNeme.release.xcconfig"; sourceTree = "<group>"; };
+		BB1FAD04240F19D600D9887F /* ProfileScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScrollViewController.swift; sourceTree = "<group>"; };
+		BB1FAD06240F246200D9887F /* NotificationName+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+Extension.swift"; sourceTree = "<group>"; };
+		BB20E8E72406EC9700B60F24 /* DemoDeckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoDeckController.swift; sourceTree = "<group>"; };
+		BB3A204F24086A37007D6C86 /* DesignableUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableUITextField.swift; sourceTree = "<group>"; };
+		BBD8A2E823FDDD8E00F5534E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		BBD8A2EA23FDDDE600F5534E /* DeckCreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCreateViewController.swift; sourceTree = "<group>"; };
+		BBD8A2EC23FDDE0500F5534E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		BBD8A2EE23FDDF5D00F5534E /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
+		BBD8A2F023FDE4BD00F5534E /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		BBD8A2F424008A8500F5534E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		BBD8A2F924043E7100F5534E /* MockUserJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserJSON.swift; sourceTree = "<group>"; };
+		BBD8A2FB240444A800F5534E /* MockDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataLoader.swift; sourceTree = "<group>"; };
+		BBD8A2FD2404459B00F5534E /* UserPreferencesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferencesTests.swift; sourceTree = "<group>"; };
+		BBD8A2FF240447E200F5534E /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
+		BBD8A3012404490B00F5534E /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
+		BBD8A304240449D500F5534E /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		C15B2EDE4B3663AAE166E8D3 /* Pods-mNeme-mNemeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mNeme-mNemeUITests.debug.xcconfig"; path = "Target Support Files/Pods-mNeme-mNemeUITests/Pods-mNeme-mNemeUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		D891E381A8CC75CAB70F1DED /* Pods_mNeme_mNemeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mNeme_mNemeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E96B940EA3749EE3E4E58C4E /* Pods-mNeme-mNemeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mNeme-mNemeUITests.release.xcconfig"; path = "Target Support Files/Pods-mNeme-mNemeUITests/Pods-mNeme-mNemeUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -93,6 +165,88 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B8A2A2A23FCA39D00116BF9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				95EEEAE023FB45DA00B283E9 /* AppDelegate.swift */,
+				95EEEAE223FB45DA00B283E9 /* SceneDelegate.swift */,
+				BBD8A304240449D500F5534E /* HTTPMethod.swift */,
+				95EEEAF123FB45DC00B283E9 /* Info.plist */,
+				958A6B0923FDBAA200FDC959 /* GoogleService-Info.plist */,
+				95EEEAEC23FB45DC00B283E9 /* Assets.xcassets */,
+				95773B8B23FF40FA009B4EFE /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		4B8A2A2B23FCA3B700116BF9 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				95773B8723FF032A009B4EFE /* Onboard.storyboard */,
+				4B8A2A3023FCA5C700116BF9 /* Login.storyboard */,
+				95EEEAE623FB45DA00B283E9 /* Main.storyboard */,
+				954AB141240439C100FD385F /* DeckCard.storyboard */,
+				95EEEAEE23FB45DC00B283E9 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		4B8A2A2C23FCA3C400116BF9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				95EEEAE923FB45DA00B283E9 /* mNeme.xcdatamodeld */,
+				BBD8A2F424008A8500F5534E /* User.swift */,
+				4B58980D2405914A00ECCD03 /* MockDeck.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		95204335240095F80072F4DA /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BBD8A2E823FDDD8E00F5534E /* ProfileViewController.swift */,
+				BB1FAD04240F19D600D9887F /* ProfileScrollViewController.swift */,
+				4BDE6C962406FAA300DF8AB1 /* DeckTableViewCell.swift */,
+				BBD8A2EA23FDDDE600F5534E /* DeckCreateViewController.swift */,
+				BBD8A2EC23FDDE0500F5534E /* HomeViewController.swift */,
+				BBD8A2EE23FDDF5D00F5534E /* TabViewController.swift */,
+				958A6B0B23FDE17700FDC959 /* LoginViewController.swift */,
+				95773B8923FF041A009B4EFE /* PreLoginViewController.swift */,
+				954AB14324043D8D00FD385F /* DeckCardViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		95204336240096350072F4DA /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				BBD8A2F023FDE4BD00F5534E /* UIColor+Extension.swift */,
+				BBD8A2FF240447E200F5534E /* NetworkDataLoader.swift */,
+				BB3A204F24086A37007D6C86 /* DesignableUITextField.swift */,
+				BB1FAD06240F246200D9887F /* NotificationName+Extension.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		95773B8B23FF40FA009B4EFE /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				95773B8C23FF4114009B4EFE /* Roboto-Black.ttf */,
+				95773B9123FF4116009B4EFE /* Roboto-BlackItalic.ttf */,
+				95773B9323FF4117009B4EFE /* Roboto-Bold.ttf */,
+				95773B8F23FF4115009B4EFE /* Roboto-BoldItalic.ttf */,
+				95773B9023FF4116009B4EFE /* Roboto-Italic.ttf */,
+				95773B9723FF4118009B4EFE /* Roboto-Light.ttf */,
+				95773B9523FF4118009B4EFE /* Roboto-LightItalic.ttf */,
+				95773B9623FF4118009B4EFE /* Roboto-Medium.ttf */,
+				95773B9423FF4117009B4EFE /* Roboto-MediumItalic.ttf */,
+				95773B9223FF4117009B4EFE /* Roboto-Regular.ttf */,
+				95773B8D23FF4114009B4EFE /* Roboto-Thin.ttf */,
+				95773B8E23FF4115009B4EFE /* Roboto-ThinItalic.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		95EEEAD423FB45D900B283E9 = {
 			isa = PBXGroup;
 			children = (
@@ -118,14 +272,12 @@
 		95EEEADF23FB45DA00B283E9 /* mNeme */ = {
 			isa = PBXGroup;
 			children = (
-				95EEEAE023FB45DA00B283E9 /* AppDelegate.swift */,
-				95EEEAE223FB45DA00B283E9 /* SceneDelegate.swift */,
-				95EEEAE423FB45DA00B283E9 /* ViewController.swift */,
-				95EEEAE623FB45DA00B283E9 /* Main.storyboard */,
-				95EEEAEC23FB45DC00B283E9 /* Assets.xcassets */,
-				95EEEAEE23FB45DC00B283E9 /* LaunchScreen.storyboard */,
-				95EEEAF123FB45DC00B283E9 /* Info.plist */,
-				95EEEAE923FB45DA00B283E9 /* mNeme.xcdatamodeld */,
+				BBD8A3032404491600F5534E /* Model Controllers */,
+				4B8A2A2C23FCA3C400116BF9 /* Models */,
+				95204335240095F80072F4DA /* View Controllers */,
+				4B8A2A2B23FCA3B700116BF9 /* Storyboards */,
+				95204336240096350072F4DA /* Helper */,
+				4B8A2A2A23FCA39D00116BF9 /* Resources */,
 			);
 			path = mNeme;
 			sourceTree = "<group>";
@@ -135,6 +287,9 @@
 			children = (
 				95EEEAFA23FB45DC00B283E9 /* mNemeTests.swift */,
 				95EEEAFC23FB45DC00B283E9 /* Info.plist */,
+				BBD8A2F924043E7100F5534E /* MockUserJSON.swift */,
+				BBD8A2FB240444A800F5534E /* MockDataLoader.swift */,
+				BBD8A2FD2404459B00F5534E /* UserPreferencesTests.swift */,
 			);
 			path = mNemeTests;
 			sourceTree = "<group>";
@@ -158,8 +313,16 @@
 				3E7E4BC2E3DF3D2666993AC0 /* Pods-mNemeTests.debug.xcconfig */,
 				0C61661E270DF9F177148EA4 /* Pods-mNemeTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		BBD8A3032404491600F5534E /* Model Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BBD8A3012404490B00F5534E /* UserController.swift */,
+				BB20E8E72406EC9700B60F24 /* DemoDeckController.swift */,
+			);
+			path = "Model Controllers";
 			sourceTree = "<group>";
 		};
 		FE948281FDB097CA034C713C /* Frameworks */ = {
@@ -184,12 +347,15 @@
 				95EEEADA23FB45DA00B283E9 /* Frameworks */,
 				95EEEADB23FB45DA00B283E9 /* Resources */,
 				E9393FF20BEDF18A14AF7B7E /* [CP] Embed Pods Frameworks */,
+				468793CBFA56CEB9E607A434 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = mNeme;
+			packageProductDependencies = (
+			);
 			productName = mNeme;
 			productReference = 95EEEADD23FB45DA00B283E9 /* mNeme.app */;
 			productType = "com.apple.product-type.application";
@@ -222,6 +388,7 @@
 				95EEEAFE23FB45DC00B283E9 /* Frameworks */,
 				95EEEAFF23FB45DC00B283E9 /* Resources */,
 				B764819EDB54505B16EDE1AE /* [CP] Embed Pods Frameworks */,
+				DB27A51A185DD4A6A9EA9FBB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -265,6 +432,8 @@
 				Base,
 			);
 			mainGroup = 95EEEAD423FB45D900B283E9;
+			packageReferences = (
+			);
 			productRefGroup = 95EEEADE23FB45DA00B283E9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -281,8 +450,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95773B9F23FF4119009B4EFE /* Roboto-Bold.ttf in Resources */,
+				95773BA023FF4119009B4EFE /* Roboto-MediumItalic.ttf in Resources */,
+				954AB142240439C100FD385F /* DeckCard.storyboard in Resources */,
+				95773BA123FF4119009B4EFE /* Roboto-LightItalic.ttf in Resources */,
+				95773BA223FF4119009B4EFE /* Roboto-Medium.ttf in Resources */,
+				95773B9923FF4119009B4EFE /* Roboto-Thin.ttf in Resources */,
+				958A6B0A23FDBAA300FDC959 /* GoogleService-Info.plist in Resources */,
+				4B8A2A3123FCA5C700116BF9 /* Login.storyboard in Resources */,
 				95EEEAF023FB45DC00B283E9 /* LaunchScreen.storyboard in Resources */,
+				95773BA323FF4119009B4EFE /* Roboto-Light.ttf in Resources */,
 				95EEEAED23FB45DC00B283E9 /* Assets.xcassets in Resources */,
+				95773B9823FF4119009B4EFE /* Roboto-Black.ttf in Resources */,
+				95773B9A23FF4119009B4EFE /* Roboto-ThinItalic.ttf in Resources */,
+				95773B9D23FF4119009B4EFE /* Roboto-BlackItalic.ttf in Resources */,
+				95773B8823FF032A009B4EFE /* Onboard.storyboard in Resources */,
+				95773B9B23FF4119009B4EFE /* Roboto-BoldItalic.ttf in Resources */,
+				95773B9E23FF4119009B4EFE /* Roboto-Regular.ttf in Resources */,
+				95773B9C23FF4119009B4EFE /* Roboto-Italic.ttf in Resources */,
 				95EEEAE823FB45DA00B283E9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -348,6 +533,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		468793CBFA56CEB9E607A434 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-mNeme/Pods-mNeme-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-mNeme/Pods-mNeme-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-mNeme/Pods-mNeme-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B053A23B7FF31721D5E6045C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -387,6 +589,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-mNeme-mNemeUITests/Pods-mNeme-mNemeUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		DB27A51A185DD4A6A9EA9FBB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-mNeme-mNemeUITests/Pods-mNeme-mNemeUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-mNeme-mNemeUITests/Pods-mNeme-mNemeUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-mNeme-mNemeUITests/Pods-mNeme-mNemeUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E9393FF20BEDF18A14AF7B7E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -411,10 +630,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				958A6B0C23FDE17700FDC959 /* LoginViewController.swift in Sources */,
+				BB1FAD05240F19D600D9887F /* ProfileScrollViewController.swift in Sources */,
 				95EEEAEB23FB45DA00B283E9 /* mNeme.xcdatamodeld in Sources */,
-				95EEEAE523FB45DA00B283E9 /* ViewController.swift in Sources */,
 				95EEEAE123FB45DA00B283E9 /* AppDelegate.swift in Sources */,
+				954AB14424043D8D00FD385F /* DeckCardViewController.swift in Sources */,
+				BBD8A2E923FDDD8E00F5534E /* ProfileViewController.swift in Sources */,
+				BB20E8E82406EC9700B60F24 /* DemoDeckController.swift in Sources */,
+				BBD8A3022404490B00F5534E /* UserController.swift in Sources */,
+				BBD8A300240447E200F5534E /* NetworkDataLoader.swift in Sources */,
+				95773B8A23FF041A009B4EFE /* PreLoginViewController.swift in Sources */,
+				BBD8A2EB23FDDDE600F5534E /* DeckCreateViewController.swift in Sources */,
+				BBD8A305240449D500F5534E /* HTTPMethod.swift in Sources */,
+				4BDE6C972406FAA300DF8AB1 /* DeckTableViewCell.swift in Sources */,
+				4B58980E2405914A00ECCD03 /* MockDeck.swift in Sources */,
+				BB1FAD07240F246200D9887F /* NotificationName+Extension.swift in Sources */,
 				95EEEAE323FB45DA00B283E9 /* SceneDelegate.swift in Sources */,
+				BBD8A2EF23FDDF5D00F5534E /* TabViewController.swift in Sources */,
+				BB3A205024086A37007D6C86 /* DesignableUITextField.swift in Sources */,
+				BBD8A2ED23FDDE0500F5534E /* HomeViewController.swift in Sources */,
+				BBD8A2F524008A8500F5534E /* User.swift in Sources */,
+				BBD8A2F123FDE4BE00F5534E /* UIColor+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,7 +658,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBD8A2FA24043E7100F5534E /* MockUserJSON.swift in Sources */,
+				BBD8A2FE2404459B00F5534E /* UserPreferencesTests.swift in Sources */,
 				95EEEAFB23FB45DC00B283E9 /* mNemeTests.swift in Sources */,
+				BBD8A2FC240444A800F5534E /* MockDataLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -589,7 +828,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = mNeme/Info.plist;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "$(SRCROOT)/mNeme/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -607,7 +847,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = mNeme/Info.plist;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "$(SRCROOT)/mNeme/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
