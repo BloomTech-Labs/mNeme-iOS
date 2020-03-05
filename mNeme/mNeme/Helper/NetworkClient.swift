@@ -18,6 +18,12 @@ class NetworkClient {
         self.dataLoader = networkDataLoader
     }
 
+//    func fetchDeck() {
+//        fetch("", nil) { (deck: [Deck]?) in
+//            <#code#>
+//        }
+//    }
+
     // Use this method to get deck data and card data.
     func fetch<T: Codable>(_ deckId: String, _ colId: String?, completion: @escaping (T?) -> Void) {
         guard let baseURL = baseURL else { completion(nil); return }
