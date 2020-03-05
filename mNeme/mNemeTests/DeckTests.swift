@@ -53,4 +53,28 @@ class DeckTests: XCTestCase {
         XCTAssertEqual(deckData?.data[0].data.back, "xzczxcxzc")
     }
 
+    func testPostDeck() {
+        let client = NetworkClient()
+
+        var deckData: Deck?
+        let card1 = CardRep(front: "front1", back: "back1")
+        let card2 = CardRep(front: "front2", back: "back2")
+        let cards: [CardRep] = [ card1, card2 ]
+        let user = User("r4Ok4g9OA5UHtpXnDRqF5XFCduH3")
+        let expect = expectation(description: "Wait for deck to create and return")
+
+        client.post(user: user, deckName: "iosTest", icon: "", tags: ["test"], cards: cards) { (deck: Deck?) in
+            deckData = deck
+            expect.fulfill()
+        }
+
+        wait(for: [expect], timeout: 100)
+
+        XCTAssertNotNil(deckData)
+        XCTAssertEqual(deckData?.deckInformation.exampleCard, "front1")
+        XCTAssertEqual(deckData?.deckInformation.deckName, "iosTest")
+        XCTAssertEqual(deckData?.deckInformation.deckLength, 2)
+        XCTAssertEqual(deckData?.data[0].data.back, "back1")
+    }
+
 }

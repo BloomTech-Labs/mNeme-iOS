@@ -27,6 +27,11 @@ struct DeckInformation: Codable {
     var collectionId: String
     var deckName: String
     var deckLength: Int
+
+//    init(icon: String, tag: [String]) {
+//        self.icon = icon
+//        self.tag = tag
+//    }
 }
 
 struct CardData: Codable {
