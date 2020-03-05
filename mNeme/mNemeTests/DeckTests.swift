@@ -32,4 +32,25 @@ class DeckTests: XCTestCase {
         XCTAssertEqual(deckData?[0].collectionId, "asdsdsa")
     }
 
+    func testGetDeckInformation() {
+        let mock = ModckDataLoader()
+        mock.data = deckInfromationData
+
+        let client = NetworkClient(networkDataLoader: mock)
+
+        var deckData: Deck?
+        let expect = expectation(description: "Wait for Deck data to return from API")
+
+        client.fetch("", "") { (deck: Deck?) in
+            deckData = deck
+            expect.fulfill()
+        }
+
+        wait(for: [expect], timeout: 2)
+
+        XCTAssertNotNil(deckData)
+        XCTAssertEqual(deckData?.deckInformation.exampleCard, "xzcz")
+        XCTAssertEqual(deckData?.data[0].data.back, "xzczxcxzc")
+    }
+
 }

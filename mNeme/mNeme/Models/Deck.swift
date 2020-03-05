@@ -14,7 +14,7 @@ struct DeckCollectionId: Codable {
 }
 
 // This will be the main structure for holding all deck information
-struct Deck {
+struct Deck: Codable {
     let deckInformation: DeckInformation
     let data: [CardData]
 }
