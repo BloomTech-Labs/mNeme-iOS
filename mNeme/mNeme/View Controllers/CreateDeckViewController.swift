@@ -11,6 +11,8 @@ import UIKit
 class CreateDeckViewController: UIViewController {
     
     var deckController: DemoDeckController?
+    var userController: UserController?
+    var deck: Deck?
 
     // MARK: IBOutlets
     @IBOutlet private weak var topView: UIView!
@@ -34,6 +36,8 @@ class CreateDeckViewController: UIViewController {
         if segue.identifier == "CreateContainerSegue" {
             if let containerVC = segue.destination as? CreateDeckScrollViewController {
                 containerVC.deckController = deckController
+                containerVC.userController = userController
+                containerVC.deck = deck
             }
         }
     }

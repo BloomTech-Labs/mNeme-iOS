@@ -64,6 +64,7 @@ class TabViewController: SOTabBarController {
             let createVC = self.viewControllers[1] as? CreateDeckViewController,
             let profileVC = self.viewControllers[2] as? ProfileViewController else { return }
         
+        createVC.userController = self.userController
         createVC.deckController = self.demoDeckController
         profileVC.userController = self.userController
         homeVC.demoDeckController = self.demoDeckController

@@ -12,8 +12,14 @@ import FirebaseAuth
 class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var cards: [CardData] = []
-    var deck: [Deck]?
-    var deckController: DemoDeckController?
+    var cardReps: [CardRep] = []
+    var deck: Deck?
+    var userController : UserController?
+    var deckController: DemoDeckController? {
+        didSet{
+            print("It passed in")
+        }
+    }
     
     @IBOutlet weak var deckNameTF: UITextField!
     @IBOutlet weak var deckIconTF: UITextField!
@@ -29,7 +35,7 @@ class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UIT
         super.viewDidLoad()
         cardTableView.delegate = self
         cardTableView.dataSource = self
-        cards = deck?.data
+//        cards = deck?.data
         cardTableView.reloadData()
     }
     
@@ -39,27 +45,23 @@ class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UIT
         if let deck = deck {
             
         } else {
-            let cardInfo = CardData.CardInfo(archived: false, back: backText, front: frontText)
-            let card = CardData(id: UUID().uuidString, data: cardInfo)
-            cards.insert(card, at: 0)
+            let cardRep = CardRep(front: frontText, back: backText)
+            cardReps.insert(cardRep, at: 0)
             addFrontTF.text = ""
             addBackTF.text = ""
             cardTableView.reloadData()
         }
     }
     @IBAction func saveDeckTapped(_ sender: UIButton) {
-        guard let deckName = deckNameTF.text, !deckName.isEmpty, let deckIcon = deckIconTF.text, !deckIcon.isEmpty, let name = Auth.auth().currentUser?.displayName else { return }
-        guard cards.count > 0 else { return }
+        guard let deckName = deckNameTF.text, !deckName.isEmpty, let deckIcon = deckIconTF.text, !deckIcon.isEmpty, let userController = userController, let user = userController.user, let deckController = deckController else { return }
+        guard cardReps.count > 0 else { return }
         
         if let deck = deck {
             
         } else {
-            let deckInfo = DeckInformation(icon: deckIcon, tag: [deckTagsTF.text ?? ""], createdBy: name, exampleCard: cards[0].data.front, collectionId: UUID().uuidString, deckName: deckName, deckLength: cards.count)
-            
-            let savedDeck = Deck(deckInformation: deckInfo, data: cards)
-            //createCardToServer(savedDeck)
+            deckController.createDeck(user: user, name: deckName, icon: deckIcon, tags: [""], cards: cardReps)
             clearViews()
-            tabBarController?.selectedIndex = 0
+//            tabBarController?.selectedIndex = 0
         }
     }
     
@@ -73,14 +75,14 @@ class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cards.count
+        return cardReps.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CardCell", for: indexPath) as? CardTableViewCell else { return UITableViewCell() }
         
-        cell.frontLabel.text = cards[indexPath.row].data.front
-        cell.backLabel.text = cards[indexPath.row].data.back
+        cell.frontLabel.text = cardReps[indexPath.row].front
+        cell.backLabel.text = cardReps[indexPath.row].back
         
         return cell
     }

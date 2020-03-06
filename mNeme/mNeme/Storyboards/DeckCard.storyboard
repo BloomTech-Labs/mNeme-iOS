@@ -164,7 +164,7 @@
                                 <rect key="frame" x="309" y="44" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="BJ6-co-gCl" kind="presentation" identifier="EditSegue" modalPresentationStyle="fullScreen" id="koN-gY-lAg"/>
+                                    <segue destination="BJ6-co-gCl" kind="presentation" identifier="EditDeckSegue" modalPresentationStyle="fullScreen" id="AzU-RT-jez"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -224,10 +224,10 @@
             </objects>
             <point key="canvasLocation" x="40.579710144927539" y="76.339285714285708"/>
         </scene>
-        <!--CreateDeckViewController-->
+        <!--DeckCreateViewController-->
         <scene sceneID="YZe-XR-L6u">
             <objects>
-                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="CreateDeckViewController" id="BJ6-co-gCl" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="DeckCreateViewController" id="BJ6-co-gCl" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Tp-fg-571" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="862" y="-182"/>
