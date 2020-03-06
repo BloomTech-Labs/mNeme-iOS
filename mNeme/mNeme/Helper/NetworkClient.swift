@@ -19,6 +19,7 @@ class NetworkClient {
     }
 
     // Use this method to get deck data and card data.
+    // Collection ID is optional -> nameofdeck == collectionID
     func fetch<T: Codable>(_ deckId: String, _ colId: String?, completion: @escaping (T?) -> Void) {
         guard let baseURL = baseURL else { completion(nil); return }
 
@@ -52,6 +53,7 @@ class NetworkClient {
         }
     }
 
+    // Used to create decks and add cards to a deck
     func post<T: Codable>(user: User, deckName: String, icon: String, tags: [String], cards: [CardRep], add: Bool = false, completion: @escaping (T?) -> Void) {
 
         guard let baseURL = baseURL else { completion(nil); return }
@@ -107,6 +109,65 @@ class NetworkClient {
                 completion(nil)
                 return
             }
+        }
+    }
+
+    // Used to delete cards and delete decks
+    func delete(user: User, deck: Deck, deleteCards: [CardData]?, completion: @escaping (Deck?) -> Void) {
+        guard let baseURL = baseURL else { completion(nil); return }
+
+        var deleteDeckURL = baseURL.appendingPathComponent(user.id).appendingPathComponent(deck.deckInformation.collectionId)
+
+        if deleteCards != nil {
+            deleteDeckURL = deleteDeckURL.appendingPathComponent("delete-cards")
+        } else {
+            deleteDeckURL = deleteDeckURL.appendingPathComponent("delete-deck")
+        }
+
+        var request = URLRequest(url: deleteDeckURL)
+        request.httpMethod = HTTPMethod.delete.rawValue
+
+        if let deleteCards = deleteCards {
+            do {
+                let cardsDictionary = ["cards": deleteCards]
+                let jsonData = try JSONEncoder().encode(cardsDictionary)
+                request.httpBody = jsonData
+            } catch {
+                print("Error encoding deck card information")
+                completion(nil)
+                return
+            }
+        }
+
+        dataLoader.loadData(using: request) { (data, response, error) in
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 404 {
+                print("collection not found")
+                completion(nil)
+                return
+            }
+            if let error = error {
+                print("Error: \(error)")
+                completion(nil)
+                return
+            }
+
+            // If this happens it will return an updated deck cards that were deleted
+            if deleteCards != nil {
+                guard let data = data else { completion(nil); return }
+                do {
+                    let decodedData = try JSONDecoder().decode(Deck.self, from: data)
+                    completion(decodedData)
+                    return
+                } catch {
+                    print("Error decoding data: \(error)")
+                    completion(nil)
+                    return
+                }
+            }
+
+            // return the deck that was passed in for deletion from the deck array
+            completion(deck)
         }
     }
 }
