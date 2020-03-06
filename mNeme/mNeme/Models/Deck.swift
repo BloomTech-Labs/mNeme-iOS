@@ -14,16 +14,16 @@ struct DeckCollectionId: Codable {
 }
 
 // This will be the main structure for holding all deck information
-struct Deck: Codable, Equatable {
+struct Deck: Equatable, Codable {
     let deckInformation: DeckInformation
     let data: [CardData]
 }
 
-struct DeckInformation: Codable, Equatable {
+struct DeckInformation: Equatable, Codable {
     var icon: String
     var tag: [String]?
     var createdBy: String
-    var exampleCard: String
+    var exampleCard: String?
     var collectionId: String
     var deckName: String
     var deckLength: Int
@@ -34,11 +34,11 @@ struct DeckInformation: Codable, Equatable {
 //    }
 }
 
-struct CardData: Codable, Equatable {
+struct CardData: Equatable, Codable {
     var id: String
     var data: CardInfo
 
-    struct CardInfo: Codable, Equatable {
+    struct CardInfo: Equatable, Codable {
         var archived: Bool = false
         var back: String
         var front: String

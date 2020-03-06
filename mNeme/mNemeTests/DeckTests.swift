@@ -124,4 +124,32 @@ class DeckTests: XCTestCase {
         XCTAssertEqual(decks.count, 1)
     }
 
+    func testDeleteCards() {
+        let client = NetworkClient()
+
+        let deckInfo1 = DeckInformation(icon: "", tag: [""], createdBy: "", exampleCard: "", collectionId: "iosTest", deckName: "iosTest", deckLength: 0)
+
+        let card1info = CardData.CardInfo(back: "1", front: "1c")
+        let card2info = CardData.CardInfo(back: "2", front: "2c")
+        let card1 = CardData(id: "2a558d81-bb8b-4505-9bdc-2c1ce6857b68", data: card1info)
+        let card2 = CardData(id: "eff236b7-273b-47d8-897e-dc9d2ca02928", data: card2info)
+
+        var deck = Deck(deckInformation: deckInfo1, data: [card1, card2])
+
+        let user = User("r4Ok4g9OA5UHtpXnDRqF5XFCduH3")
+        let expect = expectation(description: "Wait for deck to delete")
+
+        client.delete(user: user, deck: deck, deleteCards: [card1]) { updateDeck in
+            if let updatedDeck = updateDeck {
+                deck = updatedDeck
+            }
+            expect.fulfill()
+        }
+
+        wait(for: [expect], timeout: 100)
+        XCTAssertEqual(deck.data.count, 1)
+        XCTAssertEqual(deck.data[0].id, "eff236b7-273b-47d8-897e-dc9d2ca02928")
+        XCTAssertEqual(deck.data[0].data.back, "2")
+    }
+
 }

@@ -128,6 +128,7 @@ class NetworkClient {
         request.httpMethod = HTTPMethod.delete.rawValue
 
         if let deleteCards = deleteCards {
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             do {
                 let cardsDictionary = ["cards": deleteCards]
                 let jsonData = try JSONEncoder().encode(cardsDictionary)
