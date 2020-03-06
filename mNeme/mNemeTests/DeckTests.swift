@@ -77,4 +77,25 @@ class DeckTests: XCTestCase {
         XCTAssertEqual(deckData?.data[0].data.back, "back1")
     }
 
+    func testAddCardsToDeck() {
+        let client = NetworkClient()
+
+        var deckData: Deck?
+        let card1 = CardRep(front: "testadd1", back: "testback1")
+        let card2 = CardRep(front: "testadd2", back: "testback2")
+        let cards: [CardRep] = [ card1, card2 ]
+        let user = User("r4Ok4g9OA5UHtpXnDRqF5XFCduH3")
+        let expect = expectation(description: "Wait for deck to add cards")
+
+        client.post(user: user, deckName: "iosTest", icon: "", tags: [""], cards: cards, add: true) { (deck: Deck?) in
+            deckData = deck
+            expect.fulfill()
+        }
+
+        wait(for: [expect], timeout: 100)
+
+        XCTAssertNotNil(deckData)
+        XCTAssertEqual(deckData?.deckInformation.deckLength, 4)
+    }
+
 }

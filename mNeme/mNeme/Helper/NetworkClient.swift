@@ -52,13 +52,15 @@ class NetworkClient {
         }
     }
 
-    func post<T: Codable>(user: User, deckName: String, icon: String, tags: [String], cards: [CardRep], completion: @escaping (T?) -> Void) {
+    func post<T: Codable>(user: User, deckName: String, icon: String, tags: [String], cards: [CardRep], add: Bool = false, completion: @escaping (T?) -> Void) {
 
         guard let baseURL = baseURL else { completion(nil); return }
 
-        let deckRep = DeckRep(deck: DeckInformationRep(icon: icon, tags: tags), cards: cards)
+        var createDeckURL = baseURL.appendingPathComponent(user.id).appendingPathComponent(deckName)
 
-        let createDeckURL = baseURL.appendingPathComponent(user.id).appendingPathComponent(deckName)
+        if add {
+            createDeckURL = createDeckURL.appendingPathComponent("add")
+        }
 
         var request = URLRequest(url: createDeckURL)
         request.httpMethod = HTTPMethod.post.rawValue
@@ -66,15 +68,13 @@ class NetworkClient {
 
         let jsonEncoder = JSONEncoder()
         do {
+            // Sets the encoded data based upon if the user passes in true to adding a card.
+            // If true then sets it as a dictionary "cards", if not then init a DeckRep
+            let encode: Any = add ? ["cards": cards] : DeckRep(deck: DeckInformationRep(icon: icon, tags: tags), cards: cards)
+            // jsonData will then try the decode based upon the passed in BOOL for adding a card.
+            // Since casted as 'Any' must type cast to the type of data to encode.
+            let jsonData = add ? try jsonEncoder.encode(encode as? [String: [CardRep]]) : try jsonEncoder.encode(encode as? DeckRep)
 
-//            let deckDictionary: [String: Any] = ["icon" : icon, "tags" : tags]
-//            let jsonDictionary: [String: Any] = ["deck" : deckDictionary, "cards" : cards]
-//
-//            print(jsonDictionary)
-//            let jsonData = try JSONSerialization.data(withJSONObject: jsonDictionary, options: [])
-
-            let jsonData = try jsonEncoder.encode(deckRep)
-            print(jsonData)
             request.httpBody = jsonData
         } catch {
             print("Error encoding deck object: \(error)")
