@@ -20,10 +20,10 @@ class NetworkClient {
 
     // Use this method to get deck data and card data.
     // Collection ID is optional -> nameofdeck == collectionID
-    func fetch<T: Codable>(_ deckId: String, _ colId: String?, completion: @escaping (T?) -> Void) {
+    func fetch<T: Codable>(_ userId: String, _ colId: String?, completion: @escaping (T?) -> Void) {
         guard let baseURL = baseURL else { completion(nil); return }
 
-        var requestURL = baseURL.appendingPathComponent(deckId)
+        var requestURL = baseURL.appendingPathComponent(userId)
 
         // if collection id is not nil it will return the card data.
         if let colId = colId {
