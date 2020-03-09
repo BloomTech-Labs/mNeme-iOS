@@ -20,14 +20,16 @@ class NetworkClient {
 
     // Use this method to get deck data and card data.
     // Collection ID is optional -> nameofdeck == collectionID
-    func fetch<T: Codable>(_ userId: String, _ colId: String?, completion: @escaping (T?) -> Void) {
+    func fetch<T: Codable>(_ userId: String, _ colId: String?, _ archive: Bool = false, completion: @escaping (T?) -> Void) {
         guard let baseURL = baseURL else { completion(nil); return }
 
-        var requestURL = baseURL.appendingPathComponent(userId)
+        var requestURL = archive ? baseURL.appendingPathComponent(userId).appendingPathComponent("archive") : baseURL.appendingPathComponent(userId)
+
+
 
         // if collection id is not nil it will return the card data.
         if let colId = colId {
-            requestURL = requestURL.appendingPathComponent(colId)
+            requestURL = archive ? requestURL.appendingPathComponent(colId).appendingPathComponent("archive") : requestURL.appendingPathComponent(colId)
         }
 
         var request = URLRequest(url: requestURL)
@@ -109,6 +111,34 @@ class NetworkClient {
                 completion(nil)
                 return
             }
+        }
+    }
+
+    // Function will archive the deck if passed in archive is true, will move out of archive if archive set to false.
+    func archivePost(user: User, deckName: String, archive: Bool, completion: @escaping () -> Void) {
+        guard let baseURL = baseURL else { completion(); return }
+
+        var archiveDeckURL = archive ? baseURL.appendingPathComponent("archive") : baseURL.appendingPathComponent("remove-archive")
+
+        archiveDeckURL = archiveDeckURL.appendingPathComponent(user.id).appendingPathComponent(deckName)
+
+        var request = URLRequest(url: archiveDeckURL)
+        request.httpMethod = HTTPMethod.post.rawValue
+
+        dataLoader.loadData(using: request) { (_, response, error) in
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 500 {
+                print("collection not found")
+                completion()
+                return
+            }
+
+            if let error = error {
+                print("Error with request: \(error)")
+                completion()
+                return
+            }
+            completion()
         }
     }
 
