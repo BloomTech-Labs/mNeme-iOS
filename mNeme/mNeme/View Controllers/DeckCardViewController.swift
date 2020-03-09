@@ -25,12 +25,18 @@ class DeckCardViewController: UIViewController {
     @IBOutlet weak var tutorialLabel: UILabel!
     @IBOutlet weak var tapToFlipLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var editButton: UIButton!
     
     // MARK: - Properties
-    var realDeck: Deck?
-    var deck: DemoDeck?{
+    var realDeck: Deck? {
+        didSet {
+            guard let total = realDeck?.deckInformation.deckLength else { return }
+            currentCardTotal = total
+        }
+    }
+    var demoDeck: DemoDeck?{
         didSet{
-            guard let total = deck?.data?.count else { return }
+            guard let total = demoDeck?.data?.count else { return }
             currentCardTotal = total
         }
     }
@@ -132,8 +138,13 @@ class DeckCardViewController: UIViewController {
     
     // MARK: - Private Functions
     private func setupViews() {
+        if realDeck != nil {
+            titleLabel.text = realDeck?.deckInformation.deckName
+        } else {
+            titleLabel.text = demoDeck?.deckName
+            editButton.isHidden = true
+        }
         
-        titleLabel.text = deck?.deckName
         frontLabel = UILabel(frame: CGRect(x: self.containerView.frame.width, y: self.containerView.frame.height, width: 80, height: 50))
         backLabel = UILabel(frame: CGRect(x: self.containerView.frame.width/1, y: self.containerView.frame.height/2, width: 80, height: 50))
         containerView.addSubview(frontLabel!)
@@ -160,10 +171,17 @@ class DeckCardViewController: UIViewController {
     }
     
     private func updateDeckText() {
-        let currentCardInfo = deck?.data?[currentCardIndex].data
-        frontLabel?.text = currentCardInfo?.front
-        print("\(String(describing: currentCardInfo?.front))")
-        backLabel?.text = currentCardInfo?.back
+        if realDeck != nil {
+            let currentCardInfo = realDeck?.data[currentCardIndex].data
+            frontLabel?.text = currentCardInfo?.front
+            print("\(String(describing: currentCardInfo?.front))")
+            backLabel?.text = currentCardInfo?.back
+        } else {
+            let currentCardInfo = demoDeck?.data?[currentCardIndex].data
+            frontLabel?.text = currentCardInfo?.front
+            print("\(String(describing: currentCardInfo?.front))")
+            backLabel?.text = currentCardInfo?.back
+        }
     }
     
     private func constrain(view: UIView) {

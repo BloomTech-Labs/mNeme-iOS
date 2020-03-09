@@ -82,6 +82,21 @@ class DemoDeckController {
         }
     }
     
+    func fetchDecks(userID: String, completion: @escaping () -> Void) {
+        networkClient.fetch(userID, nil) { (results: [DeckCollectionId]?) in
+            if let results = results {
+                for deck in results {
+                    self.networkClient.fetch(userID, deck.collectionId) { (result: Deck?) in
+                        self.decks.append(result!)
+                    }
+                }
+                completion()
+            } else {
+                print("Fetch not working")
+            }
+        }
+    }
+    
     func createDeck(user: User, name: String, icon: String, tags: [String], cards: [CardRep]) {
         networkClient.post(user: user, deckName: name, icon: icon, tags: tags, cards: cards) { (deck: Deck?) in
             if let deck = deck {

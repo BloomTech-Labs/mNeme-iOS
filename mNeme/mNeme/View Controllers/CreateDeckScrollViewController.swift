@@ -13,11 +13,7 @@ class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UIT
     
     var cards: [CardData] = []
     var cardReps: [CardRep] = []
-    var deck: Deck? {
-        didSet {
-            updateDeckViews()
-        }
-    }
+    var deck: Deck?
     
     var userController : UserController?
     var deckController: DemoDeckController? {
@@ -40,7 +36,7 @@ class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UIT
         super.viewDidLoad()
         cardTableView.delegate = self
         cardTableView.dataSource = self
-        //        cards = deck?.data
+        updateDeckViews()
         cardTableView.reloadData()
     }
     
@@ -64,35 +60,37 @@ class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UIT
         }
     }
     @IBAction func saveDeckTapped(_ sender: UIButton) {
+        self.tabBarController?.selectedIndex = 0
         guard let deckName = deckNameTF.text, !deckName.isEmpty, let deckIcon = deckIconTF.text, !deckIcon.isEmpty, let userController = userController, let user = userController.user, let deckController = deckController else { return }
         guard cardReps.count > 0 else { return }
         
         if let deck = deck { // FIX TAGS PARAMETER ONCE
             deckController.editDeck(deck: deck, user: user, name: deckName, icon: deckIcon, tags: [""], cards: cardReps)
             clearViews()
-            self.dismiss(animated: true, completion: nil)
         } else {
             deckController.createDeck(user: user, name: deckName, icon: deckIcon, tags: [""], cards: cardReps)
             clearViews()
-            // FIND FUNCTION TO SWITCH TAB BAR VIEW
         }
     }
     
     private func updateDeckViews() {
         if let deck = deck {
-            deckIconTF.text = self.deck?.deckInformation.icon
-            deckTagsTF.text = self.deck?.deckInformation.tag?.joined(separator: ", ")
+            deckNameTF.text = deck.deckInformation.deckName
+            deckIconTF.text = deck.deckInformation.icon
+            deckTagsTF.text = deck.deckInformation.tag?.joined(separator: ", ")
             cards = deck.data
         }
     }
     
     private func clearViews() {
         cards = []
+        cardReps = []
         deckTagsTF.text = ""
         deckNameTF.text = ""
         deckIconTF.text = ""
         addFrontTF.text = ""
         addBackTF.text = ""
+        cardTableView.reloadData()
     }
     
     private func clearCardViews() {
@@ -101,7 +99,11 @@ class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cardReps.count
+        if deck != nil {
+            return cards.count
+        } else {
+            return cardReps.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

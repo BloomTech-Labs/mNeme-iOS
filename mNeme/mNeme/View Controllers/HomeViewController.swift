@@ -62,26 +62,49 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "DeckSegue" {
             if let deckCardVC = segue.destination as? DeckCardViewController, let indexPath = deckTableView.indexPathForSelectedRow {
-                deckCardVC.deck = demoDeckController?.demoDecks[indexPath.row]
+                if indexPath.section == 0 {
+                    deckCardVC.demoDeck = demoDeckController?.demoDecks[indexPath.row]
+                } else {
+                    deckCardVC.realDeck = demoDeckController?.decks[indexPath.row]
+                }
             }
         }
      }
     
     // MARK: - TableView Functions
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return demoDeckController?.demoDecks.count ?? 0
+        if section == 0 {
+            return demoDeckController?.demoDecks.count ?? 0
+        } else {
+            return demoDeckController?.decks.count ?? 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "DeckCell", for: indexPath) as? DeckTableViewCell else { return UITableViewCell() }
-        
-        cell.deck = demoDeckController?.demoDecks[indexPath.row]
-        
-        return cell
+        if indexPath.section == 0 {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "DemoDeckCell", for: indexPath) as? DeckTableViewCell {
+                
+                cell.DemoDeck = demoDeckController?.demoDecks[indexPath.row]
+                return cell
+            }  else {
+                return UITableViewCell()
+            }
+        } else if indexPath.section == 1 {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "DemoDeckCell", for: indexPath) as? DeckTableViewCell {
+                
+                cell.deck = demoDeckController?.decks[indexPath.row]
+                
+                return cell
+            } else {
+                return UITableViewCell()
+            }
+        } else {
+            return UITableViewCell()
+        }
     }
-    
-    
-    
 }
