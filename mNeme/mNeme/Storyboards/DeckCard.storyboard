@@ -161,8 +161,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q2C-IN-JQJ">
-                                <rect key="frame" x="309" y="44" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                                <rect key="frame" x="309" y="44" width="30" height="30"/>
+                                <state key="normal" title="Edit"/>
                                 <connections>
                                     <segue destination="BJ6-co-gCl" kind="presentation" identifier="EditDeckSegue" modalPresentationStyle="fullScreen" id="AzU-RT-jez"/>
                                 </connections>

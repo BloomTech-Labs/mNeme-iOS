@@ -214,7 +214,13 @@
                             <navigationBar contentMode="scaleToFill" largeTitles="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wie-iu-VcJ">
                                 <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                                 <items>
-                                    <navigationItem title="Create a New Deck" largeTitleDisplayMode="always" id="gBp-Ez-mPW"/>
+                                    <navigationItem title="Create a New Deck" largeTitleDisplayMode="always" id="gBp-Ez-mPW">
+                                        <barButtonItem key="leftBarButtonItem" image="arrow left" id="5RU-Vj-tVh">
+                                            <connections>
+                                                <action selector="backTapped:" destination="6Co-dg-dy7" id="oOR-Du-1YQ"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yE7-ra-nIc">
@@ -820,6 +826,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow left" width="24" height="23"/>
         <image name="arrow.up.and.down" catalog="system" width="52" height="64"/>
         <image name="buttonImage" width="311" height="46"/>
         <image name="checkmark.square.fill" catalog="system" width="64" height="56"/>
