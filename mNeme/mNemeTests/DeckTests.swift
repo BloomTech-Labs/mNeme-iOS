@@ -50,7 +50,7 @@ class DeckTests: XCTestCase {
 
         XCTAssertNotNil(deckData)
         XCTAssertEqual(deckData?.deckInformation.exampleCard, "xzcz")
-        XCTAssertEqual(deckData?.data[0].data.back, "xzczxcxzc")
+        XCTAssertEqual(deckData?.data?[0].data.back, "xzczxcxzc")
     }
 
     func testPostDeck() {
@@ -74,7 +74,7 @@ class DeckTests: XCTestCase {
         XCTAssertEqual(deckData?.deckInformation.exampleCard, "front1")
         XCTAssertEqual(deckData?.deckInformation.deckName, "iosTest")
         XCTAssertEqual(deckData?.deckInformation.deckLength, 2)
-        XCTAssertEqual(deckData?.data[0].data.back, "back1")
+        XCTAssertEqual(deckData?.data?[0].data.back, "back1")
     }
 
     func testAddCardsToDeck() {
@@ -147,9 +147,52 @@ class DeckTests: XCTestCase {
         }
 
         wait(for: [expect], timeout: 100)
-        XCTAssertEqual(deck.data.count, 1)
-        XCTAssertEqual(deck.data[0].id, "eff236b7-273b-47d8-897e-dc9d2ca02928")
-        XCTAssertEqual(deck.data[0].data.back, "2")
+        XCTAssertEqual(deck.data?.count, 1)
+        XCTAssertEqual(deck.data?[0].id, "eff236b7-273b-47d8-897e-dc9d2ca02928")
+        XCTAssertEqual(deck.data?[0].data.back, "2")
+    }
+
+    func testUpdateDeckName() {
+
+        let client = NetworkClient()
+
+        let deckInfo1 = DeckInformation(icon: "", tag: [""], createdBy: "", exampleCard: "", collectionId: "iosTest", deckName: "iosTest", deckLength: 0)
+
+        var deck = Deck(deckInformation: deckInfo1, data: [])
+
+        let user = User("r4Ok4g9OA5UHtpXnDRqF5XFCduH3")
+        let expect = expectation(description: "Wait for deck to update deck name")
+
+        client.put(user: user, deck: deck, updateDeckName: "iosTestChanges", updateCards: nil) { (updatedDeck: Deck?) in
+            if let updatedDeck = updatedDeck {
+                deck.deckInformation = updatedDeck.deckInformation
+            }
+            expect.fulfill()
+        }
+
+        wait(for: [expect], timeout: 100)
+        XCTAssertEqual(deck.deckInformation.deckName, "iosTestChanges")
+    }
+
+    func testUpdateCardInDeck() {
+        let client = NetworkClient()
+
+        let deckInfo1 = DeckInformation(icon: "", tag: [""], createdBy: "", exampleCard: "", collectionId: "iosTest", deckName: "iosTest", deckLength: 0)
+
+        var deck = Deck(deckInformation: deckInfo1, data: [])
+
+        let user = User("r4Ok4g9OA5UHtpXnDRqF5XFCduH3")
+        let expect = expectation(description: "Wait for deck to update deck name")
+
+        client.put(user: user, deck: deck, updateDeckName: "iosTestChanges", updateCards: nil) { (updatedDeck: Deck?) in
+            if let updatedDeck = updatedDeck {
+                deck.deckInformation = updatedDeck.deckInformation
+            }
+            expect.fulfill()
+        }
+
+        wait(for: [expect], timeout: 100)
+        XCTAssertEqual(deck.deckInformation.deckName, "iosTestChanges")
     }
 
 }

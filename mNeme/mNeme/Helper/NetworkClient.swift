@@ -171,6 +171,66 @@ class NetworkClient {
             completion(deck)
         }
     }
+
+    func put<T: Codable>(user: User, deck: Deck, updateDeckName: String?, updateCards: [CardData]?,  completion: @escaping(T?) -> Void) {
+        guard let baseURL = baseURL else { completion(nil); return }
+
+        var updateURL: URL?
+        if let updatedDeckName = updateDeckName {
+            updateURL = baseURL.appendingPathComponent("update-deck-name")
+        } else if let updateCards = updateCards {
+            updateURL = baseURL.appendingPathComponent("update")
+        }
+
+        guard var requestURL = updateURL else { completion(nil); return }
+
+        requestURL.appendPathComponent(user.id)
+        requestURL.appendPathComponent(deck.deckInformation.collectionId)
+
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = HTTPMethod.put.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+
+        do {
+            let updateDeckNameDictionary = ["deckName": updateDeckName]
+            let changesDictionary = ["changes": updateDeckNameDictionary]
+            let jsonData = try JSONSerialization.data(withJSONObject: changesDictionary, options: [])
+            request.httpBody = jsonData
+        } catch {
+            print("Cannot encode json data")
+            completion(nil)
+            return
+        }
+
+
+        dataLoader.loadData(using: request) { (data, response, error) in
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 404 {
+                print("collection not found")
+                completion(nil)
+                return
+            }
+
+            if let error = error {
+                print("Error with request: \(error)")
+                completion(nil)
+                return
+            }
+
+            guard let data = data else { completion(nil); return }
+
+            let jsonDecoder = JSONDecoder()
+            do {
+                let decodedData = try jsonDecoder.decode(T.self, from: data)
+                completion(decodedData)
+            } catch {
+                print("error decoding data")
+                completion(nil)
+                return
+            }
+        }
+    }
 }
 
 struct DeckRep: Codable {
