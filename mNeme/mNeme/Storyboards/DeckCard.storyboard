@@ -160,6 +160,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q2C-IN-JQJ">
+                                <rect key="frame" x="309" y="44" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="BJ6-co-gCl" kind="presentation" identifier="EditDeckSegue" modalPresentationStyle="fullScreen" id="AzU-RT-jez"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -168,12 +175,14 @@
                             <constraint firstItem="iUA-lS-kzc" firstAttribute="leading" secondItem="RNO-gz-o60" secondAttribute="trailing" constant="85.333333333333314" id="EAb-rp-TVR"/>
                             <constraint firstItem="gqS-l0-Tjd" firstAttribute="leading" secondItem="Lhf-i2-Vdx" secondAttribute="leading" constant="35" id="EJw-Sc-M1k"/>
                             <constraint firstItem="Lhf-i2-Vdx" firstAttribute="trailing" secondItem="vw2-RI-mAI" secondAttribute="trailing" constant="20" id="KzS-ZT-ThK"/>
+                            <constraint firstItem="q2C-IN-JQJ" firstAttribute="leading" secondItem="iUA-lS-kzc" secondAttribute="trailing" constant="79.333333333333314" id="NS6-jd-9ye"/>
                             <constraint firstItem="Lhf-i2-Vdx" firstAttribute="trailing" secondItem="tov-TQ-0YC" secondAttribute="trailing" constant="70" id="R7w-fd-I49"/>
                             <constraint firstItem="XkQ-qS-l1x" firstAttribute="leading" secondItem="Lhf-i2-Vdx" secondAttribute="leading" constant="70" id="Sdd-Cv-eiP"/>
                             <constraint firstItem="Lhf-i2-Vdx" firstAttribute="bottom" secondItem="xgY-AD-Ou4" secondAttribute="bottom" constant="60" id="TVT-wF-31f"/>
                             <constraint firstItem="xgY-AD-Ou4" firstAttribute="leading" secondItem="Lhf-i2-Vdx" secondAttribute="leading" constant="62" id="U8w-yn-O2x"/>
                             <constraint firstItem="XkQ-qS-l1x" firstAttribute="centerY" secondItem="tov-TQ-0YC" secondAttribute="centerY" id="VMa-13-bKu"/>
                             <constraint firstItem="Lhf-i2-Vdx" firstAttribute="bottom" secondItem="XkQ-qS-l1x" secondAttribute="bottom" constant="37" id="VTt-5i-GVu"/>
+                            <constraint firstItem="gqS-l0-Tjd" firstAttribute="top" secondItem="q2C-IN-JQJ" secondAttribute="bottom" constant="91" id="WAE-zZ-mvo"/>
                             <constraint firstItem="3ir-KJ-UTd" firstAttribute="centerX" secondItem="gEJ-9H-j8c" secondAttribute="centerX" id="WyI-yS-n8V"/>
                             <constraint firstItem="we2-mU-heS" firstAttribute="leading" secondItem="Lhf-i2-Vdx" secondAttribute="leading" constant="20" id="bnl-mA-7te"/>
                             <constraint firstItem="Lhf-i2-Vdx" firstAttribute="trailing" secondItem="3ir-KJ-UTd" secondAttribute="trailing" constant="20" id="cSq-dE-DWh"/>
@@ -214,6 +223,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zYL-f1-8v8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="40.579710144927539" y="76.339285714285708"/>
+        </scene>
+        <!--DeckCreateViewController-->
+        <scene sceneID="YZe-XR-L6u">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="DeckCreateViewController" id="BJ6-co-gCl" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Tp-fg-571" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="862" y="-182"/>
         </scene>
     </scenes>
     <resources>

@@ -27,6 +27,7 @@ class DeckCardViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     
     // MARK: - Properties
+    var realDeck: Deck?
     var deck: DemoDeck?{
         didSet{
             guard let total = deck?.data?.count else { return }
@@ -236,4 +237,13 @@ class DeckCardViewController: UIViewController {
         okayRating?.isHidden = true
         greatRating?.isHidden = true
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "EditDeckSegue" {
+            if let editVC = segue.destination as? CreateDeckViewController {
+                editVC.deck = realDeck
+            }
+        }
+    }
+
 }

@@ -13,8 +13,10 @@ class DemoDeckController {
     // MARK: - Properties
 
     var demoDecks = [DemoDeck]()
+    var decks = [Deck]()
     let dataLoader: NetworkDataLoader
     let baseURL = URL(string: "https://flashcards-be.herokuapp.com/api/demo/I2r2gejFYwCQfqafWlVy")!
+    let networkClient = NetworkClient()
 
     // MARK: - Init
     init(networkDataLoader: NetworkDataLoader = URLSession.shared) {
@@ -77,6 +79,15 @@ class DemoDeckController {
                 print("Error Decoding deck card data")
             }
             completion()
+        }
+    }
+    
+    func createDeck(user: User, name: String, icon: String, tags: [String], cards: [CardRep]) {
+        
+        networkClient.post(user: user, deckName: name, icon: icon, tags: tags, cards: cards) { (deck: Deck?) in
+            if let deck = deck {
+                self.decks.append(deck)
+            }
         }
     }
 }

@@ -31,6 +31,8 @@
 		95773BA323FF4119009B4EFE /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95773B9723FF4118009B4EFE /* Roboto-Light.ttf */; };
 		958A6B0A23FDBAA300FDC959 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 958A6B0923FDBAA200FDC959 /* GoogleService-Info.plist */; };
 		958A6B0C23FDE17700FDC959 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958A6B0B23FDE17700FDC959 /* LoginViewController.swift */; };
+		95BE740F241091FE008FE54D /* CreateDeckScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BE740E241091FE008FE54D /* CreateDeckScrollViewController.swift */; };
+		95BE7411241093E9008FE54D /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BE7410241093E9008FE54D /* CardTableViewCell.swift */; };
 		95EEEAE123FB45DA00B283E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EEEAE023FB45DA00B283E9 /* AppDelegate.swift */; };
 		95EEEAE323FB45DA00B283E9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EEEAE223FB45DA00B283E9 /* SceneDelegate.swift */; };
 		95EEEAE823FB45DA00B283E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95EEEAE623FB45DA00B283E9 /* Main.storyboard */; };
@@ -47,7 +49,7 @@
 		BB20E8E82406EC9700B60F24 /* DemoDeckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB20E8E72406EC9700B60F24 /* DemoDeckController.swift */; };
 		BB3A205024086A37007D6C86 /* DesignableUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3A204F24086A37007D6C86 /* DesignableUITextField.swift */; };
 		BBD8A2E923FDDD8E00F5534E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2E823FDDD8E00F5534E /* ProfileViewController.swift */; };
-		BBD8A2EB23FDDDE600F5534E /* DeckCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2EA23FDDDE600F5534E /* DeckCreateViewController.swift */; };
+		BBD8A2EB23FDDDE600F5534E /* CreateDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2EA23FDDDE600F5534E /* CreateDeckViewController.swift */; };
 		BBD8A2ED23FDDE0500F5534E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2EC23FDDE0500F5534E /* HomeViewController.swift */; };
 		BBD8A2EF23FDDF5D00F5534E /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2EE23FDDF5D00F5534E /* TabViewController.swift */; };
 		BBD8A2F123FDE4BE00F5534E /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2F023FDE4BD00F5534E /* UIColor+Extension.swift */; };
@@ -106,6 +108,8 @@
 		95773B9723FF4118009B4EFE /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
 		958A6B0923FDBAA200FDC959 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		958A6B0B23FDE17700FDC959 /* LoginViewController.swift */ = {isa = PBXFileReference; indentWidth = 5; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		95BE740E241091FE008FE54D /* CreateDeckScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDeckScrollViewController.swift; sourceTree = "<group>"; };
+		95BE7410241093E9008FE54D /* CardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
 		95EEEADD23FB45DA00B283E9 /* mNeme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mNeme.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95EEEAE023FB45DA00B283E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95EEEAE223FB45DA00B283E9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -129,7 +133,7 @@
 		BB20E8E72406EC9700B60F24 /* DemoDeckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoDeckController.swift; sourceTree = "<group>"; };
 		BB3A204F24086A37007D6C86 /* DesignableUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableUITextField.swift; sourceTree = "<group>"; };
 		BBD8A2E823FDDD8E00F5534E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		BBD8A2EA23FDDDE600F5534E /* DeckCreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCreateViewController.swift; sourceTree = "<group>"; };
+		BBD8A2EA23FDDDE600F5534E /* CreateDeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDeckViewController.swift; sourceTree = "<group>"; };
 		BBD8A2EC23FDDE0500F5534E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		BBD8A2EE23FDDF5D00F5534E /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		BBD8A2F023FDE4BD00F5534E /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -216,7 +220,9 @@
 				BBD8A2E823FDDD8E00F5534E /* ProfileViewController.swift */,
 				BB1FAD04240F19D600D9887F /* ProfileScrollViewController.swift */,
 				4BDE6C962406FAA300DF8AB1 /* DeckTableViewCell.swift */,
-				BBD8A2EA23FDDDE600F5534E /* DeckCreateViewController.swift */,
+				BBD8A2EA23FDDDE600F5534E /* CreateDeckViewController.swift */,
+				95BE740E241091FE008FE54D /* CreateDeckScrollViewController.swift */,
+				95BE7410241093E9008FE54D /* CardTableViewCell.swift */,
 				BBD8A2EC23FDDE0500F5534E /* HomeViewController.swift */,
 				BBD8A2EE23FDDF5D00F5534E /* TabViewController.swift */,
 				958A6B0B23FDE17700FDC959 /* LoginViewController.swift */,
@@ -650,11 +656,13 @@
 				954AB14424043D8D00FD385F /* DeckCardViewController.swift in Sources */,
 				BBD8A2E923FDDD8E00F5534E /* ProfileViewController.swift in Sources */,
 				BB20E8E82406EC9700B60F24 /* DemoDeckController.swift in Sources */,
+				95BE7411241093E9008FE54D /* CardTableViewCell.swift in Sources */,
 				BBD8A3022404490B00F5534E /* UserController.swift in Sources */,
 				BBD8A300240447E200F5534E /* NetworkDataLoader.swift in Sources */,
 				95773B8A23FF041A009B4EFE /* PreLoginViewController.swift in Sources */,
-				BBD8A2EB23FDDDE600F5534E /* DeckCreateViewController.swift in Sources */,
+				BBD8A2EB23FDDDE600F5534E /* CreateDeckViewController.swift in Sources */,
 				BBD8A305240449D500F5534E /* HTTPMethod.swift in Sources */,
+				95BE740F241091FE008FE54D /* CreateDeckScrollViewController.swift in Sources */,
 				4BDE6C972406FAA300DF8AB1 /* DeckTableViewCell.swift in Sources */,
 				4B58980E2405914A00ECCD03 /* MockDeck.swift in Sources */,
 				BB1FAD07240F246200D9887F /* NotificationName+Extension.swift in Sources */,
