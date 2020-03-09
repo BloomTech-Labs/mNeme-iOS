@@ -142,12 +142,14 @@ class NetworkClient {
         }
     }
 
-    // Used to delete cards and delete decks
-    func delete(user: User, deck: Deck, deleteCards: [CardData]?, completion: @escaping (Deck?) -> Void) {
+    // Used to delete cards and delete decks, pass in cards to delete cards for a deck
+    func delete(user: User, deck: Deck, deleteCards: [CardData]?, archived: Bool = false, completion: @escaping (Deck?) -> Void) {
         guard let baseURL = baseURL else { completion(nil); return }
 
         var deleteDeckURL = baseURL.appendingPathComponent(user.id).appendingPathComponent(deck.deckInformation.collectionId)
 
+        if archived { deleteDeckURL.appendPathComponent("delete-archived-deck") }
+        
         if deleteCards != nil {
             deleteDeckURL = deleteDeckURL.appendingPathComponent("delete-cards")
         } else {
