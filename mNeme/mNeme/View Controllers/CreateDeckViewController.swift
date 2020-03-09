@@ -23,6 +23,9 @@ class CreateDeckViewController: UIViewController {
         updateViews()
     }
 
+    @IBAction func backTapped(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     private func updateViews() {
         topView.backgroundColor = UIColor.mNeme.orangeBlaze
         

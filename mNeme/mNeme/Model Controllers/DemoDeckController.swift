@@ -83,12 +83,29 @@ class DemoDeckController {
     }
     
     func createDeck(user: User, name: String, icon: String, tags: [String], cards: [CardRep]) {
-        
         networkClient.post(user: user, deckName: name, icon: icon, tags: tags, cards: cards) { (deck: Deck?) in
             if let deck = deck {
                 self.decks.append(deck)
             }
         }
+    }
+    
+    func editDeck(deck: Deck, user: User, name: String, icon: String, tags: [String], cards: [CardRep]) {
+        networkClient.post(user: user, deckName: name, icon: icon, tags: tags, cards: cards) { (deck: Deck?) in
+            if let deck = deck {
+                self.decks.append(deck)
+            }
+        }
+    }
+    
+    
+    
+    func addCard(user: User, name: String, cards: [CardRep]) -> CardData? {
+        var cardData: CardData?
+        networkClient.post(user: user, deckName: name, icon: "", tags: [""], cards: cards, add: true) { (cards: CardData?) in
+            cardData = cards
+        }
+        return cardData
     }
 }
 
