@@ -17,30 +17,56 @@ struct DeckCollectionId: Codable {
 struct Deck: Equatable, Codable {
     var deckInformation: DeckInformation
     var data: [CardData]?
+
+    enum DeckCodingKeys: String, CodingKey {
+        case deckInformation
+        case data
+    }
+
+    init(deckInfo: DeckInformation) {
+        self.deckInformation = deckInfo
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: DeckCodingKeys.self)
+        deckInformation = try container.decode(DeckInformation.self, forKey: .deckInformation)
+        data = try container.decode([CardData].self, forKey: .data)
+    }
 }
 
 struct DeckInformation: Equatable, Codable {
     var icon: String
     var tag: [String]?
     var createdBy: String
-    var exampleCard: String?
+    var exampleCard: String
     var collectionId: String
     var deckName: String
     var deckLength: Int
-
-//    init(icon: String, tag: [String]) {
-//        self.icon = icon
-//        self.tag = tag
-//    }
 }
 
 struct CardData: Equatable, Codable {
-    var id: String
-    var data: CardInfo
+    var id: String? = nil
+    var archived: Bool? = nil
+    var back: String
+    var front: String
 
-    struct CardInfo: Equatable, Codable {
-        var archived: Bool = false
-        var back: String
-        var front: String
+    enum CardDataKeys: String, CodingKey {
+        case id
+        case data
+    }
+
+    enum CardInfoKeys: String, CodingKey {
+        case archived
+        case front
+        case back
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CardDataKeys.self)
+        id = try container.decode(String.self, forKey: .id)
+        let dataContainer = try container.nestedContainer(keyedBy: CardInfoKeys.self, forKey: .data)
+        archived = try dataContainer.decode(Bool.self, forKey: .archived)
+        front = try dataContainer.decode(String.self, forKey: .front)
+        back = try dataContainer.decode(String.self, forKey: .back)
     }
 }

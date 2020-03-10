@@ -229,8 +229,8 @@ class NetworkClient {
             if let updateCards = updateCards {
                 var cardReps = [CardRep]()
                 for card in updateCards {
-                    let tempCard = CardRep(id: card.id, archived: card.data.archived, front: card.data.front, back: card.data.back)
-                    cardReps.append(tempCard)
+//                    let tempCard = CardRep(id: card.id, archived: card.data.archived, front: card.data.front, back: card.data.back)
+//                    cardReps.append(tempCard)
                 }
                 let changesDictionary = ["changes": cardReps]
                 print(changesDictionary)
