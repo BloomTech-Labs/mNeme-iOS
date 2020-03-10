@@ -26,8 +26,9 @@ class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UIT
     @IBOutlet weak var deckIconTF: UITextField!
     @IBOutlet weak var deckTagsTF: UITextField!
     @IBOutlet weak var addFlashcardView: UIView!
-    @IBOutlet weak var addFrontTF: UITextField!
-    @IBOutlet weak var addBackTF: UITextField!
+    @IBOutlet weak var flashCardDividerView: UIView!
+    @IBOutlet weak var addFrontTV: UITextView!
+    @IBOutlet weak var addBackTV: UITextView!
     @IBOutlet weak var addCardButton: UIButton!
     @IBOutlet weak var saveDeckButton: UIButton!
     @IBOutlet weak var cardTableView: UITableView!
@@ -36,12 +37,19 @@ class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UIT
         super.viewDidLoad()
         cardTableView.delegate = self
         cardTableView.dataSource = self
+        updateLaunchViews()
         updateDeckViews()
         cardTableView.reloadData()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        addFrontTV.centerVertically()
+        addBackTV.centerVertically()
+    }
+    
     @IBAction func addCardTapped(_ sender: UIButton) {
-        guard let frontText = addFrontTF.text, !frontText.isEmpty, let backText = addBackTF.text, !backText.isEmpty, let userController = userController else { return }
+        guard let frontText = addFrontTV.text, !frontText.isEmpty, let backText = addBackTV.text, !backText.isEmpty, let userController = userController else { return }
         
         if let deck = deck {
             let cardRep = CardRep(front: frontText, back: backText)
@@ -87,6 +95,16 @@ class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UIT
         }
     }
     
+    private func updateLaunchViews() {
+        addFlashcardView.layer.cornerRadius = 10
+        addFlashcardView.layer.borderWidth = 1
+        addFlashcardView.layer.borderColor = UIColor.lightGray.cgColor
+        addFlashcardView.layer.backgroundColor = UIColor.white.cgColor
+        
+        flashCardDividerView.layer.backgroundColor = UIColor.lightGray.cgColor
+        flashCardDividerView.layer.cornerRadius = 10
+    }
+    
     private func updateDeckViews() {
         if let deck = deck {
             deckNameTF.text = deck.deckInformation.deckName
@@ -102,14 +120,14 @@ class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UIT
         deckTagsTF.text = ""
         deckNameTF.text = ""
         deckIconTF.text = ""
-        addFrontTF.text = ""
-        addBackTF.text = ""
+        addFrontTV.text = ""
+        addBackTV.text = ""
         cardTableView.reloadData()
     }
     
     private func clearCardViews() {
-        addFrontTF.text = ""
-        addBackTF.text = ""
+        addFrontTV.text = ""
+        addBackTV.text = ""
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -190,3 +208,18 @@ class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UIT
      */
     
 }
+
+// MARK: - Extensions
+
+extension UITextView {
+
+    func centerVertically() {
+        let fittingSize = CGSize(width: bounds.width, height: CGFloat.greatestFiniteMagnitude)
+        let size = sizeThatFits(fittingSize)
+        let topOffset = (bounds.size.height - size.height * zoomScale) / 2
+        let positiveTopOffset = max(1, topOffset)
+        contentOffset.y = -positiveTopOffset
+    }
+
+}
+
