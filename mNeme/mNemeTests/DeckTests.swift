@@ -51,85 +51,91 @@ class DeckTests: XCTestCase {
         }
 
         wait(for: [expect], timeout: 2)
-        
+
         XCTAssertNotNil(cardData)
         XCTAssertEqual(cardData?[0].back, "xzczxcxzc")
         XCTAssertEqual(cardData?[0].front, "xzcz")
     }
-//
-//    func testPostDeck() {
-//        let client = NetworkClient()
-//
-//        var deckData: Deck?
-//        let card1 = CardRep(id: nil, archived: nil, front: "front1", back: "back1")
-//        let card2 = CardRep(id: nil, archived: nil, front: "front2", back: "back2")
-//        let cards: [CardRep] = [ card1, card2 ]
-//        let user = User("r4Ok4g9OA5UHtpXnDRqF5XFCduH3")
-//        let expect = expectation(description: "Wait for deck to create and return")
-//
-//        client.post(user: user, deckName: "iosTest", icon: "", tags: ["test"], cards: cards) { (deck: Deck?) in
-//            deckData = deck
-//            expect.fulfill()
-//        }
-//
-//        wait(for: [expect], timeout: 100)
-//
-//        XCTAssertNotNil(deckData)
-//        XCTAssertEqual(deckData?.deckInformation.exampleCard, "front1")
-//        XCTAssertEqual(deckData?.deckInformation.deckName, "iosTest")
-//        XCTAssertEqual(deckData?.deckInformation.deckLength, 2)
-//        XCTAssertEqual(deckData?.data?[0].data.back, "back1")
-//    }
-//
-//    func testAddCardsToDeck() {
-//        let client = NetworkClient()
-//
-//        var deckData: Deck?
-//        let card1 = CardRep(id: nil, archived: nil, front: "testadd1", back: "testadd2")
-//        let card2 = CardRep(id: nil, archived: nil, front: "testadd3", back: "testadd4")
-//        let cards: [CardRep] = [ card1, card2 ]
-//        let user = User("r4Ok4g9OA5UHtpXnDRqF5XFCduH3")
-//        let expect = expectation(description: "Wait for deck to add cards")
-//
-//        client.post(user: user, deckName: "iosTest", icon: "", tags: [""], cards: cards, add: true) { (deck: Deck?) in
-//            deckData = deck
-//            expect.fulfill()
-//        }
-//
-//        wait(for: [expect], timeout: 100)
-//
-//        XCTAssertNotNil(deckData)
-//        XCTAssertEqual(deckData?.deckInformation.deckLength, 4)
-//    }
-//
-//    func testDeleteDeck() {
-//        let mock = ModckDataLoader()
-//
-//        let client = NetworkClient(networkDataLoader: mock)
-//
-//        let deckInfo1 = DeckInformation(icon: "", tag: [""], createdBy: "", exampleCard: "", collectionId: "iosTest", deckName: "iosTest", deckLength: 0)
-//        let deckInfo2 = DeckInformation(icon: "", tag: [""], createdBy: "", exampleCard: "", collectionId: "iosTest2", deckName: "iosTest2", deckLength: 0)
-//        let deck1 = Deck(deckInformation: deckInfo1, data: [])
-//        let deck2 = Deck(deckInformation: deckInfo2, data: [])
-//
-//        var decks = [deck1, deck2]
-//
-//
-//        let user = User("r4Ok4g9OA5UHtpXnDRqF5XFCduH3")
-//        let expect = expectation(description: "Wait for deck to delete")
-//
-//        client.delete(user: user, deck: decks[0], deleteCards: nil) { deck in
-//            if let deck = deck,
-//                let index = decks.firstIndex(of: deck) {
-//                decks.remove(at: index)
-//            }
-//            expect.fulfill()
-//        }
-//
-//        wait(for: [expect], timeout: 2)
-//        XCTAssertEqual(decks.count, 1)
-//    }
-//
+
+    func testPostDeck() {
+        let mock = ModckDataLoader()
+        mock.data = createDeckData
+        let client = NetworkClient(networkDataLoader: mock)
+
+        var deckData: Deck?
+        let card1 = CardData(front: "front1", back: "back1")
+        let card2 = CardData(front: "front2", back: "back2")
+        let cards: [CardData] = [ card1, card2 ]
+        let user = User("r4Ok4g9OA5UHtpXnDRqF5XFCduH3")
+        let expect = expectation(description: "Wait for deck to create and return")
+
+        client.post(user: user, deckName: "iosTest", icon: "", tags: ["test"], cards: cards) { (deck: Deck?) in
+            deckData = deck
+            expect.fulfill()
+        }
+
+        wait(for: [expect], timeout: 100)
+
+        XCTAssertNotNil(deckData)
+        XCTAssertEqual(deckData?.deckInformation.exampleCard, "front1")
+        XCTAssertEqual(deckData?.deckInformation.deckName, "iosTest")
+        XCTAssertEqual(deckData?.deckInformation.deckLength, 2)
+        XCTAssertEqual(deckData?.data?[0].back, "back1")
+        XCTAssertEqual(deckData?.data?[0].front, "front1")
+        XCTAssertEqual(deckData?.data?[1].back, "back2")
+        XCTAssertEqual(deckData?.data?[1].front, "front2")
+    }
+
+    func testAddCardsToDeck() {
+        let mock = ModckDataLoader()
+        mock.data = addCardData
+        let client = NetworkClient(networkDataLoader: mock)
+
+        var deckData: Deck?
+        let card1 = CardData(front: "testadd1", back: "testadd2")
+        let card2 = CardData(front: "testadd3", back: "testadd4")
+        let cards: [CardData] = [ card1, card2 ]
+        let user = User("r4Ok4g9OA5UHtpXnDRqF5XFCduH3")
+        let expect = expectation(description: "Wait for deck to add cards")
+
+        client.post(user: user, deckName: "iosTest", icon: "", tags: [""], cards: cards, add: true) { (deck: Deck?) in
+            deckData = deck
+            expect.fulfill()
+        }
+
+        wait(for: [expect], timeout: 100)
+
+        XCTAssertNotNil(deckData)
+        XCTAssertEqual(deckData?.deckInformation.deckLength, 4)
+    }
+
+    func testDeleteDeck() {
+        let mock = ModckDataLoader()
+
+        let client = NetworkClient(networkDataLoader: mock)
+
+        var deckInfo1 = DeckInformation(icon: "", tags: [""])
+        deckInfo1.collectionId = "iosTest1"
+        var deckInfo2 = DeckInformation(icon: "", tags: [""])
+        deckInfo2.collectionId = "iosTest2"
+        let deck1 = Deck(deckInfo: deckInfo1, data: [])
+        let deck2 = Deck(deckInfo: deckInfo2, data: [])
+        var decks = [deck1, deck2]
+        let user = User("r4Ok4g9OA5UHtpXnDRqF5XFCduH3")
+        let expect = expectation(description: "Wait for deck to delete")
+
+        client.delete(user: user, deck: decks[0], deleteCards: nil) { deck in
+            if let deck = deck,
+                let index = decks.firstIndex(of: deck) {
+                decks.remove(at: index)
+            }
+            expect.fulfill()
+        }
+
+        wait(for: [expect], timeout: 2)
+        XCTAssertEqual(decks.count, 1)
+    }
+
 //    func testDeleteCards() {
 //        let mock = ModckDataLoader()
 //        mock.data = deletedCardData

@@ -48,6 +48,89 @@ let deckInfromationData = """
 }
 """.data(using: .utf8)!
 
+let createDeckData = """
+{
+  "deckInformation": {
+    "collectionId": "iosTest",
+    "deckName": "iosTest",
+    "deckLength": 2,
+    "icon": "",
+    "tags": [
+      "Intro"
+    ],
+    "createdBy": "r4Ok4g9OA5UHtpXnDRqF5XFCduH3",
+    "exampleCard": "front1"
+  },
+  "data": [
+    {
+      "id": "2698039a-7bb7-4534-92c2-f0ad827cda0a",
+      "data": {
+        "front": "front1",
+        "archived": false,
+        "back": "back1"
+      }
+    },
+    {
+      "id": "f2dc2e7b-9c68-4b69-b818-bf65e0ff8f7c",
+      "data": {
+        "archived": false,
+        "back": "back2",
+        "front": "front2"
+      }
+    }
+  ]
+}
+""".data(using: .utf8)!
+
+let addCardData = """
+{
+  "deckInformation": {
+    "deckName": "iosTest",
+    "deckLength": 4,
+    "icon": "",
+    "tags": [
+      "Intro"
+    ],
+    "createdBy": "r4Ok4g9OA5UHtpXnDRqF5XFCduH3",
+    "exampleCard": "1c",
+    "collectionId": "iosTest"
+  },
+  "data": [
+    {
+      "id": "a5405cd3-eb08-4ba4-8da8-1526bb70025e",
+      "data": {
+        "archived": false,
+        "back": "add3",
+        "front": "add4"
+      }
+    },
+    {
+      "id": "c080f871-1643-4f5e-8d42-60a8a4cf6e1b",
+      "data": {
+        "archived": false,
+        "back": "add1",
+        "front": "add2"
+      }
+    },
+    {
+      "id": "d9ebbf4e-8392-47fc-8b80-573eb573eee5",
+      "data": {
+        "archived": false,
+        "back": "2",
+        "front": "2c"
+      }
+    },
+    {
+      "id": "e3a21807-b560-4531-8a92-b49c8e7ddf18",
+      "data": {
+        "archived": false,
+        "back": "1",
+        "front": "1c"
+      }
+    }
+  ]
+}
+""".data(using: .utf8)!
 
 let deletedCardData = """
 {
