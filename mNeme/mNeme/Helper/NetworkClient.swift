@@ -149,7 +149,7 @@ class NetworkClient {
         var deleteDeckURL = baseURL.appendingPathComponent(user.id).appendingPathComponent(deck.deckInformation.collectionId)
 
         if archived { deleteDeckURL.appendPathComponent("delete-archived-deck") }
-        
+
         if deleteCards != nil {
             deleteDeckURL = deleteDeckURL.appendingPathComponent("delete-cards")
         } else {
@@ -208,9 +208,9 @@ class NetworkClient {
         guard let baseURL = baseURL else { completion(nil); return }
 
         var updateURL: URL?
-        if let updatedDeckName = updateDeckName {
+        if let _ = updateDeckName {
             updateURL = baseURL.appendingPathComponent("update-deck-name")
-        } else if let updateCards = updateCards {
+        } else if let _ = updateCards {
             updateURL = baseURL.appendingPathComponent("update")
         }
 
@@ -223,12 +223,25 @@ class NetworkClient {
         request.httpMethod = HTTPMethod.put.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
-
         do {
-            let updateDeckNameDictionary = ["deckName": updateDeckName]
-            let changesDictionary = ["changes": updateDeckNameDictionary]
-            let jsonData = try JSONSerialization.data(withJSONObject: changesDictionary, options: [])
+            var jsonData: Data?
+
+            if let updateCards = updateCards {
+                var cardReps = [CardRep]()
+                for card in updateCards {
+                    let tempCard = CardRep(id: card.id, archived: card.data.archived, front: card.data.front, back: card.data.back)
+                    cardReps.append(tempCard)
+                }
+                let changesDictionary = ["changes": cardReps]
+                print(changesDictionary)
+                jsonData = try JSONEncoder().encode(changesDictionary)
+            } else if let updateDeckName = updateDeckName {
+                let updateDeckNameDictionary = ["deckName": updateDeckName]
+                let changesDictionary = ["changes": updateDeckNameDictionary]
+                jsonData = try JSONSerialization.data(withJSONObject: changesDictionary, options: [])
+            }
             request.httpBody = jsonData
+
         } catch {
             print("Cannot encode json data")
             completion(nil)
@@ -276,6 +289,8 @@ struct DeckInformationRep: Codable {
 }
 
 struct CardRep: Codable {
+    let id: String?
+    let archived: Bool?
     let front: String
     let back: String
 }
