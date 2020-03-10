@@ -25,8 +25,6 @@ class NetworkClient {
 
         var requestURL = archive ? baseURL.appendingPathComponent(userId).appendingPathComponent("archive") : baseURL.appendingPathComponent(userId)
 
-
-
         // if collection id is not nil it will return the card data.
         if let colId = colId {
             requestURL = archive ? requestURL.appendingPathComponent(colId).appendingPathComponent("archive") : requestURL.appendingPathComponent(colId)
@@ -203,77 +201,75 @@ class NetworkClient {
             completion(deck)
         }
     }
-//
-//    func put<T: Codable>(user: User, deck: Deck, updateDeckName: String?, updateCards: [CardData]?,  completion: @escaping(T?) -> Void) {
-//        guard let baseURL = baseURL else { completion(nil); return }
-//
-//        var updateURL: URL?
-//        if let _ = updateDeckName {
-//            updateURL = baseURL.appendingPathComponent("update-deck-name")
-//        } else if let _ = updateCards {
-//            updateURL = baseURL.appendingPathComponent("update")
-//        }
-//
-//        guard var requestURL = updateURL else { completion(nil); return }
-//
-//        requestURL.appendPathComponent(user.id)
-//        requestURL.appendPathComponent(deck.deckInformation.collectionId)
-//
-//        var request = URLRequest(url: requestURL)
-//        request.httpMethod = HTTPMethod.put.rawValue
-//        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-//
-//        do {
-//            var jsonData: Data?
-//
-//            if let updateCards = updateCards {
-//                var cardReps = [CardRep]()
-//                for card in updateCards {
-////                    let tempCard = CardRep(id: card.id, archived: card.data.archived, front: card.data.front, back: card.data.back)
-////                    cardReps.append(tempCard)
-//                }
-//                let changesDictionary = ["changes": cardReps]
-//                print(changesDictionary)
-//                jsonData = try JSONEncoder().encode(changesDictionary)
-//            } else if let updateDeckName = updateDeckName {
-//                let updateDeckNameDictionary = ["deckName": updateDeckName]
-//                let changesDictionary = ["changes": updateDeckNameDictionary]
-//                jsonData = try JSONSerialization.data(withJSONObject: changesDictionary, options: [])
-//            }
-//            request.httpBody = jsonData
-//
-//        } catch {
-//            print("Cannot encode json data")
-//            completion(nil)
-//            return
-//        }
-//
-//
-//        dataLoader.loadData(using: request) { (data, response, error) in
-//            if let response = response as? HTTPURLResponse,
-//                response.statusCode == 404 {
-//                print("collection not found")
-//                completion(nil)
-//                return
-//            }
-//
-//            if let error = error {
-//                print("Error with request: \(error)")
-//                completion(nil)
-//                return
-//            }
-//
-//            guard let data = data else { completion(nil); return }
-//
-//            let jsonDecoder = JSONDecoder()
-//            do {
-//                let decodedData = try jsonDecoder.decode(T.self, from: data)
-//                completion(decodedData)
-//            } catch {
-//                print("error decoding data")
-//                completion(nil)
-//                return
-//            }
-//        }
-//    }
+
+    func put<T: Codable>(user: User, deck: Deck, updateDeckName: String?, updateCards: [CardData]?,  completion: @escaping(T?) -> Void) {
+        guard let baseURL = baseURL,
+            let collectionId = deck.deckInformation.collectionId else { completion(nil); return }
+
+        var updateURL: URL?
+        if let _ = updateDeckName {
+            updateURL = baseURL.appendingPathComponent("update-deck-name")
+        } else if let _ = updateCards {
+            updateURL = baseURL.appendingPathComponent("update")
+        }
+
+        guard var requestURL = updateURL else { completion(nil); return }
+
+        requestURL.appendPathComponent(user.id)
+        requestURL.appendPathComponent(collectionId)
+
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = HTTPMethod.put.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        do {
+            var jsonData: Data?
+
+            if let updateCards = updateCards {
+                let changesDictionary = ["changes": updateCards]
+                print(changesDictionary)
+                jsonData = try JSONEncoder().encode(changesDictionary)
+            } else if let updateDeckName = updateDeckName {
+                let updateDeckNameDictionary = ["deckName": updateDeckName]
+                let changesDictionary = ["changes": updateDeckNameDictionary]
+                jsonData = try JSONSerialization.data(withJSONObject: changesDictionary, options: [])
+                print(String(data: jsonData!, encoding: .utf8)!)
+            }
+            request.httpBody = jsonData
+
+        } catch {
+            print("Cannot encode json data")
+            completion(nil)
+            return
+        }
+
+
+        dataLoader.loadData(using: request) { (data, response, error) in
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 404 {
+                print("collection not found")
+                completion(nil)
+                return
+            }
+
+            if let error = error {
+                print("Error with request: \(error)")
+                completion(nil)
+                return
+            }
+
+            guard let data = data else { completion(nil); return }
+
+            let jsonDecoder = JSONDecoder()
+            do {
+                let decodedData = try jsonDecoder.decode(T.self, from: data)
+                print(decodedData)
+                completion(decodedData)
+            } catch {
+                print("error decoding data")
+                completion(nil)
+                return
+            }
+        }
+    }
 }

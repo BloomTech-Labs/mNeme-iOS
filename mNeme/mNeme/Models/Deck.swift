@@ -8,11 +8,6 @@
 
 import Foundation
 
-// This struct will only hold the decks collection ID for making the network call
-struct DeckCollectionId: Codable {
-    var collectionId: String
-}
-
 // This will be the main structure for holding all deck information
 struct Deck: Equatable, Codable {
     var deckInformation: DeckInformation

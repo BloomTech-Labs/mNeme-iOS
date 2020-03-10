@@ -135,22 +135,31 @@ let addCardData = """
 let deletedCardData = """
 {
   "deckInformation": {
+    "deckName": "iosTest",
+    "deckLength": 2,
     "icon": "",
     "tags": [
-      "Intro"
+      "test"
     ],
     "createdBy": "r4Ok4g9OA5UHtpXnDRqF5XFCduH3",
-    "collectionId": "iosTest",
-    "deckName": "iosTest",
-    "deckLength": 1
+    "exampleCard": "front1",
+    "collectionId": "iosTest"
   },
   "data": [
     {
-      "id": "6bd55cf5-aacb-450b-8906-dd75db99a71f",
+      "id": "1adf546f-428b-490f-b503-a753a95cb59c",
       "data": {
         "archived": false,
-        "back": "2",
-        "front": "2c"
+        "back": "back1",
+        "front": "front1"
+      }
+    },
+    {
+      "id": "1d1c3b5e-1fc8-4cf7-ae44-890a69bb40db",
+      "data": {
+        "archived": false,
+        "back": "back2",
+        "front": "front2"
       }
     }
   ]
