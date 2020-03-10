@@ -42,7 +42,7 @@ class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UIT
     
     @IBAction func addCardTapped(_ sender: UIButton) {
         guard let frontText = addFrontTF.text, !frontText.isEmpty, let backText = addBackTF.text, !backText.isEmpty, let userController = userController else { return }
-
+        
         if let deck = deck {
             let cardRep = CardRep(front: frontText, back: backText)
             
@@ -71,12 +71,12 @@ class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UIT
         guard cardReps.count > 0 else { return }
         
         if let deck = deck { // FIX TAGS PARAMETER ONCE
-//            deckController.editDeck(deck: deck, user: user, name: deckName, icon: deckIcon, tags: [""], cards: cards) {
-//                DispatchQueue.main.async {
-//                    self.clearViews()
-//                    self.dismiss(animated: true, completion: nil)
-//                }
-//            }
+            //            deckController.editDeck(deck: deck, user: user, name: deckName, icon: deckIcon, tags: [""], cards: cards) {
+            //                DispatchQueue.main.async {
+            //                    self.clearViews()
+            //                    self.dismiss(animated: true, completion: nil)
+            //                }
+            //            }
         } else {
             deckController.createDeck(user: user, name: deckName, icon: deckIcon, tags: [""], cards: cardReps) {
                 DispatchQueue.main.async {
@@ -132,6 +132,52 @@ class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UIT
         }
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+            let deleteDeckAlert = UIAlertController(title: "Are you sure you want to delete this card? Would you rather archive?", message: "", preferredStyle: .actionSheet)
+            
+            
+            deleteDeckAlert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: nil)) // Add completion handler and set up actual delete function inside of "Do Block"
+            
+            //            do {
+            //
+            //            } catch {
+            //
+            //            }
+            
+            deleteDeckAlert.addAction(UIAlertAction(title: "Archive", style: .default, handler: nil))
+            deleteDeckAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(deleteDeckAlert, animated: true)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let card = cards[indexPath.row] // for completion handler information
+        
+        let editAlert = UIAlertController(title: "Edit your Card", message: "", preferredStyle: .alert)
+        
+        editAlert.addAction(UIAlertAction(title: "Save Changes", style: .default, handler: nil)) // Add Completion handler to ensure card updates are pushed
+    
+        editAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        editAlert.addTextField { (frontTextField: UITextField!) in
+            frontTextField.text = card.data.front
+            frontTextField.placeholder = "Front"
+        }
+        
+        editAlert.addTextField { (backTextField: UITextField!) in
+            backTextField.text = card.data.back
+            backTextField.placeholder = "Back"
+        }
+        
+        self.present(editAlert, animated: true)
+        
+    }
+    
+    
+    
     
     /*
      // MARK: - Navigation

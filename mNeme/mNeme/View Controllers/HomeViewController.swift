@@ -57,10 +57,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         deckCreateButton.setTitleColor(UIColor.white, for: .normal)
     }
     
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "DeckSegue" {
             if let deckCardVC = segue.destination as? DeckCardViewController, let indexPath = deckTableView.indexPathForSelectedRow {
                 if indexPath.section == 0 {
@@ -77,7 +77,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 createVC.deckController = demoDeckController
             }
         }
-     }
+    }
     
     // MARK: - TableView Functions
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -115,4 +115,35 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             return UITableViewCell()
         }
     }
+    
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+            let deleteDeckAlert = UIAlertController(title: "Are you sure you want to delete this deck? Would you rather archive?", message: "", preferredStyle: .actionSheet)
+            
+            
+            deleteDeckAlert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: nil)) // Add completion handler and set up actual delete function inside of "Do Block"
+            
+            //            do {
+            //
+            //            } catch {
+            //
+            //            }
+            
+            deleteDeckAlert.addAction(UIAlertAction(title: "Archive", style: .default, handler: nil))
+            deleteDeckAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            
+            let noDeletionAlert = UIAlertController(title: "Cannot delete Demo Deck", message: "", preferredStyle: .alert)
+            noDeletionAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+            
+            if indexPath.section == 0 {
+                self.present(noDeletionAlert, animated: true)
+            } else {
+                self.present(deleteDeckAlert, animated: true)
+            }
+            
+        }
+    }
+    
 }
