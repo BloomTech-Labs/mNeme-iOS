@@ -42,15 +42,22 @@ class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UIT
     
     @IBAction func addCardTapped(_ sender: UIButton) {
         guard let frontText = addFrontTF.text, !frontText.isEmpty, let backText = addBackTF.text, !backText.isEmpty, let userController = userController else { return }
-        
-        
+
         if let deck = deck {
             let cardRep = CardRep(front: frontText, back: backText)
-            if let card = deckController?.addCard(user: userController.user!, name: deck.deckInformation.deckName, cards: [cardRep]) {
-                self.cards.append(card)
-                cardTableView.reloadData()
-                clearCardViews()
-            }
+            
+            deckController?.addCard(user: userController.user!, name: deck.deckInformation.deckName, cards: [cardRep], completion: { (result) in
+                if let result = result {
+                    
+                    DispatchQueue.main.async {
+                        self.cards = result
+                        // Need to sort cards
+                        self.cardTableView.reloadData()
+                        self.clearCardViews()
+                    }
+                    
+                }
+            })
             
         } else {
             let cardRep = CardRep(front: frontText, back: backText)
@@ -60,16 +67,23 @@ class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UIT
         }
     }
     @IBAction func saveDeckTapped(_ sender: UIButton) {
-        self.tabBarController?.selectedIndex = 0
         guard let deckName = deckNameTF.text, !deckName.isEmpty, let deckIcon = deckIconTF.text, !deckIcon.isEmpty, let userController = userController, let user = userController.user, let deckController = deckController else { return }
         guard cardReps.count > 0 else { return }
         
         if let deck = deck { // FIX TAGS PARAMETER ONCE
-            deckController.editDeck(deck: deck, user: user, name: deckName, icon: deckIcon, tags: [""], cards: cardReps)
-            clearViews()
+//            deckController.editDeck(deck: deck, user: user, name: deckName, icon: deckIcon, tags: [""], cards: cards) {
+//                DispatchQueue.main.async {
+//                    self.clearViews()
+//                    self.dismiss(animated: true, completion: nil)
+//                }
+//            }
         } else {
-            deckController.createDeck(user: user, name: deckName, icon: deckIcon, tags: [""], cards: cardReps)
-            clearViews()
+            deckController.createDeck(user: user, name: deckName, icon: deckIcon, tags: [""], cards: cardReps) {
+                DispatchQueue.main.async {
+                    self.clearViews()
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
         }
     }
     

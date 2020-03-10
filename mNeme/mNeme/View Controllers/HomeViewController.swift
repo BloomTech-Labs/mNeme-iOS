@@ -21,6 +21,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // MARK: - Properties
     var demoDeckController: DemoDeckController?
+    var userController: UserController?
     
     // MARK: - View Lifecycle
     override func viewDidLoad() {
@@ -66,7 +67,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     deckCardVC.demoDeck = demoDeckController?.demoDecks[indexPath.row]
                 } else {
                     deckCardVC.realDeck = demoDeckController?.decks[indexPath.row]
+                    deckCardVC.userController = userController
+                    deckCardVC.deckController = demoDeckController
                 }
+            }
+        } else if segue.identifier == "CreateADeckSegue" {
+            if let createVC = segue.destination as? CreateDeckViewController {
+                createVC.userController = userController
+                createVC.deckController = demoDeckController
             }
         }
      }

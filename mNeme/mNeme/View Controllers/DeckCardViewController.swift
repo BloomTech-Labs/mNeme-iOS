@@ -43,6 +43,8 @@ class DeckCardViewController: UIViewController {
     var currentCardTotal = 0
     var currentCardIndex: Int = 0
     var mockDemoDeckController = MockDemoDeckController()
+    var deckController: DemoDeckController?
+    var userController: UserController?
     var allowedToFlip = true
     private var frontLabel: UILabel?
     private var backLabel: UILabel?
@@ -260,6 +262,8 @@ class DeckCardViewController: UIViewController {
         if segue.identifier == "EditDeckSegue" {
             if let editVC = segue.destination as? CreateDeckViewController {
                 editVC.deck = realDeck
+                editVC.userController = userController
+                editVC.deckController = deckController
             }
         }
     }

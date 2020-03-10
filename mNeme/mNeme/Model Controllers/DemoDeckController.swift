@@ -97,30 +97,31 @@ class DemoDeckController {
         }
     }
     
-    func createDeck(user: User, name: String, icon: String, tags: [String], cards: [CardRep]) {
+    func createDeck(user: User, name: String, icon: String, tags: [String], cards: [CardRep], completion: @escaping () -> Void) {
         networkClient.post(user: user, deckName: name, icon: icon, tags: tags, cards: cards) { (deck: Deck?) in
             if let deck = deck {
                 self.decks.append(deck)
+                completion()
             }
         }
     }
     
-    func editDeck(deck: Deck, user: User, name: String, icon: String, tags: [String], cards: [CardRep]) {
-        networkClient.post(user: user, deckName: name, icon: icon, tags: tags, cards: cards) { (deck: Deck?) in
+    func editDeck(deck: Deck, user: User, name: String, icon: String, tags: [String], cards: [CardRep], completion: @escaping () -> Void) {
+        networkClient.post(user: user, deckName: name, icon: icon, tags: tags, cards: cards, add: true) { (deck: Deck?) in
             if let deck = deck {
                 self.decks.append(deck)
+                completion()
             }
         }
     }
     
     
     
-    func addCard(user: User, name: String, cards: [CardRep]) -> CardData? {
-        var cardData: CardData?
-        networkClient.post(user: user, deckName: name, icon: "", tags: [""], cards: cards, add: true) { (cards: CardData?) in
-            cardData = cards
+    func addCard(user: User, name: String, cards: [CardRep], completion: @escaping ([CardData]?) -> Void) {
+        networkClient.post(user: user, deckName: name, icon: "", tags: [""], cards: cards, add: true) { (deck: Deck?) in
+            print("\(String(describing: deck))")
+            completion(deck?.data)
         }
-        return cardData
     }
 }
 
