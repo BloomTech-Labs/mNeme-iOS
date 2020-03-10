@@ -142,11 +142,19 @@ class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UIT
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CardCell", for: indexPath) as? CardTableViewCell else { return UITableViewCell() }
         
         if deck != nil {
-            cell.frontLabel.text = self.cards[indexPath.row].data.front
-            cell.backLabel.text = self.cards[indexPath.row].data.back
+            cell.frontCardTV.text = self.cards[indexPath.row].data.front
+            cell.backCardTV.text = self.cards[indexPath.row].data.back
+            cell.cardView.layer.cornerRadius = 10
+            cell.cardView.layer.borderColor = UIColor.lightGray.cgColor
+            cell.cardView.layer.borderWidth = 1
+            cell.cardView.layer.backgroundColor = UIColor.white.cgColor
         } else {
-            cell.frontLabel.text = cardReps[indexPath.row].front
-            cell.backLabel.text = cardReps[indexPath.row].back
+            cell.frontCardTV.text = cardReps[indexPath.row].front
+            cell.backCardTV.text = cardReps[indexPath.row].back
+            cell.cardView.layer.cornerRadius = 10
+            cell.cardView.layer.borderColor = UIColor.lightGray.cgColor
+            cell.cardView.layer.borderWidth = 1
+            cell.cardView.layer.backgroundColor = UIColor.white.cgColor
         }
         return cell
     }
