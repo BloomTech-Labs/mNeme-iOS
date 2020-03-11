@@ -74,7 +74,9 @@ class DeckCardViewController: UIViewController {
     
     @objc func updateRealDeck(notification: Notification) {
         if let deckController = notification.userInfo?["controller"] as? DemoDeckController {
-            realDeck = deckController.decks[indexOfDeck!]
+            guard let index = indexOfDeck else { return }
+            realDeck = deckController.decks[index]
+            self.titleLabel.text = deckController.decks[index].deckInformation.deckName
         }
     }
     

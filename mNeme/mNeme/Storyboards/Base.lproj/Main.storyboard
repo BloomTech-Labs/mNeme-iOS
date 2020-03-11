@@ -651,7 +651,7 @@
                                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="ymp-gi-yEn">
                                                                             <rect key="frame" x="35" y="8" width="304" height="111"/>
                                                                             <subviews>
-                                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Add to the front!" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="nY8-eR-XFs">
+                                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Add to the front!" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nY8-eR-XFs">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="304" height="48"/>
                                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                                                     <constraints>
@@ -661,7 +661,7 @@
                                                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="19"/>
                                                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                                                 </textView>
-                                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Add to the back!" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Yml-YE-H3u">
+                                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Add to the back!" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yml-YE-H3u">
                                                                                     <rect key="frame" x="0.0" y="61" width="304" height="50"/>
                                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                                                     <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -743,7 +743,7 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Add to the front!" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Zgh-B2-irC">
+                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Zgh-B2-irC">
                                                                         <rect key="frame" x="0.0" y="15.333333333333314" width="304" height="87.333333333333329"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -761,7 +761,7 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Add to the back!" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Yvk-K8-eT3">
+                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Yvk-K8-eT3">
                                                                         <rect key="frame" x="0.0" y="15.333333333333371" width="304" height="87.333333333333329"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>

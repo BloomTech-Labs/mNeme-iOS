@@ -108,13 +108,10 @@ class DemoDeckController {
     
     func editDeckName(deck: Deck, user: User, name: String, completion: @escaping () -> Void) {
         networkClient.put(user: user, deck: deck, updateDeckName: name, updateCards: nil) { (result: [String: DeckInformation]?) in
-            if let result = result, let deckInfo = result["deckInformation"], let index = self.decks.firstIndex(of: deck) {
-                self.decks[index].deckInformation = deckInfo
-                completion()
-            }
+            completion()
         }
     }
-        
+    
     func editDeckCards(deck: Deck, user: User, cards: [CardData], completion: @escaping () -> Void) {
         networkClient.put(user: user, deck: deck, updateDeckName: nil, updateCards: cards) { (result: Deck?) in
             if let result = result, let index = self.decks.firstIndex(of: deck) {
@@ -138,10 +135,24 @@ class DemoDeckController {
         return newDeckArray
     }
     
+    func changeDeckName(deck: Deck, newName: String) {
+        guard let index = decks.firstIndex(of: deck) else { return }
+        self.decks[index].deckInformation.deckName = newName
+    }
     
+    func deleteDeckFromServer(user: User, deck: Deck) {
+        networkClient.delete(user: user, deck: deck, deleteCards: nil) { (result) in
+            guard let deck = result, let index = self.decks.firstIndex(of: deck) else { return }
+            self.decks.remove(at: index)
+        }
+    }
     
-    
-    
+    func deleteCardFromServer(user: User, deck: Deck, card: CardData) {
+        networkClient.delete(user: user, deck: deck, deleteCards: [card]) { (result) in
+            guard let deck = result, let index = self.decks.firstIndex(of: deck) else { return }
+            self.decks[index].data = deck.data
+        }
+    }
 }
 
 

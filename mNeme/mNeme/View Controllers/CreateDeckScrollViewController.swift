@@ -24,7 +24,7 @@ class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UIT
             deckName = deck?.deckInformation.deckName
         }
     }
-    
+    var indexOfDeck: Int?
     var didAddCard: Bool =  false
     var deckName: String?
     var userController : UserController?
@@ -93,21 +93,30 @@ class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UIT
         guard cards.count > 0 else { return }
         
         if let deck = deck {
-            //passing the updated deckController to other ViewControllers
-            NotificationCenter.default.post(name: .savedDeck, object: nil, userInfo: ["controller": deckController])
+            
             let didChangName = didChangeName()
-            if didChangName {
-                deckController.editDeckName(deck: deck, user: user, name: deckName) {
-                    if self.didAddCard {
-                        deckController.addCardsToServer(user: user, name: deckName, cards: self.newCards) {
-                            DispatchQueue.main.async {
-                                self.clearViews()
-                                self.dismiss(animated: true, completion: nil)
-                            }
-                        }
+            
+            if didChangName == true && didAddCard == true {
+                deckController.changeDeckName(deck: deck, newName: deckName)
+                NotificationCenter.default.post(name: .savedDeck, object: nil, userInfo: ["controller": deckController])
+                deckController.editDeckName(deck: deck, user: user, name: deckName) {}
+                deckController.addCardsToServer(user: user, name: deckName, cards: newCards) {
+                    DispatchQueue.main.async {
+                        self.clearViews()
+                        self.dismiss(animated: true, completion: nil)
                     }
                 }
-            } else if didAddCard {
+            } else if didChangName == true {
+                deckController.changeDeckName(deck: deck, newName: deckName)
+                NotificationCenter.default.post(name: .savedDeck, object: nil, userInfo: ["controller": deckController])
+                deckController.editDeckName(deck: deck, user: user, name: deckName) {
+                    DispatchQueue.main.async {
+                        self.clearViews()
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                }
+            } else if didAddCard == true {
+                NotificationCenter.default.post(name: .savedDeck, object: nil, userInfo: ["controller": deckController])
                 deckController.addCardsToServer(user: user, name: deckName, cards: newCards) {
                     DispatchQueue.main.async {
                         self.clearViews()
@@ -115,15 +124,7 @@ class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UIT
                     }
                 }
             } else {
-                self.clearViews()
                 self.dismiss(animated: true, completion: nil)
-            }
-        } else {
-            deckController.createDeck(user: user, name: deckName, icon: deckIcon, tags: [""], cards: cards) {
-                DispatchQueue.main.async {
-                    self.clearViews()
-                    self.dismiss(animated: true, completion: nil)
-                }
             }
         }
     }
