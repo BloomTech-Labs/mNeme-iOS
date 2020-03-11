@@ -34,6 +34,7 @@ class DeckCardViewController: UIViewController {
             currentCardTotal = total
         }
     }
+    var indexOfDeck: Int?
     var demoDeck: DemoDeck?{
         didSet{
             guard let total = demoDeck?.data?.count else { return }
@@ -72,10 +73,9 @@ class DeckCardViewController: UIViewController {
     }
     
     @objc func updateRealDeck(notification: Notification) {
-        if let deck = notification.userInfo?["deck"] as? Deck {
-            realDeck = deck
+        if let deckController = notification.userInfo?["controller"] as? DemoDeckController {
+            realDeck = deckController.decks[indexOfDeck!]
         }
-        print("real deck updated here")
     }
     
     // MARK: - IB Actions

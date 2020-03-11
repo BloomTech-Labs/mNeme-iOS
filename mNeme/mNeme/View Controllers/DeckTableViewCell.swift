@@ -30,9 +30,9 @@ class DeckTableViewCell: UITableViewCell {
         if let deck = DemoDeck {
             deckNameLabel.text = "\(deck.deckName.capitalized)"
             masteredCardsLabel.text = "Mastered X of \(deck.data?.count ?? 0)"
-        } else if let deck = deck {
-            deckNameLabel.text = "\(deck.deckInformation.deckName)"
-            masteredCardsLabel.text = "Mastered X of \(deck.deckInformation.deckLength)"
+        } else if let deck = deck, let name = deck.deckInformation.deckName, let length = deck.data?.count {
+            deckNameLabel.text = "\(name)"
+            masteredCardsLabel.text = "Mastered X of \(length)"
         }
     }
 }

@@ -67,6 +67,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     deckCardVC.demoDeck = demoDeckController?.demoDecks[indexPath.row]
                 } else {
                     deckCardVC.realDeck = demoDeckController?.decks[indexPath.row]
+                    deckCardVC.indexOfDeck = indexPath.row
                     deckCardVC.userController = userController
                     deckCardVC.deckController = demoDeckController
                 }

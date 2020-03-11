@@ -76,6 +76,7 @@ class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UIT
         if let deck = deck {
             if let cards = deckController?.addCardToDeck(deck: deck, card: cardData) {
                 self.cards = cards
+                self.newCards.append(cardData)
                 cardTableView.reloadData()
             }
             
@@ -92,7 +93,8 @@ class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UIT
         guard cards.count > 0 else { return }
         
         if let deck = deck {
-            NotificationCenter.default.post(name: .savedDeck, object: nil, userInfo: ["deck": deck, "controller": deckController])
+            //passing the updated deckController to other ViewControllers
+            NotificationCenter.default.post(name: .savedDeck, object: nil, userInfo: ["controller": deckController])
             let didChangName = didChangeName()
             if didChangName {
                 deckController.editDeckName(deck: deck, user: user, name: deckName) {
