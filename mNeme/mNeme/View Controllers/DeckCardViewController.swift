@@ -30,7 +30,7 @@ class DeckCardViewController: UIViewController {
     // MARK: - Properties
     var realDeck: Deck? {
         didSet {
-            guard let total = realDeck?.deckInformation.deckLength else { return }
+            guard let total = realDeck?.data?.count else { return }
             currentCardTotal = total
         }
     }
@@ -68,6 +68,14 @@ class DeckCardViewController: UIViewController {
         hideOtherLabels()
         showFrontViews()
         updateDeckText()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateRealDeck(notification:)), name: .savedDeck, object: nil)
+    }
+    
+    @objc func updateRealDeck(notification: Notification) {
+        if let deck = notification.userInfo?["deck"] as? Deck {
+            realDeck = deck
+        }
+        print("real deck updated here")
     }
     
     // MARK: - IB Actions
@@ -174,14 +182,13 @@ class DeckCardViewController: UIViewController {
     
     private func updateDeckText() {
         if realDeck != nil {
-            let currentCardInfo = realDeck?.data[currentCardIndex].data
-            frontLabel?.text = currentCardInfo?.front
-            print("\(String(describing: currentCardInfo?.front))")
-            backLabel?.text = currentCardInfo?.back
+            guard let info = realDeck?.data else { return }
+            let currentCardInfo = info[currentCardIndex]
+            frontLabel?.text = currentCardInfo.front
+            backLabel?.text = currentCardInfo.back
         } else {
             let currentCardInfo = demoDeck?.data?[currentCardIndex].data
             frontLabel?.text = currentCardInfo?.front
-            print("\(String(describing: currentCardInfo?.front))")
             backLabel?.text = currentCardInfo?.back
         }
     }
@@ -269,3 +276,4 @@ class DeckCardViewController: UIViewController {
     }
 
 }
+

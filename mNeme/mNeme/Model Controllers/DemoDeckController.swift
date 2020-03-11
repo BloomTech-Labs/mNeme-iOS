@@ -83,7 +83,7 @@ class DemoDeckController {
     }
     
     func fetchDecks(userID: String, completion: @escaping () -> Void) {
-        networkClient.fetch(userID, nil) { (results: [DeckCollectionId]?) in
+        networkClient.fetch(userID, nil) { (results: [DeckInformation]?) in
             if let results = results {
                 for deck in results {
                     self.networkClient.fetch(userID, deck.collectionId) { (result: Deck?) in
@@ -97,7 +97,7 @@ class DemoDeckController {
         }
     }
     
-    func createDeck(user: User, name: String, icon: String, tags: [String], cards: [CardRep], completion: @escaping () -> Void) {
+    func createDeck(user: User, name: String, icon: String, tags: [String], cards: [CardData], completion: @escaping () -> Void) {
         networkClient.post(user: user, deckName: name, icon: icon, tags: tags, cards: cards) { (deck: Deck?) in
             if let deck = deck {
                 self.decks.append(deck)
@@ -106,38 +106,43 @@ class DemoDeckController {
         }
     }
     
-    func editDeck(deck: Deck, user: User, name: String, icon: String, tags: [String], cards: [CardRep], completion: @escaping () -> Void) {
-        networkClient.post(user: user, deckName: name, icon: icon, tags: tags, cards: cards, add: true) { (deck: Deck?) in
-            if let deck = deck {
-                self.decks.append(deck)
+    func editDeckName(deck: Deck, user: User, name: String, completion: @escaping () -> Void) {
+        networkClient.put(user: user, deck: deck, updateDeckName: name, updateCards: nil) { (result: [String: DeckInformation]?) in
+            if let result = result, let deckInfo = result["deckInformation"], let index = self.decks.firstIndex(of: deck) {
+                self.decks[index].deckInformation = deckInfo
+                completion()
+            }
+        }
+    }
+        
+    func editDeckCards(deck: Deck, user: User, cards: [CardData], completion: @escaping () -> Void) {
+        networkClient.put(user: user, deck: deck, updateDeckName: nil, updateCards: cards) { (result: Deck?) in
+            if let result = result, let index = self.decks.firstIndex(of: deck) {
+                self.decks[index].data = result.data
                 completion()
             }
         }
     }
     
     
-    
-    func addCard(user: User, name: String, cards: [CardRep], completion: @escaping ([CardData]?) -> Void) {
+    func addCardsToServer(user: User, name: String, cards: [CardData], completion: @escaping () -> Void) {
         networkClient.post(user: user, deckName: name, icon: "", tags: [""], cards: cards, add: true) { (deck: Deck?) in
-            print("\(String(describing: deck))")
-            completion(deck?.data)
+            completion()
         }
     }
-}
-
-
-struct DemoDeck: Codable {
-    var deckName: String
-    var data: [CardData]?
-
-    struct CardData: Codable {
-        var id: String
-        var data: CardInfo
-
-        struct CardInfo: Codable {
-            var back, front: String
-        }
+    
+    func addCardToDeck(deck: Deck, card: CardData) -> [CardData]{
+        guard let index = decks.firstIndex(of: deck) else { return [] }
+        decks[index].data?.insert(card, at: 0)
+        guard let newDeckArray = decks[index].data else { return [] }
+        return newDeckArray
     }
+    
+    
+    
+    
+    
 }
+
 
 

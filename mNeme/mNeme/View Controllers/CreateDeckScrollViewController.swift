@@ -9,12 +9,24 @@
 import UIKit
 import FirebaseAuth
 
+protocol CreateDeckDelegate {
+    func saveDeckWasTapped(deck: Deck)
+}
+
 class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var cards: [CardData] = []
-    var cardReps: [CardRep] = []
-    var deck: Deck?
+    var newCards: [CardData] = []
+    var deletedCards: [CardData] = []
+    var delegate: CreateDeckDelegate?
+    var deck: Deck? {
+        didSet {
+            deckName = deck?.deckInformation.deckName
+        }
+    }
     
+    var didAddCard: Bool =  false
+    var deckName: String?
     var userController : UserController?
     var deckController: DemoDeckController? {
         didSet{
@@ -42,6 +54,14 @@ class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UIT
         cardTableView.reloadData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        updateDeckViews()
+        print("Number of cards in deck \(cards.count)")
+        cardTableView.reloadData()
+        
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         addFrontTV.centerVertically()
@@ -49,49 +69,68 @@ class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     @IBAction func addCardTapped(_ sender: UIButton) {
-        guard let frontText = addFrontTV.text, !frontText.isEmpty, let backText = addBackTV.text, !backText.isEmpty, let userController = userController else { return }
+        guard let frontText = addFrontTV.text, !frontText.isEmpty, let backText = addBackTV.text, !backText.isEmpty else { return }
+        
+        let cardData = CardData(front: frontText, back: backText)
         
         if let deck = deck {
-            let cardRep = CardRep(front: frontText, back: backText)
-            
-            deckController?.addCard(user: userController.user!, name: deck.deckInformation.deckName, cards: [cardRep], completion: { (result) in
-                if let result = result {
-                    
-                    DispatchQueue.main.async {
-                        self.cards = result
-                        // Need to sort cards
-                        self.cardTableView.reloadData()
-                        self.clearCardViews()
-                    }
-                    
-                }
-            })
+            if let cards = deckController?.addCardToDeck(deck: deck, card: cardData) {
+                self.cards = cards
+                cardTableView.reloadData()
+            }
             
         } else {
-            let cardRep = CardRep(front: frontText, back: backText)
-            cardReps.insert(cardRep, at: 0)
-            cardTableView.reloadData()
-            clearCardViews()
+            self.cards.insert(cardData, at: 0)
         }
+        cardTableView.reloadData()
+        didAddCard = true
+        clearCardViews()
     }
+    
     @IBAction func saveDeckTapped(_ sender: UIButton) {
         guard let deckName = deckNameTF.text, !deckName.isEmpty, let deckIcon = deckIconTF.text, !deckIcon.isEmpty, let userController = userController, let user = userController.user, let deckController = deckController else { return }
-        guard cardReps.count > 0 else { return }
+        guard cards.count > 0 else { return }
         
-        if let deck = deck { // FIX TAGS PARAMETER ONCE
-            //            deckController.editDeck(deck: deck, user: user, name: deckName, icon: deckIcon, tags: [""], cards: cards) {
-            //                DispatchQueue.main.async {
-            //                    self.clearViews()
-            //                    self.dismiss(animated: true, completion: nil)
-            //                }
-            //            }
+        if let deck = deck {
+            NotificationCenter.default.post(name: .savedDeck, object: nil, userInfo: ["deck": deck, "controller": deckController])
+            let didChangName = didChangeName()
+            if didChangName {
+                deckController.editDeckName(deck: deck, user: user, name: deckName) {
+                    if self.didAddCard {
+                        deckController.addCardsToServer(user: user, name: deckName, cards: self.newCards) {
+                            DispatchQueue.main.async {
+                                self.clearViews()
+                                self.dismiss(animated: true, completion: nil)
+                            }
+                        }
+                    }
+                }
+            } else if didAddCard {
+                deckController.addCardsToServer(user: user, name: deckName, cards: newCards) {
+                    DispatchQueue.main.async {
+                        self.clearViews()
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                }
+            } else {
+                self.clearViews()
+                self.dismiss(animated: true, completion: nil)
+            }
         } else {
-            deckController.createDeck(user: user, name: deckName, icon: deckIcon, tags: [""], cards: cardReps) {
+            deckController.createDeck(user: user, name: deckName, icon: deckIcon, tags: [""], cards: cards) {
                 DispatchQueue.main.async {
                     self.clearViews()
                     self.dismiss(animated: true, completion: nil)
                 }
             }
+        }
+    }
+    
+    private func didChangeName() -> Bool {
+        if deckNameTF.text != deckName {
+            return true
+        } else {
+            return false
         }
     }
     
@@ -106,17 +145,16 @@ class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     private func updateDeckViews() {
-        if let deck = deck {
+        if let deck = deck, let cards = deck.data {
             deckNameTF.text = deck.deckInformation.deckName
             deckIconTF.text = deck.deckInformation.icon
-            deckTagsTF.text = deck.deckInformation.tag?.joined(separator: ", ")
-            cards = deck.data
+            deckTagsTF.text = deck.deckInformation.tags.joined(separator: ", ")
+            self.cards = cards
         }
     }
     
     private func clearViews() {
         cards = []
-        cardReps = []
         deckTagsTF.text = ""
         deckNameTF.text = ""
         deckIconTF.text = ""
@@ -131,31 +169,19 @@ class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if deck != nil {
-            return cards.count
-        } else {
-            return cardReps.count
-        }
+        return cards.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CardCell", for: indexPath) as? CardTableViewCell else { return UITableViewCell() }
         
-        if deck != nil {
-            cell.frontCardTV.text = self.cards[indexPath.row].data.front
-            cell.backCardTV.text = self.cards[indexPath.row].data.back
-            cell.cardView.layer.cornerRadius = 10
-            cell.cardView.layer.borderColor = UIColor.lightGray.cgColor
-            cell.cardView.layer.borderWidth = 1
-            cell.cardView.layer.backgroundColor = UIColor.white.cgColor
-        } else {
-            cell.frontCardTV.text = cardReps[indexPath.row].front
-            cell.backCardTV.text = cardReps[indexPath.row].back
-            cell.cardView.layer.cornerRadius = 10
-            cell.cardView.layer.borderColor = UIColor.lightGray.cgColor
-            cell.cardView.layer.borderWidth = 1
-            cell.cardView.layer.backgroundColor = UIColor.white.cgColor
-        }
+        cell.frontCardTV.text = self.cards[indexPath.row].front
+        cell.backCardTV.text = self.cards[indexPath.row].back
+        cell.cardView.layer.cornerRadius = 10
+        cell.cardView.layer.borderColor = UIColor.lightGray.cgColor
+        cell.cardView.layer.borderWidth = 1
+        cell.cardView.layer.backgroundColor = UIColor.white.cgColor
+        
         return cell
     }
     
@@ -165,13 +191,11 @@ class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UIT
             let deleteDeckAlert = UIAlertController(title: "Are you sure you want to delete this card? Would you rather archive?", message: "", preferredStyle: .actionSheet)
             
             
-            deleteDeckAlert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: nil)) // Add completion handler and set up actual delete function inside of "Do Block"
+            deleteDeckAlert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { action in
+                //deleteCard()
+            }))
             
-            //            do {
-            //
-            //            } catch {
-            //
-            //            }
+            
             
             deleteDeckAlert.addAction(UIAlertAction(title: "Archive", style: .default, handler: nil))
             deleteDeckAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -189,12 +213,12 @@ class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UIT
         editAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         editAlert.addTextField { (frontTextField: UITextField!) in
-            frontTextField.text = card.data.front
+            frontTextField.text = card.front
             frontTextField.placeholder = "Front"
         }
         
         editAlert.addTextField { (backTextField: UITextField!) in
-            backTextField.text = card.data.back
+            backTextField.text = card.back
             backTextField.placeholder = "Back"
         }
         

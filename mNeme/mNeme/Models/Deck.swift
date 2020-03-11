@@ -87,3 +87,17 @@ struct CardData: Equatable, Codable {
         back = try dataContainer.decode(String.self, forKey: .back)
     }
 }
+
+struct DemoDeck: Codable {
+    var deckName: String
+    var data: [CardData]?
+
+    struct CardData: Codable {
+        var id: String
+        var data: CardInfo
+
+        struct CardInfo: Codable {
+            var back, front: String
+        }
+    }
+}
