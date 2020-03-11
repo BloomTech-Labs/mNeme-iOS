@@ -45,7 +45,7 @@ class UserPreferencesTests: XCTestCase {
 
         wait(for: [expect], timeout: 2)
 
-        XCTAssertNotNil(controller.user?.data)
+        XCTAssertEqual(controller.user?.id, "r4Ok4g9OA5UHtpXnDRqF5XFCduH3")
     }
     
     func testGetDeckData() {
