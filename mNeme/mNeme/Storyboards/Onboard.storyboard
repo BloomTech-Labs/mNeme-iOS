@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Pre Login View Controller-->
+        <scene sceneID="Uu0-AR-goN">
+            <objects>
+                <viewController storyboardIdentifier="PreLoginStoryboard" id="QIZ-JK-9Ae" customClass="PreLoginViewController" customModule="mNeme" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gNM-kp-JLT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="2z3-Qm-eDT">
+                                <rect key="frame" x="90" y="347.66666666666669" width="234" height="116"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jlr-8B-32y">
+                                        <rect key="frame" x="0.0" y="0.0" width="234" height="46"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
+                                        <state key="normal" title="Sign Up" backgroundImage="clearButtonSmall"/>
+                                        <connections>
+                                            <segue destination="a6j-4v-pA4" kind="presentation" identifier="SignUpSegue" modalPresentationStyle="fullScreen" id="fra-ST-gmF"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tW5-Zv-bkI">
+                                        <rect key="frame" x="0.0" y="70" width="234" height="46"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="Sign In"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
+                                        <state key="normal" title="Sign In" backgroundImage="clearButtonImage">
+                                            <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="a6j-4v-pA4" kind="presentation" identifier="SignInSegue" modalPresentationStyle="fullScreen" id="Tem-8C-0xI"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D0f-33-r3O">
+                                <rect key="frame" x="0.0" y="727" width="414" height="135"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Study your flashcards  anywehere, anytime" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cK-BO-lND">
+                                        <rect key="frame" x="130.33333333333337" y="48" width="153.66666666666663" height="37.666666666666657"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="0cK-BO-lND" firstAttribute="top" secondItem="D0f-33-r3O" secondAttribute="top" constant="48" id="GW8-zh-XV4"/>
+                                    <constraint firstItem="0cK-BO-lND" firstAttribute="centerX" secondItem="D0f-33-r3O" secondAttribute="centerX" id="Krr-13-dMf"/>
+                                    <constraint firstAttribute="width" secondItem="D0f-33-r3O" secondAttribute="height" multiplier="46:15" id="qlA-qy-Yn8"/>
+                                </constraints>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Screens Illustrations" translatesAutoresizingMaskIntoConstraints="NO" id="dgo-vE-rJb">
+                                <rect key="frame" x="90" y="587" width="234" height="175"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="dgo-vE-rJb" secondAttribute="height" multiplier="234:175" id="sAl-rp-VgH"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mNeme" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oXo-51-Q6j">
+                                <rect key="frame" x="20" y="145.33333333333334" width="374" height="57.666666666666657"/>
+                                <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="49"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x2g-Fh-Fgo">
+                                <rect key="frame" x="20" y="116" width="181" height="21.333333333333343"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mNeme uses space-repetition  theory to help students retain  material for longer than  traditional cramming" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="trN-bg-YQ3">
+                                <rect key="frame" x="50" y="240.99999999999997" width="314" height="76.666666666666657"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[Nee-Mee]" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SCB-vt-Pu4">
+                                <rect key="frame" x="20" y="199.33333333333334" width="293.66666666666669" height="16.666666666666657"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Vdy-ef-WZk" firstAttribute="trailing" secondItem="SCB-vt-Pu4" secondAttribute="trailing" constant="100.5" id="44F-TV-yiS"/>
+                            <constraint firstItem="D0f-33-r3O" firstAttribute="leading" secondItem="Vdy-ef-WZk" secondAttribute="leading" id="6YI-P0-F1m"/>
+                            <constraint firstItem="trN-bg-YQ3" firstAttribute="top" secondItem="SCB-vt-Pu4" secondAttribute="bottom" constant="25" id="B3G-kA-YXe"/>
+                            <constraint firstItem="Vdy-ef-WZk" firstAttribute="trailing" secondItem="x2g-Fh-Fgo" secondAttribute="trailing" constant="213" id="CZq-wB-1wz"/>
+                            <constraint firstItem="SCB-vt-Pu4" firstAttribute="leading" secondItem="Vdy-ef-WZk" secondAttribute="leading" constant="20" id="I0Q-04-owa"/>
+                            <constraint firstItem="SCB-vt-Pu4" firstAttribute="top" secondItem="x2g-Fh-Fgo" secondAttribute="bottom" constant="62" id="Jwn-dl-OxQ"/>
+                            <constraint firstItem="Vdy-ef-WZk" firstAttribute="trailing" secondItem="trN-bg-YQ3" secondAttribute="trailing" constant="50" id="KRn-hN-Tee"/>
+                            <constraint firstItem="trN-bg-YQ3" firstAttribute="leading" secondItem="Vdy-ef-WZk" secondAttribute="leading" constant="50" id="Ps7-q5-VSA"/>
+                            <constraint firstItem="dgo-vE-rJb" firstAttribute="leading" secondItem="Vdy-ef-WZk" secondAttribute="leading" constant="90" id="R9q-3k-MzZ"/>
+                            <constraint firstItem="oXo-51-Q6j" firstAttribute="top" secondItem="x2g-Fh-Fgo" secondAttribute="bottom" constant="8" symbolic="YES" id="SOj-tl-GZW"/>
+                            <constraint firstItem="x2g-Fh-Fgo" firstAttribute="top" secondItem="Vdy-ef-WZk" secondAttribute="top" constant="72" id="YIk-Mw-sic"/>
+                            <constraint firstItem="x2g-Fh-Fgo" firstAttribute="leading" secondItem="Vdy-ef-WZk" secondAttribute="leading" constant="20" id="epZ-nD-97o"/>
+                            <constraint firstItem="Vdy-ef-WZk" firstAttribute="trailing" secondItem="2z3-Qm-eDT" secondAttribute="trailing" constant="90" id="fDz-WR-fx2"/>
+                            <constraint firstItem="2z3-Qm-eDT" firstAttribute="top" secondItem="trN-bg-YQ3" secondAttribute="bottom" constant="30" id="fzw-um-waK"/>
+                            <constraint firstItem="Vdy-ef-WZk" firstAttribute="bottom" secondItem="dgo-vE-rJb" secondAttribute="bottom" constant="100" id="l5f-ar-Z4A"/>
+                            <constraint firstItem="D0f-33-r3O" firstAttribute="trailing" secondItem="Vdy-ef-WZk" secondAttribute="trailing" id="lQU-Q4-W2i"/>
+                            <constraint firstItem="D0f-33-r3O" firstAttribute="bottom" secondItem="Vdy-ef-WZk" secondAttribute="bottom" id="ql0-UX-EF3"/>
+                            <constraint firstItem="Vdy-ef-WZk" firstAttribute="trailing" secondItem="oXo-51-Q6j" secondAttribute="trailing" constant="20" id="tJi-Uf-epa"/>
+                            <constraint firstItem="2z3-Qm-eDT" firstAttribute="leading" secondItem="Vdy-ef-WZk" secondAttribute="leading" constant="90" id="w9G-fb-0vr"/>
+                            <constraint firstItem="oXo-51-Q6j" firstAttribute="leading" secondItem="Vdy-ef-WZk" secondAttribute="leading" constant="20" id="x4g-YD-orJ"/>
+                            <constraint firstItem="Vdy-ef-WZk" firstAttribute="trailing" secondItem="dgo-vE-rJb" secondAttribute="trailing" constant="90" id="x5C-IU-yVS"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Vdy-ef-WZk"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="cHr-HY-dQo"/>
+                    <connections>
+                        <outlet property="bottomColorView" destination="D0f-33-r3O" id="EVF-9D-By7"/>
+                        <outlet property="mNemeLogoLabel" destination="oXo-51-Q6j" id="6bS-76-zWc"/>
+                        <outlet property="signInButton" destination="tW5-Zv-bkI" id="sfs-rE-zJn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MSE-IE-r6u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1955.072463768116" y="133.92857142857142"/>
+        </scene>
+        <!--Login-->
+        <scene sceneID="h6t-3m-xUR">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Login" id="a6j-4v-pA4" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="DA3-Iu-WOl"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ggo-zS-3gH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2892.0289855072465" y="87.723214285714278"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Screens Illustrations" width="256" height="175"/>
+        <image name="clearButtonImage" width="232" height="46"/>
+        <image name="clearButtonSmall" width="232" height="46"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Tem-8C-0xI"/>
+    </inferredMetricsTieBreakers>
+</document>
