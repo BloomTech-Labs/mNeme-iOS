@@ -32,6 +32,7 @@ class DeckCardViewController: UIViewController {
         didSet {
             guard let total = realDeck?.data?.count else { return }
             currentCardTotal = total
+            currentCardIndex = total - 1
         }
     }
     var indexOfDeck: Int?
@@ -82,14 +83,14 @@ class DeckCardViewController: UIViewController {
     
     // MARK: - IB Actions
     @IBAction func backACard(_ sender: UIButton) {
-        guard currentCardIndex > 0 else { return }
-        currentCardIndex -= 1
+        guard currentCardIndex < currentCardTotal-1 else { return }
+        currentCardIndex += 1
         updateDeckText()
     }
     
     @IBAction func forwardACard(_ sender: UIButton) {
-        guard currentCardIndex < currentCardTotal-1 else { return }
-        currentCardIndex += 1
+        guard currentCardIndex > 0 else { return }
+        currentCardIndex -= 1
         updateDeckText()
     }
     
@@ -110,11 +111,11 @@ class DeckCardViewController: UIViewController {
     }
     
     @IBAction func nextCardButtonTapped(_ sender: Any) {
-        guard currentCardIndex < currentCardTotal-1 else {
+        guard currentCardIndex > 0 else {
             let alert = UIAlertController(title: "You've reached the end of the deck!", message: "Would you like to reset the deck or stay here?", preferredStyle: .alert)
             
             alert.addAction(UIAlertAction(title: "Reset", style: .default, handler: { action in
-                self.currentCardIndex = 0
+                self.currentCardIndex = self.currentCardTotal
                 self.allowedToFlip = true
                 self.nextCardButton.isHidden = true
                 self.flip()
@@ -131,7 +132,7 @@ class DeckCardViewController: UIViewController {
             self.present(alert, animated: true)
             
             return }
-        currentCardIndex += 1
+        currentCardIndex -= 1
         allowedToFlip = true
         nextCardButton.isHidden = true
         flip()

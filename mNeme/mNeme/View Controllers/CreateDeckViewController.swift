@@ -40,7 +40,9 @@ class CreateDeckViewController: UIViewController {
             if let containerVC = segue.destination as? CreateDeckScrollViewController {
                 containerVC.deckController = deckController
                 containerVC.userController = userController
-                containerVC.deck = deck
+                if let deck = deck {
+                    containerVC.deck = deck
+                }
             }
         }
     }
