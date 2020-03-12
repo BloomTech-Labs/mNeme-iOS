@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DpI-jA-uac">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="MZ1-7T-tRX">
+            <objects>
+                <viewController storyboardIdentifier="LoginStoryboard" id="DpI-jA-uac" customClass="LoginViewController" customModule="mNeme" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KFO-Lj-uWq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="syg-Uc-Sp2">
+                                <rect key="frame" x="50" y="288" width="314" height="34"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration" identifier="EmailTF"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Your Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eyS-fG-bqU">
+                                <rect key="frame" x="50" y="349" width="314" height="34"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration" identifier="PasswordTF"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="L58-Gh-k8y">
+                                <rect key="frame" x="50" y="403" width="314" height="100"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z3q-Wu-JUu">
+                                        <rect key="frame" x="41" y="0.0" width="232" height="46"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="EmailSignIn"/>
+                                        <state key="normal" title="Sign Up" backgroundImage="clearButtonSmall"/>
+                                        <connections>
+                                            <action selector="emailLogInButton:" destination="DpI-jA-uac" eventType="touchUpInside" id="ytc-Az-V3A"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f3i-D6-FqJ">
+                                        <rect key="frame" x="41" y="54" width="232" height="46"/>
+                                        <state key="normal" title="Cancel" backgroundImage="clearButtonImage">
+                                            <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="emailCancelButton:" destination="DpI-jA-uac" eventType="touchUpInside" id="8EP-tp-vYa"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ym2-KI-AwN">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="191"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mNeme" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v9P-uC-RIB">
+                                        <rect key="frame" x="165" y="81.5" width="84.5" height="28.5"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="24"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="An effective, fun, and easy to use flashcards app" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LFE-7q-Jfj">
+                                        <rect key="frame" x="10" y="126" width="384" height="42.5"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="waK-Hw-uKV">
+                                        <rect key="frame" x="10" y="59.5" width="31" height="72"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="↩︎"/>
+                                        <connections>
+                                            <action selector="backButtonPressed:" destination="DpI-jA-uac" eventType="touchUpInside" id="zcd-Wp-sDO"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="waK-Hw-uKV" firstAttribute="leading" secondItem="Ym2-KI-AwN" secondAttribute="leading" constant="10" id="0xV-vh-ArL"/>
+                                    <constraint firstItem="LFE-7q-Jfj" firstAttribute="leading" secondItem="waK-Hw-uKV" secondAttribute="leading" id="5tg-3T-SJG"/>
+                                    <constraint firstAttribute="width" secondItem="Ym2-KI-AwN" secondAttribute="height" multiplier="414:191" id="CyR-X2-3PP"/>
+                                    <constraint firstItem="v9P-uC-RIB" firstAttribute="centerX" secondItem="Ym2-KI-AwN" secondAttribute="centerX" id="UnR-9X-zPQ"/>
+                                    <constraint firstItem="LFE-7q-Jfj" firstAttribute="top" secondItem="v9P-uC-RIB" secondAttribute="bottom" constant="16" id="agp-zo-4Cm"/>
+                                    <constraint firstItem="v9P-uC-RIB" firstAttribute="centerY" secondItem="Ym2-KI-AwN" secondAttribute="centerY" id="iZr-ay-OGL"/>
+                                    <constraint firstAttribute="trailing" secondItem="LFE-7q-Jfj" secondAttribute="trailing" constant="20" id="lzT-BT-Iul"/>
+                                    <constraint firstItem="waK-Hw-uKV" firstAttribute="centerY" secondItem="Ym2-KI-AwN" secondAttribute="centerY" id="vwY-uk-T7t"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PRa-EO-auW">
+                                <rect key="frame" x="0.0" y="678" width="414" height="135"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJm-a3-pXc">
+                                        <rect key="frame" x="20" y="58" width="374" height="0.0"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="aJm-a3-pXc" firstAttribute="leading" secondItem="PRa-EO-auW" secondAttribute="leading" constant="20" id="8pq-1s-qRb"/>
+                                    <constraint firstItem="aJm-a3-pXc" firstAttribute="top" secondItem="PRa-EO-auW" secondAttribute="top" constant="58" id="Gw6-RE-66y"/>
+                                    <constraint firstAttribute="trailing" secondItem="aJm-a3-pXc" secondAttribute="trailing" constant="20" id="hU4-he-bnK"/>
+                                    <constraint firstAttribute="width" secondItem="PRa-EO-auW" secondAttribute="height" multiplier="46:15" id="s7X-Sk-yvG"/>
+                                </constraints>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Basketball-Mastery-Illustrations" translatesAutoresizingMaskIntoConstraints="NO" id="HmQ-DJ-7Us">
+                                <rect key="frame" x="90" y="527" width="234" height="175"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="HmQ-DJ-7Us" secondAttribute="height" multiplier="234:175" id="RWM-kI-7uk"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Hh-ae-R8P">
+                                <rect key="frame" x="77" y="339" width="260" height="56.5"/>
+                                <accessibility key="accessibilityConfiguration" identifier="FacebookLogin"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="9Hh-ae-R8P" secondAttribute="height" multiplier="37:8" id="P5i-F9-Yqc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                <state key="normal" title="Sign up with Facebook" image="signupFB">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="facebookSignInPressed" destination="DpI-jA-uac" eventType="touchUpInside" id="LhR-wd-G1N"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D9Y-Et-lgF">
+                                <rect key="frame" x="77" y="266" width="260" height="56"/>
+                                <accessibility key="accessibilityConfiguration" identifier="GoogleLogin"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="D9Y-Et-lgF" secondAttribute="height" multiplier="37:8" id="nuU-XP-SCW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                <state key="normal" title="Sign up with Google" image="signupGG">
+                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="googleSignInPressed:" destination="DpI-jA-uac" eventType="touchUpInside" id="mar-tJ-ZuY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6mZ-QA-5IS">
+                                <rect key="frame" x="77" y="412.5" width="260" height="56"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Email Button"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="6mZ-QA-5IS" secondAttribute="height" multiplier="37:8" id="tfZ-Q7-T43"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                <state key="normal" title="Sign up with Email" image="signupEM">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="emailSignInPressed:" destination="DpI-jA-uac" eventType="touchUpInside" id="xk9-XK-q28"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="6mZ-QA-5IS" firstAttribute="top" secondItem="9Hh-ae-R8P" secondAttribute="bottom" constant="17" id="8fk-Ym-blp"/>
+                            <constraint firstItem="mzF-YM-ldz" firstAttribute="trailing" secondItem="HmQ-DJ-7Us" secondAttribute="trailing" constant="90" id="AMO-jb-fx2"/>
+                            <constraint firstItem="mzF-YM-ldz" firstAttribute="trailing" secondItem="6mZ-QA-5IS" secondAttribute="trailing" constant="77" id="EF4-fm-kkE"/>
+                            <constraint firstItem="D9Y-Et-lgF" firstAttribute="leading" secondItem="mzF-YM-ldz" secondAttribute="leading" constant="77" id="Eso-yG-52N"/>
+                            <constraint firstItem="mzF-YM-ldz" firstAttribute="trailing" secondItem="syg-Uc-Sp2" secondAttribute="trailing" constant="50" id="Go0-b9-gHF"/>
+                            <constraint firstItem="9Hh-ae-R8P" firstAttribute="centerX" secondItem="KFO-Lj-uWq" secondAttribute="centerX" id="Idf-3q-aNT"/>
+                            <constraint firstItem="Ym2-KI-AwN" firstAttribute="top" secondItem="KFO-Lj-uWq" secondAttribute="top" id="JVh-o6-ntp"/>
+                            <constraint firstItem="eyS-fG-bqU" firstAttribute="top" secondItem="syg-Uc-Sp2" secondAttribute="bottom" constant="27" id="Ksm-0g-Eue"/>
+                            <constraint firstItem="HmQ-DJ-7Us" firstAttribute="leading" secondItem="mzF-YM-ldz" secondAttribute="leading" constant="90" id="Nv7-ab-y4D"/>
+                            <constraint firstItem="9Hh-ae-R8P" firstAttribute="top" secondItem="syg-Uc-Sp2" secondAttribute="bottom" constant="17" id="Oz3-QC-yEO"/>
+                            <constraint firstItem="PRa-EO-auW" firstAttribute="bottom" secondItem="mzF-YM-ldz" secondAttribute="bottom" id="QWH-gO-Kgq"/>
+                            <constraint firstItem="mzF-YM-ldz" firstAttribute="trailing" secondItem="L58-Gh-k8y" secondAttribute="trailing" constant="50" id="SWG-qP-SF4"/>
+                            <constraint firstItem="Ym2-KI-AwN" firstAttribute="trailing" secondItem="mzF-YM-ldz" secondAttribute="trailing" id="T4R-aR-sjV"/>
+                            <constraint firstItem="mzF-YM-ldz" firstAttribute="bottom" secondItem="HmQ-DJ-7Us" secondAttribute="bottom" constant="111" id="VHp-hW-JVI"/>
+                            <constraint firstItem="syg-Uc-Sp2" firstAttribute="leading" secondItem="mzF-YM-ldz" secondAttribute="leading" constant="50" id="Wmi-Xi-Lkb"/>
+                            <constraint firstItem="9Hh-ae-R8P" firstAttribute="leading" secondItem="mzF-YM-ldz" secondAttribute="leading" constant="77" id="aRJ-P1-ZFR"/>
+                            <constraint firstItem="Ym2-KI-AwN" firstAttribute="leading" secondItem="mzF-YM-ldz" secondAttribute="leading" id="c7x-3g-0gg"/>
+                            <constraint firstItem="mzF-YM-ldz" firstAttribute="trailing" secondItem="9Hh-ae-R8P" secondAttribute="trailing" constant="77" id="d9D-2G-nG6"/>
+                            <constraint firstItem="6mZ-QA-5IS" firstAttribute="centerX" secondItem="KFO-Lj-uWq" secondAttribute="centerX" id="dNI-oU-Ibf"/>
+                            <constraint firstItem="D9Y-Et-lgF" firstAttribute="centerX" secondItem="KFO-Lj-uWq" secondAttribute="centerX" id="g8R-1L-GTQ"/>
+                            <constraint firstItem="syg-Uc-Sp2" firstAttribute="bottom" secondItem="D9Y-Et-lgF" secondAttribute="bottom" id="g9f-lk-ijw"/>
+                            <constraint firstItem="PRa-EO-auW" firstAttribute="trailing" secondItem="mzF-YM-ldz" secondAttribute="trailing" id="hIy-El-dwT"/>
+                            <constraint firstItem="6mZ-QA-5IS" firstAttribute="leading" secondItem="mzF-YM-ldz" secondAttribute="leading" constant="77" id="hdz-Z2-PYo"/>
+                            <constraint firstItem="eyS-fG-bqU" firstAttribute="leading" secondItem="mzF-YM-ldz" secondAttribute="leading" constant="50" id="izw-Tw-zNj"/>
+                            <constraint firstItem="mzF-YM-ldz" firstAttribute="trailing" secondItem="eyS-fG-bqU" secondAttribute="trailing" constant="50" id="kza-X6-j0e"/>
+                            <constraint firstItem="L58-Gh-k8y" firstAttribute="leading" secondItem="mzF-YM-ldz" secondAttribute="leading" constant="50" id="m1Y-yj-tJO"/>
+                            <constraint firstItem="L58-Gh-k8y" firstAttribute="top" secondItem="eyS-fG-bqU" secondAttribute="bottom" constant="20" id="pMx-Uk-aBZ"/>
+                            <constraint firstItem="6mZ-QA-5IS" firstAttribute="top" secondItem="9Hh-ae-R8P" secondAttribute="bottom" constant="17" id="snk-Eo-6oB"/>
+                            <constraint firstItem="PRa-EO-auW" firstAttribute="leading" secondItem="mzF-YM-ldz" secondAttribute="leading" id="tf9-yM-D7p"/>
+                            <constraint firstItem="mzF-YM-ldz" firstAttribute="trailing" secondItem="D9Y-Et-lgF" secondAttribute="trailing" constant="77" id="xZp-yv-X48"/>
+                            <constraint firstItem="D9Y-Et-lgF" firstAttribute="top" secondItem="Ym2-KI-AwN" secondAttribute="bottom" constant="75" id="yo4-z1-59X"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="mzF-YM-ldz"/>
+                    </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="backButton" destination="waK-Hw-uKV" id="5MB-Pr-gNa"/>
+                        <outlet property="bottomImageView" destination="HmQ-DJ-7Us" id="qzb-8F-ahP"/>
+                        <outlet property="bottomNavView" destination="PRa-EO-auW" id="L5b-b5-cEz"/>
+                        <outlet property="bottomTextLabel" destination="aJm-a3-pXc" id="xnY-ri-JAX"/>
+                        <outlet property="emailCancelButton" destination="f3i-D6-FqJ" id="Mjl-zk-kRq"/>
+                        <outlet property="emailLoginButton" destination="6mZ-QA-5IS" id="YVt-je-ikV"/>
+                        <outlet property="emailSignInButton" destination="Z3q-Wu-JUu" id="KB2-0U-bou"/>
+                        <outlet property="emailTextField" destination="syg-Uc-Sp2" id="How-fe-Nhr"/>
+                        <outlet property="facebookLoginButton" destination="9Hh-ae-R8P" id="Y5f-xM-LEk"/>
+                        <outlet property="googleLoginButton" destination="D9Y-Et-lgF" id="g3V-RX-KaR"/>
+                        <outlet property="largeNavView" destination="Ym2-KI-AwN" id="HKT-Ko-XDB"/>
+                        <outlet property="mainView" destination="KFO-Lj-uWq" id="Kqo-Os-20H"/>
+                        <outlet property="passwordTextField" destination="eyS-fG-bqU" id="Gsk-wN-eVE"/>
+                        <segue destination="sYo-Vg-ntK" kind="presentation" identifier="MainSegue" animates="NO" modalPresentationStyle="fullScreen" id="d1y-b6-i6s"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rXE-jq-x5k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1960.8695652173915" y="119.86607142857142"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="B0K-n1-KDx">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="sYo-Vg-ntK" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="ENe-iZ-lZP"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="97a-gv-AsP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2754" y="114"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Basketball-Mastery-Illustrations" width="230" height="207"/>
+        <image name="clearButtonImage" width="232" height="46"/>
+        <image name="clearButtonSmall" width="232" height="46"/>
+        <image name="signupEM" width="1036" height="224"/>
+        <image name="signupFB" width="1036" height="224"/>
+        <image name="signupGG" width="1036" height="224"/>
+    </resources>
+</document>
