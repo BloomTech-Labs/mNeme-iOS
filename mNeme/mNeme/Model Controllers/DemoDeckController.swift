@@ -14,6 +14,7 @@ class DemoDeckController {
 
     var demoDecks = [DemoDeck]()
     var decks = [Deck]()
+    var archivedDecks = [Deck]()
     let dataLoader: NetworkDataLoader
     let baseURL = URL(string: "https://flashcards-be.herokuapp.com/api/demo/I2r2gejFYwCQfqafWlVy")!
     let networkClient = NetworkClient()
@@ -149,6 +150,24 @@ class DemoDeckController {
     func deleteCardFromServer(user: User, deck: Deck, card: CardData) {
         networkClient.delete(user: user, deck: deck, deleteCards: [card]) { (result) in
             print("Card Deleted")
+        }
+    }
+    
+    func archiveDeck(user: User, collectionID: String, index: Int, completion: @escaping () -> Void) {
+        networkClient.archivePost(user: user, deckName: collectionID, archive: true) {
+            let deck = self.decks[index]
+            self.archivedDecks.insert(deck, at: 0)
+            self.decks.remove(at: index)
+            completion()
+        }
+    }
+    
+    func unarchiveDeck(user: User, collectionID: String, index: Int, completion: @escaping () -> Void) {
+        networkClient.archivePost(user: user, deckName: collectionID, archive: false) {
+            let deck = self.archivedDecks[index]
+            self.decks.insert(deck, at: 0)
+            self.archivedDecks.remove(at: index)
+            completion()
         }
     }
 }

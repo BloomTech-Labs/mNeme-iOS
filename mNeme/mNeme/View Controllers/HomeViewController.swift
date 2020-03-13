@@ -84,15 +84,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // MARK: - TableView Functions
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return demoDeckController?.demoDecks.count ?? 0
-        } else {
+        } else if section == 1 {
             return demoDeckController?.decks.count ?? 0
+        } else {
+            return demoDeckController?.archivedDecks.count ?? 0
         }
     }
     
@@ -109,22 +111,63 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             if let cell = tableView.dequeueReusableCell(withIdentifier: "DemoDeckCell", for: indexPath) as? DeckTableViewCell {
                 
                 cell.deck = demoDeckController?.decks[indexPath.row]
-                
+                cell.deckNameLabel.textColor = .black
                 return cell
             } else {
                 return UITableViewCell()
             }
         } else {
-            return UITableViewCell()
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "DemoDeckCell", for: indexPath) as? DeckTableViewCell {
+                
+                cell.deck = demoDeckController?.archivedDecks[indexPath.row]
+                cell.deckNameLabel.textColor = .lightGray
+            
+                return cell
+            } else {
+                return UITableViewCell()
+            }
         }
+    }
+    
+    private func setArchiveAlertAction() {
+        
     }
     
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             
+            var archive = ""
+            
             let deleteDeckAlert = UIAlertController(title: "Are you sure you want to delete this deck? Would you rather archive?", message: "", preferredStyle: .actionSheet)
             
+            guard let user = self.userController?.user else { return }
+            
+            if indexPath.section == 1 {
+                guard let deck = self.demoDeckController?.decks[indexPath.row] else { return }
+                archive = "Archive"
+                deleteDeckAlert.addAction(UIAlertAction(title: archive, style: .default, handler: { (action) in
+                    tableView.reloadData()
+                    self.demoDeckController?.archiveDeck(user: user, collectionID: deck.deckInformation.collectionId ?? "", index: indexPath.row, completion: {
+                        DispatchQueue.main.async {
+                            deleteDeckAlert.dismiss(animated: true, completion: nil)
+                            tableView.reloadData()
+                        }
+                    })
+                }))
+            } else if indexPath.section == 2 {
+                 guard let deck = self.demoDeckController?.archivedDecks[indexPath.row] else { return }
+                archive = "Unarchive"
+                deleteDeckAlert.addAction(UIAlertAction(title: archive, style: .default, handler: { (action) in
+                    tableView.reloadData()
+                    self.demoDeckController?.unarchiveDeck(user: user, collectionID: deck.deckInformation.collectionId ?? "", index: indexPath.row, completion: {
+                        DispatchQueue.main.async {
+                            tableView.reloadData()
+                            deleteDeckAlert.dismiss(animated: true, completion: nil)
+                        }
+                    })
+                }))
+            }
             
             deleteDeckAlert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
                 guard let user = self.userController?.user, let deck = self.demoDeckController?.decks[indexPath.row] else { return }
@@ -133,9 +176,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self.demoDeckController?.deleteDeckFromServer(user: user, deck: deck)
                 deleteDeckAlert.dismiss(animated: true, completion: nil)
             }))
-                
-                deleteDeckAlert.addAction(UIAlertAction(title: "Archive", style: .default, handler: nil))
-                deleteDeckAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            
+            deleteDeckAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             
             let noDeletionAlert = UIAlertController(title: "Cannot delete Demo Deck", message: "", preferredStyle: .alert)
             noDeletionAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
@@ -145,8 +187,29 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             } else {
                 self.present(deleteDeckAlert, animated: true)
             }
-            
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            self.performSegue(withIdentifier: "DeckSegue", sender: self)
+        } else if indexPath.section == 1 {
+            self.performSegue(withIdentifier: "DeckSegue", sender: self)
+        } else {
+            let archiveAlert = UIAlertController(title: "Please unarchive this deck to view it", message: "", preferredStyle: .alert)
+            guard let deck = self.demoDeckController?.archivedDecks[indexPath.row], let user = self.userController?.user else { return }
+            archiveAlert.addAction(UIAlertAction(title: "Unarchive", style: .default, handler: { (action) in
+                self.demoDeckController?.unarchiveDeck(user: user, collectionID: deck.deckInformation.collectionId ?? "", index: indexPath.row, completion: {
+                    DispatchQueue.main.async {
+                        tableView.reloadData()
+                        archiveAlert.dismiss(animated: true, completion: nil)
+                    }
+                })
+            }))
+            
+            archiveAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            
+            self.present(archiveAlert, animated: true)
+        }
+    }
 }
