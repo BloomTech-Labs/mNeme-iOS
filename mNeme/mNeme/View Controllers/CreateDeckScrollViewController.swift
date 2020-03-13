@@ -189,6 +189,13 @@ class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UIT
         addBackTV.text = ""
     }
     
+    private func updateCardLocally(index: Int, newFront: String, newBack: String) {
+        self.deckController?.decks[self.indexOfDeck ?? 0].data?[index].front = "\(newFront)"
+        self.deckController?.decks[self.indexOfDeck ?? 0].data?[index].back = "\(newBack)"
+        self.cards[index].front = newFront
+        self.cards[index].back = newBack
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cards.count
     }
@@ -250,10 +257,6 @@ class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UIT
         
         let editAlert = UIAlertController(title: "Edit your Card", message: "", preferredStyle: .alert)
         
-        editAlert.addAction(UIAlertAction(title: "Save Changes", style: .default, handler: nil)) // Add Completion handler to ensure card updates are pushed
-    
-        editAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
         editAlert.addTextField { (frontTextField: UITextField!) in
             frontTextField.text = card.front
             frontTextField.placeholder = "Front"
@@ -264,22 +267,46 @@ class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UIT
             backTextField.placeholder = "Back"
         }
         
+        editAlert.addAction(UIAlertAction(title: "Save Changes", style: .default, handler: { (action) in
+            guard let frontTF = editAlert.textFields?[0], let backTF = editAlert.textFields?[1], let newFront = frontTF.text, let newBack = backTF.text else { return }
+            
+            if self.deck != nil {
+                guard let user = self.userController?.user, let deck = self.deckController?.decks[self.indexOfDeck ?? 0], let cardToEdit = deck.data?[indexPath.row] else { return }
+    
+                for card in self.newCards {
+                    if card == cardToEdit {
+                        guard let newCardIndex = self.newCards.firstIndex(of: card) else { return }
+                        self.newCards[newCardIndex].front = "\(newFront)"
+                        self.newCards[newCardIndex].front = "\(newBack)"
+                        self.updateCardLocally(index: indexPath.row, newFront: newFront, newBack: newBack)
+                        tableView.reloadData()
+                        return
+                    }
+                }
+
+                self.updateCardLocally(index: indexPath.row, newFront: newFront, newBack: newBack)
+                tableView.reloadData()
+                var newCard = cardToEdit
+                newCard.front = newFront
+                newCard.back = newBack
+                self.deckController?.editDeckCards(deck: deck, user: user, cards: newCard, completion: {
+                    DispatchQueue.main.async {
+                        editAlert.dismiss(animated: true, completion: nil)
+                    }
+                })
+            } else {
+                self.cards[indexPath.row].front = newFront
+                self.cards[indexPath.row].back = newBack
+                tableView.reloadData()
+                editAlert.dismiss(animated: true, completion: nil)
+            }
+        }))
+        
+        editAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
         self.present(editAlert, animated: true)
         
     }
-    
-    
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
 
