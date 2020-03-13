@@ -10,7 +10,8 @@ import UIKit
 
 class CardTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var frontLabel: UILabel!
-    @IBOutlet weak var backLabel: UILabel!
+    @IBOutlet weak var frontCardTV: UITextView!
+    @IBOutlet weak var backCardTV: UITextView!
+    @IBOutlet weak var cardView: UIView!
     
 }

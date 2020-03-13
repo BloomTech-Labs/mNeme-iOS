@@ -10,4 +10,5 @@ import Foundation
 
 extension Notification.Name {
     static var homeViewHasLoaded = Notification.Name("homeViewHasLoaded")
+    static var savedDeck = Notification.Name("savedDeck")
 }

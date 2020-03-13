@@ -82,46 +82,76 @@ class DemoDeckController {
         }
     }
     
-    func createDeck(user: User, name: String, icon: String, tags: [String], cards: [CardRep]) {
-        networkClient.post(user: user, deckName: name, icon: icon, tags: tags, cards: cards) { (deck: Deck?) in
-            if let deck = deck {
-                self.decks.append(deck)
+    func fetchDecks(userID: String, completion: @escaping () -> Void) {
+        networkClient.fetch(userID, nil) { (results: [DeckInformation]?) in
+            if let results = results {
+                for deck in results {
+                    self.networkClient.fetch(userID, deck.collectionId) { (result: Deck?) in
+                        self.decks.append(result!)
+                    }
+                }
+                completion()
+            } else {
+                print("Fetch not working")
             }
         }
     }
     
-    func editDeck(deck: Deck, user: User, name: String, icon: String, tags: [String], cards: [CardRep]) {
+    func createDeck(user: User, name: String, icon: String, tags: [String], cards: [CardData], completion: @escaping () -> Void) {
         networkClient.post(user: user, deckName: name, icon: icon, tags: tags, cards: cards) { (deck: Deck?) in
             if let deck = deck {
                 self.decks.append(deck)
+                completion()
+            }
+        }
+    }
+    
+    func editDeckName(deck: Deck, user: User, name: String, completion: @escaping () -> Void) {
+        networkClient.put(user: user, deck: deck, updateDeckName: name, updateCards: nil) { (result: [String: DeckInformation]?) in
+            completion()
+        }
+    }
+    
+    func editDeckCards(deck: Deck, user: User, cards: [CardData], completion: @escaping () -> Void) {
+        networkClient.put(user: user, deck: deck, updateDeckName: nil, updateCards: cards) { (result: Deck?) in
+            if let result = result, let index = self.decks.firstIndex(of: deck) {
+                self.decks[index].data = result.data
+                completion()
             }
         }
     }
     
     
+    func addCardsToServer(user: User, name: String, cards: [CardData], completion: @escaping () -> Void) {
+        networkClient.post(user: user, deckName: name, icon: "", tags: [""], cards: cards, add: true) { (deck: Deck?) in
+            completion()
+        }
+    }
     
-    func addCard(user: User, name: String, cards: [CardRep]) -> CardData? {
-        var cardData: CardData?
-        networkClient.post(user: user, deckName: name, icon: "", tags: [""], cards: cards, add: true) { (cards: CardData?) in
-            cardData = cards
+    func addCardToDeck(deck: Deck, card: CardData) -> [CardData]{
+        guard let index = decks.firstIndex(of: deck) else { return [] }
+        decks[index].data?.insert(card, at: 0)
+        guard let newDeckArray = decks[index].data else { return [] }
+        return newDeckArray
+    }
+    
+    func changeDeckName(deck: Deck, newName: String) {
+        guard let index = decks.firstIndex(of: deck) else { return }
+        self.decks[index].deckInformation.deckName = newName
+    }
+    
+    func deleteDeckFromServer(user: User, deck: Deck) {
+        networkClient.delete(user: user, deck: deck, deleteCards: nil) { (result) in
+            print("Deck Deleted")
         }
-        return cardData
+    }
+    
+    func deleteCardFromServer(user: User, deck: Deck, card: CardData) {
+        networkClient.delete(user: user, deck: deck, deleteCards: [card]) { (result) in
+            print("Card Deleted")
+        }
     }
 }
 
-
-struct DemoDeck: Codable {
-    var deckName: String
-    var data: [CardData]?
-
-    struct CardData: Codable {
-        var id: String
-        var data: CardInfo
-
-        struct CardInfo: Codable {
-            var back, front: String
-        }
-    }
-}
 
 

@@ -161,7 +161,8 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
      
      // Users is successfully signed in and DemoDecks are retrieved from networking
      private func signInWithAuthResultUID(uid: String) {
-          userController.user = User(uid)
+          let user = User(uid)
+          userController.user = user
           userController.getUserPreferences {
                self.demoDeckController.getDemoDecks {
                     for decks in self.demoDeckController.demoDecks {
@@ -170,16 +171,18 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
                               self.deckCardsDispatchGroup.leave()
                          }
                     }
+               }
+               self.demoDeckController.fetchDecks(userID: user.id) {
                     self.deckCardsDispatchGroup.notify(queue: .main) {
                          DispatchQueue.main.async {
                               self.alert.dismiss(animated: false, completion: nil)
                               self.performSegue(withIdentifier: "MainSegue", sender: self)
                          }
                     }
-                    
                }
           }
      }
+     
      
      // Facebook Login Authentication Success // Error Handling
      func loginManagerDidComplete(_ result: LoginResult) {

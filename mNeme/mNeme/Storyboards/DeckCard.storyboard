@@ -207,6 +207,7 @@
                         <outlet property="backCard" destination="XkQ-qS-l1x" id="8md-Ec-fQq"/>
                         <outlet property="badRating" destination="HYU-lm-Hwz" id="dGk-kh-Nj2"/>
                         <outlet property="containerView" destination="gqS-l0-Tjd" id="fsH-p9-X70"/>
+                        <outlet property="editButton" destination="q2C-IN-JQJ" id="5WF-xa-Vke"/>
                         <outlet property="forwardCard" destination="tov-TQ-0YC" id="Glb-fk-bML"/>
                         <outlet property="greatRating" destination="Meg-hN-FrA" id="m3o-ka-Y8w"/>
                         <outlet property="nextCardButton" destination="we2-mU-heS" id="lsh-Dv-2es"/>

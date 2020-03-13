@@ -14,7 +14,12 @@ class DeckTableViewCell: UITableViewCell {
     @IBOutlet weak var masteredCardsLabel: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
     
-    var deck: DemoDeck? {
+    var DemoDeck: DemoDeck? {
+        didSet {
+            updateViews()
+        }
+    }
+    var deck: Deck? {
         didSet {
             updateViews()
         }
@@ -22,11 +27,12 @@ class DeckTableViewCell: UITableViewCell {
     
     
     private func updateViews() {
-        guard let deck = deck else { return }
-    
-        deckNameLabel.text = "\(deck.deckName.capitalized)"
-        masteredCardsLabel.text = "Mastered X of \(deck.data?.count ?? 0)"
-    
+        if let deck = DemoDeck {
+            deckNameLabel.text = "\(deck.deckName.capitalized)"
+            masteredCardsLabel.text = "Mastered X of \(deck.data?.count ?? 0)"
+        } else if let deck = deck, let name = deck.deckInformation.deckName, let length = deck.data?.count {
+            deckNameLabel.text = "\(name)"
+            masteredCardsLabel.text = "Mastered X of \(length)"
+        }
     }
-
 }

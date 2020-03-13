@@ -61,12 +61,12 @@ class TabViewController: SOTabBarController {
     // set up the view controllers on the tab bars with property data as needed
     private func tabBarViewControllerProperties() {
         guard let homeVC = self.viewControllers[0] as? HomeViewController,
-            let createVC = self.viewControllers[1] as? CreateDeckViewController,
+            let _ = self.viewControllers[1] as? CreateDeckViewController,
             let profileVC = self.viewControllers[2] as? ProfileViewController else { return }
         
-        createVC.userController = self.userController
-        createVC.deckController = self.demoDeckController
+        
         profileVC.userController = self.userController
         homeVC.demoDeckController = self.demoDeckController
+        homeVC.userController = self.userController
     }
 }

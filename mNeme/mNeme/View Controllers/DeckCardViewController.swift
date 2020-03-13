@@ -25,18 +25,30 @@ class DeckCardViewController: UIViewController {
     @IBOutlet weak var tutorialLabel: UILabel!
     @IBOutlet weak var tapToFlipLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var editButton: UIButton!
     
     // MARK: - Properties
-    var realDeck: Deck?
-    var deck: DemoDeck?{
+    var deck: Deck?{
         didSet{
             guard let total = deck?.data?.count else { return }
             currentCardTotal = total
+            currentCardIndex = total - 1
         }
     }
+    var indexOfDeck: Int?
+    var demoDeck: DemoDeck?{
+        didSet{
+            guard let total = demoDeck?.data?.count else { return }
+            currentCardTotal = total
+            currentCardIndex = total - 1
+        }
+    }
+    var demo: Bool = false
     var currentCardTotal = 0
     var currentCardIndex: Int = 0
     var mockDemoDeckController = MockDemoDeckController()
+    var deckController: DemoDeckController?
+    var userController: UserController?
     var allowedToFlip = true
     private var frontLabel: UILabel?
     private var backLabel: UILabel?
@@ -52,26 +64,52 @@ class DeckCardViewController: UIViewController {
         }
     }
     
+    private func setDeck() {
+        guard let deckController = deckController, let indexOfDeck = indexOfDeck else { return }
+        if demo == false {
+            deck = deckController.decks[indexOfDeck]
+            currentCardTotal = deckController.decks[indexOfDeck].data?.count ?? 0
+        } else {
+            demoDeck = deckController.demoDecks[indexOfDeck]
+            currentCardTotal = deckController.demoDecks[indexOfDeck].data?.count ?? 0
+        }
+    }
+    
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Setting up view
+        setDeck()
         setupViews()
         hideOtherLabels()
         showFrontViews()
+//        updateDeckText()
+//        NotificationCenter.default.addObserver(self, selector: #selector(updateRealDeck(notification:)), name: .savedDeck, object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setDeck()
         updateDeckText()
     }
     
+//    @objc func updateRealDeck(notification: Notification) {
+//        if let deckController = notification.userInfo?["controller"] as? DemoDeckController {
+//            guard let index = indexOfDeck else { return }
+//            realDeck = deckController.decks[index]
+//            self.titleLabel.text = deckController.decks[index].deckInformation.deckName
+//        }
+//    }
+    
     // MARK: - IB Actions
     @IBAction func backACard(_ sender: UIButton) {
-        guard currentCardIndex > 0 else { return }
-        currentCardIndex -= 1
+        guard currentCardIndex < currentCardTotal-1 else { return }
+        currentCardIndex += 1
         updateDeckText()
     }
     
     @IBAction func forwardACard(_ sender: UIButton) {
-        guard currentCardIndex < currentCardTotal-1 else { return }
-        currentCardIndex += 1
+        guard currentCardIndex > 0 else { return }
+        currentCardIndex -= 1
         updateDeckText()
     }
     
@@ -92,11 +130,11 @@ class DeckCardViewController: UIViewController {
     }
     
     @IBAction func nextCardButtonTapped(_ sender: Any) {
-        guard currentCardIndex < currentCardTotal-1 else {
+        guard currentCardIndex > 0 else {
             let alert = UIAlertController(title: "You've reached the end of the deck!", message: "Would you like to reset the deck or stay here?", preferredStyle: .alert)
             
             alert.addAction(UIAlertAction(title: "Reset", style: .default, handler: { action in
-                self.currentCardIndex = 0
+                self.currentCardIndex = self.currentCardTotal - 1
                 self.allowedToFlip = true
                 self.nextCardButton.isHidden = true
                 self.flip()
@@ -113,7 +151,7 @@ class DeckCardViewController: UIViewController {
             self.present(alert, animated: true)
             
             return }
-        currentCardIndex += 1
+        currentCardIndex -= 1
         allowedToFlip = true
         nextCardButton.isHidden = true
         flip()
@@ -132,10 +170,16 @@ class DeckCardViewController: UIViewController {
     
     // MARK: - Private Functions
     private func setupViews() {
+        if demo == false {
+            guard let deck = deck else { return }
+            titleLabel.text = deck.deckInformation.deckName
+        } else {
+            titleLabel.text = demoDeck?.deckName
+            editButton.isHidden = true
+        }
         
-        titleLabel.text = deck?.deckName
-        frontLabel = UILabel(frame: CGRect(x: self.containerView.frame.width, y: self.containerView.frame.height, width: 80, height: 50))
-        backLabel = UILabel(frame: CGRect(x: self.containerView.frame.width/1, y: self.containerView.frame.height/2, width: 80, height: 50))
+        frontLabel = UILabel(frame: CGRect(x: self.containerView.frame.width, y: self.containerView.frame.height/2, width: 80, height: 50))
+        backLabel = UILabel(frame: CGRect(x: self.containerView.frame.width, y: self.containerView.frame.height/2, width: 80, height: 50))
         containerView.addSubview(frontLabel!)
         constrain(view: frontLabel!)
         
@@ -160,10 +204,18 @@ class DeckCardViewController: UIViewController {
     }
     
     private func updateDeckText() {
-        let currentCardInfo = deck?.data?[currentCardIndex].data
-        frontLabel?.text = currentCardInfo?.front
-        print("\(String(describing: currentCardInfo?.front))")
-        backLabel?.text = currentCardInfo?.back
+        if demo == false {
+            guard let deck = deck else { return }
+            let currentCardInfo = deck.data?[currentCardIndex]
+            frontLabel?.text = nil
+            backLabel?.text = nil
+            frontLabel?.text = currentCardInfo?.front
+            backLabel?.text = currentCardInfo?.back
+        } else {
+            let currentCardInfo = deckController?.demoDecks[indexOfDeck!].data?[currentCardIndex]
+            frontLabel?.text = currentCardInfo?.data.front
+            backLabel?.text = currentCardInfo?.data.front
+        }
     }
     
     private func constrain(view: UIView) {
@@ -241,9 +293,12 @@ class DeckCardViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "EditDeckSegue" {
             if let editVC = segue.destination as? CreateDeckViewController {
-                editVC.deck = realDeck
+                editVC.indexOfDeck = indexOfDeck
+                editVC.userController = userController
+                editVC.deckController = deckController
             }
         }
     }
 
 }
+

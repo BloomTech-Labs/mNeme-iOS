@@ -12,7 +12,7 @@ class CreateDeckViewController: UIViewController {
     
     var deckController: DemoDeckController?
     var userController: UserController?
-    var deck: Deck?
+    var indexOfDeck: Int?
 
     // MARK: IBOutlets
     @IBOutlet private weak var topView: UIView!
@@ -40,7 +40,7 @@ class CreateDeckViewController: UIViewController {
             if let containerVC = segue.destination as? CreateDeckScrollViewController {
                 containerVC.deckController = deckController
                 containerVC.userController = userController
-                containerVC.deck = deck
+                containerVC.indexOfDeck = indexOfDeck
             }
         }
     }
