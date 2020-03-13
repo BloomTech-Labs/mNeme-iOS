@@ -17,6 +17,7 @@ class CreateDeckViewController: UIViewController {
     // MARK: IBOutlets
     @IBOutlet private weak var topView: UIView!
     @IBOutlet private weak var containerView: UIView!
+    @IBOutlet weak var titleItem: UINavigationItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,11 @@ class CreateDeckViewController: UIViewController {
     }
     private func updateViews() {
         topView.backgroundColor = UIColor.mNeme.orangeBlaze
-        
+        if indexOfDeck == nil {
+          self.titleItem.title = "Create a Deck"
+        } else {
+          self.titleItem.title = "Edit Deck"
+        }
     }
 
     

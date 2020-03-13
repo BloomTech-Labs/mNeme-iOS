@@ -89,6 +89,7 @@ class DeckCardViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         setDeck()
+        updateTitle()
         updateDeckText()
     }
     
@@ -170,13 +171,7 @@ class DeckCardViewController: UIViewController {
     
     // MARK: - Private Functions
     private func setupViews() {
-        if demo == false {
-            guard let deck = deck else { return }
-            titleLabel.text = deck.deckInformation.deckName
-        } else {
-            titleLabel.text = demoDeck?.deckName
-            editButton.isHidden = true
-        }
+        updateTitle()
         
         frontLabel = UILabel(frame: CGRect(x: self.containerView.frame.width, y: self.containerView.frame.height/2, width: 80, height: 50))
         backLabel = UILabel(frame: CGRect(x: self.containerView.frame.width, y: self.containerView.frame.height/2, width: 80, height: 50))
@@ -201,6 +196,16 @@ class DeckCardViewController: UIViewController {
         forwardCard.titleLabel?.textColor = UIColor.mNeme.orangeBlaze
         backButton.titleLabel?.textColor = UIColor.mNeme.orangeBlaze
         nextCardButton.titleLabel?.textColor = UIColor.mNeme.orangeBlaze
+    }
+    
+    private func updateTitle() {
+        if demo == false {
+            guard let deck = deck else { return }
+            titleLabel.text = deck.deckInformation.deckName
+        } else {
+            titleLabel.text = demoDeck?.deckName
+            editButton.isHidden = true
+        }
     }
     
     private func updateDeckText() {
