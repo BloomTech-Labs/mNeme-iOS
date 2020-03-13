@@ -22,7 +22,6 @@ class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UIT
     var deck: Deck? {
         didSet {
             deckName = deck?.deckInformation.deckName
-            indexOfDeck = deckController?.decks.firstIndex(of: deck!)
         }
     }
     var indexOfDeck: Int?
@@ -80,10 +79,11 @@ class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UIT
         
         let cardData = CardData(front: frontText, back: backText)
         
-        if let deck = deck {
-            if let cards = deckController?.addCardToDeck(deck: deck, card: cardData) {
+        if let _ = deck {
+            let index = self.indexOfDeck
+            if let deck = deckController?.decks[index ?? 9], let cards = deckController?.addCardToDeck(deck: deck, card: cardData) {
                 self.cards = cards
-                self.deck = deckController?.decks[indexOfDeck ?? 0]
+                self.deck = deck
                 self.newCards.append(cardData)
                 cardTableView.reloadData()
             }
@@ -110,7 +110,7 @@ class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UIT
                 deckController.addCardsToServer(user: user, name: self.deck?.deckInformation.collectionId ?? self.deckName!, cards: newCards) {
                     deckController.editDeckName(deck: deck, user: user, name: deckName) {
                         DispatchQueue.main.async {
-                            self.deckController?.changeDeckName(deck: deck, newName: deckName)
+                            self.deckController?.changeDeckName(deck: deckController.decks[self.indexOfDeck ?? 0], newName: deckName)
 //                            NotificationCenter.default.post(name: .savedDeck, object: nil, userInfo: ["controller": deckController])
                             self.clearViews()
                             self.dismiss(animated: true, completion: nil)
@@ -220,14 +220,24 @@ class CreateDeckScrollViewController: UIViewController, UITableViewDelegate, UIT
             
             
             deleteDeckAlert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
-                guard let user = self.userController?.user, let deck = self.deckController?.decks[self.indexOfDeck ?? 0], let card = deck.data?[indexPath.row] else { return }
+                guard let user = self.userController?.user, let deck = self.deckController?.decks[self.indexOfDeck ?? 0], let cardToDelete = deck.data?[indexPath.row] else { return }
+
+                for card in self.newCards {
+                    if card == cardToDelete {
+                        guard let newCardIndex = self.newCards.firstIndex(of: card) else { return }
+                        self.newCards.remove(at: newCardIndex)
+                        self.cards.remove(at: indexPath.row)
+                        self.deckController?.decks[self.indexOfDeck ?? 0].data?.remove(at: indexPath.row)
+                        tableView.reloadData()
+                        return
+                    }
+                }
+                
                 self.cards.remove(at: indexPath.row)
                 self.deckController?.decks[self.indexOfDeck ?? 0].data?.remove(at: indexPath.row)
                 tableView.reloadData()
-                self.deckController?.deleteCardFromServer(user: user, deck: deck, card: card)
+                self.deckController?.deleteCardFromServer(user: user, deck: deck, card: cardToDelete)
             }))
-            
-            
             
             deleteDeckAlert.addAction(UIAlertAction(title: "Archive", style: .default, handler: nil))
             deleteDeckAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
