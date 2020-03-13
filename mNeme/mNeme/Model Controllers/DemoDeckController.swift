@@ -98,6 +98,24 @@ class DemoDeckController {
         }
     }
     
+    func fetchArchivedDecks(userID: String, completion: @escaping () -> Void) {
+        networkClient.fetch(userID, nil, true) { (results: [DeckInformation]?) in
+            if let results = results {
+                for deck in results {
+                    let archivedDeck = Deck(deckInfo: deck)
+                    self.archivedDecks.append(archivedDeck)
+                }
+                completion()
+            } else {
+                print("Fetch not working")
+            }
+        }
+    }
+    
+    func getArchivedCards() {
+        
+    }
+    
     func createDeck(user: User, name: String, icon: String, tags: [String], cards: [CardData], completion: @escaping () -> Void) {
         networkClient.post(user: user, deckName: name, icon: icon, tags: tags, cards: cards) { (deck: Deck?) in
             if let deck = deck {

@@ -121,7 +121,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 
                 cell.deck = demoDeckController?.archivedDecks[indexPath.row]
                 cell.deckNameLabel.textColor = .lightGray
-            
+                cell.archived = true
+                cell.progressBar.progressTintColor = .darkGray
+                
                 return cell
             } else {
                 return UITableViewCell()

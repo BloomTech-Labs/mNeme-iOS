@@ -172,12 +172,21 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
                          }
                     }
                }
+               self.deckCardsDispatchGroup.enter()
+               self.demoDeckController.fetchArchivedDecks(userID: user.id) {
+                    print("finished getting archived decks")
+                    self.deckCardsDispatchGroup.leave()
+               }
+               self.deckCardsDispatchGroup.enter()
                self.demoDeckController.fetchDecks(userID: user.id) {
-                    self.deckCardsDispatchGroup.notify(queue: .main) {
-                         DispatchQueue.main.async {
-                              self.alert.dismiss(animated: false, completion: nil)
-                              self.performSegue(withIdentifier: "MainSegue", sender: self)
-                         }
+                    print("finished getting normal decks")
+                    self.deckCardsDispatchGroup.leave()
+               }
+               self.deckCardsDispatchGroup.notify(queue: .main) {
+                    DispatchQueue.main.async {
+                         print("done Fetching")
+                         self.alert.dismiss(animated: false, completion: nil)
+                         self.performSegue(withIdentifier: "MainSegue", sender: self)
                     }
                }
           }
