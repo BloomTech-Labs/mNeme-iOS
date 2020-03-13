@@ -28,9 +28,9 @@ class DeckCardViewController: UIViewController {
     @IBOutlet weak var editButton: UIButton!
     
     // MARK: - Properties
-    var realDeck: Deck? {
-        didSet {
-            guard let total = realDeck?.data?.count else { return }
+    var deck: Deck?{
+        didSet{
+            guard let total = deck?.data?.count else { return }
             currentCardTotal = total
             currentCardIndex = total - 1
         }
@@ -40,8 +40,10 @@ class DeckCardViewController: UIViewController {
         didSet{
             guard let total = demoDeck?.data?.count else { return }
             currentCardTotal = total
+            currentCardIndex = total - 1
         }
     }
+    var demo: Bool = false
     var currentCardTotal = 0
     var currentCardIndex: Int = 0
     var mockDemoDeckController = MockDemoDeckController()
@@ -62,24 +64,41 @@ class DeckCardViewController: UIViewController {
         }
     }
     
+    private func setDeck() {
+        guard let deckController = deckController, let indexOfDeck = indexOfDeck else { return }
+        if demo == false {
+            deck = deckController.decks[indexOfDeck]
+            currentCardTotal = deckController.decks[indexOfDeck].data?.count ?? 0
+        } else {
+            demoDeck = deckController.demoDecks[indexOfDeck]
+            currentCardTotal = deckController.demoDecks[indexOfDeck].data?.count ?? 0
+        }
+    }
+    
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Setting up view
+        setDeck()
         setupViews()
         hideOtherLabels()
         showFrontViews()
-        updateDeckText()
-        NotificationCenter.default.addObserver(self, selector: #selector(updateRealDeck(notification:)), name: .savedDeck, object: nil)
+//        updateDeckText()
+//        NotificationCenter.default.addObserver(self, selector: #selector(updateRealDeck(notification:)), name: .savedDeck, object: nil)
     }
     
-    @objc func updateRealDeck(notification: Notification) {
-        if let deckController = notification.userInfo?["controller"] as? DemoDeckController {
-            guard let index = indexOfDeck else { return }
-            realDeck = deckController.decks[index]
-            self.titleLabel.text = deckController.decks[index].deckInformation.deckName
-        }
+    override func viewWillAppear(_ animated: Bool) {
+        setDeck()
+        updateDeckText()
     }
+    
+//    @objc func updateRealDeck(notification: Notification) {
+//        if let deckController = notification.userInfo?["controller"] as? DemoDeckController {
+//            guard let index = indexOfDeck else { return }
+//            realDeck = deckController.decks[index]
+//            self.titleLabel.text = deckController.decks[index].deckInformation.deckName
+//        }
+//    }
     
     // MARK: - IB Actions
     @IBAction func backACard(_ sender: UIButton) {
@@ -115,7 +134,7 @@ class DeckCardViewController: UIViewController {
             let alert = UIAlertController(title: "You've reached the end of the deck!", message: "Would you like to reset the deck or stay here?", preferredStyle: .alert)
             
             alert.addAction(UIAlertAction(title: "Reset", style: .default, handler: { action in
-                self.currentCardIndex = self.currentCardTotal
+                self.currentCardIndex = self.currentCardTotal - 1
                 self.allowedToFlip = true
                 self.nextCardButton.isHidden = true
                 self.flip()
@@ -151,15 +170,16 @@ class DeckCardViewController: UIViewController {
     
     // MARK: - Private Functions
     private func setupViews() {
-        if realDeck != nil {
-            titleLabel.text = realDeck?.deckInformation.deckName
+        if demo == false {
+            guard let deck = deck else { return }
+            titleLabel.text = deck.deckInformation.deckName
         } else {
             titleLabel.text = demoDeck?.deckName
             editButton.isHidden = true
         }
         
-        frontLabel = UILabel(frame: CGRect(x: self.containerView.frame.width, y: self.containerView.frame.height, width: 80, height: 50))
-        backLabel = UILabel(frame: CGRect(x: self.containerView.frame.width/1, y: self.containerView.frame.height/2, width: 80, height: 50))
+        frontLabel = UILabel(frame: CGRect(x: self.containerView.frame.width, y: self.containerView.frame.height/2, width: 80, height: 50))
+        backLabel = UILabel(frame: CGRect(x: self.containerView.frame.width, y: self.containerView.frame.height/2, width: 80, height: 50))
         containerView.addSubview(frontLabel!)
         constrain(view: frontLabel!)
         
@@ -184,15 +204,17 @@ class DeckCardViewController: UIViewController {
     }
     
     private func updateDeckText() {
-        if realDeck != nil {
-            guard let info = realDeck?.data else { return }
-            let currentCardInfo = info[currentCardIndex]
-            frontLabel?.text = currentCardInfo.front
-            backLabel?.text = currentCardInfo.back
-        } else {
-            let currentCardInfo = demoDeck?.data?[currentCardIndex].data
+        if demo == false {
+            guard let deck = deck else { return }
+            let currentCardInfo = deck.data?[currentCardIndex]
+            frontLabel?.text = nil
+            backLabel?.text = nil
             frontLabel?.text = currentCardInfo?.front
             backLabel?.text = currentCardInfo?.back
+        } else {
+            let currentCardInfo = deckController?.demoDecks[indexOfDeck!].data?[currentCardIndex]
+            frontLabel?.text = currentCardInfo?.data.front
+            backLabel?.text = currentCardInfo?.data.front
         }
     }
     
@@ -271,7 +293,7 @@ class DeckCardViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "EditDeckSegue" {
             if let editVC = segue.destination as? CreateDeckViewController {
-                editVC.deck = realDeck
+                editVC.indexOfDeck = indexOfDeck
                 editVC.userController = userController
                 editVC.deckController = deckController
             }

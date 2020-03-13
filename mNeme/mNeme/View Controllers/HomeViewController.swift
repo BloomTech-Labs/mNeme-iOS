@@ -64,9 +64,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         if segue.identifier == "DeckSegue" {
             if let deckCardVC = segue.destination as? DeckCardViewController, let indexPath = deckTableView.indexPathForSelectedRow {
                 if indexPath.section == 0 {
-                    deckCardVC.demoDeck = demoDeckController?.demoDecks[indexPath.row]
+                    deckCardVC.indexOfDeck = indexPath.row
+                    deckCardVC.userController = userController
+                    deckCardVC.deckController = demoDeckController
+                    deckCardVC.demo = true
                 } else {
-                    deckCardVC.realDeck = demoDeckController?.decks[indexPath.row]
                     deckCardVC.indexOfDeck = indexPath.row
                     deckCardVC.userController = userController
                     deckCardVC.deckController = demoDeckController
@@ -124,16 +126,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             let deleteDeckAlert = UIAlertController(title: "Are you sure you want to delete this deck? Would you rather archive?", message: "", preferredStyle: .actionSheet)
             
             
-            deleteDeckAlert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: nil)) // Add completion handler and set up actual delete function inside of "Do Block"
-            
-            //            do {
-            //
-            //            } catch {
-            //
-            //            }
-            
-            deleteDeckAlert.addAction(UIAlertAction(title: "Archive", style: .default, handler: nil))
-            deleteDeckAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            deleteDeckAlert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
+                guard let user = self.userController?.user, let deck = self.demoDeckController?.decks[indexPath.row] else { return }
+                self.demoDeckController?.decks.remove(at: indexPath.row)
+                tableView.reloadData()
+                self.demoDeckController?.deleteDeckFromServer(user: user, deck: deck)
+                deleteDeckAlert.dismiss(animated: true, completion: nil)
+            }))
+                
+                deleteDeckAlert.addAction(UIAlertAction(title: "Archive", style: .default, handler: nil))
+                deleteDeckAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             
             let noDeletionAlert = UIAlertController(title: "Cannot delete Demo Deck", message: "", preferredStyle: .alert)
             noDeletionAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))

@@ -142,15 +142,13 @@ class DemoDeckController {
     
     func deleteDeckFromServer(user: User, deck: Deck) {
         networkClient.delete(user: user, deck: deck, deleteCards: nil) { (result) in
-            guard let deck = result, let index = self.decks.firstIndex(of: deck) else { return }
-            self.decks.remove(at: index)
+            print("Deck Deleted")
         }
     }
     
     func deleteCardFromServer(user: User, deck: Deck, card: CardData) {
         networkClient.delete(user: user, deck: deck, deleteCards: [card]) { (result) in
-            guard let deck = result, let index = self.decks.firstIndex(of: deck) else { return }
-            self.decks[index].data = deck.data
+            print("Card Deleted")
         }
     }
 }
