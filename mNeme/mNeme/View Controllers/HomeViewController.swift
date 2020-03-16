@@ -112,6 +112,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 
                 cell.deck = demoDeckController?.decks[indexPath.row]
                 cell.deckNameLabel.textColor = .black
+                cell.progressBar.progressTintColor = UIColor.mNeme.orangeBlaze
                 return cell
             } else {
                 return UITableViewCell()
@@ -158,11 +159,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     })
                 }))
             } else if indexPath.section == 2 {
-                 guard let deck = self.demoDeckController?.archivedDecks[indexPath.row] else { return }
+                 guard let deck = self.demoDeckController?.archivedDecks[indexPath.row], let deckID = deck.deckInformation.collectionId else { return }
                 archive = "Unarchive"
                 deleteDeckAlert.addAction(UIAlertAction(title: archive, style: .default, handler: { (action) in
                     tableView.reloadData()
-                    self.demoDeckController?.unarchiveDeck(user: user, collectionID: deck.deckInformation.collectionId ?? "", index: indexPath.row, completion: {
+                    self.demoDeckController?.unarchiveDeck(user: user, collectionID: deckID, index: indexPath.row, completion: {
+                        self.demoDeckController?.fetchCardsWhenUnarchived(userID: user.id, deckCollectionID: deckID)
                         DispatchQueue.main.async {
                             tableView.reloadData()
                             deleteDeckAlert.dismiss(animated: true, completion: nil)

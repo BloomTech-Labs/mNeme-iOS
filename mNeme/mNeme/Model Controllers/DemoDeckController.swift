@@ -112,10 +112,6 @@ class DemoDeckController {
         }
     }
     
-    func getArchivedCards() {
-        
-    }
-    
     func createDeck(user: User, name: String, icon: String, tags: [String], cards: [CardData], completion: @escaping () -> Void) {
         networkClient.post(user: user, deckName: name, icon: icon, tags: tags, cards: cards) { (deck: Deck?) in
             if let deck = deck {
@@ -182,10 +178,27 @@ class DemoDeckController {
     
     func unarchiveDeck(user: User, collectionID: String, index: Int, completion: @escaping () -> Void) {
         networkClient.archivePost(user: user, deckName: collectionID, archive: false) {
+            
             let deck = self.archivedDecks[index]
-            self.decks.insert(deck, at: 0)
+            self.decks.append(deck)
             self.archivedDecks.remove(at: index)
             completion()
+            //            self.networkClient.fetch(user.id, collectionID) { (result: Deck?) in
+            //                if let deck = result {
+            //                    self.decks.append(deck)
+            //                    self.archivedDecks.remove(at: index)
+            //                    completion()
+            //                }
+        }
+    }
+    
+    func fetchCardsWhenUnarchived(userID: String, deckCollectionID: String) {
+        self.networkClient.fetch(userID, deckCollectionID) { (result: Deck?) in
+            print("Fetching card data, first card:\(result?.data?.first?.front)")
+            if let deck = result {
+                let index = self.decks.count
+                self.decks[index] = deck
+            }
         }
     }
 }
