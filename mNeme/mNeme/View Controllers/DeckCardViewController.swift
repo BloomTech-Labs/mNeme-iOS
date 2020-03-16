@@ -219,7 +219,7 @@ class DeckCardViewController: UIViewController {
         } else {
             let currentCardInfo = deckController?.demoDecks[indexOfDeck!].data?[currentCardIndex]
             frontLabel?.text = currentCardInfo?.data.front
-            backLabel?.text = currentCardInfo?.data.front
+            backLabel?.text = currentCardInfo?.data.back
         }
     }
     

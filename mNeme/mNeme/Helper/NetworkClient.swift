@@ -41,6 +41,7 @@ class NetworkClient {
             }
 
             guard let data = data else { completion(nil); return }
+            print(String(data: data, encoding: .utf8)!)
             let jsonDecoder = JSONDecoder()
             do {
                 let decodedData = try jsonDecoder.decode(T.self, from: data)

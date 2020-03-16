@@ -14,6 +14,8 @@ class DeckTableViewCell: UITableViewCell {
     @IBOutlet weak var masteredCardsLabel: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
     
+    var archived = false
+    
     var DemoDeck: DemoDeck? {
         didSet {
             updateViews()
@@ -30,9 +32,15 @@ class DeckTableViewCell: UITableViewCell {
         if let deck = DemoDeck {
             deckNameLabel.text = "\(deck.deckName.capitalized)"
             masteredCardsLabel.text = "Mastered X of \(deck.data?.count ?? 0)"
-        } else if let deck = deck, let name = deck.deckInformation.deckName, let length = deck.data?.count {
+        } else if let deck = deck, let name = deck.deckInformation.deckName {
             deckNameLabel.text = "\(name)"
-            masteredCardsLabel.text = "Mastered X of \(length)"
+            if archived {
+                let length = deck.deckInformation.deckLength ?? 0
+                masteredCardsLabel.text = "Mastered X of \(length)"
+            } else {
+                let length = deck.data?.count ?? 0
+                masteredCardsLabel.text = "Mastered X of \(length)"
+            }
         }
     }
 }

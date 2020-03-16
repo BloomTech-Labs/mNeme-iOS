@@ -14,6 +14,7 @@ class DemoDeckController {
 
     var demoDecks = [DemoDeck]()
     var decks = [Deck]()
+    var archivedDecks = [Deck]()
     let dataLoader: NetworkDataLoader
     let baseURL = URL(string: "https://flashcards-be.herokuapp.com/api/demo/I2r2gejFYwCQfqafWlVy")!
     let networkClient = NetworkClient()
@@ -97,6 +98,20 @@ class DemoDeckController {
         }
     }
     
+    func fetchArchivedDecks(userID: String, completion: @escaping () -> Void) {
+        networkClient.fetch(userID, nil, true) { (results: [DeckInformation]?) in
+            if let results = results {
+                for deck in results {
+                    let archivedDeck = Deck(deckInfo: deck)
+                    self.archivedDecks.append(archivedDeck)
+                }
+                completion()
+            } else {
+                print("Fetch not working")
+            }
+        }
+    }
+    
     func createDeck(user: User, name: String, icon: String, tags: [String], cards: [CardData], completion: @escaping () -> Void) {
         networkClient.post(user: user, deckName: name, icon: icon, tags: tags, cards: cards) { (deck: Deck?) in
             if let deck = deck {
@@ -146,6 +161,41 @@ class DemoDeckController {
     func deleteCardFromServer(user: User, deck: Deck, card: CardData) {
         networkClient.delete(user: user, deck: deck, deleteCards: [card]) { (result) in
             print("Card Deleted")
+        }
+    }
+    
+    func archiveDeck(user: User, collectionID: String, index: Int, completion: @escaping () -> Void) {
+        networkClient.archivePost(user: user, deckName: collectionID, archive: true) {
+            let deck = self.decks[index]
+            self.archivedDecks.insert(deck, at: 0)
+            self.decks.remove(at: index)
+            completion()
+        }
+    }
+    
+    func unarchiveDeck(user: User, collectionID: String, index: Int, completion: @escaping () -> Void) {
+        networkClient.archivePost(user: user, deckName: collectionID, archive: false) {
+            
+            let deck = self.archivedDecks[index]
+            self.decks.append(deck)
+            self.archivedDecks.remove(at: index)
+            completion()
+            //            self.networkClient.fetch(user.id, collectionID) { (result: Deck?) in
+            //                if let deck = result {
+            //                    self.decks.append(deck)
+            //                    self.archivedDecks.remove(at: index)
+            //                    completion()
+            //                }
+        }
+    }
+    
+    func fetchCardsWhenUnarchived(userID: String, deckCollectionID: String) {
+        self.networkClient.fetch(userID, deckCollectionID) { (result: Deck?) in
+            print("Fetching card data, first card:\(result?.data?.first?.front)")
+            if let deck = result {
+                let index = self.decks.count
+                self.decks[index] = deck
+            }
         }
     }
 }
