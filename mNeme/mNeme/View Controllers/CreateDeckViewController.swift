@@ -42,6 +42,7 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
     //    @IBOutlet weak var addBackTV: UITextView!
     //    @IBOutlet weak var addCardButton: UIButton!
     @IBOutlet weak var saveDeckButton: UIButton!
+    @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var cardTableView: UITableView!
     
     // MARK: - View Lifecycle
@@ -133,7 +134,7 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
                     }
                 }
             } else {
-                
+                self.dismiss(animated: true, completion: nil)
             }
         } else {
             deckController.createDeck(user: user, name: deckName, icon: deckIcon, tags: [""], cards: cards) {
@@ -150,8 +151,15 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
     private func updateLaunchViews() {
         if indexOfDeck == nil {
             self.titleLabel.text = "Create a Deck"
+//            self.backButton.isHidden = false
+            self.backButton.setTitleColor(UIColor.mNeme.orangeBlaze, for: .normal)
+            self.saveDeckButton.setTitle("Save", for: .normal)
+            self.saveDeckButton.setTitleColor(UIColor.mNeme.orangeBlaze, for: .normal)
         } else {
             self.titleLabel.text = "Edit Deck"
+            self.backButton.isHidden = true
+            self.saveDeckButton.setTitle("Done", for: .normal)
+            self.saveDeckButton.setTitleColor(UIColor.mNeme.orangeBlaze, for: .normal)
         }
         cardTableView.rowHeight = UITableView.automaticDimension
         cardTableView.estimatedRowHeight = 150
@@ -265,6 +273,8 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
                     cell.cardView.layer.borderColor = UIColor.lightGray.cgColor
                     cell.cardView.layer.borderWidth = 1
                     cell.cardView.layer.backgroundColor = UIColor.white.cgColor
+                    cell.frontCardTV.isUserInteractionEnabled = false
+                    cell.backCardTV.isUserInteractionEnabled = false
                     
                     return cell
                 }
@@ -313,6 +323,10 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
         
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             if indexPath.section == 1 {
+                let cell = tableView.cellForRow(at: indexPath) as! CardTableViewCell
+                cell.frontCardTV.isUserInteractionEnabled = true
+                cell.backCardTV.isUserInteractionEnabled = true
+                
                 let card = cards[indexPath.row] // for completion handler information
                 
                 let editAlert = UIAlertController(title: "Edit your Card", message: "", preferredStyle: .alert)
@@ -360,10 +374,14 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
                         tableView.reloadData()
                         editAlert.dismiss(animated: true, completion: nil)
                     }
+                    cell.frontCardTV.isUserInteractionEnabled = false
+                    cell.backCardTV.isUserInteractionEnabled = false
                 }))
                 
                 editAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
                     tableView.deselectRow(at: indexPath, animated: true)
+                    cell.frontCardTV.isUserInteractionEnabled = false
+                    cell.backCardTV.isUserInteractionEnabled = false
                 }))
                 
                 self.present(editAlert, animated: true)
