@@ -362,7 +362,9 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
                     }
                 }))
                 
-                editAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                editAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+                    tableView.deselectRow(at: indexPath, animated: true)
+                }))
                 
                 self.present(editAlert, animated: true)
             }

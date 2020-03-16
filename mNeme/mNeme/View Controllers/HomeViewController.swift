@@ -31,8 +31,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         deckTableView.dataSource = self
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super .viewDidAppear(true)
+    override func viewWillAppear(_ animated: Bool) {
+        super .viewWillAppear(true)
         
         deckTableView.reloadData()
     }
@@ -103,6 +103,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             if let cell = tableView.dequeueReusableCell(withIdentifier: "DemoDeckCell", for: indexPath) as? DeckTableViewCell {
                 
                 cell.DemoDeck = demoDeckController?.demoDecks[indexPath.row]
+                cell.progressBar.progressTintColor = UIColor.mNeme.orangeBlaze
                 return cell
             }  else {
                 return UITableViewCell()
@@ -131,11 +132,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
     }
-    
-    private func setArchiveAlertAction() {
-        
-    }
-    
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -211,8 +207,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 })
             }))
             
-            archiveAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            
+            archiveAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+                tableView.deselectRow(at: indexPath, animated: true)
+            }))
             self.present(archiveAlert, animated: true)
         }
     }
