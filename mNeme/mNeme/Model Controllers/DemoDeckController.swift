@@ -127,12 +127,9 @@ class DemoDeckController {
         }
     }
     
-    func editDeckCards(deck: Deck, user: User, cards: [CardData], completion: @escaping () -> Void) {
-        networkClient.put(user: user, deck: deck, updateDeckName: nil, updateCards: cards) { (result: Deck?) in
-            if let result = result, let index = self.decks.firstIndex(of: deck) {
-                self.decks[index].data = result.data
-                completion()
-            }
+    func editDeckCards(deck: Deck, user: User, cards: CardData, completion: @escaping () -> Void) {
+        networkClient.put(user: user, deck: deck, updateDeckName: nil, updateCards: [cards]) { (result: Deck?) in
+           completion()
         }
     }
     
