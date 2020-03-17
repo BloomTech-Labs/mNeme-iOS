@@ -175,26 +175,41 @@ class DemoDeckController {
     
     func unarchiveDeck(user: User, collectionID: String, index: Int, completion: @escaping () -> Void) {
         networkClient.archivePost(user: user, deckName: collectionID, archive: false) {
-            
-            let deck = self.archivedDecks[index]
-            self.decks.append(deck)
-            self.archivedDecks.remove(at: index)
-            completion()
-            //            self.networkClient.fetch(user.id, collectionID) { (result: Deck?) in
-            //                if let deck = result {
-            //                    self.decks.append(deck)
-            //                    self.archivedDecks.remove(at: index)
-            //                    completion()
-            //                }
+            print(collectionID)
+            self.fetchCardsWhenUnarchived(userID: user.id, deckCollectionID: collectionID, index: index) { (success) in
+                if success {
+                    print("cards fetched")
+                } else {
+                    print("cards not fetched")
+                }
+                completion()
+            }
         }
     }
     
-    func fetchCardsWhenUnarchived(userID: String, deckCollectionID: String) {
-        self.networkClient.fetch(userID, deckCollectionID) { (result: Deck?) in
-            print("Fetching card data, first card:\(result?.data?.first?.front)")
-            if let deck = result {
-                let index = self.decks.count
-                self.decks[index] = deck
+    func fetchCardsWhenUnarchived(userID: String, deckCollectionID: String, index: Int, completion: @escaping(Bool) -> Void) {
+        print(deckCollectionID)
+        // Check for card data return
+        self.networkClient.fetch(userID, deckCollectionID) { (deckData: [String: [CardData]]?) in
+            if let deckData = deckData {
+                var deck = self.archivedDecks[index]
+                deck.data = deckData["data"]
+                self.decks.insert(deck, at: 0)
+                self.archivedDecks.remove(at: index)
+                completion(true)
+                return
+            } else {
+                // Sometimes happens, but the fetch actually returns a deck. Need this for odd cases
+                self.networkClient.fetch(userID, deckCollectionID) { (result: Deck?) in
+                    if let deck = result {
+                        self.decks.insert(deck, at: 0)
+                        self.archivedDecks.remove(at: index)
+                        completion(true)
+                        return
+                    } else {
+                        completion(false)
+                    }
+                }
             }
         }
     }
