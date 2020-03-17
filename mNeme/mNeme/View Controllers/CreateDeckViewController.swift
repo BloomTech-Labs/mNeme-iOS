@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import TaggerKit
 
-class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
+class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, TKCollectionViewDelegate {
     
     // MARK: - Properties
     var cards: [CardData] = []
@@ -28,22 +29,23 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     var userController: UserController?
     var indexOfDeck: Int?
+    var tags: [String] = []
+    var allTagsCollection = TKCollectionView()
+    var productTagsCollection = TKCollectionView()
+
     
     
     // MARK: - IBOutlets
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var deckNameTF: UITextField!
     @IBOutlet weak var deckIconTF: UITextField!
-    @IBOutlet weak var deckTagsTF: UITextField!
-    //    @IBOutlet weak var addFlashcardView: UIView!
-    //    @IBOutlet weak var createdFlashcardView: UIView!
-    //    @IBOutlet weak var flashCardDividerView: UIView! // Address later
-    //    @IBOutlet weak var addFrontTV: UITextView!
-    //    @IBOutlet weak var addBackTV: UITextView!
-    //    @IBOutlet weak var addCardButton: UIButton!
+    @IBOutlet weak var deckTagsTF: TKTextField!
     @IBOutlet weak var saveDeckButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var cardTableView: UITableView!
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var containerView2: UIView!
+    @IBOutlet weak var tagsLabel: UILabel!
     
     // MARK: - View Lifecycle
     
@@ -51,6 +53,7 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
         cardTableView.delegate = self
         cardTableView.dataSource = self
+        setupTags()
         setDeck()
         updateLaunchViews()
         updateDeckViews()
@@ -76,27 +79,6 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBAction func backTapped(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-    
-    //    @IBAction func addCardTapped(_ sender: Any) {
-    //        guard let frontText = newCardFrontText, let backText = newCardBackText else { return }
-    //
-    //        let cardData = CardData(front: frontText, back: backText)
-    //
-    //        if let _ = deck {
-    //            let index = self.indexOfDeck
-    //            if let deck = deckController?.decks[index ?? 9], let cards = deckController?.addCardToDeck(deck: deck, card: cardData) {
-    //                self.cards = cards
-    //                self.deck = deck
-    //                self.newCards.append(cardData)
-    //                cardTableView.reloadData()
-    //            }
-    //
-    //        } else {
-    //            self.cards.insert(cardData, at: 0)
-    //        }
-    //        cardTableView.reloadData()
-    //        didAddCard = true
-    //    }
     
     @IBAction func saveDeckTapped(_ sender: Any) {
         guard let deckName = deckNameTF.text, !deckName.isEmpty, let deckIcon = deckIconTF.text, !deckIcon.isEmpty, let userController = userController, let user = userController.user, let deckController = deckController else { return }
@@ -137,7 +119,7 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.dismiss(animated: true, completion: nil)
             }
         } else {
-            deckController.createDeck(user: user, name: deckName, icon: deckIcon, tags: [""], cards: cards) {
+            deckController.createDeck(user: user, name: deckName, icon: deckIcon, tags: tags, cards: cards) {
                 DispatchQueue.main.async {
                     self.clearViews()
                     self.dismiss(animated: true, completion: nil)
@@ -149,17 +131,25 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
     // MARK: - Private Functions
     
     private func updateLaunchViews() {
+        // Creating a deck
         if indexOfDeck == nil {
             self.titleLabel.text = "Create a Deck"
 //            self.backButton.isHidden = false
             self.backButton.setTitleColor(UIColor.mNeme.orangeBlaze, for: .normal)
             self.saveDeckButton.setTitle("Save", for: .normal)
             self.saveDeckButton.setTitleColor(UIColor.mNeme.orangeBlaze, for: .normal)
+            self.tagsLabel.isHidden = true
+            
+        //Editing a deck
         } else {
             self.titleLabel.text = "Edit Deck"
             self.backButton.isHidden = true
             self.saveDeckButton.setTitle("Done", for: .normal)
             self.saveDeckButton.setTitleColor(UIColor.mNeme.orangeBlaze, for: .normal)
+            self.deckIconTF.isUserInteractionEnabled = false
+            self.productTagsCollection.action = .noAction
+            self.deckTagsTF.isHidden = true
+            self.containerView.isHidden = true
         }
         cardTableView.rowHeight = UITableView.automaticDimension
         cardTableView.estimatedRowHeight = 150
@@ -169,6 +159,8 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
     private func setDeck() {
         guard let deckController = deckController, let indexOfDeck = indexOfDeck else { return }
         deck = deckController.decks[indexOfDeck]
+        // Add tags for deck
+        self.productTagsCollection.tags = deck?.deckInformation.tags ?? [""]
     }
     
     private func updateDeckViews() {
@@ -179,8 +171,6 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
             self.cards = cards
         }
     }
-    
-    
     
     private func clearViews() {
         cards = []
@@ -224,6 +214,26 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
         cardTableView.reloadData()
         didAddCard = true
     }
+    
+    private func setupTags() {
+          allTagsCollection.tags = []
+          add(allTagsCollection, toView: containerView)
+          add(productTagsCollection, toView: containerView2)
+          allTagsCollection.action = .addTag
+          allTagsCollection.receiver = productTagsCollection
+          productTagsCollection.action = .removeTag
+          deckTagsTF.sender = allTagsCollection
+          deckTagsTF.receiver = productTagsCollection
+          allTagsCollection.delegate = self
+          productTagsCollection.delegate = self
+        
+        //Customization
+        deckTagsTF.backgroundColor = UIColor.white
+        deckTagsTF.layer.cornerRadius = 0
+//        deckTagsTF.layer.backgroundColor = UIColor.white.cgColor
+        allTagsCollection.customBackgroundColor = UIColor.mNeme.goldenTaioni
+        productTagsCollection.customBackgroundColor = UIColor.mNeme.goldenTaioni
+      }
     
     // MARK: - Tableview Functions - Refactoring needed for different cells and sections
     
@@ -396,6 +406,26 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
             }
             
         }
+    
+    func tagIsBeingAdded(name: String?) {
+        guard let name = name else { return }
+        tags.append(name)
+        print("added \(name)")
+    }
+    
+    func tagIsBeingRemoved(name: String?) {
+        guard let name = name else { return }
+        for tag in tags {
+            if name == tag {
+                if let index = tags.firstIndex(of: tag) {
+                    tags.remove(at: index)
+                }
+            }
+        }
+        
+        print("removed \(name)")
+        
+    }
         
         
         
