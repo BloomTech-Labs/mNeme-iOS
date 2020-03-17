@@ -35,7 +35,7 @@ class TabViewController: SOTabBarController {
         // instantiating each navcontroller for view controller on tab bar
         let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController")
 
-        let deckCreateVC = UIStoryboard(name: "Main", bundle:nil).instantiateViewController(withIdentifier: "DeckCreateViewController")
+        let deckSearchVC = UIStoryboard(name: "Main", bundle:nil).instantiateViewController(withIdentifier: "DeckSearchViewController")
 
         let profileVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfileViewController")
 
@@ -43,25 +43,25 @@ class TabViewController: SOTabBarController {
         let homeImage = UIImage(systemName: "house")?.withTintColor(UIColor.mNeme.orangeBlaze, renderingMode: .alwaysOriginal)
         let homeImageSelected = UIImage(systemName: "house")?.withTintColor(UIColor.white, renderingMode: .alwaysOriginal)
 
-        let createImage = UIImage(systemName: "pencil")?.withTintColor(UIColor.mNeme.orangeBlaze, renderingMode: .alwaysOriginal)
-        let createImageSelected = UIImage(systemName: "pencil")?.withTintColor(UIColor.white, renderingMode: .alwaysOriginal)
+        let searchImage = UIImage(systemName: "magnifyingglass")?.withTintColor(UIColor.mNeme.orangeBlaze, renderingMode: .alwaysOriginal)
+        let searchImageSelected = UIImage(systemName: "magnifyingglass")?.withTintColor(UIColor.white, renderingMode: .alwaysOriginal)
 
         let profileImage = UIImage(systemName: "person")?.withTintColor(UIColor.mNeme.orangeBlaze, renderingMode: .alwaysOriginal)
         let profileImageSelected = UIImage(systemName: "person")?.withTintColor(UIColor.white, renderingMode: .alwaysOriginal)
 
         // Setting up tab bar items for each view controller
         homeVC.tabBarItem = UITabBarItem(title: "Home", image: homeImage, selectedImage: homeImageSelected)
-        deckCreateVC.tabBarItem = UITabBarItem(title: "Create Deck", image: createImage, selectedImage: createImageSelected)
+        deckSearchVC.tabBarItem = UITabBarItem(title: "Search Decks", image: searchImage, selectedImage: searchImageSelected)
         profileVC.tabBarItem = UITabBarItem(title: "Profile", image: profileImage, selectedImage: profileImageSelected)
 
-        viewControllers = [homeVC, deckCreateVC, profileVC]
+        viewControllers = [homeVC, deckSearchVC, profileVC]
         tabBarViewControllerProperties()
     }
 
     // set up the view controllers on the tab bars with property data as needed
     private func tabBarViewControllerProperties() {
         guard let homeVC = self.viewControllers[0] as? HomeViewController,
-            let _ = self.viewControllers[1] as? CreateDeckViewController,
+            let _ = self.viewControllers[1] as? DeckSearchViewController,
             let profileVC = self.viewControllers[2] as? ProfileViewController else { return }
         
         

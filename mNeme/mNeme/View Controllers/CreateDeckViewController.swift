@@ -320,6 +320,14 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.present(deleteDeckAlert, animated: true)
             }
         }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        if indexPath.section == 0 {
+            return .none
+        } else {
+            return .delete
+        }
+    }
         
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             if indexPath.section == 1 {

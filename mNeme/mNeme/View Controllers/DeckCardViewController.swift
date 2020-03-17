@@ -26,6 +26,8 @@ class DeckCardViewController: UIViewController {
     @IBOutlet weak var tapToFlipLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var tapCardToFlipHand: UIImageView!
+    
     
     // MARK: - Properties
     var deck: Deck?{
@@ -236,6 +238,7 @@ class DeckCardViewController: UIViewController {
         backCard.isHidden = false
         forwardCard.isHidden = false
         tapToFlipLabel.isHidden = false
+        tapCardToFlipHand.isHidden = false
         tapMid.isHidden = false
         containerView.layer.borderColor = UIColor.mNeme.orangeBlaze.cgColor
     }
@@ -244,6 +247,7 @@ class DeckCardViewController: UIViewController {
         backCard.isHidden = true
         forwardCard.isHidden = true
         tapToFlipLabel.isHidden = true
+        tapCardToFlipHand.isHidden = true
         containerView.layer.borderColor = UIColor.mNeme.goldenTaioni.cgColor
     }
     
@@ -259,6 +263,7 @@ class DeckCardViewController: UIViewController {
         tapMid.isHidden = true
         tutorialLabel.isHidden = true
         tapToFlipLabel.isHidden = true
+        tapCardToFlipHand.isHidden = true
     }
     
     private func hideOtherLabels() {
