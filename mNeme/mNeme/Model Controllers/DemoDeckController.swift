@@ -213,6 +213,12 @@ class DemoDeckController {
             }
         }
     }
+
+    func deleteArchivedDeck(user: User, deck: Deck) {
+        networkClient.delete(user: user, deck: deck, deleteCards: nil, archived: true) { (_) in
+            //self.archivedDecks.remove(at: index)
+        }
+    }
 }
 
 
