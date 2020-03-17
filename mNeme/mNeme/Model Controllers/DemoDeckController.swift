@@ -194,7 +194,7 @@ class DemoDeckController {
             if let deckData = deckData {
                 var deck = self.archivedDecks[index]
                 deck.data = deckData["data"]
-                self.decks.insert(deck, at: 0)
+                self.decks.append(deck)
                 self.archivedDecks.remove(at: index)
                 completion(true)
                 return
@@ -202,7 +202,7 @@ class DemoDeckController {
                 // Sometimes happens, but the fetch actually returns a deck. Need this for odd cases
                 self.networkClient.fetch(userID, deckCollectionID) { (result: Deck?) in
                     if let deck = result {
-                        self.decks.insert(deck, at: 0)
+                        self.decks.append(deck)
                         self.archivedDecks.remove(at: index)
                         completion(true)
                         return

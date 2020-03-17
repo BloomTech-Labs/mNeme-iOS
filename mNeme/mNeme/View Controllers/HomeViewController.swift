@@ -120,10 +120,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         } else {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "DemoDeckCell", for: indexPath) as? DeckTableViewCell {
-                
+                cell.archived = true
                 cell.deck = demoDeckController?.archivedDecks[indexPath.row]
                 cell.deckNameLabel.textColor = .lightGray
-                cell.archived = true
                 cell.progressBar.progressTintColor = .darkGray
                 
                 return cell
