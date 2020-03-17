@@ -147,12 +147,14 @@ class NetworkClient {
 
         var deleteDeckURL = baseURL.appendingPathComponent(user.id).appendingPathComponent(collectionId)
 
-        if archived { deleteDeckURL.appendPathComponent("delete-archived-deck") }
-
-        if deleteCards != nil {
-            deleteDeckURL = deleteDeckURL.appendingPathComponent("delete-cards")
+        if archived {
+            deleteDeckURL.appendPathComponent("delete-archived-deck")
         } else {
-            deleteDeckURL = deleteDeckURL.appendingPathComponent("delete-deck")
+            if deleteCards != nil {
+                deleteDeckURL = deleteDeckURL.appendingPathComponent("delete-cards")
+            } else {
+                deleteDeckURL = deleteDeckURL.appendingPathComponent("delete-deck")
+            }
         }
 
         var request = URLRequest(url: deleteDeckURL)

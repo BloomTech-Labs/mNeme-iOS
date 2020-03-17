@@ -84,14 +84,23 @@ class DemoDeckController {
     }
     
     func fetchDecks(userID: String, completion: @escaping () -> Void) {
+        let deckGroup = DispatchGroup()
         networkClient.fetch(userID, nil) { (results: [DeckInformation]?) in
             if let results = results {
-                for deck in results {
-                    self.networkClient.fetch(userID, deck.collectionId) { (result: Deck?) in
-                        self.decks.append(result!)
+                if !results.isEmpty {
+                    for deck in results {
+                        deckGroup.enter()
+                        self.networkClient.fetch(userID, deck.collectionId) { (result: Deck?) in
+                            self.decks.append(result!)
+                            deckGroup.leave()
+                        }
                     }
+                    deckGroup.notify(queue: .main) {
+                        completion()
+                    }
+                } else {
+                    completion()
                 }
-                completion()
             } else {
                 print("Fetch not working")
             }
@@ -101,11 +110,15 @@ class DemoDeckController {
     func fetchArchivedDecks(userID: String, completion: @escaping () -> Void) {
         networkClient.fetch(userID, nil, true) { (results: [DeckInformation]?) in
             if let results = results {
-                for deck in results {
-                    let archivedDeck = Deck(deckInfo: deck)
-                    self.archivedDecks.append(archivedDeck)
+                if !results.isEmpty {
+                    for deck in results {
+                        let archivedDeck = Deck(deckInfo: deck)
+                        self.archivedDecks.append(archivedDeck)
+                    }
+                    completion()
+                } else {
+                    completion()
                 }
-                completion()
             } else {
                 print("Fetch not working")
             }
@@ -211,6 +224,12 @@ class DemoDeckController {
                     }
                 }
             }
+        }
+    }
+
+    func deleteArchivedDeck(user: User, deck: Deck) {
+        networkClient.delete(user: user, deck: deck, deleteCards: nil, archived: true) { (_) in
+            //self.archivedDecks.remove(at: index)
         }
     }
 }
