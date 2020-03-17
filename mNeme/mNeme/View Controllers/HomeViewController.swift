@@ -120,10 +120,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         } else {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "DemoDeckCell", for: indexPath) as? DeckTableViewCell {
-                
+                cell.archived = true
                 cell.deck = demoDeckController?.archivedDecks[indexPath.row]
                 cell.deckNameLabel.textColor = .lightGray
-                cell.archived = true
                 cell.progressBar.progressTintColor = .darkGray
                 
                 return cell
@@ -160,7 +159,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 deleteDeckAlert.addAction(UIAlertAction(title: archive, style: .default, handler: { (action) in
                     tableView.reloadData()
                     self.demoDeckController?.unarchiveDeck(user: user, collectionID: deckID, index: indexPath.row, completion: {
-                        self.demoDeckController?.fetchCardsWhenUnarchived(userID: user.id, deckCollectionID: deckID)
+                        //self.demoDeckController?.fetchCardsWhenUnarchived(userID: user.id, deckCollectionID: deckID)
                         DispatchQueue.main.async {
                             tableView.reloadData()
                             deleteDeckAlert.dismiss(animated: true, completion: nil)
