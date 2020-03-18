@@ -22,7 +22,7 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     var didAddCard: Bool =  false
     var deckName: String?
-    var deckController: DemoDeckController? {
+    var deckController: DeckController? {
         didSet{
             print("It passed in")
         }
@@ -36,7 +36,6 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     // MARK: - IBOutlets
-    
     @IBOutlet weak var deckNameTF: UITextField!
     @IBOutlet weak var deckIconTF: UITextField!
     @IBOutlet weak var deckTagsTF: TKTextField!
@@ -50,7 +49,6 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var navBar: UINavigationBar!
     
     // MARK: - View Lifecycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         cardTableView.delegate = self
@@ -60,10 +58,6 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
         updateLaunchViews()
         updateDeckViews()
         cardTableView.reloadData()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -228,7 +222,6 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
         //Customization
         deckTagsTF.backgroundColor = UIColor.white
         deckTagsTF.layer.cornerRadius = 0
-        //        deckTagsTF.layer.backgroundColor = UIColor.white.cgColor
         allTagsCollection.customBackgroundColor = UIColor.mNeme.goldenTaioni
         productTagsCollection.customBackgroundColor = UIColor.mNeme.goldenTaioni
     }
@@ -236,8 +229,7 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     
-    // MARK: - Tableview Functions - Refactoring needed for different cells and sections
-    
+    // MARK: - Tableview Functions
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }

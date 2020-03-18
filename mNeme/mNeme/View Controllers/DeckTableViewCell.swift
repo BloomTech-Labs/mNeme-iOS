@@ -10,12 +10,13 @@ import UIKit
 
 class DeckTableViewCell: UITableViewCell {
 
+    // MARK: - IB Outlets
     @IBOutlet weak var deckNameLabel: UILabel!
     @IBOutlet weak var masteredCardsLabel: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
     
+    // MARK: - Properties
     var archived = false
-    
     var DemoDeck: DemoDeck? {
         didSet {
             updateViews()
@@ -27,7 +28,7 @@ class DeckTableViewCell: UITableViewCell {
         }
     }
     
-    
+    // MARK: - Private Functions
     private func updateViews() {
         if let deck = DemoDeck {
             deckNameLabel.text = "\(deck.deckName.capitalized)"

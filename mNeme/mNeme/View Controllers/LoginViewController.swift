@@ -16,12 +16,10 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
      // MARK: - Properties
      let userController = UserController()
      let deckCardsDispatchGroup = DispatchGroup()
-     let demoDeckController = DemoDeckController()
+     let demoDeckController = DeckController()
      var signingUp = false
      
      let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
-
-     
      
      // MARK: - IB Outlets
      @IBOutlet weak var googleLoginButton: UIButton!
@@ -60,7 +58,6 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
                self.present(self.alert, animated: true, completion: nil)
                if let uid = Auth.auth().currentUser?.uid {
                     self.signInWithAuthResultUID(uid: uid)
-                    
                }
           }
      }
@@ -72,7 +69,6 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
      
      @IBAction func googleSignInPressed(_ sender: Any) {
           GIDSignIn.sharedInstance().signIn()
-          
      }
      
      @IBAction private func facebookSignInPressed() {
@@ -158,7 +154,6 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
      }
      
      // MARK: - Private Functions
-     
      // Users is successfully signed in and DemoDecks are retrieved from networking
      private func signInWithAuthResultUID(uid: String) {
           let user = User(uid)
@@ -192,7 +187,6 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
           }
      }
      
-     
      // Facebook Login Authentication Success // Error Handling
      func loginManagerDidComplete(_ result: LoginResult) {
           switch result {
@@ -223,8 +217,7 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
                }
           }
      }
-     
-     
+
      // Google Sign In Authentication Function
      func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
           if let error = error {
