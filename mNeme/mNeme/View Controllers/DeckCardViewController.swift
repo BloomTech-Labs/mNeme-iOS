@@ -27,6 +27,8 @@ class DeckCardViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var editButton: UIButton!
     
+    
+    
     // MARK: - Properties
     var deck: Deck?{
         didSet{
