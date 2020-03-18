@@ -64,8 +64,6 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        //        addFrontTV.centerVertically()
-        //        addBackTV.centerVertically()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -281,6 +279,8 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
                 cell.cardView.layer.backgroundColor = UIColor.white.cgColor
                 cell.frontCardTV.isUserInteractionEnabled = false
                 cell.backCardTV.isUserInteractionEnabled = false
+                cell.frontCardTV.centerVertically()
+                cell.backCardTV.centerVertically()
                 
                 if self.cards[indexPath.row].archived == true {
                     cell.cardView.backgroundColor = .lightGray
@@ -288,7 +288,8 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
                     cell.backCardTV.backgroundColor = .lightGray
                     
                 } else {
-                    cell.backgroundColor = .white
+                    cell.frontCardTV.backgroundColor = .white
+                    cell.backCardTV.backgroundColor = .white
                 }
                 return cell
             }
