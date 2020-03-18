@@ -232,6 +232,14 @@ class DemoDeckController {
             //self.archivedDecks.remove(at: index)
         }
     }
+    
+    func archiveCard(deck: Deck, user: User, cards: CardData, completion: @escaping () -> Void) {
+        networkClient.put(user: user, deck: deck, updateDeckName: nil, updateCards: [cards]) { (result: Deck?) in
+           completion()
+        }
+    }
+    
+    
 }
 
 
