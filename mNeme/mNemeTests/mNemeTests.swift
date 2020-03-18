@@ -27,16 +27,16 @@ class mNemeTests: XCTestCase {
     //
 
     func testLoadingADeck() {
-        let viewController = DeckCardViewController()
-        
-        
-        let mock = ModckDataLoader()
-        mock.data = userWithData
-        let deckController = DemoDeckController(networkDataLoader: mock)
-        let decoder = JSONDecoder()
-        let decodedDeck = try! decoder.decode(DemoDeck.self, from: shortDeck)
-        deckController.demoDecks[0] = decodedDeck
-        viewController.deck = decodedDeck
+//        let viewController = DeckCardViewController()
+//        
+//        
+//        let mock = ModckDataLoader()
+//        mock.data = userWithData
+//        let deckController = DemoDeckController(networkDataLoader: mock)
+//        let decoder = JSONDecoder()
+//        let decodedDeck = try! decoder.decode(DemoDeck.self, from: shortDeck)
+//        deckController.demoDecks[0] = decodedDeck
+//        viewController.deck = decodedDeck
     }
     
     
