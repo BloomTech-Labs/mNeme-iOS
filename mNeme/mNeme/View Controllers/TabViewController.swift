@@ -13,7 +13,7 @@ class TabViewController: SOTabBarController {
 
     // MARK: - Properties
     var userController: UserController?
-    var demoDeckController: DemoDeckController?
+    var demoDeckController: DeckController?
 
     // MARK: - View Lifecycle
     // Changes the settings for the tab bar
@@ -66,7 +66,7 @@ class TabViewController: SOTabBarController {
         
         
         profileVC.userController = self.userController
-        homeVC.demoDeckController = self.demoDeckController
+        homeVC.deckController = self.demoDeckController
         homeVC.userController = self.userController
     }
 }

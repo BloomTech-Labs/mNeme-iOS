@@ -14,6 +14,7 @@ protocol CardTableViewCellDelegate {
 
 class CreateCardTableViewCell: UITableViewCell, UITextViewDelegate {
     
+    // MARK: - IB Outlet & Properties
     @IBOutlet weak var addFrontTV: UITextView!
     @IBOutlet weak var addBackTV: UITextView!
     @IBOutlet weak var addCardButton: UIButton!
@@ -27,7 +28,8 @@ class CreateCardTableViewCell: UITableViewCell, UITextViewDelegate {
         addFrontTV.delegate = self
         addBackTV.delegate = self
     }
-    
+
+    // MARK: - IB Actions & Private Functions
     @IBAction func addCardButtonTapped(_ sender: Any) {
         if let frontTV = addFrontTV.text, !frontTV.isEmpty, let backTV = addBackTV.text, !backTV.isEmpty {
             delegate?.addCardWasTapped(frontText: frontTV, backtext: backTV)
@@ -45,6 +47,8 @@ class CreateCardTableViewCell: UITableViewCell, UITextViewDelegate {
     }
 }
 
+// MARK: - Extensions
+// This allows us to present an alert in the parent controller of this cell
 extension UIView {
     var parentViewController: CreateDeckViewController? {
         var parentResponder: UIResponder? = self
