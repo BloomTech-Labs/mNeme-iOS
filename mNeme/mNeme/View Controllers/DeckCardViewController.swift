@@ -27,6 +27,8 @@ class DeckCardViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var editButton: UIButton!
     
+    
+    
     // MARK: - Properties
     var deck: Deck?{
         didSet{
@@ -55,7 +57,6 @@ class DeckCardViewController: UIViewController {
             currentCardIndex = total - 1
         }
     }
-    
     var demo: Bool = false
     var currentCardTotal = 0
     var currentCardIndex: Int = 0
@@ -74,6 +75,16 @@ class DeckCardViewController: UIViewController {
                 hideRatingStuff()
                 showFrontViews()
             }
+        }
+    }
+    
+    private func setDeck() {
+        guard let deckController = deckController, let indexOfDeck = indexOfDeck else { return }
+        if demo == false {
+            deck = deckController.decks[indexOfDeck]
+        } else {
+            demoDeck = deckController.demoDecks[indexOfDeck]
+            currentCardTotal = deckController.demoDecks[indexOfDeck].data?.count ?? 0
         }
     }
     
@@ -162,17 +173,6 @@ class DeckCardViewController: UIViewController {
     }
     
     // MARK: - Private Functions
-    
-    private func setDeck() {
-        guard let deckController = deckController, let indexOfDeck = indexOfDeck else { return }
-        if demo == false {
-            deck = deckController.decks[indexOfDeck]
-        } else {
-            demoDeck = deckController.demoDecks[indexOfDeck]
-            currentCardTotal = deckController.demoDecks[indexOfDeck].data?.count ?? 0
-        }
-    }
-
     private func setupViews() {
         updateTitle()
         
@@ -219,9 +219,9 @@ class DeckCardViewController: UIViewController {
             frontLabel?.text = currentCardInfo.front
             backLabel?.text = currentCardInfo.back
         } else {
-            let currentCardInfo = cards[currentCardIndex]
-            frontLabel?.text = currentCardInfo.front
-            backLabel?.text = currentCardInfo.back
+            let currentCardInfo = demoDeck?.data?[currentCardIndex]
+            frontLabel?.text = currentCardInfo?.data.front
+            backLabel?.text = currentCardInfo?.data.back
         }
     }
     
