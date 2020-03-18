@@ -10,9 +10,10 @@ import UIKit
 
 class DeckSearchViewController: UIViewController {
 
+    @IBOutlet weak var topView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        topView.layer.backgroundColor = UIColor.mNeme.orangeBlaze.cgColor
     }
     
 

@@ -36,16 +36,18 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     // MARK: - IBOutlets
-    @IBOutlet weak var titleLabel: UILabel!
+    
     @IBOutlet weak var deckNameTF: UITextField!
     @IBOutlet weak var deckIconTF: UITextField!
     @IBOutlet weak var deckTagsTF: TKTextField!
-    @IBOutlet weak var saveDeckButton: UIButton!
-    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet var backBarButton: UIBarButtonItem!
+    @IBOutlet var doneBarButton: UIBarButtonItem!
     @IBOutlet weak var cardTableView: UITableView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var containerView2: UIView!
     @IBOutlet weak var tagsLabel: UILabel!
+    @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var navBar: UINavigationBar!
     
     // MARK: - View Lifecycle
     
@@ -80,7 +82,7 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func saveDeckTapped(_ sender: Any) {
+    @IBAction func doneTapped(_ sender: Any) {
         guard let deckName = deckNameTF.text, !deckName.isEmpty, let deckIcon = deckIconTF.text, !deckIcon.isEmpty, let userController = userController, let user = userController.user, let deckController = deckController else { return }
         guard cards.count > 0 else { return }
         
@@ -131,21 +133,20 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
     // MARK: - Private Functions
     
     private func updateLaunchViews() {
+        
+        let textAttribute = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        doneBarButton.setTitleTextAttributes(textAttribute, for: .normal)
+        backBarButton.setTitleTextAttributes(textAttribute, for: .normal)
+        topView.layer.backgroundColor = UIColor.mNeme.orangeBlaze.cgColor
         // Creating a deck
         if indexOfDeck == nil {
-            self.titleLabel.text = "Create a Deck"
-//            self.backButton.isHidden = false
-            self.backButton.setTitleColor(UIColor.mNeme.orangeBlaze, for: .normal)
-            self.saveDeckButton.setTitle("Save", for: .normal)
-            self.saveDeckButton.setTitleColor(UIColor.mNeme.orangeBlaze, for: .normal)
+            navBar.topItem?.title = "Create a deck"
             self.tagsLabel.isHidden = true
             
         //Editing a deck
         } else {
-            self.titleLabel.text = "Edit Deck"
-            self.backButton.isHidden = true
-            self.saveDeckButton.setTitle("Done", for: .normal)
-            self.saveDeckButton.setTitleColor(UIColor.mNeme.orangeBlaze, for: .normal)
+            navBar.topItem?.title = "Edit deck"
+            self.backBarButton = nil
             self.deckIconTF.isUserInteractionEnabled = false
             self.productTagsCollection.action = .noAction
             self.deckTagsTF.isHidden = true
@@ -241,13 +242,13 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
         return 2
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
-            return "Add Flashcard"
-        } else {
-            return "# of Cards in (Deck Name)"
-        }
-    }
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        if section == 0 {
+//            return "Add Flashcard"
+//        } else {
+//            return "# of Cards in (Deck Name)"
+//        }
+//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
