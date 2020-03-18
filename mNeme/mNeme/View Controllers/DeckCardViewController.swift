@@ -32,11 +32,23 @@ class DeckCardViewController: UIViewController {
     // MARK: - Properties
     var deck: Deck?{
         didSet{
-            guard let total = deck?.data?.count else { return }
-            currentCardTotal = total
-            currentCardIndex = total - 1
+            parseCards()
         }
     }
+    
+    private func parseCards() {
+        if let cards = deck?.data?.filter({ $0.archived == false }) {
+            self.cards = cards
+        }
+    }
+    
+    var cards: [CardData] = [] {
+        didSet{
+            currentCardTotal = cards.count
+            currentCardIndex = cards.count - 1
+        }
+    }
+    
     var indexOfDeck: Int?
     var demoDeck: DemoDeck?{
         didSet{
@@ -70,7 +82,6 @@ class DeckCardViewController: UIViewController {
         guard let deckController = deckController, let indexOfDeck = indexOfDeck else { return }
         if demo == false {
             deck = deckController.decks[indexOfDeck]
-            currentCardTotal = deckController.decks[indexOfDeck].data?.count ?? 0
         } else {
             demoDeck = deckController.demoDecks[indexOfDeck]
             currentCardTotal = deckController.demoDecks[indexOfDeck].data?.count ?? 0
@@ -85,8 +96,6 @@ class DeckCardViewController: UIViewController {
         setupViews()
         hideOtherLabels()
         showFrontViews()
-//        updateDeckText()
-//        NotificationCenter.default.addObserver(self, selector: #selector(updateRealDeck(notification:)), name: .savedDeck, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -94,14 +103,6 @@ class DeckCardViewController: UIViewController {
         updateTitle()
         updateDeckText()
     }
-    
-//    @objc func updateRealDeck(notification: Notification) {
-//        if let deckController = notification.userInfo?["controller"] as? DemoDeckController {
-//            guard let index = indexOfDeck else { return }
-//            realDeck = deckController.decks[index]
-//            self.titleLabel.text = deckController.decks[index].deckInformation.deckName
-//        }
-//    }
     
     // MARK: - IB Actions
     @IBAction func backACard(_ sender: UIButton) {
@@ -212,16 +213,15 @@ class DeckCardViewController: UIViewController {
     
     private func updateDeckText() {
         if demo == false {
-            guard let deck = deck else { return }
-            let currentCardInfo = deck.data?[currentCardIndex]
+            let currentCardInfo = cards[currentCardIndex]
             frontLabel?.text = nil
             backLabel?.text = nil
-            frontLabel?.text = currentCardInfo?.front
-            backLabel?.text = currentCardInfo?.back
+            frontLabel?.text = currentCardInfo.front
+            backLabel?.text = currentCardInfo.back
         } else {
-            let currentCardInfo = deckController?.demoDecks[indexOfDeck!].data?[currentCardIndex]
-            frontLabel?.text = currentCardInfo?.data.front
-            backLabel?.text = currentCardInfo?.data.back
+            let currentCardInfo = cards[currentCardIndex]
+            frontLabel?.text = currentCardInfo.front
+            backLabel?.text = currentCardInfo.back
         }
     }
     

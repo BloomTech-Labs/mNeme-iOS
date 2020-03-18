@@ -32,7 +32,7 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
     var tags: [String] = []
     var allTagsCollection = TKCollectionView()
     var productTagsCollection = TKCollectionView()
-
+    
     
     
     // MARK: - IBOutlets
@@ -40,8 +40,8 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var deckNameTF: UITextField!
     @IBOutlet weak var deckIconTF: UITextField!
     @IBOutlet weak var deckTagsTF: TKTextField!
-    @IBOutlet var backBarButton: UIBarButtonItem!
-    @IBOutlet var doneBarButton: UIBarButtonItem!
+    @IBOutlet weak var backBarButton: UIBarButtonItem!
+    @IBOutlet weak var doneBarButton: UIBarButtonItem!
     @IBOutlet weak var cardTableView: UITableView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var containerView2: UIView!
@@ -64,8 +64,6 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        //        addFrontTV.centerVertically()
-        //        addBackTV.centerVertically()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -143,10 +141,9 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
             navBar.topItem?.title = "Create a deck"
             self.tagsLabel.isHidden = true
             
-        //Editing a deck
+            //Editing a deck
         } else {
             navBar.topItem?.title = "Edit deck"
-            self.backBarButton = nil
             self.deckIconTF.isUserInteractionEnabled = false
             self.productTagsCollection.action = .noAction
             self.deckTagsTF.isHidden = true
@@ -217,24 +214,27 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     private func setupTags() {
-          allTagsCollection.tags = []
-          add(allTagsCollection, toView: containerView)
-          add(productTagsCollection, toView: containerView2)
-          allTagsCollection.action = .addTag
-          allTagsCollection.receiver = productTagsCollection
-          productTagsCollection.action = .removeTag
-          deckTagsTF.sender = allTagsCollection
-          deckTagsTF.receiver = productTagsCollection
-          allTagsCollection.delegate = self
-          productTagsCollection.delegate = self
+        allTagsCollection.tags = []
+        add(allTagsCollection, toView: containerView)
+        add(productTagsCollection, toView: containerView2)
+        allTagsCollection.action = .addTag
+        allTagsCollection.receiver = productTagsCollection
+        productTagsCollection.action = .removeTag
+        deckTagsTF.sender = allTagsCollection
+        deckTagsTF.receiver = productTagsCollection
+        allTagsCollection.delegate = self
+        productTagsCollection.delegate = self
         
         //Customization
         deckTagsTF.backgroundColor = UIColor.white
         deckTagsTF.layer.cornerRadius = 0
-//        deckTagsTF.layer.backgroundColor = UIColor.white.cgColor
+        //        deckTagsTF.layer.backgroundColor = UIColor.white.cgColor
         allTagsCollection.customBackgroundColor = UIColor.mNeme.goldenTaioni
         productTagsCollection.customBackgroundColor = UIColor.mNeme.goldenTaioni
-      }
+    }
+    
+    
+    
     
     // MARK: - Tableview Functions - Refactoring needed for different cells and sections
     
@@ -242,13 +242,6 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
         return 2
     }
     
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        if section == 0 {
-//            return "Add Flashcard"
-//        } else {
-//            return "# of Cards in (Deck Name)"
-//        }
-//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
@@ -274,63 +267,95 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
         else {
-                if let cell = tableView.dequeueReusableCell(withIdentifier: "CardCell", for: indexPath) as? CardTableViewCell {
-                    
-                    if !self.cards.isEmpty {
-                        cell.frontCardTV.text = self.cards[indexPath.row].front
-                        cell.backCardTV.text = self.cards[indexPath.row].back
-                    }
-                    cell.cardView.layer.cornerRadius = 10
-                    cell.cardView.layer.borderColor = UIColor.lightGray.cgColor
-                    cell.cardView.layer.borderWidth = 1
-                    cell.cardView.layer.backgroundColor = UIColor.white.cgColor
-                    cell.frontCardTV.isUserInteractionEnabled = false
-                    cell.backCardTV.isUserInteractionEnabled = false
-                    
-                    return cell
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "CardCell", for: indexPath) as? CardTableViewCell {
+                
+                if !self.cards.isEmpty {
+                    cell.frontCardTV.text = self.cards[indexPath.row].front
+                    cell.backCardTV.text = self.cards[indexPath.row].back
                 }
-            }
-            return UITableViewCell()
-        }
-        
-        func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-            if editingStyle == .delete {
+                cell.cardView.layer.cornerRadius = 10
+                cell.cardView.layer.borderColor = UIColor.lightGray.cgColor
+                cell.cardView.layer.borderWidth = 1
+                cell.cardView.layer.backgroundColor = UIColor.white.cgColor
+                cell.frontCardTV.isUserInteractionEnabled = false
+                cell.backCardTV.isUserInteractionEnabled = false
+                cell.frontCardTV.centerVertically()
+                cell.backCardTV.centerVertically()
                 
-                if cards.count == 1 {
-                    let cardAlert = UIAlertController(title: "Your deck needs at least one card!", message: "", preferredStyle: .alert)
-                    cardAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                    self.present(cardAlert, animated: true)
-                    return
+                if self.cards[indexPath.row].archived == true {
+                    cell.cardView.backgroundColor = .lightGray
+                    cell.frontCardTV.backgroundColor = .lightGray
+                    cell.backCardTV.backgroundColor = .lightGray
+                    
+                } else {
+                    cell.frontCardTV.backgroundColor = .white
+                    cell.backCardTV.backgroundColor = .white
                 }
-                
-                let deleteDeckAlert = UIAlertController(title: "Are you sure you want to delete this card? Would you rather archive?", message: "", preferredStyle: .actionSheet)
-                
-                
-                deleteDeckAlert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
-                    guard let user = self.userController?.user, let deck = self.deckController?.decks[self.indexOfDeck ?? 0], let cardToDelete = deck.data?[indexPath.row] else { return }
-                    
-                    for card in self.newCards {
-                        if card == cardToDelete {
-                            guard let newCardIndex = self.newCards.firstIndex(of: card) else { return }
-                            self.newCards.remove(at: newCardIndex)
-                            self.cards.remove(at: indexPath.row)
-                            self.deckController?.decks[self.indexOfDeck ?? 0].data?.remove(at: indexPath.row)
-                            tableView.reloadData()
-                            return
-                        }
-                    }
-                    
-                    self.cards.remove(at: indexPath.row)
-                    self.deckController?.decks[self.indexOfDeck ?? 0].data?.remove(at: indexPath.row)
-                    tableView.reloadData()
-                    self.deckController?.deleteCardFromServer(user: user, deck: deck, card: cardToDelete)
-                }))
-                
-                deleteDeckAlert.addAction(UIAlertAction(title: "Archive", style: .default, handler: nil))
-                deleteDeckAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-                self.present(deleteDeckAlert, animated: true)
+                return cell
             }
         }
+        return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+            if cards.count == 1 {
+                let cardAlert = UIAlertController(title: "Your deck needs at least one card!", message: "", preferredStyle: .alert)
+                cardAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(cardAlert, animated: true)
+                return
+            }
+            
+            var archiveTitle = "Archive"
+            
+            if cards[indexPath.row].archived == true {
+                archiveTitle = "Unarchive"
+            }
+            
+            let deleteDeckAlert = UIAlertController(title: "Are you sure you want to delete this card? Would you rather archive?", message: "", preferredStyle: .actionSheet)
+            
+            
+            deleteDeckAlert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
+                guard let user = self.userController?.user, let deck = self.deckController?.decks[self.indexOfDeck ?? 0], let cardToDelete = deck.data?[indexPath.row] else { return }
+                
+                for card in self.newCards {
+                    if card == cardToDelete {
+                        guard let newCardIndex = self.newCards.firstIndex(of: card) else { return }
+                        self.newCards.remove(at: newCardIndex)
+                        self.cards.remove(at: indexPath.row)
+                        self.deckController?.decks[self.indexOfDeck ?? 0].data?.remove(at: indexPath.row)
+                        tableView.reloadData()
+                        return
+                    }
+                }
+                
+                self.cards.remove(at: indexPath.row)
+                self.deckController?.decks[self.indexOfDeck ?? 0].data?.remove(at: indexPath.row)
+                tableView.reloadData()
+                self.deckController?.deleteCardFromServer(user: user, deck: deck, card: cardToDelete)
+            }))
+            
+            // Archiving
+            deleteDeckAlert.addAction(UIAlertAction(title: archiveTitle, style: .default, handler: { (archive) in
+                guard let user = self.userController?.user, let deck = self.deckController?.decks[self.indexOfDeck ?? 0], var cardToArchive = deck.data?[indexPath.row] else { return }
+                
+                cardToArchive.archived?.toggle()
+                
+                self.deckController?.archiveCard(deck: deck, user: user, cards: cardToArchive, completion: {
+                    self.deckController?.decks[self.indexOfDeck ?? 0].data?[indexPath.row].archived?.toggle()
+                    self.cards[indexPath.row].archived?.toggle()
+                    DispatchQueue.main.async {
+                        tableView.reloadData()
+                    }
+                })
+            }))
+            
+            
+            deleteDeckAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(deleteDeckAlert, animated: true)
+        }
+    }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         if indexPath.section == 0 {
@@ -339,74 +364,74 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
             return .delete
         }
     }
-        
-        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            if indexPath.section == 1 {
-                let cell = tableView.cellForRow(at: indexPath) as! CardTableViewCell
-                cell.frontCardTV.isUserInteractionEnabled = true
-                cell.backCardTV.isUserInteractionEnabled = true
-                
-                let card = cards[indexPath.row] // for completion handler information
-                
-                let editAlert = UIAlertController(title: "Edit your Card", message: "", preferredStyle: .alert)
-                
-                editAlert.addTextField { (frontTextField: UITextField!) in
-                    frontTextField.text = card.front
-                    frontTextField.placeholder = "Front"
-                }
-                
-                editAlert.addTextField { (backTextField: UITextField!) in
-                    backTextField.text = card.back
-                    backTextField.placeholder = "Back"
-                }
-                
-                editAlert.addAction(UIAlertAction(title: "Save Changes", style: .default, handler: { (action) in
-                    guard let frontTF = editAlert.textFields?[0], let backTF = editAlert.textFields?[1], let newFront = frontTF.text, let newBack = backTF.text else { return }
-                    
-                    if self.deck != nil {
-                        guard let user = self.userController?.user, let deck = self.deckController?.decks[self.indexOfDeck ?? 0], let cardToEdit = deck.data?[indexPath.row] else { return }
-                        
-                        for card in self.newCards {
-                            if card == cardToEdit {
-                                guard let newCardIndex = self.newCards.firstIndex(of: card) else { return }
-                                self.newCards[newCardIndex].front = "\(newFront)"
-                                self.newCards[newCardIndex].front = "\(newBack)"
-                                self.updateCardLocally(index: indexPath.row, newFront: newFront, newBack: newBack)
-                                tableView.reloadData()
-                                return
-                            }
-                        }
-                        
-                        self.updateCardLocally(index: indexPath.row, newFront: newFront, newBack: newBack)
-                        tableView.reloadData()
-                        var newCard = cardToEdit
-                        newCard.front = newFront
-                        newCard.back = newBack
-                        self.deckController?.editDeckCards(deck: deck, user: user, cards: newCard, completion: {
-                            DispatchQueue.main.async {
-                                editAlert.dismiss(animated: true, completion: nil)
-                            }
-                        })
-                    } else {
-                        self.cards[indexPath.row].front = newFront
-                        self.cards[indexPath.row].back = newBack
-                        tableView.reloadData()
-                        editAlert.dismiss(animated: true, completion: nil)
-                    }
-                    cell.frontCardTV.isUserInteractionEnabled = false
-                    cell.backCardTV.isUserInteractionEnabled = false
-                }))
-                
-                editAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
-                    tableView.deselectRow(at: indexPath, animated: true)
-                    cell.frontCardTV.isUserInteractionEnabled = false
-                    cell.backCardTV.isUserInteractionEnabled = false
-                }))
-                
-                self.present(editAlert, animated: true)
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 1 {
+            let cell = tableView.cellForRow(at: indexPath) as! CardTableViewCell
+            cell.frontCardTV.isUserInteractionEnabled = true
+            cell.backCardTV.isUserInteractionEnabled = true
+            
+            let card = cards[indexPath.row] // for completion handler information
+            
+            let editAlert = UIAlertController(title: "Edit your Card", message: "", preferredStyle: .alert)
+            
+            editAlert.addTextField { (frontTextField: UITextField!) in
+                frontTextField.text = card.front
+                frontTextField.placeholder = "Front"
             }
             
+            editAlert.addTextField { (backTextField: UITextField!) in
+                backTextField.text = card.back
+                backTextField.placeholder = "Back"
+            }
+            
+            editAlert.addAction(UIAlertAction(title: "Save Changes", style: .default, handler: { (action) in
+                guard let frontTF = editAlert.textFields?[0], let backTF = editAlert.textFields?[1], let newFront = frontTF.text, let newBack = backTF.text else { return }
+                
+                if self.deck != nil {
+                    guard let user = self.userController?.user, let deck = self.deckController?.decks[self.indexOfDeck ?? 0], let cardToEdit = deck.data?[indexPath.row] else { return }
+                    
+                    for card in self.newCards {
+                        if card == cardToEdit {
+                            guard let newCardIndex = self.newCards.firstIndex(of: card) else { return }
+                            self.newCards[newCardIndex].front = "\(newFront)"
+                            self.newCards[newCardIndex].front = "\(newBack)"
+                            self.updateCardLocally(index: indexPath.row, newFront: newFront, newBack: newBack)
+                            tableView.reloadData()
+                            return
+                        }
+                    }
+                    
+                    self.updateCardLocally(index: indexPath.row, newFront: newFront, newBack: newBack)
+                    tableView.reloadData()
+                    var newCard = cardToEdit
+                    newCard.front = newFront
+                    newCard.back = newBack
+                    self.deckController?.editDeckCards(deck: deck, user: user, cards: newCard, completion: {
+                        DispatchQueue.main.async {
+                            editAlert.dismiss(animated: true, completion: nil)
+                        }
+                    })
+                } else {
+                    self.cards[indexPath.row].front = newFront
+                    self.cards[indexPath.row].back = newBack
+                    tableView.reloadData()
+                    editAlert.dismiss(animated: true, completion: nil)
+                }
+                cell.frontCardTV.isUserInteractionEnabled = false
+                cell.backCardTV.isUserInteractionEnabled = false
+            }))
+            
+            editAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+                tableView.deselectRow(at: indexPath, animated: true)
+                cell.frontCardTV.isUserInteractionEnabled = false
+                cell.backCardTV.isUserInteractionEnabled = false
+            }))
+            
+            self.present(editAlert, animated: true)
         }
+        
+    }
     
     func tagIsBeingAdded(name: String?) {
         guard let name = name else { return }
@@ -427,27 +452,24 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
         print("removed \(name)")
         
     }
-        
-        
-        
+}
+
+
+
+extension UITextView {
+    
+    func centerVertically() {
+        let fittingSize = CGSize(width: bounds.width, height: CGFloat.greatestFiniteMagnitude)
+        let size = sizeThatFits(fittingSize)
+        let topOffset = (bounds.size.height - size.height * zoomScale) / 2
+        let positiveTopOffset = max(1, topOffset)
+        contentOffset.y = -positiveTopOffset
     }
     
-    
-    
-    extension UITextView {
-        
-        func centerVertically() {
-            let fittingSize = CGSize(width: bounds.width, height: CGFloat.greatestFiniteMagnitude)
-            let size = sizeThatFits(fittingSize)
-            let topOffset = (bounds.size.height - size.height * zoomScale) / 2
-            let positiveTopOffset = max(1, topOffset)
-            contentOffset.y = -positiveTopOffset
-        }
-        
+}
+
+extension CreateDeckViewController: CardTableViewCellDelegate {
+    func addCardWasTapped(frontText: String, backtext: String) {
+        addCardToDeckController(frontText: frontText, backText: backtext)
     }
-    
-    extension CreateDeckViewController: CardTableViewCellDelegate {
-        func addCardWasTapped(frontText: String, backtext: String) {
-            addCardToDeckController(frontText: frontText, backText: backtext)
-        }
 }

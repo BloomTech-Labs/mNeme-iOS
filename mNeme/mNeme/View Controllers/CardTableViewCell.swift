@@ -15,3 +15,4 @@ class CardTableViewCell: UITableViewCell {
     @IBOutlet weak var cardView: UIView!
     
 }
+
