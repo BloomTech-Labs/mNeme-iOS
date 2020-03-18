@@ -16,10 +16,10 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
      // MARK: - Properties
      let userController = UserController()
      let deckCardsDispatchGroup = DispatchGroup()
-     let demoDeckController = DemoDeckController()
+     let demoDeckController = DeckController()
      var signingUp = false
      
-     let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+     let pleaseWaitAlert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
 
      
      
@@ -49,7 +49,7 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
           loadingIndicator.hidesWhenStopped = true
           loadingIndicator.style = UIActivityIndicatorView.Style.medium
           loadingIndicator.startAnimating();
-          alert.view.addSubview(loadingIndicator)
+          pleaseWaitAlert.view.addSubview(loadingIndicator)
           
           updateViews()
      }
@@ -57,7 +57,7 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
      override func viewDidAppear(_ animated: Bool) {
           super.viewDidAppear(true)
           if Auth.auth().currentUser != nil {
-               self.present(self.alert, animated: true, completion: nil)
+               self.present(self.pleaseWaitAlert, animated: true, completion: nil)
                if let uid = Auth.auth().currentUser?.uid {
                     self.signInWithAuthResultUID(uid: uid)
                     
@@ -91,10 +91,10 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
      @IBAction func emailLogInButton(_ sender: Any) {
           if signingUp {
                createAccountWithEmail()
-               present(alert, animated: true, completion: nil)
+               present(pleaseWaitAlert, animated: true, completion: nil)
           } else {
                signInWithEmail()
-               present(alert, animated: true, completion: nil)
+               present(pleaseWaitAlert, animated: true, completion: nil)
           }
      }
      
@@ -185,7 +185,7 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
                self.deckCardsDispatchGroup.notify(queue: .main) {
                     DispatchQueue.main.async {
                          print("done Fetching")
-                         self.alert.dismiss(animated: false, completion: nil)
+                         self.pleaseWaitAlert.dismiss(animated: false, completion: nil)
                          self.performSegue(withIdentifier: "MainSegue", sender: self)
                     }
                }
@@ -218,7 +218,7 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
                               self.signInWithAuthResultUID(uid: uid)
                          }
                          print("Login Successful")
-                         self.present(self.alert, animated: true, completion: nil)
+                         self.present(self.pleaseWaitAlert, animated: true, completion: nil)
                     }
                }
           }
@@ -239,7 +239,7 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
                } else {
                     if let uid = authResult?.user.uid {
                          self.signInWithAuthResultUID(uid: uid)
-                         self.present(self.alert, animated: true, completion: nil)
+                         self.present(self.pleaseWaitAlert, animated: true, completion: nil)
                     }
                }
           }
@@ -273,12 +273,24 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
           
           Auth.auth().signIn(withEmail: email, password: password) { (authResult, error) in
                if let error = error {
-                    NSLog("Error dealing with email sign in: \(error)" )
-                    let alert = UIAlertController(title: "Invalid username or password", message: "Please sign in with an existing account or create a new one", preferredStyle: .alert)
-                    
-                    alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-                    self.present(alert, animated: true)
-                    return
+                    self.pleaseWaitAlert.dismiss(animated: true) {
+                         NSLog("Error dealing with email sign in: \(error)" )
+                         let invalidAlert = UIAlertController(title: "Invalid username or password", message: "Please sign in with an existing account or create a new one", preferredStyle: .alert)
+                         
+                         invalidAlert.addAction(UIAlertAction(title: "Sign Up", style: .default, handler: { (action) in
+                              self.signingUp = true
+                              self.emailTextField.text = ""
+                              self.passwordTextField.text = ""
+                              self.emailButtonText()
+                              self.bottomImageViewandLabel()
+                         }))
+                         
+                         invalidAlert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { (action) in
+                              self.passwordTextField.text = ""
+                         }))
+                         self.present(invalidAlert, animated: true)
+                         return
+                    }
                }
                
                if let authResult = authResult {

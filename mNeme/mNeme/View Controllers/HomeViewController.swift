@@ -20,7 +20,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var masteredLabel: UILabel!
     
     // MARK: - Properties
-    var demoDeckController: DemoDeckController?
+    var deckController: DeckController?
     var userController: UserController?
     
     // MARK: - View Lifecycle
@@ -61,14 +61,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     // whether or its from the archived section.
     private func deleteDeck(fromArchive: Bool, user: User, index: Int) {
         if fromArchive {
-            if let deck = self.demoDeckController?.archivedDecks[index] {
-                self.demoDeckController?.archivedDecks.remove(at: index)
-                self.demoDeckController?.deleteArchivedDeck(user: user, deck: deck)
+            if let deck = self.deckController?.archivedDecks[index] {
+                self.deckController?.archivedDecks.remove(at: index)
+                self.deckController?.deleteArchivedDeck(user: user, deck: deck)
             }
         } else {
-            if let deck = self.demoDeckController?.decks[index] {
-                self.demoDeckController?.decks.remove(at: index)
-                self.demoDeckController?.deleteDeckFromServer(user: user, deck: deck)
+            if let deck = self.deckController?.decks[index] {
+                self.deckController?.decks.remove(at: index)
+                self.deckController?.deleteDeckFromServer(user: user, deck: deck)
             }
         }
     }
@@ -82,18 +82,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 if indexPath.section == 0 {
                     deckCardVC.indexOfDeck = indexPath.row
                     deckCardVC.userController = userController
-                    deckCardVC.deckController = demoDeckController
+                    deckCardVC.deckController = deckController
                     deckCardVC.demo = true
                 } else {
                     deckCardVC.indexOfDeck = indexPath.row
                     deckCardVC.userController = userController
-                    deckCardVC.deckController = demoDeckController
+                    deckCardVC.deckController = deckController
                 }
             }
         } else if segue.identifier == "CreateADeckSegue" {
             if let createVC = segue.destination as? CreateDeckViewController {
                 createVC.userController = userController
-                createVC.deckController = demoDeckController
+                createVC.deckController = deckController
             }
         }
     }
@@ -106,11 +106,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return demoDeckController?.demoDecks.count ?? 0
+            return deckController?.demoDecks.count ?? 0
         } else if section == 1 {
-            return demoDeckController?.decks.count ?? 0
+            return deckController?.decks.count ?? 0
         } else {
-            return demoDeckController?.archivedDecks.count ?? 0
+            return deckController?.archivedDecks.count ?? 0
         }
     }
     
@@ -118,7 +118,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         if indexPath.section == 0 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "DemoDeckCell", for: indexPath) as? DeckTableViewCell {
                 
-                cell.DemoDeck = demoDeckController?.demoDecks[indexPath.row]
+                cell.DemoDeck = deckController?.demoDecks[indexPath.row]
                 cell.progressBar.progressTintColor = UIColor.mNeme.orangeBlaze
                 return cell
             }  else {
@@ -127,7 +127,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         } else if indexPath.section == 1 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "DemoDeckCell", for: indexPath) as? DeckTableViewCell {
                 
-                cell.deck = demoDeckController?.decks[indexPath.row]
+                cell.deck = deckController?.decks[indexPath.row]
                 cell.deckNameLabel.textColor = .black
                 cell.progressBar.progressTintColor = UIColor.mNeme.orangeBlaze
                 return cell
@@ -137,7 +137,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         } else {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "DemoDeckCell", for: indexPath) as? DeckTableViewCell {
                 cell.archived = true
-                cell.deck = demoDeckController?.archivedDecks[indexPath.row]
+                cell.deck = deckController?.archivedDecks[indexPath.row]
                 cell.deckNameLabel.textColor = .lightGray
                 cell.progressBar.progressTintColor = .darkGray
                 
@@ -161,11 +161,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
             switch indexPath.section {
             case 1:
-                guard let deck = self.demoDeckController?.decks[indexPath.row] else { return }
+                guard let deck = self.deckController?.decks[indexPath.row] else { return }
                 archive = "Archive"
                 deleteDeckAlert.addAction(UIAlertAction(title: archive, style: .default, handler: { (action) in
                     tableView.reloadData()
-                    self.demoDeckController?.archiveDeck(user: user, collectionID: deck.deckInformation.collectionId ?? "", index: indexPath.row, completion: {
+                    self.deckController?.archiveDeck(user: user, collectionID: deck.deckInformation.collectionId ?? "", index: indexPath.row, completion: {
                         DispatchQueue.main.async {
                             deleteDeckAlert.dismiss(animated: true, completion: nil)
                             tableView.reloadData()
@@ -173,12 +173,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     })
                 }))
             case 2:
-                guard let deck = self.demoDeckController?.archivedDecks[indexPath.row], let deckID = deck.deckInformation.collectionId else { return }
+                guard let deck = self.deckController?.archivedDecks[indexPath.row], let deckID = deck.deckInformation.collectionId else { return }
                 archive = "Unarchive"
                 archived = true
                 deleteDeckAlert.addAction(UIAlertAction(title: archive, style: .default, handler: { (action) in
                     tableView.reloadData()
-                    self.demoDeckController?.unarchiveDeck(user: user, collectionID: deckID, index: indexPath.row, completion: {
+                    self.deckController?.unarchiveDeck(user: user, collectionID: deckID, index: indexPath.row, completion: {
                         DispatchQueue.main.async {
                             tableView.reloadData()
                             deleteDeckAlert.dismiss(animated: true, completion: nil)
@@ -216,9 +216,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.performSegue(withIdentifier: "DeckSegue", sender: self)
         } else {
             let archiveAlert = UIAlertController(title: "Please unarchive this deck to view it", message: "", preferredStyle: .alert)
-            guard let deck = self.demoDeckController?.archivedDecks[indexPath.row], let user = self.userController?.user else { return }
+            guard let deck = self.deckController?.archivedDecks[indexPath.row], let user = self.userController?.user else { return }
             archiveAlert.addAction(UIAlertAction(title: "Unarchive", style: .default, handler: { (action) in
-                self.demoDeckController?.unarchiveDeck(user: user, collectionID: deck.deckInformation.collectionId ?? "", index: indexPath.row, completion: {
+                self.deckController?.unarchiveDeck(user: user, collectionID: deck.deckInformation.collectionId ?? "", index: indexPath.row, completion: {
                     DispatchQueue.main.async {
                         tableView.reloadData()
                         archiveAlert.dismiss(animated: true, completion: nil)

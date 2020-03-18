@@ -61,7 +61,7 @@ class DeckCardViewController: UIViewController {
     var currentCardTotal = 0
     var currentCardIndex: Int = 0
     var mockDemoDeckController = MockDemoDeckController()
-    var deckController: DemoDeckController?
+    var deckController: DeckController?
     var userController: UserController?
     var allowedToFlip = true
     private var frontLabel: UILabel?
@@ -219,9 +219,9 @@ class DeckCardViewController: UIViewController {
             frontLabel?.text = currentCardInfo.front
             backLabel?.text = currentCardInfo.back
         } else {
-            let currentCardInfo = cards[currentCardIndex]
-            frontLabel?.text = currentCardInfo.front
-            backLabel?.text = currentCardInfo.back
+            let currentCardInfo = demoDeck?.data?[currentCardIndex]
+            frontLabel?.text = currentCardInfo?.data.front
+            backLabel?.text = currentCardInfo?.data.back
         }
     }
     

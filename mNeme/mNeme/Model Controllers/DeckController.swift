@@ -8,10 +8,9 @@
 
 import Foundation
 
-class DemoDeckController {
+class DeckController {
 
     // MARK: - Properties
-
     var demoDecks = [DemoDeck]()
     var decks = [Deck]()
     var archivedDecks = [Deck]()
@@ -83,6 +82,7 @@ class DemoDeckController {
         }
     }
     
+    // Fetching decks
     func fetchDecks(userID: String, completion: @escaping () -> Void) {
         let deckGroup = DispatchGroup()
         networkClient.fetch(userID, nil) { (results: [DeckInformation]?) in
@@ -107,6 +107,7 @@ class DemoDeckController {
         }
     }
     
+    // Fetching archived decks
     func fetchArchivedDecks(userID: String, completion: @escaping () -> Void) {
         networkClient.fetch(userID, nil, true) { (results: [DeckInformation]?) in
             if let results = results {
@@ -125,6 +126,7 @@ class DemoDeckController {
         }
     }
     
+    // Creating decks
     func createDeck(user: User, name: String, icon: String, tags: [String], cards: [CardData], completion: @escaping () -> Void) {
         networkClient.post(user: user, deckName: name, icon: icon, tags: tags, cards: cards) { (deck: Deck?) in
             if let deck = deck {
@@ -134,25 +136,28 @@ class DemoDeckController {
         }
     }
     
+    // Network call editing only the deck name
     func editDeckName(deck: Deck, user: User, name: String, completion: @escaping () -> Void) {
         networkClient.put(user: user, deck: deck, updateDeckName: name, updateCards: nil) { (result: [String: DeckInformation]?) in
             completion()
         }
     }
     
+    // Network call editing the cards inside of a deck
     func editDeckCards(deck: Deck, user: User, cards: CardData, completion: @escaping () -> Void) {
         networkClient.put(user: user, deck: deck, updateDeckName: nil, updateCards: [cards]) { (result: Deck?) in
            completion()
         }
     }
     
-    
+    // Adding cards to the server
     func addCardsToServer(user: User, name: String, cards: [CardData], completion: @escaping () -> Void) {
         networkClient.post(user: user, deckName: name, icon: "", tags: [""], cards: cards, add: true) { (deck: Deck?) in
             completion()
         }
     }
     
+    // Adding cards locally to the DeckController
     func addCardToDeck(deck: Deck, card: CardData) -> [CardData]{
         guard let index = decks.firstIndex(of: deck) else { return [] }
         decks[index].data?.insert(card, at: 0)
@@ -160,23 +165,27 @@ class DemoDeckController {
         return newDeckArray
     }
     
+    // Changing the deck name locally in DeckController
     func changeDeckName(deck: Deck, newName: String) {
         guard let index = decks.firstIndex(of: deck) else { return }
         self.decks[index].deckInformation.deckName = newName
     }
     
+    // Deleting deck from server
     func deleteDeckFromServer(user: User, deck: Deck) {
         networkClient.delete(user: user, deck: deck, deleteCards: nil) { (result) in
             print("Deck Deleted")
         }
     }
     
+    // Deleting card from server
     func deleteCardFromServer(user: User, deck: Deck, card: CardData) {
         networkClient.delete(user: user, deck: deck, deleteCards: [card]) { (result) in
             print("Card Deleted")
         }
     }
     
+    // Archiving a deck w/ the network
     func archiveDeck(user: User, collectionID: String, index: Int, completion: @escaping () -> Void) {
         networkClient.archivePost(user: user, deckName: collectionID, archive: true) {
             let deck = self.decks[index]
@@ -186,6 +195,7 @@ class DemoDeckController {
         }
     }
     
+    // Unarchiving deck w/ the network
     func unarchiveDeck(user: User, collectionID: String, index: Int, completion: @escaping () -> Void) {
         networkClient.archivePost(user: user, deckName: collectionID, archive: false) {
             print(collectionID)
@@ -229,7 +239,6 @@ class DemoDeckController {
 
     func deleteArchivedDeck(user: User, deck: Deck) {
         networkClient.delete(user: user, deck: deck, deleteCards: nil, archived: true) { (_) in
-            //self.archivedDecks.remove(at: index)
         }
     }
     
