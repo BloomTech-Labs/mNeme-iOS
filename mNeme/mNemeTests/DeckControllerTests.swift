@@ -247,7 +247,7 @@ class DeckControllerTests: XCTestCase {
         XCTAssertTrue(deckController.archivedDecks.count > 0)
     }
 
-    func testUnArchiveDeck() {
+    func testGetCardsAfterUnArchiveDeck() {
         let mock = ModckDataLoader()
         mock.data = cardData
         let deckController = DeckController(networkDataLoader: mock)
@@ -269,5 +269,25 @@ class DeckControllerTests: XCTestCase {
         wait(for: [expect], timeout: 2)
         XCTAssertEqual(deckController.archivedDecks.count, 0)
         XCTAssertTrue(deckController.decks.count > 0)
+    }
+
+    func testDeleteArchivedDeck() {
+        let mock = ModckDataLoader()
+        let networkClient = NetworkClient(networkDataLoader: mock)
+        let deckController = DeckController()
+
+        let user = User("user")
+        let deckInfo = DeckInformation(icon: "", tags: [""])
+        let deck = Deck(deckInfo: deckInfo)
+        deckController.archivedDecks.append(deck)
+
+        let expect = expectation(description: "Wait for archived deck to delete")
+        networkClient.delete(user: user, deck: deck, deleteCards: nil, archived: true) { (_) in
+            deckController.archivedDecks.remove(at: 0)
+            expect.fulfill()
+        }
+
+        wait(for: [expect], timeout: 2)
+        XCTAssertEqual(deckController.archivedDecks.count, 0)
     }
 }
