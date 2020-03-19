@@ -33,7 +33,7 @@ class DeckTests: XCTestCase {
         wait(for: [expect], timeout: 2)
 
         XCTAssertEqual(deckData.count, 1)
-        XCTAssertEqual(deckData[0].deckInformation.collectionId, "asdsdsa")
+        XCTAssertEqual(deckData[0].deckInformation.collectionId, "iosTest")
     }
 
     func testGetDeckInformation() {

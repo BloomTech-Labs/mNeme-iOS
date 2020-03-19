@@ -11,15 +11,17 @@ import Foundation
 
 let collectionIdDeckData = """
 [
-    {
-      "deckName": "asdsdsa",
-      "deckLength": 1,
-      "icon": "",
-      "tags": [],
-      "createdBy": "4tfTrhRdAYMxZNwXmPrcnEoyidE3",
-      "exampleCard": "sadsa",
-      "collectionId": "asdsdsa"
-    }
+  {
+    "collectionId": "iosTest",
+    "deckName": "iosTest",
+    "deckLength": 2,
+    "icon": "",
+    "tags": [
+      "Intro"
+    ],
+    "createdBy": "r4Ok4g9OA5UHtpXnDRqF5XFCduH3",
+    "exampleCard": "1c"
+  }
 ]
 """.data(using: .utf8)!
 
