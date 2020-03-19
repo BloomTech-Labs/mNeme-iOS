@@ -227,4 +227,27 @@ class DeckControllerTests: XCTestCase {
         wait(for: [expect], timeout: 2)
         XCTAssertEqual(deck.data?.count, 2)
     }
+
+    func testArchiveDeck() {
+        let mock = ModckDataLoader()
+        let deckController = DeckController(networkDataLoader: mock)
+
+        let user = User("user")
+        let deckInfo = DeckInformation(icon: "", tags: [""])
+        let deck = Deck(deckInfo: deckInfo)
+        deckController.decks.append(deck)
+        let expect = expectation(description: "Wait for deck to archive")
+
+        deckController.archiveDeck(user: user, collectionID: "iosTest", index: 0) {
+            expect.fulfill()
+        }
+
+        wait(for: [expect], timeout: 2)
+        XCTAssertEqual(deckController.decks.count, 0)
+        XCTAssertTrue(deckController.archivedDecks.count > 0)
+    }
+
+    func testUnArchiveDeck() {
+
+    }
 }
