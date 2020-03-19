@@ -212,7 +212,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
          guard let user = self.userController?.user else { return UISwipeActionsConfiguration()}
         
-        var archived = false
+        let archived = (indexPath.section == 2 ? true : false)
         let archive = (indexPath.section == 2 ? "Unarchive" : "Archive")
         
         let archiveButton = UIContextualAction(style: .normal, title: archive) { (action, sourceView, completionHandler) in
@@ -242,7 +242,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         archiveButton.backgroundColor = UIColor.mNeme.goldenTaioni
         
-        let deleteButton = UIContextualAction(style: .normal, title: "Delete") { (action, sourceView, completionHandler) in
+        let deleteButton = UIContextualAction(style: .destructive, title: "Delete") { (action, sourceView, completionHandler) in
             let deleteDeckAlert = UIAlertController(title: "Are you sure you want to delete this deck?", message: "", preferredStyle: .actionSheet)
             deleteDeckAlert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
                 self.deleteDeck(fromArchive: archived, user: user, index: indexPath.row)
@@ -262,7 +262,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             case 1:
                 self.present(deleteDeckAlert, animated: true)
             case 2:
-                archived = true
                 self.present(deleteDeckAlert, animated: true)
             default:
                 break
