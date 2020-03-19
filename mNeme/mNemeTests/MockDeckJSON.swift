@@ -30,20 +30,30 @@ let deckInfromationData = """
 {
   "deckInformation": {
     "icon": "",
-    "tags": [],
-    "createdBy": "4tfTrhRdAYMxZNwXmPrcnEoyidE3",
-    "exampleCard": "xzcz",
-    "collectionId": "ssss",
-    "deckName": "ssss",
-    "deckLength": 1
+    "tags": [
+      "Intro"
+    ],
+    "createdBy": "r4Ok4g9OA5UHtpXnDRqF5XFCduH3",
+    "exampleCard": "1c",
+    "collectionId": "iosTest",
+    "deckName": "iosTest",
+    "deckLength": 2
   },
   "data": [
     {
-      "id": "e0a14606-d6dc-48f2-a1ae-ebb21a5d6888",
+      "id": "53c9a7c1-4670-4fd6-896c-2e3976ce5907",
       "data": {
         "archived": false,
-        "back": "xzczxcxzc",
-        "front": "xzcz"
+        "back": "2",
+        "front": "2c"
+      }
+    },
+    {
+      "id": "84f7f26e-ea14-4214-b934-34bab5072e91",
+      "data": {
+        "archived": false,
+        "back": "1",
+        "front": "1c"
       }
     }
   ]
