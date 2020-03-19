@@ -31,11 +31,7 @@ class DeckController {
         request.httpMethod = HTTPMethod.get.rawValue
 
         dataLoader.loadData(using: request) { (data, response, error) in
-            if let error = error {
-                print("\(error)")
-                completion()
-                return
-            }
+            if let _ = error { completion(); return }
 
             guard let data = data else { completion(); return }
 
