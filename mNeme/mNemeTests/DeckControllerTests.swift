@@ -248,6 +248,26 @@ class DeckControllerTests: XCTestCase {
     }
 
     func testUnArchiveDeck() {
+        let mock = ModckDataLoader()
+        mock.data = cardData
+        let deckController = DeckController(networkDataLoader: mock)
 
+        //let user = User("user")
+        let deckInfo = DeckInformation(icon: "", tags: [""])
+        let deck = Deck(deckInfo: deckInfo)
+        deckController.archivedDecks.append(deck)
+        let expect = expectation(description: "Wait for deck to unarchive")
+
+//        deckController.unarchiveDeck(user: user, collectionID: "iosTest", index: 0) {
+//            expect.fulfill()
+//        }
+        deckController.fetchCardsWhenUnarchived(userID: "user", deckCollectionID: "iosTest", index: 0) { success in
+            if success { expect.fulfill() }
+        }
+
+
+        wait(for: [expect], timeout: 2)
+        XCTAssertEqual(deckController.archivedDecks.count, 0)
+        XCTAssertTrue(deckController.decks.count > 0)
     }
 }
