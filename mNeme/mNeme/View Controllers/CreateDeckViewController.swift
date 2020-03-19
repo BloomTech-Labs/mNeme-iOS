@@ -130,6 +130,10 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
         doneBarButton.setTitleTextAttributes(textAttribute, for: .normal)
         backBarButton.setTitleTextAttributes(textAttribute, for: .normal)
         topView.layer.backgroundColor = UIColor.mNeme.orangeBlaze.cgColor
+        navBar.barTintColor = UIColor.mNeme.orangeBlaze
+        navBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        cardTableView.keyboardDismissMode = .onDrag
+        
         // Creating a deck
         if indexOfDeck == nil {
             navBar.topItem?.title = "Create a deck"
@@ -226,6 +230,25 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
         productTagsCollection.customBackgroundColor = UIColor.mNeme.goldenTaioni
     }
     
+    func tagIsBeingAdded(name: String?) {
+        guard let name = name else { return }
+        tags.append(name)
+        print("added \(name)")
+    }
+    
+    func tagIsBeingRemoved(name: String?) {
+        guard let name = name else { return }
+        for tag in tags {
+            if name == tag {
+                if let index = tags.firstIndex(of: tag) {
+                    tags.remove(at: index)
+                }
+            }
+        }
+        
+        print("removed \(name)")
+        
+    }
     
     
     
@@ -252,8 +275,16 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
                 cell.addFlashcardView.layer.borderWidth = 1
                 cell.addFlashcardView.layer.backgroundColor = UIColor.white.cgColor
                 
-                cell.addBackTV.delegate = self
                 cell.addFrontTV.delegate = self
+                cell.addFrontTV.layer.backgroundColor = UIColor.white.cgColor
+                cell.addFrontTV.text = "Write on the front!"
+                cell.addFrontTV.textColor = UIColor.lightGray
+
+                cell.addBackTV.delegate = self
+                cell.addBackTV.layer.backgroundColor = UIColor.white.cgColor
+                cell.addBackTV.text = "Write on the back!"
+                cell.addBackTV.textColor = UIColor.lightGray
+
                 
                 return cell
             }
@@ -425,29 +456,16 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
         
     }
     
-    func tagIsBeingAdded(name: String?) {
-        guard let name = name else { return }
-        tags.append(name)
-        print("added \(name)")
-    }
-    
-    func tagIsBeingRemoved(name: String?) {
-        guard let name = name else { return }
-        for tag in tags {
-            if name == tag {
-                if let index = tags.firstIndex(of: tag) {
-                    tags.remove(at: index)
-                }
-            }
+    // MARK: - TextView Delegate
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
         }
-        
-        print("removed \(name)")
-        
     }
 }
 
-
-
+    // MARK: - Extensions
 extension UITextView {
     
     func centerVertically() {

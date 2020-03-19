@@ -33,7 +33,7 @@ class CreateCardTableViewCell: UITableViewCell, UITextViewDelegate {
     @IBAction func addCardButtonTapped(_ sender: Any) {
         if let frontTV = addFrontTV.text, !frontTV.isEmpty, let backTV = addBackTV.text, !backTV.isEmpty {
             delegate?.addCardWasTapped(frontText: frontTV, backtext: backTV)
-            clearCardViews()
+//            clearCardViews()
         } else {
             let alert = UIAlertController(title: "Your card needs a front and back!", message: "Add some info to each section.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Sounds Good!", style: .default, handler: nil))
@@ -42,10 +42,13 @@ class CreateCardTableViewCell: UITableViewCell, UITextViewDelegate {
     }
     
     private func clearCardViews() {
-        addFrontTV.text = ""
-        addBackTV.text = ""
+        addFrontTV.text = "Write here!"
+        addBackTV.text = "Write here!"
+        addFrontTV.textColor = UIColor.lightGray
+        addBackTV.textColor = UIColor.lightGray
     }
 }
+
 
 // MARK: - Extensions
 // This allows us to present an alert in the parent controller of this cell
@@ -61,3 +64,4 @@ extension UIView {
         return nil
     }
 }
+
