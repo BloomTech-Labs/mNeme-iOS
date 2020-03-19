@@ -53,8 +53,8 @@ class DeckTests: XCTestCase {
         wait(for: [expect], timeout: 2)
 
         XCTAssertNotNil(cardData)
-        XCTAssertEqual(cardData?[0].back, "xzczxcxzc")
-        XCTAssertEqual(cardData?[0].front, "xzcz")
+        XCTAssertEqual(cardData?[0].back, "2")
+        XCTAssertEqual(cardData?[0].front, "2c")
     }
 
     func testPostDeck() {
