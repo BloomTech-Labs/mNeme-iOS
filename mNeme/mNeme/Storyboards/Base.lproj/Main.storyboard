@@ -471,28 +471,28 @@
                                             <outlet property="addFrontTV" destination="VSy-ej-mDq" id="MRJ-X9-P68"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CardCell" rowHeight="147" id="ph4-qc-EFW" customClass="CardTableViewCell" customModule="mNeme" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="520" width="375" height="147"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CardCell" rowHeight="215" id="ph4-qc-EFW" customClass="CardTableViewCell" customModule="mNeme" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="520" width="375" height="215"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ph4-qc-EFW" id="o2E-Mb-5HO">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="147"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="215"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dk6-os-eW8">
-                                                    <rect key="frame" x="20" y="10" width="335" height="127"/>
+                                                    <rect key="frame" x="20" y="10" width="335" height="195"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="h07-a0-ajt">
-                                                            <rect key="frame" x="15" y="15" width="305" height="97"/>
+                                                            <rect key="frame" x="15" y="15" width="305" height="165"/>
                                                             <subviews>
-                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Front of card" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="744-7R-6g8">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="305" height="44"/>
+                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Front of card" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="744-7R-6g8">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="305" height="78"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                                 </textView>
-                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Back of card" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="rQq-Ve-b6w">
-                                                                    <rect key="frame" x="0.0" y="53" width="305" height="44"/>
+                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Back of card" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="rQq-Ve-b6w">
+                                                                    <rect key="frame" x="0.0" y="87" width="305" height="78"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -504,14 +504,15 @@
                                                     <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="dk6-os-eW8" secondAttribute="height" multiplier="374:127" id="Eo6-Gz-GQU"/>
-                                                        <constraint firstAttribute="bottom" secondItem="h07-a0-ajt" secondAttribute="bottom" constant="15" id="QjE-cq-EDa"/>
+                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="h07-a0-ajt" secondAttribute="bottom" constant="15" id="QjE-cq-EDa"/>
                                                         <constraint firstItem="h07-a0-ajt" firstAttribute="leading" secondItem="dk6-os-eW8" secondAttribute="leading" constant="15" id="Wpp-Kt-lk1"/>
                                                         <constraint firstItem="h07-a0-ajt" firstAttribute="top" secondItem="dk6-os-eW8" secondAttribute="top" constant="15" id="cG8-DR-WCe"/>
                                                         <constraint firstAttribute="trailing" secondItem="h07-a0-ajt" secondAttribute="trailing" constant="15" id="dwL-f9-4Hq"/>
+                                                        <constraint firstItem="h07-a0-ajt" firstAttribute="centerY" secondItem="dk6-os-eW8" secondAttribute="centerY" id="wUD-CL-qAn"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pN5-tI-mxB">
-                                                    <rect key="frame" x="50" y="73" width="275" height="1"/>
+                                                    <rect key="frame" x="50" y="107" width="275" height="1"/>
                                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="pN5-tI-mxB" secondAttribute="height" multiplier="304:1" id="YRQ-bh-TBt"/>
@@ -522,7 +523,7 @@
                                                 <constraint firstItem="dk6-os-eW8" firstAttribute="leading" secondItem="o2E-Mb-5HO" secondAttribute="leading" constant="20" id="4RL-5K-OrI"/>
                                                 <constraint firstItem="pN5-tI-mxB" firstAttribute="leading" secondItem="o2E-Mb-5HO" secondAttribute="leadingMargin" constant="35" id="A8b-Gl-Yq3"/>
                                                 <constraint firstItem="dk6-os-eW8" firstAttribute="top" secondItem="o2E-Mb-5HO" secondAttribute="top" constant="10" id="C8s-jG-v6H"/>
-                                                <constraint firstAttribute="bottom" secondItem="dk6-os-eW8" secondAttribute="bottom" constant="10" id="OZm-2i-LmP"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="dk6-os-eW8" secondAttribute="bottom" constant="10" id="OZm-2i-LmP"/>
                                                 <constraint firstItem="pN5-tI-mxB" firstAttribute="centerX" secondItem="o2E-Mb-5HO" secondAttribute="centerX" id="Obo-R4-4lE"/>
                                                 <constraint firstItem="pN5-tI-mxB" firstAttribute="centerY" secondItem="o2E-Mb-5HO" secondAttribute="centerY" id="e9a-Lc-fcK"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="pN5-tI-mxB" secondAttribute="trailing" constant="35" id="gJh-2g-SP1"/>
@@ -536,6 +537,14 @@
                                             <outlet property="cardView" destination="dk6-os-eW8" id="V68-Py-yvR"/>
                                             <outlet property="frontCardTV" destination="744-7R-6g8" id="RKY-1f-DQS"/>
                                         </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EmptyCell" rowHeight="215" id="Shl-aY-UpY" customClass="CardTableViewCell" customModule="mNeme" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="735" width="375" height="215"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Shl-aY-UpY" id="QkO-Q5-2m7">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="215"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

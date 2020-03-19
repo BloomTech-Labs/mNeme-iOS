@@ -148,7 +148,7 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
             self.containerView.isHidden = true
         }
         cardTableView.rowHeight = UITableView.automaticDimension
-        cardTableView.estimatedRowHeight = 150
+        cardTableView.estimatedRowHeight = 215
         
     }
     
@@ -230,6 +230,9 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
         productTagsCollection.customBackgroundColor = UIColor.mNeme.goldenTaioni
     }
     
+    private func updateCardThroughTextViews(frontText: String, backText: String) {
+    }
+    
     func tagIsBeingAdded(name: String?) {
         guard let name = name else { return }
         tags.append(name)
@@ -254,15 +257,17 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
     
     // MARK: - Tableview Functions
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 1
-        } else {
+        } else if section == 1 {
             return cards.count
+        } else {
+            return 4
         }
     }
     
@@ -284,12 +289,11 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
                 cell.addBackTV.layer.backgroundColor = UIColor.white.cgColor
                 cell.addBackTV.text = "Write on the back!"
                 cell.addBackTV.textColor = UIColor.lightGray
-
                 
                 return cell
             }
         }
-        else {
+        else if indexPath.section == 1 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "CardCell", for: indexPath) as? CardTableViewCell {
                 
                 if !self.cards.isEmpty {
@@ -300,8 +304,8 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
                 cell.cardView.layer.borderColor = UIColor.lightGray.cgColor
                 cell.cardView.layer.borderWidth = 1
                 cell.cardView.layer.backgroundColor = UIColor.white.cgColor
-                cell.frontCardTV.isUserInteractionEnabled = false
-                cell.backCardTV.isUserInteractionEnabled = false
+//                cell.frontCardTV.isUserInteractionEnabled = false
+//                cell.backCardTV.isUserInteractionEnabled = false
                 cell.frontCardTV.centerVertically()
                 cell.backCardTV.centerVertically()
                 
@@ -316,6 +320,8 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
                 }
                 return cell
             }
+        } else {
+            return UITableViewCell()
         }
         return UITableViewCell()
     }
@@ -390,9 +396,9 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
-            let cell = tableView.cellForRow(at: indexPath) as! CardTableViewCell
-            cell.frontCardTV.isUserInteractionEnabled = true
-            cell.backCardTV.isUserInteractionEnabled = true
+//            let cell = tableView.cellForRow(at: indexPath) as! CardTableViewCell
+//            cell.frontCardTV.isUserInteractionEnabled = true
+//            cell.backCardTV.isUserInteractionEnabled = true
             
             let card = cards[indexPath.row] // for completion handler information
             
@@ -441,14 +447,14 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
                     tableView.reloadData()
                     editAlert.dismiss(animated: true, completion: nil)
                 }
-                cell.frontCardTV.isUserInteractionEnabled = false
-                cell.backCardTV.isUserInteractionEnabled = false
+//                cell.frontCardTV.isUserInteractionEnabled = false
+//                cell.backCardTV.isUserInteractionEnabled = false
             }))
             
             editAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
                 tableView.deselectRow(at: indexPath, animated: true)
-                cell.frontCardTV.isUserInteractionEnabled = false
-                cell.backCardTV.isUserInteractionEnabled = false
+//                cell.frontCardTV.isUserInteractionEnabled = false
+//                cell.backCardTV.isUserInteractionEnabled = false
             }))
             
             self.present(editAlert, animated: true)
