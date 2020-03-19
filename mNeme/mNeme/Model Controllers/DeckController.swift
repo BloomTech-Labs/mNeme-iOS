@@ -144,8 +144,8 @@ class DeckController {
     }
     
     // Network call editing the cards inside of a deck
-    func editDeckCards(deck: Deck, user: User, cards: CardData, completion: @escaping () -> Void) {
-        networkClient.put(user: user, deck: deck, updateDeckName: nil, updateCards: [cards]) { (result: Deck?) in
+    func editDeckCards(deck: Deck, user: User, cards: [CardData], completion: @escaping () -> Void) {
+        networkClient.put(user: user, deck: deck, updateDeckName: nil, updateCards: cards) { (result: Deck?) in
            completion()
         }
     }
