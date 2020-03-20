@@ -34,11 +34,7 @@ class NetworkClient {
         request.httpMethod = HTTPMethod.get.rawValue
 
         dataLoader.loadData(using: request) { (data, response, error) in
-            if let error = error {
-                print("\(error)")
-                completion(nil)
-                return
-            }
+            if let _ = error { completion(nil); return }
 
             guard let data = data else { completion(nil); return }
             print(String(data: data, encoding: .utf8)!)

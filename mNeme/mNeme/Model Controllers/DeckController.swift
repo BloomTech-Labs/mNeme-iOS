@@ -16,11 +16,12 @@ class DeckController {
     var archivedDecks = [Deck]()
     let dataLoader: NetworkDataLoader
     let baseURL = URL(string: "https://flashcards-be.herokuapp.com/api/demo/I2r2gejFYwCQfqafWlVy")!
-    let networkClient = NetworkClient()
+    let networkClient: NetworkClient
 
     // MARK: - Init
     init(networkDataLoader: NetworkDataLoader = URLSession.shared) {
         self.dataLoader = networkDataLoader
+        self.networkClient = NetworkClient(networkDataLoader: networkDataLoader)
     }
 
     // MARK: - Networking
@@ -31,11 +32,7 @@ class DeckController {
         request.httpMethod = HTTPMethod.get.rawValue
 
         dataLoader.loadData(using: request) { (data, response, error) in
-            if let error = error {
-                print("\(error)")
-                completion()
-                return
-            }
+            if let _ = error { completion(); return }
 
             guard let data = data else { completion(); return }
 

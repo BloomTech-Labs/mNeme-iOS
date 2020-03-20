@@ -11,15 +11,17 @@ import Foundation
 
 let collectionIdDeckData = """
 [
-    {
-      "deckName": "asdsdsa",
-      "deckLength": 1,
-      "icon": "",
-      "tags": [],
-      "createdBy": "4tfTrhRdAYMxZNwXmPrcnEoyidE3",
-      "exampleCard": "sadsa",
-      "collectionId": "asdsdsa"
-    }
+  {
+    "collectionId": "iosTest",
+    "deckName": "iosTest",
+    "deckLength": 2,
+    "icon": "",
+    "tags": [
+      "Intro"
+    ],
+    "createdBy": "r4Ok4g9OA5UHtpXnDRqF5XFCduH3",
+    "exampleCard": "1c"
+  }
 ]
 """.data(using: .utf8)!
 
@@ -28,20 +30,30 @@ let deckInfromationData = """
 {
   "deckInformation": {
     "icon": "",
-    "tags": [],
-    "createdBy": "4tfTrhRdAYMxZNwXmPrcnEoyidE3",
-    "exampleCard": "xzcz",
-    "collectionId": "ssss",
-    "deckName": "ssss",
-    "deckLength": 1
+    "tags": [
+      "Intro"
+    ],
+    "createdBy": "r4Ok4g9OA5UHtpXnDRqF5XFCduH3",
+    "exampleCard": "1c",
+    "collectionId": "iosTest",
+    "deckName": "iosTest",
+    "deckLength": 2
   },
   "data": [
     {
-      "id": "e0a14606-d6dc-48f2-a1ae-ebb21a5d6888",
+      "id": "53c9a7c1-4670-4fd6-896c-2e3976ce5907",
       "data": {
         "archived": false,
-        "back": "xzczxcxzc",
-        "front": "xzcz"
+        "back": "2",
+        "front": "2c"
+      }
+    },
+    {
+      "id": "84f7f26e-ea14-4214-b934-34bab5072e91",
+      "data": {
+        "archived": false,
+        "back": "1",
+        "front": "1c"
       }
     }
   ]
@@ -196,6 +208,29 @@ let updatedDeckCardData = """
     "createdBy": "r4Ok4g9OA5UHtpXnDRqF5XFCduH3",
     "exampleCard": "1c"
   },
+  "data": [
+    {
+      "id": "2698039a-7bb7-4534-92c2-f0ad827cda0a",
+      "data": {
+        "front": "2c",
+        "archived": false,
+        "back": "2"
+      }
+    },
+    {
+      "id": "f2dc2e7b-9c68-4b69-b818-bf65e0ff8f7c",
+      "data": {
+        "archived": false,
+        "back": "1update",
+        "front": "1changes"
+      }
+    }
+  ]
+}
+""".data(using: .utf8)!
+
+let cardData = """
+{
   "data": [
     {
       "id": "2698039a-7bb7-4534-92c2-f0ad827cda0a",

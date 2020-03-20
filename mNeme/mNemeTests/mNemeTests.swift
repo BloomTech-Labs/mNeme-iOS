@@ -35,7 +35,7 @@ class mNemeTests: XCTestCase {
         let deckController = DeckController(networkDataLoader: mock)
         let decoder = JSONDecoder()
         let decodedDeck = try! decoder.decode(DemoDeck.self, from: shortDeck)
-        deckController.demoDecks[0] = decodedDeck
+        //deckController.demoDecks[0] = decodedDeck
         viewController.demoDeck = decodedDeck
     }
     
