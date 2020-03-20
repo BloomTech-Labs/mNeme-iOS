@@ -46,9 +46,11 @@
 		BB1FAD07240F246200D9887F /* NotificationName+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1FAD06240F246200D9887F /* NotificationName+Extension.swift */; };
 		BB1FAD0924106A6B00D9887F /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1FAD0824106A6B00D9887F /* NetworkClient.swift */; };
 		BB1FAD0B2410758700D9887F /* MockDeckJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1FAD0A2410758700D9887F /* MockDeckJSON.swift */; };
-		BB1FAD0D2410764000D9887F /* DeckTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1FAD0C2410764000D9887F /* DeckTests.swift */; };
+
 		BB20E8E82406EC9700B60F24 /* DeckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB20E8E72406EC9700B60F24 /* DeckController.swift */; };
 		BB2821E82422D35F00C5B813 /* DeckControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2821E72422D35F00C5B813 /* DeckControllerTests.swift */; };
+		BB2821EA2423D57B00C5B813 /* MockDemoDeckJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2821E92423D57B00C5B813 /* MockDemoDeckJSON.swift */; };
+
 		BB3A205024086A37007D6C86 /* DesignableUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3A204F24086A37007D6C86 /* DesignableUITextField.swift */; };
 		BBD8A2E923FDDD8E00F5534E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2E823FDDD8E00F5534E /* ProfileViewController.swift */; };
 		BBD8A2EB23FDDDE600F5534E /* CreateDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2EA23FDDDE600F5534E /* CreateDeckViewController.swift */; };
@@ -132,9 +134,11 @@
 		BB1FAD06240F246200D9887F /* NotificationName+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+Extension.swift"; sourceTree = "<group>"; };
 		BB1FAD0824106A6B00D9887F /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		BB1FAD0A2410758700D9887F /* MockDeckJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDeckJSON.swift; sourceTree = "<group>"; };
-		BB1FAD0C2410764000D9887F /* DeckTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckTests.swift; sourceTree = "<group>"; };
+
 		BB20E8E72406EC9700B60F24 /* DeckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckController.swift; sourceTree = "<group>"; };
 		BB2821E72422D35F00C5B813 /* DeckControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckControllerTests.swift; sourceTree = "<group>"; };
+		BB2821E92423D57B00C5B813 /* MockDemoDeckJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDemoDeckJSON.swift; sourceTree = "<group>"; };
+
 		BB3A204F24086A37007D6C86 /* DesignableUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableUITextField.swift; sourceTree = "<group>"; };
 		BBD8A2E823FDDD8E00F5534E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		BBD8A2EA23FDDDE600F5534E /* CreateDeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDeckViewController.swift; sourceTree = "<group>"; };
@@ -310,10 +314,10 @@
 				95EEEAFC23FB45DC00B283E9 /* Info.plist */,
 				BBD8A2F924043E7100F5534E /* MockUserJSON.swift */,
 				BB1FAD0A2410758700D9887F /* MockDeckJSON.swift */,
+				BB2821E92423D57B00C5B813 /* MockDemoDeckJSON.swift */,
 				BBD8A2FB240444A800F5534E /* MockDataLoader.swift */,
 				BBD8A2FD2404459B00F5534E /* UserPreferencesTests.swift */,
 				BB2821E72422D35F00C5B813 /* DeckControllerTests.swift */,
-				BB1FAD0C2410764000D9887F /* DeckTests.swift */,
 			);
 			path = mNemeTests;
 			sourceTree = "<group>";
@@ -688,7 +692,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB2821E82422D35F00C5B813 /* DeckControllerTests.swift in Sources */,
-				BB1FAD0D2410764000D9887F /* DeckTests.swift in Sources */,
+				BB2821EA2423D57B00C5B813 /* MockDemoDeckJSON.swift in Sources */,
 				BBD8A2FA24043E7100F5534E /* MockUserJSON.swift in Sources */,
 				BBD8A2FE2404459B00F5534E /* UserPreferencesTests.swift in Sources */,
 				95EEEAFB23FB45DC00B283E9 /* mNemeTests.swift in Sources */,
