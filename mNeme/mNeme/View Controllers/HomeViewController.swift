@@ -148,65 +148,68 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-
-            var archived = false
-            var archive = ""
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+         guard let user = self.userController?.user else { return UISwipeActionsConfiguration()}
+        
+        let archived = (indexPath.section == 2 ? true : false)
+        let archive = (indexPath.section == 2 ? "Unarchive" : "Archive")
+        
+        let archiveButton = UIContextualAction(style: .normal, title: archive) { (action, sourceView, completionHandler) in
             
-            let deleteDeckAlert = UIAlertController(title: "Are you sure you want to delete this deck? Would you rather archive?", message: "", preferredStyle: .actionSheet)
-            
-            guard let user = self.userController?.user else { return }
-
-
             switch indexPath.section {
+            case 0:
+                let noArchiveAlert = UIAlertController(title: "Cannot archive a Demo Deck", message: "", preferredStyle: .alert)
+                noArchiveAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                self.present(noArchiveAlert, animated: true)
             case 1:
                 guard let deck = self.deckController?.decks[indexPath.row] else { return }
-                archive = "Archive"
-                deleteDeckAlert.addAction(UIAlertAction(title: archive, style: .default, handler: { (action) in
-                    tableView.reloadData()
-                    self.deckController?.archiveDeck(user: user, collectionID: deck.deckInformation.collectionId ?? "", index: indexPath.row, completion: {
-                        DispatchQueue.main.async {
-                            deleteDeckAlert.dismiss(animated: true, completion: nil)
-                            tableView.reloadData()
-                        }
-                    })
-                }))
+                self.deckController?.archiveDeck(user: user, collectionID: deck.deckInformation.collectionId ?? "", index: indexPath.row, completion: {
+                    DispatchQueue.main.async {
+                        tableView.reloadData()
+                    }
+                })
             case 2:
                 guard let deck = self.deckController?.archivedDecks[indexPath.row], let deckID = deck.deckInformation.collectionId else { return }
-                archive = "Unarchive"
-                archived = true
-                deleteDeckAlert.addAction(UIAlertAction(title: archive, style: .default, handler: { (action) in
-                    tableView.reloadData()
-                    self.deckController?.unarchiveDeck(user: user, collectionID: deckID, index: indexPath.row, completion: {
-                        DispatchQueue.main.async {
-                            tableView.reloadData()
-                            deleteDeckAlert.dismiss(animated: true, completion: nil)
-                        }
-                    })
-                }))
+                self.deckController?.unarchiveDeck(user: user, collectionID: deckID, index: indexPath.row, completion: {
+                    DispatchQueue.main.async {
+                        tableView.reloadData()
+                    }
+                })
             default:
                 break
             }
-
+        }
+        archiveButton.backgroundColor = UIColor.mNeme.goldenTaioni
+        
+        let deleteButton = UIContextualAction(style: .destructive, title: "Delete") { (action, sourceView, completionHandler) in
+            let deleteDeckAlert = UIAlertController(title: "Are you sure you want to delete this deck?", message: "", preferredStyle: .actionSheet)
             deleteDeckAlert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
-                guard let user = self.userController?.user else { return }
-
                 self.deleteDeck(fromArchive: archived, user: user, index: indexPath.row)
                 tableView.reloadData()
                 deleteDeckAlert.dismiss(animated: true, completion: nil)
             }))
+            deleteDeckAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+                tableView.reloadData()
+            }))
             
-            deleteDeckAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             let noDeletionAlert = UIAlertController(title: "Cannot delete Demo Deck", message: "", preferredStyle: .alert)
             noDeletionAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
             
-            if indexPath.section == 0 {
+            switch indexPath.section {
+            case 0:
                 self.present(noDeletionAlert, animated: true)
-            } else {
+            case 1:
                 self.present(deleteDeckAlert, animated: true)
+            case 2:
+                self.present(deleteDeckAlert, animated: true)
+            default:
+                break
             }
         }
+        deleteButton.backgroundColor = UIColor.red
+        
+        let swipeActions = UISwipeActionsConfiguration(actions: [deleteButton, archiveButton])
+        return swipeActions
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -37,7 +37,7 @@ class DeckCardViewController: UIViewController {
     }
     
     private func parseCards() {
-        if let cards = deck?.data?.filter({ $0.archived == false }) {
+        if let cards = deck?.data?.filter({ $0.archived != true }) {
             self.cards = cards
         }
     }
