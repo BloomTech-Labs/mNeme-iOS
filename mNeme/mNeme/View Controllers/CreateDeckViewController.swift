@@ -20,11 +20,15 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
     // Cards
     var cards: [CardData] = [] {
         didSet {
+            parseAllCards()
             DispatchQueue.main.async {
                 self.cardTableView.reloadData()
             }
         }
     }
+    
+    var unarchivedCards: [CardData] = []
+    var archivedCards: [CardData] = []
     var newCards: [CardData] = []
     var deletedCards: [CardData] = []
     var didAddCard: Bool =  false
@@ -41,7 +45,7 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
             cards = updatedDeck?.data ?? []
         }
     }
-
+    
     
     // Tags
     var tags: [String] = []
@@ -212,23 +216,23 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     private func setupTags() {
-          allTagsCollection.tags = []
-          add(allTagsCollection, toView: containerView)
-          add(productTagsCollection, toView: containerView2)
-          allTagsCollection.action = .addTag
-          allTagsCollection.receiver = productTagsCollection
-          productTagsCollection.action = .removeTag
-          deckTagsTF.sender = allTagsCollection
-          deckTagsTF.receiver = productTagsCollection
-          allTagsCollection.delegate = self
-          productTagsCollection.delegate = self
-          
-          //Customization
-          deckTagsTF.backgroundColor = UIColor.white
-          deckTagsTF.layer.cornerRadius = 0
-          allTagsCollection.customBackgroundColor = UIColor.mNeme.goldenTaioni
-          productTagsCollection.customBackgroundColor = UIColor.mNeme.goldenTaioni
-      }
+        allTagsCollection.tags = []
+        add(allTagsCollection, toView: containerView)
+        add(productTagsCollection, toView: containerView2)
+        allTagsCollection.action = .addTag
+        allTagsCollection.receiver = productTagsCollection
+        productTagsCollection.action = .removeTag
+        deckTagsTF.sender = allTagsCollection
+        deckTagsTF.receiver = productTagsCollection
+        allTagsCollection.delegate = self
+        productTagsCollection.delegate = self
+        
+        //Customization
+        deckTagsTF.backgroundColor = UIColor.white
+        deckTagsTF.layer.cornerRadius = 0
+        allTagsCollection.customBackgroundColor = UIColor.mNeme.goldenTaioni
+        productTagsCollection.customBackgroundColor = UIColor.mNeme.goldenTaioni
+    }
     
     private func clearViews() {
         cards = []
@@ -236,6 +240,15 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
         deckNameTF.text = ""
         deckIconTF.text = ""
         cardTableView.reloadData()
+    }
+    
+    private func parseAllCards() {
+        self.archivedCards = cards.filter({ $0.archived == true && $0.archived != nil })
+        self.unarchivedCards = cards.filter({ $0.archived == false || $0.archived == nil })
+        print("\(unarchivedCards.count) unarchived cards")
+        print("\(archivedCards.count) archived cards")
+        print("\(cards.count) cards (full set)")
+
     }
     
     // MARK: - Logic Private Functions
@@ -261,9 +274,9 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
         let cardData = CardData(front: frontText, back: backText)
         
         if let _ = deck {
-        
+            
             updatedDeck?.data?.insert(cardData, at: 0)
-
+            
             self.newCards.append(cardData)
             cardTableView.reloadData()
         }else {
@@ -297,7 +310,7 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
     
     // MARK: - Tableview Functions
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
     
     
@@ -305,9 +318,11 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
         if section == 0 {
             return 1
         } else if section == 1 {
-            return cards.count
+            return unarchivedCards.count
+        } else if section == 2{
+            return archivedCards.count
         } else {
-            return 4
+            return 10
         }
     }
     
@@ -324,7 +339,7 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
                 cell.addFrontTV.layer.backgroundColor = UIColor.white.cgColor
                 cell.addFrontTV.text = "Write on the front!"
                 cell.addFrontTV.textColor = UIColor.lightGray
-
+                
                 cell.addBackTV.delegate = self
                 cell.addBackTV.layer.backgroundColor = UIColor.white.cgColor
                 cell.addBackTV.text = "Write on the back!"
@@ -336,9 +351,9 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
         else if indexPath.section == 1 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "CardCell", for: indexPath) as? CardTableViewCell {
                 
-                if !self.cards.isEmpty {
-                    cell.frontCardTV.text = self.cards[indexPath.row].front
-                    cell.backCardTV.text = self.cards[indexPath.row].back
+                if !self.unarchivedCards.isEmpty {
+                    cell.frontCardTV.text = self.unarchivedCards[indexPath.row].front
+                    cell.backCardTV.text = self.unarchivedCards[indexPath.row].back
                 }
                 cell.index = indexPath.row
                 cell.delegate = self
@@ -348,91 +363,95 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
                 cell.cardView.layer.backgroundColor = UIColor.white.cgColor
                 cell.frontCardTV.centerVertically()
                 cell.backCardTV.centerVertically()
+                cell.frontCardTV.backgroundColor = .white
+                cell.backCardTV.backgroundColor = .white
                 
-                if self.cards[indexPath.row].archived == true {
-                    cell.cardView.backgroundColor = .lightGray
-                    cell.frontCardTV.backgroundColor = .lightGray
-                    cell.backCardTV.backgroundColor = .lightGray
-                    
-                } else {
-                    cell.frontCardTV.backgroundColor = .white
-                    cell.backCardTV.backgroundColor = .white
-                }
                 return cell
             }
+        } else if indexPath.section == 2 {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "CardCell", for: indexPath) as? CardTableViewCell {
+                
+                if !self.archivedCards.isEmpty {
+                    cell.frontCardTV.text = self.archivedCards[indexPath.row].front
+                    cell.backCardTV.text = self.archivedCards[indexPath.row].back
+                }
+                cell.index = indexPath.row
+                cell.delegate = self
+                cell.cardView.layer.cornerRadius = 10
+                cell.cardView.layer.borderColor = UIColor.lightGray.cgColor
+                cell.cardView.layer.borderWidth = 1
+                cell.cardView.layer.backgroundColor = UIColor.white.cgColor
+                cell.frontCardTV.centerVertically()
+                cell.backCardTV.centerVertically()
+                cell.frontCardTV.backgroundColor = .lightGray
+                cell.backCardTV.backgroundColor = .lightGray
+                
+                return cell
+            }
+            
         } else {
             return UITableViewCell()
         }
         return UITableViewCell()
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            
-            if cards.count == 1 {
-                let cardAlert = UIAlertController(title: "Your deck needs at least one card!", message: "", preferredStyle: .alert)
-                cardAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                self.present(cardAlert, animated: true)
-                return
-            }
-            
-            var archiveTitle = "Archive"
-            
-            if cards[indexPath.row].archived == true {
-                archiveTitle = "Unarchive"
-            }
-            
-            let deleteDeckAlert = UIAlertController(title: "Are you sure you want to delete this card? Would you rather archive?", message: "", preferredStyle: .actionSheet)
-            
-            
-            deleteDeckAlert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
-                guard let user = self.userController?.user, let deck = self.deckController?.decks[self.indexOfDeck ?? 0], let cardToDelete = deck.data?[indexPath.row] else { return }
-                
-                for card in self.newCards {
-                    if card == cardToDelete {
-                        guard let newCardIndex = self.newCards.firstIndex(of: card) else { return }
-                        self.newCards.remove(at: newCardIndex)
-                        self.updatedDeck?.data?.remove(at: indexPath.row)
-                        self.deckController?.decks[self.indexOfDeck ?? 0].data?.remove(at: indexPath.row)
-                        tableView.reloadData()
-                        return
-                    }
-                }
-                
-                self.updatedDeck?.data?.remove(at: indexPath.row)
-                self.deckController?.decks[self.indexOfDeck ?? 0].data?.remove(at: indexPath.row)
-                tableView.reloadData()
-                self.deckController?.deleteCardFromServer(user: user, deck: deck, card: cardToDelete)
-            }))
-            
-            // Archiving
-            deleteDeckAlert.addAction(UIAlertAction(title: archiveTitle, style: .default, handler: { (archive) in
-                guard let user = self.userController?.user, let deck = self.deckController?.decks[self.indexOfDeck ?? 0], var cardToArchive = deck.data?[indexPath.row] else { return }
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        if indexPath.section == 0 || indexPath.section == 3 {
+            return nil
+        } else {
+            //            var archived = (indexPath.section == 2 ? true : false)
+            let archive = (indexPath.section == 2 ? "Unarchive" : "Archive")
+            let archiveButton = UIContextualAction(style: .normal, title: archive) { (action, sourceView, completionHandler) in
+                // logic for archive
+                guard let user = self.userController?.user, let deck = self.updatedDeck, var cardToArchive = deck.data?[indexPath.row] else { return }
                 
                 cardToArchive.archived?.toggle()
+                self.updatedDeck?.data?[indexPath.row].archived?.toggle()
                 
-                self.deckController?.archiveCard(deck: deck, user: user, cards: cardToArchive, completion: {
+                self.deckController?.archiveCard(deck: deck, user: user, card: cardToArchive, completion: {
                     self.deckController?.decks[self.indexOfDeck ?? 0].data?[indexPath.row].archived?.toggle()
-                    self.cards[indexPath.row].archived?.toggle()
                     DispatchQueue.main.async {
                         tableView.reloadData()
                     }
                 })
-            }))
+            }
+            archiveButton.backgroundColor = UIColor.mNeme.goldenTaioni
             
-            
-            deleteDeckAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            self.present(deleteDeckAlert, animated: true)
+            let deleteButton = UIContextualAction(style: .destructive, title: "Delete") { (action, sourceView, completionHandler) in
+                // logic for delete
+                guard let user = self.userController?.user, let deck = self.deckController?.decks[self.indexOfDeck ?? 0], let cardToDelete = deck.data?[indexPath.row] else { return }
+                
+                let deleteDeckAlert = UIAlertController(title: "Are you sure you want to delete this deck?", message: "", preferredStyle: .actionSheet)
+                deleteDeckAlert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
+                    for card in self.newCards {
+                        if card == cardToDelete {
+                            guard let newCardIndex = self.newCards.firstIndex(of: card) else { return }
+                            self.newCards.remove(at: newCardIndex)
+                            self.updatedDeck?.data?.remove(at: indexPath.row)
+                            self.deckController?.decks[self.indexOfDeck ?? 0].data?.remove(at: indexPath.row)
+                            tableView.reloadData()
+                            return
+                        }
+                    }
+                    self.updatedDeck?.data?.remove(at: indexPath.row)
+                    self.deckController?.decks[self.indexOfDeck ?? 0].data?.remove(at: indexPath.row)
+                    tableView.reloadData()
+                    self.deckController?.deleteCardFromServer(user: user, deck: deck, card: cardToDelete)
+                    deleteDeckAlert.dismiss(animated: true, completion: nil)
+                }))
+                deleteDeckAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+                    tableView.reloadData()
+                }))
+                self.present(deleteDeckAlert, animated: true)
+                
+            }
+            deleteButton.backgroundColor = UIColor.red
+            let swipeActions = UISwipeActionsConfiguration(actions: [deleteButton,archiveButton])
+            return swipeActions
         }
     }
     
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        if indexPath.section == 0 {
-            return .none
-        } else {
-            return .delete
-        }
-    }
+
     
     // MARK: - TextView Delegate
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -443,7 +462,7 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
     }
 }
 
-    // MARK: - Extensions
+// MARK: - Extensions
 extension UITextView {
     
     func centerVertically() {

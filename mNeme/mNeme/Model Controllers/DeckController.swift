@@ -233,8 +233,8 @@ class DeckController {
         }
     }
     
-    func archiveCard(deck: Deck, user: User, cards: CardData, completion: @escaping () -> Void) {
-        networkClient.put(user: user, deck: deck, updateDeckName: nil, updateCards: [cards]) { (result: Deck?) in
+    func archiveCard(deck: Deck, user: User, card: CardData, completion: @escaping () -> Void) {
+        networkClient.put(user: user, deck: deck, updateDeckName: nil, updateCards: [card]) { (result: Deck?) in
            completion()
         }
     }
