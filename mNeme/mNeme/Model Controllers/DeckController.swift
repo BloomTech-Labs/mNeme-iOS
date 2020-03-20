@@ -137,38 +137,32 @@ class DeckController {
     }
     
     // Network call editing only the deck name
-    func editDeckName(deck: Deck, user: User, name: String, completion: @escaping () -> Void) {
-        networkClient.put(user: user, deck: deck, updateDeckName: name, updateCards: nil) { (result: [String: DeckInformation]?) in
-            completion()
+    func editDeckName(deck: Deck, user: User, updatedDeckName: String, completion: @escaping (DeckInformation) -> Void) {
+        networkClient.put(user: user, deck: deck, updateDeckName: updatedDeckName, updateCards: nil) { (result: [String: DeckInformation]?) in
+            if let deckInfoDict = result {
+                if let deckInfo = deckInfoDict["deckInformation"] {
+                    completion(deckInfo)
+                }
+            }
         }
     }
     
     // Network call editing the cards inside of a deck
-    func editDeckCards(deck: Deck, user: User, cards: [CardData], completion: @escaping () -> Void) {
+    func editDeckCards(deck: Deck, user: User, cards: [CardData], completion: @escaping (Deck) -> Void) {
         networkClient.put(user: user, deck: deck, updateDeckName: nil, updateCards: cards) { (result: Deck?) in
-           completion()
+            if let deck = result {
+                completion(deck)
+            }
         }
     }
     
     // Adding cards to the server
-    func addCardsToServer(user: User, name: String, cards: [CardData], completion: @escaping () -> Void) {
-        networkClient.post(user: user, deckName: name, icon: "", tags: [""], cards: cards, add: true) { (deck: Deck?) in
-            completion()
+    func addCardsToServer(user: User, name: String, cards: [CardData], completion: @escaping (Deck) -> Void) {
+        networkClient.post(user: user, deckName: name, icon: "", tags: [""], cards: cards, add: true) { (result: Deck?) in
+            if let deck = result {
+                completion(deck)
+            }
         }
-    }
-    
-    // Adding cards locally to the DeckController
-    func addCardToDeck(deck: Deck, card: CardData) -> [CardData]{
-        guard let index = decks.firstIndex(of: deck) else { return [] }
-        decks[index].data?.insert(card, at: 0)
-        guard let newDeckArray = decks[index].data else { return [] }
-        return newDeckArray
-    }
-    
-    // Changing the deck name locally in DeckController
-    func changeDeckName(deck: Deck, newName: String) {
-        guard let index = decks.firstIndex(of: deck) else { return }
-        self.decks[index].deckInformation.deckName = newName
     }
     
     // Deleting deck from server

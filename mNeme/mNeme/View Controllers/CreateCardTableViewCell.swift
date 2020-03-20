@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol CardTableViewCellDelegate {
+protocol CreateCardTableViewCellDelegate {
     func addCardWasTapped(frontText: String, backtext: String)
 }
 
@@ -20,7 +20,7 @@ class CreateCardTableViewCell: UITableViewCell, UITextViewDelegate {
     @IBOutlet weak var addCardButton: UIButton!
     @IBOutlet weak var addFlashcardView: UIView!
     
-    var delegate: CardTableViewCellDelegate?
+    var delegate: CreateCardTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,7 +31,7 @@ class CreateCardTableViewCell: UITableViewCell, UITextViewDelegate {
 
     // MARK: - IB Actions & Private Functions
     @IBAction func addCardButtonTapped(_ sender: Any) {
-        if let frontTV = addFrontTV.text, !frontTV.isEmpty, let backTV = addBackTV.text, !backTV.isEmpty {
+        if let frontTV = addFrontTV.text, !frontTV.isEmpty, frontTV != "Write on the front!", let backTV = addBackTV.text, !backTV.isEmpty, backTV != "Write on the back!" {
             delegate?.addCardWasTapped(frontText: frontTV, backtext: backTV)
 //            clearCardViews()
         } else {
@@ -52,6 +52,7 @@ class CreateCardTableViewCell: UITableViewCell, UITextViewDelegate {
 
 // MARK: - Extensions
 // This allows us to present an alert in the parent controller of this cell
+
 extension UIView {
     var parentViewController: CreateDeckViewController? {
         var parentResponder: UIResponder? = self

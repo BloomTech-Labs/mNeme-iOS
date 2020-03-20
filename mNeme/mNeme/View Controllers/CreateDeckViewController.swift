@@ -12,27 +12,38 @@ import TaggerKit
 class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, TKCollectionViewDelegate {
     
     // MARK: - Properties
-    var cards: [CardData] = []{
+    
+    // Controllers
+    var deckController: DeckController?
+    var userController: UserController?
+    
+    // Cards
+    var cards: [CardData] = [] {
         didSet {
-            print("")
+            DispatchQueue.main.async {
+                self.cardTableView.reloadData()
+            }
         }
     }
     var newCards: [CardData] = []
     var deletedCards: [CardData] = []
+    var didAddCard: Bool =  false
+    
+    // Decks
+    var indexOfDeck: Int?
     var deck: Deck? {
         didSet {
-            deckName = deck?.deckInformation.deckName
+            updatedDeck = deck
         }
     }
-    var didAddCard: Bool =  false
-    var deckName: String?
-    var deckController: DeckController? {
-        didSet{
-            print("It passed in")
+    var updatedDeck: Deck? {
+        didSet {
+            cards = updatedDeck?.data ?? []
         }
     }
-    var userController: UserController?
-    var indexOfDeck: Int?
+
+    
+    // Tags
     var tags: [String] = []
     var allTagsCollection = TKCollectionView()
     var productTagsCollection = TKCollectionView()
@@ -58,17 +69,14 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
         cardTableView.delegate = self
         cardTableView.dataSource = self
         setupTags()
-        setDeck()
-        updateLaunchViews()
-        updateDeckViews()
         cardTableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         setDeck()
+        updateLaunchViews()
         updateDeckViews()
-        print("Number of cards in deck \(cards.count)")
         cardTableView.reloadData()
     }
     
@@ -84,41 +92,74 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
         
         if let deck = deck {
             
-            let didChangName = didChangeName()
+            let didChangName = didChangeName(textFieldString: deckName)
             
             //use switch for cleanup
             
             if didChangName == true && didAddCard == true {
-                deckController.addCardsToServer(user: user, name: self.deck?.deckInformation.collectionId ?? self.deckName!, cards: newCards) {
-                    deckController.editDeckName(deck: deck, user: user, name: deckName) {
-                        DispatchQueue.main.async {
-                            self.deckController?.changeDeckName(deck: deckController.decks[self.indexOfDeck ?? 0], newName: deckName)
-                            self.clearViews()
-                            self.dismiss(animated: true, completion: nil)
-                        }
-                    }
-                }
-            } else if didChangName == true {
                 
-                updateCardThroughTextViews {
-                    deckController.changeDeckName(deck: deck, newName: deckName)
-                
-                    deckController.editDeckName(deck: deck, user: user, name: deckName) {
-                        DispatchQueue.main.async {
-                            self.clearViews()
-                            self.dismiss(animated: true, completion: nil)
-                        }
-                    }
+                deckController.addCardsToServer(user: user, name: deck.deckInformation.collectionId ?? "", cards: newCards) { (deck) in
+                    print("\(String(describing: deck.deckInformation.deckName)) has added cards to server")
                 }
-            } else if didAddCard == true {
-                deckController.addCardsToServer(user: user, name: deck.deckInformation.collectionId ?? "", cards: newCards) {
+                
+                deckController.editDeckCards(deck: deck, user: user, cards: self.cards) { (deck) in
+                    print("\(String(describing: deck.deckInformation.deckName)) has updated cards in server")
+                }
+                
+                deckController.editDeckName(deck: deck, user: user, updatedDeckName: deckName) { (deckInfo) in
+                    //update controller
+                    deckController.decks[self.indexOfDeck!].data = self.updatedDeck?.data
+                    deckController.decks[self.indexOfDeck!].deckInformation = deckInfo
+                    
                     DispatchQueue.main.async {
                         self.clearViews()
                         self.dismiss(animated: true, completion: nil)
                     }
                 }
+            } else if didChangName == true {
+                
+                deckController.editDeckCards(deck: deck, user: user, cards: self.cards) { (deck) in
+                    print("\(String(describing: deck.deckInformation.deckName)) has updated cards in server")
+                }
+                
+                deckController.editDeckName(deck: deck, user: user, updatedDeckName: deckName) { (deckInfo) in
+                    //update controller
+                    deckController.decks[self.indexOfDeck!].data = self.updatedDeck?.data
+                    deckController.decks[self.indexOfDeck!].deckInformation = deckInfo
+                    
+                    DispatchQueue.main.async {
+                        self.clearViews()
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                }
+            } else if didAddCard == true {
+                
+                deckController.editDeckCards(deck: deck, user: user, cards: self.cards) { (deck) in
+                    print("\(String(describing: deck.deckInformation.deckName)) has updated cards in server")
+                }
+                
+                deckController.addCardsToServer(user: user, name: deck.deckInformation.collectionId ?? "", cards: newCards) { (deck) in
+                    print("\(String(describing: deck.deckInformation.deckName)) has added cards to server")
+                }
+                
+                // update controller
+                guard let updatedDeck = self.updatedDeck else { return }
+                deckController.decks[self.indexOfDeck!] = updatedDeck
+                
+                DispatchQueue.main.async {
+                    self.clearViews()
+                    self.dismiss(animated: true, completion: nil)
+                }
             } else {
-                updateCardThroughTextViews {
+                deckController.editDeckCards(deck: deck, user: user, cards: self.cards) { (updatedDeck) in
+                    print("\(String(describing: deck.deckInformation.deckName)) has updated cards in server")
+                }
+                //update Controller
+                guard let updatedDeck = self.updatedDeck else { return }
+                deckController.decks[self.indexOfDeck!] = updatedDeck
+                
+                DispatchQueue.main.async {
+                    self.clearViews()
                     self.dismiss(animated: true, completion: nil)
                 }
             }
@@ -132,7 +173,7 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
-    // MARK: - Private Functions
+    // MARK: - Setting up Views Functions
     
     private func updateLaunchViews() {
         
@@ -162,21 +203,32 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
         
     }
     
-    private func setDeck() {
-        guard let deckController = deckController, let indexOfDeck = indexOfDeck else { return }
-        deck = deckController.decks[indexOfDeck]
-        // Add tags for deck
-        self.productTagsCollection.tags = deck?.deckInformation.tags ?? [""]
-    }
-    
     private func updateDeckViews() {
-        if let deck = deck, let cards = deck.data {
+        if let deck = deck {
             deckNameTF.text = deck.deckInformation.deckName
             deckIconTF.text = deck.deckInformation.icon
             deckTagsTF.text = deck.deckInformation.tags.joined(separator: ", ")
-            self.cards = cards
         }
     }
+    
+    private func setupTags() {
+          allTagsCollection.tags = []
+          add(allTagsCollection, toView: containerView)
+          add(productTagsCollection, toView: containerView2)
+          allTagsCollection.action = .addTag
+          allTagsCollection.receiver = productTagsCollection
+          productTagsCollection.action = .removeTag
+          deckTagsTF.sender = allTagsCollection
+          deckTagsTF.receiver = productTagsCollection
+          allTagsCollection.delegate = self
+          productTagsCollection.delegate = self
+          
+          //Customization
+          deckTagsTF.backgroundColor = UIColor.white
+          deckTagsTF.layer.cornerRadius = 0
+          allTagsCollection.customBackgroundColor = UIColor.mNeme.goldenTaioni
+          productTagsCollection.customBackgroundColor = UIColor.mNeme.goldenTaioni
+      }
     
     private func clearViews() {
         cards = []
@@ -186,108 +238,39 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
         cardTableView.reloadData()
     }
     
-    private func didChangeName() -> Bool {
-        if deckNameTF.text != deckName {
+    // MARK: - Logic Private Functions
+    
+    private func setDeck() {
+        guard let deckController = deckController, let indexOfDeck = indexOfDeck else { return }
+        deck = deckController.decks[indexOfDeck]
+        // Add tags for deck
+        self.productTagsCollection.tags = deck?.deckInformation.tags ?? [""]
+    }
+    
+    private func didChangeName(textFieldString: String) -> Bool {
+        if deck?.deckInformation.deckName != textFieldString {
             return true
         } else {
             return false
         }
     }
     
-    private func updateCardLocally(index: Int, newFront: String, newBack: String) {
-        self.deckController?.decks[self.indexOfDeck ?? 0].data?[index].front = "\(newFront)"
-        self.deckController?.decks[self.indexOfDeck ?? 0].data?[index].back = "\(newBack)"
-        self.cards[index].front = newFront
-        self.cards[index].back = newBack
-    }
+    // MARK: - Updating Local Deck
     
-    private func addCardToDeckController(frontText: String, backText: String) {
-        
+    private func addCardToLocalDeck(frontText: String, backText: String) {
         let cardData = CardData(front: frontText, back: backText)
         
         if let _ = deck {
-            let index = self.indexOfDeck
-            if let deck = deckController?.decks[index ?? 9], let cards = deckController?.addCardToDeck(deck: deck, card: cardData) {
-                self.cards = cards
-                self.deck = deck
-                self.newCards.append(cardData)
-                cardTableView.reloadData()
-            }
-            
-        } else {
+        
+            updatedDeck?.data?.insert(cardData, at: 0)
+
+            self.newCards.append(cardData)
+            cardTableView.reloadData()
+        }else {
             self.cards.insert(cardData, at: 0)
         }
         cardTableView.reloadData()
         didAddCard = true
-    }
-    
-    private func setupTags() {
-        allTagsCollection.tags = []
-        add(allTagsCollection, toView: containerView)
-        add(productTagsCollection, toView: containerView2)
-        allTagsCollection.action = .addTag
-        allTagsCollection.receiver = productTagsCollection
-        productTagsCollection.action = .removeTag
-        deckTagsTF.sender = allTagsCollection
-        deckTagsTF.receiver = productTagsCollection
-        allTagsCollection.delegate = self
-        productTagsCollection.delegate = self
-        
-        //Customization
-        deckTagsTF.backgroundColor = UIColor.white
-        deckTagsTF.layer.cornerRadius = 0
-        allTagsCollection.customBackgroundColor = UIColor.mNeme.goldenTaioni
-        productTagsCollection.customBackgroundColor = UIColor.mNeme.goldenTaioni
-    }
-    
-    private func updateCardThroughTextViews(completion: @escaping () -> Void) {
-        guard let user = self.userController?.user, let deck = self.deckController?.decks[self.indexOfDeck ?? 0] else { return }
-        
-        var cards: [CardData] = []
-        for index in 1...self.cards.count {
-            guard let cell = cardTableView.cellForRow(at: IndexPath(row: index - 1, section: 1)) as? CardTableViewCell else { return }
-            guard let front = cell.frontCardTV.text, !front.isEmpty, let back = cell.backCardTV.text, !back.isEmpty else {
-                
-                let cardAlert = UIAlertController(title: "Your card needs a front and a back", message: "Add some info to each section", preferredStyle: .alert)
-                cardAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                self.present(cardAlert, animated: true)
-                return
-            }
-            
-            var card = self.cards[index - 1]
-            card.front = front
-            card.back = back
-            cards.append(card)
-            
-        }
-        
-        //update Cards locally
-        self.deckController?.decks[indexOfDeck ?? 0].data = cards
-        
-        //
-        
-//        for card in self.newCards {
-//            if card == cardToEdit {
-//                guard let newCardIndex = self.newCards.firstIndex(of: card) else { return }
-//                self.newCards[newCardIndex].front = "\(newFront)"
-//                self.newCards[newCardIndex].front = "\(newBack)"
-//                self.updateCardLocally(index: indexPath.row, newFront: newFront, newBack: newBack)
-//                tableView.reloadData()
-//                return
-//            }
-//        }
-//
-//        self.updateCardLocally(index: indexPath.row, newFront: newFront, newBack: newBack)
-//        tableView.reloadData()
-//        var newCard = cardToEdit
-//        newCard.front = newFront
-//        newCard.back = newBack
-        
-        //send new cards array to server
-        self.deckController?.editDeckCards(deck: deck, user: user, cards: cards, completion: {
-            print("new cards saved to server")
-        })
-        completion()
     }
     
     func tagIsBeingAdded(name: String?) {
@@ -357,12 +340,12 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
                     cell.frontCardTV.text = self.cards[indexPath.row].front
                     cell.backCardTV.text = self.cards[indexPath.row].back
                 }
+                cell.index = indexPath.row
+                cell.delegate = self
                 cell.cardView.layer.cornerRadius = 10
                 cell.cardView.layer.borderColor = UIColor.lightGray.cgColor
                 cell.cardView.layer.borderWidth = 1
                 cell.cardView.layer.backgroundColor = UIColor.white.cgColor
-//                cell.frontCardTV.isUserInteractionEnabled = false
-//                cell.backCardTV.isUserInteractionEnabled = false
                 cell.frontCardTV.centerVertically()
                 cell.backCardTV.centerVertically()
                 
@@ -409,14 +392,14 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
                     if card == cardToDelete {
                         guard let newCardIndex = self.newCards.firstIndex(of: card) else { return }
                         self.newCards.remove(at: newCardIndex)
-                        self.cards.remove(at: indexPath.row)
+                        self.updatedDeck?.data?.remove(at: indexPath.row)
                         self.deckController?.decks[self.indexOfDeck ?? 0].data?.remove(at: indexPath.row)
                         tableView.reloadData()
                         return
                     }
                 }
                 
-                self.cards.remove(at: indexPath.row)
+                self.updatedDeck?.data?.remove(at: indexPath.row)
                 self.deckController?.decks[self.indexOfDeck ?? 0].data?.remove(at: indexPath.row)
                 tableView.reloadData()
                 self.deckController?.deleteCardFromServer(user: user, deck: deck, card: cardToDelete)
@@ -451,74 +434,6 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if indexPath.section == 1 {
-////            let cell = tableView.cellForRow(at: indexPath) as! CardTableViewCell
-////            cell.frontCardTV.isUserInteractionEnabled = true
-////            cell.backCardTV.isUserInteractionEnabled = true
-//
-//            let card = cards[indexPath.row] // for completion handler information
-//
-//            let editAlert = UIAlertController(title: "Edit your Card", message: "", preferredStyle: .alert)
-//
-//            editAlert.addTextField { (frontTextField: UITextField!) in
-//                frontTextField.text = card.front
-//                frontTextField.placeholder = "Front"
-//            }
-//
-//            editAlert.addTextField { (backTextField: UITextField!) in
-//                backTextField.text = card.back
-//                backTextField.placeholder = "Back"
-//            }
-//
-//            editAlert.addAction(UIAlertAction(title: "Save Changes", style: .default, handler: { (action) in
-//                guard let frontTF = editAlert.textFields?[0], let backTF = editAlert.textFields?[1], let newFront = frontTF.text, let newBack = backTF.text else { return }
-//
-//                if self.deck != nil {
-//                    guard let user = self.userController?.user, let deck = self.deckController?.decks[self.indexOfDeck ?? 0], let cardToEdit = deck.data?[indexPath.row] else { return }
-//
-//                    for card in self.newCards {
-//                        if card == cardToEdit {
-//                            guard let newCardIndex = self.newCards.firstIndex(of: card) else { return }
-//                            self.newCards[newCardIndex].front = "\(newFront)"
-//                            self.newCards[newCardIndex].front = "\(newBack)"
-//                            self.updateCardLocally(index: indexPath.row, newFront: newFront, newBack: newBack)
-//                            tableView.reloadData()
-//                            return
-//                        }
-//                    }
-//
-//                    self.updateCardLocally(index: indexPath.row, newFront: newFront, newBack: newBack)
-//                    tableView.reloadData()
-//                    var newCard = cardToEdit
-//                    newCard.front = newFront
-//                    newCard.back = newBack
-//                    self.deckController?.editDeckCards(deck: deck, user: user, cards: newCard, completion: {
-//                        DispatchQueue.main.async {
-//                            editAlert.dismiss(animated: true, completion: nil)
-//                        }
-//                    })
-//                } else {
-//                    self.cards[indexPath.row].front = newFront
-//                    self.cards[indexPath.row].back = newBack
-//                    tableView.reloadData()
-//                    editAlert.dismiss(animated: true, completion: nil)
-//                }
-////                cell.frontCardTV.isUserInteractionEnabled = false
-////                cell.backCardTV.isUserInteractionEnabled = false
-//            }))
-//
-//            editAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
-//                tableView.deselectRow(at: indexPath, animated: true)
-////                cell.frontCardTV.isUserInteractionEnabled = false
-////                cell.backCardTV.isUserInteractionEnabled = false
-//            }))
-//
-//            self.present(editAlert, animated: true)
-//        }
-//
-//    }
-    
     // MARK: - TextView Delegate
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
@@ -541,8 +456,18 @@ extension UITextView {
     
 }
 
-extension CreateDeckViewController: CardTableViewCellDelegate {
+extension CreateDeckViewController: CreateCardTableViewCellDelegate {
     func addCardWasTapped(frontText: String, backtext: String) {
-        addCardToDeckController(frontText: frontText, backText: backtext)
+        addCardToLocalDeck(frontText: frontText, backText: backtext)
+    }
+}
+
+extension CreateDeckViewController: CardTableViewCellDelegate {
+    func cardWasEdited(index: Int, text: String, side: frontOrBack) {
+        if side == .front {
+            updatedDeck?.data?[index].front = text
+        } else {
+            updatedDeck?.data?[index].back = text
+        }
     }
 }
