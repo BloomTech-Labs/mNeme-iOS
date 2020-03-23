@@ -22,17 +22,23 @@ class CardTableViewCell: UITableViewCell {
     @IBOutlet weak var frontCardTV: UITextView!
     @IBOutlet weak var backCardTV: UITextView!
     @IBOutlet weak var cardView: UIView!
+    @IBOutlet weak var dividerView: UIView!
+    
     var index: Int?
     
     var delegate: CardTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         frontCardTV.delegate = self
         backCardTV.delegate = self
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        frontCardTV.centerVertically()
+        backCardTV.centerVertically()
+    }
 }
 
 extension CardTableViewCell: UITextViewDelegate {
@@ -44,4 +50,16 @@ extension CardTableViewCell: UITextViewDelegate {
             delegate?.cardWasEdited(index: index, text: text, side: .back)
         }
     }
+}
+
+extension UITextView {
+    
+    func centerVertically() {
+        let fittingSize = CGSize(width: bounds.width, height: CGFloat.greatestFiniteMagnitude)
+        let size = sizeThatFits(fittingSize)
+        let topOffset = (bounds.size.height - size.height * zoomScale) / 2
+        let positiveTopOffset = max(1, topOffset)
+        contentOffset.y = -positiveTopOffset
+    }
+    
 }

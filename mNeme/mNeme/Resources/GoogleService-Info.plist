@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>107522890096-gesabbbtr7v96p9j84rd5e806dv0j8kn.apps.googleusercontent.com</string>
+	<string>107522890096-a77u757u1pmr9cuq5btbdbsrrvq0h6kg.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.107522890096-gesabbbtr7v96p9j84rd5e806dv0j8kn</string>
+	<string>com.googleusercontent.apps.107522890096-a77u757u1pmr9cuq5btbdbsrrvq0h6kg</string>
 	<key>ANDROID_CLIENT_ID</key>
 	<string>107522890096-fqshri1q4fpj5nr6pn80eljltd0ia9kk.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
@@ -15,23 +15,23 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.lambdaschool.mNeme</string>
+	<string>com.lambdaschool.mneme-labs</string>
 	<key>PROJECT_ID</key>
 	<string>flashcards-bbd42</string>
 	<key>STORAGE_BUCKET</key>
 	<string>flashcards-bbd42.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_GCM_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:107522890096:ios:1dcc97715d1d87364d17b5</string>
+	<string>1:107522890096:ios:7935cf87ae03f8894d17b5</string>
 	<key>DATABASE_URL</key>
 	<string>https://flashcards-bbd42.firebaseio.com</string>
 </dict>

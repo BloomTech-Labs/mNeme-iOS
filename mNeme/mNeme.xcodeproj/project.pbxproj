@@ -17,6 +17,9 @@
 		6E1A19C692A40780C18AE71F /* Pods_mNeme.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 625928B0143B44879A17FF25 /* Pods_mNeme.framework */; };
 		954AB142240439C100FD385F /* DeckCard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 954AB141240439C100FD385F /* DeckCard.storyboard */; };
 		954AB14424043D8D00FD385F /* DeckCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954AB14324043D8D00FD385F /* DeckCardViewController.swift */; };
+		95608CD02429159F00D65A50 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95608CCF2429159F00D65A50 /* GoogleService-Info.plist */; };
+		95608CD12429159F00D65A50 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95608CCF2429159F00D65A50 /* GoogleService-Info.plist */; };
+		95608CD22429159F00D65A50 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95608CCF2429159F00D65A50 /* GoogleService-Info.plist */; };
 		95773B8823FF032A009B4EFE /* Onboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95773B8723FF032A009B4EFE /* Onboard.storyboard */; };
 		95773B8A23FF041A009B4EFE /* PreLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95773B8923FF041A009B4EFE /* PreLoginViewController.swift */; };
 		95773B9823FF4119009B4EFE /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95773B8C23FF4114009B4EFE /* Roboto-Black.ttf */; };
@@ -31,7 +34,6 @@
 		95773BA123FF4119009B4EFE /* Roboto-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95773B9523FF4118009B4EFE /* Roboto-LightItalic.ttf */; };
 		95773BA223FF4119009B4EFE /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95773B9623FF4118009B4EFE /* Roboto-Medium.ttf */; };
 		95773BA323FF4119009B4EFE /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95773B9723FF4118009B4EFE /* Roboto-Light.ttf */; };
-		958A6B0A23FDBAA300FDC959 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 958A6B0923FDBAA200FDC959 /* GoogleService-Info.plist */; };
 		958A6B0C23FDE17700FDC959 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958A6B0B23FDE17700FDC959 /* LoginViewController.swift */; };
 		95BE7411241093E9008FE54D /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BE7410241093E9008FE54D /* CardTableViewCell.swift */; };
 		95EEEAE123FB45DA00B283E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EEEAE023FB45DA00B283E9 /* AppDelegate.swift */; };
@@ -46,11 +48,9 @@
 		BB1FAD07240F246200D9887F /* NotificationName+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1FAD06240F246200D9887F /* NotificationName+Extension.swift */; };
 		BB1FAD0924106A6B00D9887F /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1FAD0824106A6B00D9887F /* NetworkClient.swift */; };
 		BB1FAD0B2410758700D9887F /* MockDeckJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1FAD0A2410758700D9887F /* MockDeckJSON.swift */; };
-
 		BB20E8E82406EC9700B60F24 /* DeckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB20E8E72406EC9700B60F24 /* DeckController.swift */; };
 		BB2821E82422D35F00C5B813 /* DeckControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2821E72422D35F00C5B813 /* DeckControllerTests.swift */; };
 		BB2821EA2423D57B00C5B813 /* MockDemoDeckJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2821E92423D57B00C5B813 /* MockDemoDeckJSON.swift */; };
-
 		BB3A205024086A37007D6C86 /* DesignableUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3A204F24086A37007D6C86 /* DesignableUITextField.swift */; };
 		BBD8A2E923FDDD8E00F5534E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2E823FDDD8E00F5534E /* ProfileViewController.swift */; };
 		BBD8A2EB23FDDDE600F5534E /* CreateDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2EA23FDDDE600F5534E /* CreateDeckViewController.swift */; };
@@ -98,6 +98,7 @@
 		625928B0143B44879A17FF25 /* Pods_mNeme.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mNeme.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		954AB141240439C100FD385F /* DeckCard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DeckCard.storyboard; sourceTree = "<group>"; };
 		954AB14324043D8D00FD385F /* DeckCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCardViewController.swift; sourceTree = "<group>"; };
+		95608CCF2429159F00D65A50 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		95773B8723FF032A009B4EFE /* Onboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboard.storyboard; sourceTree = "<group>"; };
 		95773B8923FF041A009B4EFE /* PreLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreLoginViewController.swift; sourceTree = "<group>"; };
 		95773B8C23FF4114009B4EFE /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
@@ -112,7 +113,6 @@
 		95773B9523FF4118009B4EFE /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-LightItalic.ttf"; sourceTree = "<group>"; };
 		95773B9623FF4118009B4EFE /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		95773B9723FF4118009B4EFE /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
-		958A6B0923FDBAA200FDC959 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		958A6B0B23FDE17700FDC959 /* LoginViewController.swift */ = {isa = PBXFileReference; indentWidth = 5; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		95BE7410241093E9008FE54D /* CardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
 		95EEEADD23FB45DA00B283E9 /* mNeme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mNeme.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,11 +134,9 @@
 		BB1FAD06240F246200D9887F /* NotificationName+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+Extension.swift"; sourceTree = "<group>"; };
 		BB1FAD0824106A6B00D9887F /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		BB1FAD0A2410758700D9887F /* MockDeckJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDeckJSON.swift; sourceTree = "<group>"; };
-
 		BB20E8E72406EC9700B60F24 /* DeckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckController.swift; sourceTree = "<group>"; };
 		BB2821E72422D35F00C5B813 /* DeckControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckControllerTests.swift; sourceTree = "<group>"; };
 		BB2821E92423D57B00C5B813 /* MockDemoDeckJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDemoDeckJSON.swift; sourceTree = "<group>"; };
-
 		BB3A204F24086A37007D6C86 /* DesignableUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableUITextField.swift; sourceTree = "<group>"; };
 		BBD8A2E823FDDD8E00F5534E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		BBD8A2EA23FDDDE600F5534E /* CreateDeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDeckViewController.swift; sourceTree = "<group>"; };
@@ -192,7 +190,7 @@
 				95EEEAE223FB45DA00B283E9 /* SceneDelegate.swift */,
 				BBD8A304240449D500F5534E /* HTTPMethod.swift */,
 				95EEEAF123FB45DC00B283E9 /* Info.plist */,
-				958A6B0923FDBAA200FDC959 /* GoogleService-Info.plist */,
+				95608CCF2429159F00D65A50 /* GoogleService-Info.plist */,
 				95EEEAEC23FB45DC00B283E9 /* Assets.xcassets */,
 				95773B8B23FF40FA009B4EFE /* Fonts */,
 			);
@@ -484,12 +482,12 @@
 				95773BA123FF4119009B4EFE /* Roboto-LightItalic.ttf in Resources */,
 				95773BA223FF4119009B4EFE /* Roboto-Medium.ttf in Resources */,
 				95773B9923FF4119009B4EFE /* Roboto-Thin.ttf in Resources */,
-				958A6B0A23FDBAA300FDC959 /* GoogleService-Info.plist in Resources */,
 				4B8A2A3123FCA5C700116BF9 /* Login.storyboard in Resources */,
 				95EEEAF023FB45DC00B283E9 /* LaunchScreen.storyboard in Resources */,
 				95773BA323FF4119009B4EFE /* Roboto-Light.ttf in Resources */,
 				95EEEAED23FB45DC00B283E9 /* Assets.xcassets in Resources */,
 				95773B9823FF4119009B4EFE /* Roboto-Black.ttf in Resources */,
+				95608CD02429159F00D65A50 /* GoogleService-Info.plist in Resources */,
 				95773B9A23FF4119009B4EFE /* Roboto-ThinItalic.ttf in Resources */,
 				95773B9D23FF4119009B4EFE /* Roboto-BlackItalic.ttf in Resources */,
 				95773B8823FF032A009B4EFE /* Onboard.storyboard in Resources */,
@@ -504,6 +502,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95608CD12429159F00D65A50 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,6 +510,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95608CD22429159F00D65A50 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -870,7 +870,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lambdaschool.mNeme;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lambdaschool.mneme-labs";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -889,7 +889,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lambdaschool.mNeme;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lambdaschool.mneme-labs";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

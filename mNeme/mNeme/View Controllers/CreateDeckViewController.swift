@@ -310,7 +310,7 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
     
     // MARK: - Tableview Functions
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 3
     }
     
     
@@ -318,9 +318,9 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
         if section == 0 {
             return 1
         } else if section == 1 {
-            return unarchivedCards.count
+            return unarchivedCards.count + archivedCards.count
         } else if section == 2{
-            return archivedCards.count
+            return 10
         } else {
             return 10
         }
@@ -361,8 +361,6 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
                 cell.cardView.layer.borderColor = UIColor.lightGray.cgColor
                 cell.cardView.layer.borderWidth = 1
                 cell.cardView.layer.backgroundColor = UIColor.white.cgColor
-                cell.frontCardTV.centerVertically()
-                cell.backCardTV.centerVertically()
                 cell.frontCardTV.backgroundColor = .white
                 cell.backCardTV.backgroundColor = .white
                 
@@ -381,10 +379,9 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
                 cell.cardView.layer.borderColor = UIColor.lightGray.cgColor
                 cell.cardView.layer.borderWidth = 1
                 cell.cardView.layer.backgroundColor = UIColor.white.cgColor
-                cell.frontCardTV.centerVertically()
-                cell.backCardTV.centerVertically()
-                cell.frontCardTV.backgroundColor = .lightGray
-                cell.backCardTV.backgroundColor = .lightGray
+                cell.frontCardTV.textColor = UIColor.lightGray
+                cell.backCardTV.textColor = UIColor.lightGray
+                cell.dividerView.layer.backgroundColor = UIColor.lightGray.cgColor
                 
                 return cell
             }
@@ -399,17 +396,27 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
         if indexPath.section == 0 || indexPath.section == 3 {
             return nil
         } else {
-            //            var archived = (indexPath.section == 2 ? true : false)
+            let archived = (indexPath.section == 2 ? true : false)
             let archive = (indexPath.section == 2 ? "Unarchive" : "Archive")
             let archiveButton = UIContextualAction(style: .normal, title: archive) { (action, sourceView, completionHandler) in
                 // logic for archive
                 guard let user = self.userController?.user, let deck = self.updatedDeck, var cardToArchive = deck.data?[indexPath.row] else { return }
                 
+                if archived {
+                    self.updatedDeck?.data?[indexPath.row + self.unarchivedCards.count].archived?.toggle()
+                } else {
+                    self.updatedDeck?.data?[indexPath.row].archived?.toggle()
+                }
+                
                 cardToArchive.archived?.toggle()
-                self.updatedDeck?.data?[indexPath.row].archived?.toggle()
                 
                 self.deckController?.archiveCard(deck: deck, user: user, card: cardToArchive, completion: {
-                    self.deckController?.decks[self.indexOfDeck ?? 0].data?[indexPath.row].archived?.toggle()
+                    
+                    if archived {
+                        self.deckController?.decks[self.indexOfDeck ?? 0].data?[indexPath.row + self.unarchivedCards.count].archived?.toggle()
+                    } else {
+                        self.deckController?.decks[self.indexOfDeck ?? 0].data?[indexPath.row].archived?.toggle()
+                    }
                     DispatchQueue.main.async {
                         tableView.reloadData()
                     }
@@ -463,17 +470,6 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
 }
 
 // MARK: - Extensions
-extension UITextView {
-    
-    func centerVertically() {
-        let fittingSize = CGSize(width: bounds.width, height: CGFloat.greatestFiniteMagnitude)
-        let size = sizeThatFits(fittingSize)
-        let topOffset = (bounds.size.height - size.height * zoomScale) / 2
-        let positiveTopOffset = max(1, topOffset)
-        contentOffset.y = -positiveTopOffset
-    }
-    
-}
 
 extension CreateDeckViewController: CreateCardTableViewCellDelegate {
     func addCardWasTapped(frontText: String, backtext: String) {

@@ -471,7 +471,7 @@
                                             <outlet property="addFrontTV" destination="VSy-ej-mDq" id="MRJ-X9-P68"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CardCell" rowHeight="215" id="ph4-qc-EFW" customClass="CardTableViewCell" customModule="mNeme" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CardCell" rowHeight="215" id="ph4-qc-EFW" customClass="CardTableViewCell" customModule="mNeme" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="520" width="375" height="215"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ph4-qc-EFW" id="o2E-Mb-5HO">
@@ -535,6 +535,7 @@
                                         <connections>
                                             <outlet property="backCardTV" destination="rQq-Ve-b6w" id="7CI-KZ-0Be"/>
                                             <outlet property="cardView" destination="dk6-os-eW8" id="V68-Py-yvR"/>
+                                            <outlet property="dividerView" destination="pN5-tI-mxB" id="PLq-7g-sJO"/>
                                             <outlet property="frontCardTV" destination="744-7R-6g8" id="RKY-1f-DQS"/>
                                         </connections>
                                     </tableViewCell>
