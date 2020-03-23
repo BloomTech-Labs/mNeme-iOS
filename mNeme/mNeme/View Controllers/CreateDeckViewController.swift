@@ -43,6 +43,7 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
     var updatedDeck: Deck? {
         didSet {
             cards = updatedDeck?.data ?? []
+            deckController?.decks[indexOfDeck ?? 0].data = self.updatedDeck?.data
         }
     }
     
@@ -243,21 +244,34 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     private func parseAllCards() {
-        self.archivedCards = cards.filter({ $0.archived == true && $0.archived != nil })
+        self.archivedCards = cards.filter({ $0.archived == true})
         self.unarchivedCards = cards.filter({ $0.archived == false || $0.archived == nil })
+        
+//        self.updatedDeck?.data = self.unarchivedCards + self.archivedCards
+//        deckController?.decks[indexOfDeck ?? 0].data = self.updatedDeck?.data
+       
         print("\(unarchivedCards.count) unarchived cards")
         print("\(archivedCards.count) archived cards")
         print("\(cards.count) cards (full set)")
-
     }
     
     // MARK: - Logic Private Functions
     
     private func setDeck() {
         guard let deckController = deckController, let indexOfDeck = indexOfDeck else { return }
-        deck = deckController.decks[indexOfDeck]
+        var deck = deckController.decks[indexOfDeck]
+        
+        //Arrange cards
+        guard let archivedCards = deck.data?.filter({ $0.archived == true}) else { return }
+        guard let unarchivedCards = deck.data?.filter({ $0.archived == false || $0.archived == nil }) else { return }
+        deck.data = unarchivedCards + archivedCards
+        
         // Add tags for deck
-        self.productTagsCollection.tags = deck?.deckInformation.tags ?? [""]
+        self.productTagsCollection.tags = deck.deckInformation.tags
+        
+        //Set deck
+        self.deck = deck
+        deckController.decks[indexOfDeck].data = deck.data
     }
     
     private func didChangeName(textFieldString: String) -> Bool {
@@ -319,8 +333,6 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
             return 1
         } else if section == 1 {
             return unarchivedCards.count + archivedCards.count
-        } else if section == 2{
-            return 10
         } else {
             return 10
         }
@@ -347,14 +359,12 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
                 
                 return cell
             }
-        }
-        else if indexPath.section == 1 {
+        } else if indexPath.section == 1 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "CardCell", for: indexPath) as? CardTableViewCell {
                 
-                if !self.unarchivedCards.isEmpty {
-                    cell.frontCardTV.text = self.unarchivedCards[indexPath.row].front
-                    cell.backCardTV.text = self.unarchivedCards[indexPath.row].back
-                }
+                cell.frontCardTV.text = self.cards[indexPath.row].front
+                cell.backCardTV.text = self.cards[indexPath.row].back
+                
                 cell.index = indexPath.row
                 cell.delegate = self
                 cell.cardView.layer.cornerRadius = 10
@@ -364,28 +374,18 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
                 cell.frontCardTV.backgroundColor = .white
                 cell.backCardTV.backgroundColor = .white
                 
-                return cell
-            }
-        } else if indexPath.section == 2 {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "CardCell", for: indexPath) as? CardTableViewCell {
-                
-                if !self.archivedCards.isEmpty {
-                    cell.frontCardTV.text = self.archivedCards[indexPath.row].front
-                    cell.backCardTV.text = self.archivedCards[indexPath.row].back
+                if self.cards[indexPath.row].archived == true {
+                    cell.frontCardTV.textColor = UIColor.lightGray
+                    cell.backCardTV.textColor = UIColor.lightGray
+                    cell.dividerView.layer.backgroundColor = UIColor.lightGray.cgColor
+                } else {
+                    cell.frontCardTV.textColor = UIColor.black
+                    cell.backCardTV.textColor = UIColor.black
+                    cell.dividerView.layer.backgroundColor = UIColor.black.cgColor
                 }
-                cell.index = indexPath.row
-                cell.delegate = self
-                cell.cardView.layer.cornerRadius = 10
-                cell.cardView.layer.borderColor = UIColor.lightGray.cgColor
-                cell.cardView.layer.borderWidth = 1
-                cell.cardView.layer.backgroundColor = UIColor.white.cgColor
-                cell.frontCardTV.textColor = UIColor.lightGray
-                cell.backCardTV.textColor = UIColor.lightGray
-                cell.dividerView.layer.backgroundColor = UIColor.lightGray.cgColor
-                
+        
                 return cell
             }
-            
         } else {
             return UITableViewCell()
         }
@@ -393,30 +393,42 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        if indexPath.section == 0 || indexPath.section == 3 {
+        if indexPath.section == 0 || indexPath.section == 2 {
             return nil
         } else {
-            let archived = (indexPath.section == 2 ? true : false)
-            let archive = (indexPath.section == 2 ? "Unarchive" : "Archive")
+            var archived = false
+            var archive = "Archive"
+            
+            if self.cards[indexPath.row].archived == true {
+                archive = "Unarchive"
+                archived = true
+            } else {
+                archive = "Archive"
+                archived = false
+            }
+            
             let archiveButton = UIContextualAction(style: .normal, title: archive) { (action, sourceView, completionHandler) in
                 // logic for archive
-                guard let user = self.userController?.user, let deck = self.updatedDeck, var cardToArchive = deck.data?[indexPath.row] else { return }
+                guard let user = self.userController?.user, let deck = self.updatedDeck else { return }
                 
+                var cardToArchive: CardData?
                 if archived {
-                    self.updatedDeck?.data?[indexPath.row + self.unarchivedCards.count].archived?.toggle()
+                    self.updatedDeck?.data?[indexPath.row].archived?.toggle()
+                    guard let cardBeingUnarchived = self.updatedDeck?.data?.remove(at: indexPath.row) else { return }
+                    self.updatedDeck?.data?.insert(cardBeingUnarchived, at: self.unarchivedCards.count)
+                    cardToArchive = self.updatedDeck?.data?[indexPath.row]
                 } else {
                     self.updatedDeck?.data?[indexPath.row].archived?.toggle()
+                    guard let cardBeingArchived = self.updatedDeck?.data?.remove(at: indexPath.row) else { return }
+                    self.updatedDeck?.data?.append(cardBeingArchived)
+                    cardToArchive = self.updatedDeck?.data?.last
                 }
                 
-                cardToArchive.archived?.toggle()
+                guard let card = cardToArchive else { return }
                 
-                self.deckController?.archiveCard(deck: deck, user: user, card: cardToArchive, completion: {
-                    
-                    if archived {
-                        self.deckController?.decks[self.indexOfDeck ?? 0].data?[indexPath.row + self.unarchivedCards.count].archived?.toggle()
-                    } else {
-                        self.deckController?.decks[self.indexOfDeck ?? 0].data?[indexPath.row].archived?.toggle()
-                    }
+                self.deckController?.archiveCard(deck: deck, user: user, card: card, completion: {
+                    self.deckController?.decks[self.indexOfDeck ?? 0].data? = self.updatedDeck!.data!
+
                     DispatchQueue.main.async {
                         tableView.reloadData()
                     }
@@ -441,7 +453,6 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
                         }
                     }
                     self.updatedDeck?.data?.remove(at: indexPath.row)
-                    self.deckController?.decks[self.indexOfDeck ?? 0].data?.remove(at: indexPath.row)
                     tableView.reloadData()
                     self.deckController?.deleteCardFromServer(user: user, deck: deck, card: cardToDelete)
                     deleteDeckAlert.dismiss(animated: true, completion: nil)
