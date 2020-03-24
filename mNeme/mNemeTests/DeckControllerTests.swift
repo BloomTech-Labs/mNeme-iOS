@@ -100,8 +100,6 @@ class DeckControllerTests: XCTestCase {
 
     func testEditDeckName() {
         let mock = ModckDataLoader()
-        mock.data = updatedDeckNameData
-        let deckController = DeckController(networkDataLoader: mock)
         mock.data = deckInfromationData
         let networkClient = NetworkClient(networkDataLoader: mock)
 
@@ -115,14 +113,18 @@ class DeckControllerTests: XCTestCase {
         wait(for: [expectDeck], timeout: 2)
         XCTAssertNotNil(deck)
 
+        mock.data = updatedDeckNameData
+        let deckController = DeckController(networkDataLoader: mock)
         deckController.decks.append(deck!)
 
         let expect = expectation(description: "Wait for update deck name information to return from API")
         let user = User("user")
 
         let nameChange = "iosTestChanges"
-        deckController.editDeckName(deck: deck!, user: user, name: nameChange) {
-            deckController.changeDeckName(deck: deck!, newName: nameChange)
+
+        deckController.editDeckName(deck: deck!, user: user, updatedDeckName: nameChange) { deckInfo in
+            print(deckInfo)
+            deckController.decks[0].deckInformation = deckInfo
             expect.fulfill()
         }
 
@@ -130,15 +132,8 @@ class DeckControllerTests: XCTestCase {
         XCTAssertEqual(deckController.decks[0].deckInformation.deckName, nameChange)
     }
 
-    /// TODO: Need to figure out how to edit cards from deckcontroller
     func testEditDeckCards() {
-        
-    }
-
-    func testAddCardToDeck() {
         let mock = ModckDataLoader()
-        mock.data = addCardData
-        let deckController = DeckController(networkDataLoader: mock)
         mock.data = deckInfromationData
         let networkClient = NetworkClient(networkDataLoader: mock)
 
@@ -152,7 +147,29 @@ class DeckControllerTests: XCTestCase {
         wait(for: [expectDeck], timeout: 2)
         XCTAssertNotNil(deck)
 
+        mock.data = updatedDeckCardData
+        let deckController = DeckController(networkDataLoader: mock)
         deckController.decks.append(deck!)
+
+        let expect = expectation(description: "Wait for update deck cards data to return from API")
+        let user = User("user")
+
+        let card = CardData(front: "1changes", back: "1update")
+
+        deckController.editDeckCards(deck: deck!, user: user, cards: [card]) { updatedDeck in
+            deckController.decks[0] = updatedDeck
+            expect.fulfill()
+        }
+
+        wait(for: [expect], timeout: 2)
+        XCTAssertEqual(deckController.decks[0].data?[1].front, card.front)
+        XCTAssertEqual(deckController.decks[0].data?[1].back, card.back)
+    }
+
+    func testAddCardToDeck() {
+        let mock = ModckDataLoader()
+        mock.data = addCardData
+        let deckController = DeckController(networkDataLoader: mock)
 
         let expect = expectation(description: "Wait for add card information to return from API")
         let user = User("user")
@@ -161,15 +178,16 @@ class DeckControllerTests: XCTestCase {
         let card2 = CardData(front: "add4", back: "add3")
         let cards = [card1, card2]
 
-        let _ = deckController.addCardToDeck(deck: deck!, card: card1)
-        let _ = deckController.addCardToDeck(deck: deck!, card: card2)
-        deckController.addCardsToServer(user: user, name: "iosTest", cards: cards) {
+        var deck: Deck?
+        deckController.addCardsToServer(user: user, name: "iosTest", cards: cards) { result in
+            deck = result
             expect.fulfill()
         }
 
         wait(for: [expect], timeout: 2)
-        XCTAssertNotNil(deckController.decks[0].data)
-        XCTAssertTrue(deckController.decks[0].data!.count > 2)
+        XCTAssertNotNil(deck)
+        XCTAssertNotNil(deck!.data)
+        XCTAssertTrue(deck!.data!.count > 2)
     }
 
     func testDeleteDeck() {
