@@ -442,7 +442,20 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
             
             let archiveButton = UIContextualAction(style: .normal, title: archive) { (action, sourceView, completionHandler) in
                 // logic for archive
-                guard let user = self.userController?.user, let deck = self.updatedDeck else { return }
+                let cannotArchiveAlert = UIAlertController(title: "Can't archive a new card", message: "", preferredStyle: .alert)
+                cannotArchiveAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                
+                guard let user = self.userController?.user, let deck = self.updatedDeck else {
+                    self.present(cannotArchiveAlert, animated: true)
+                    tableView.reloadData()
+                    return
+                }
+                
+                if self.updatedDeck?.data?[indexPath.row].archived == nil {
+                    self.present(cannotArchiveAlert, animated: true)
+                    tableView.reloadData()
+                    return
+                }
                 
                 var cardToArchive: CardData?
                 if archived {
@@ -471,19 +484,21 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
             
             let deleteButton = UIContextualAction(style: .destructive, title: "Delete") { (action, sourceView, completionHandler) in
                 // logic for delete
+                if self.indexOfDeck == nil {
+                    self.cards.remove(at: indexPath.row)
+                    return
+                }
                 guard let user = self.userController?.user, let deck = self.deckController?.decks[self.indexOfDeck ?? 0], let cardToDelete = deck.data?[indexPath.row] else { return }
                 
                 let deleteDeckAlert = UIAlertController(title: "Are you sure you want to delete this card?", message: "", preferredStyle: .actionSheet)
                 deleteDeckAlert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
                     if self.cards.count > 1 {
-                        
-                        
+                    
                         for card in self.newCards {
                             if card == cardToDelete {
                                 guard let newCardIndex = self.newCards.firstIndex(of: card) else { return }
                                 self.newCards.remove(at: newCardIndex)
                                 self.updatedDeck?.data?.remove(at: indexPath.row)
-                                self.deckController?.decks[self.indexOfDeck ?? 0].data?.remove(at: indexPath.row)
                                 tableView.reloadData()
                                 return
                             }
