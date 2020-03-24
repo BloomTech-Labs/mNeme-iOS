@@ -47,21 +47,43 @@ class DeckControllerTests: XCTestCase {
     }
 
     /// TODO: Need to refactor to test fetching decks all logic in one function, hard to make data call.
-    func testFetchingDecks() {
+    func testFetchingDeckInfo() {
+        let mock = ModckDataLoader()
+        mock.data = collectionIdDeckData
+        let deckController = DeckController(networkDataLoader: mock)
 
-//        let mock = ModckDataLoader()
-//        mock.data = collectionIdDeckData
-//        let deckController = DeckController(networkDataLoader: mock)
-//
-//        let expect = expectation(description: "Wait for deck information to return from API")
-//
-//        deckController.fetchDecks(userID: "userID") {
-//            expect.fulfill()
-//        }
-//
-//        wait(for: [expect], timeout: 2)
-//        XCTAssertTrue(deckController.decks.count > 0)
-//        XCTAssertEqual(deckController.decks[0].deckInformation.collectionId, "iosTest")
+        let expect = expectation(description: "Wait for deck information to return from API")
+
+        var deckInfo: [DeckInformation]?
+        deckController.fetchDeckInfo(userID: "userID", completion: { deckInformation in
+            deckInfo = deckInformation
+            expect.fulfill()
+        })
+
+        wait(for: [expect], timeout: 2)
+        XCTAssertNotNil(deckInfo)
+        XCTAssertTrue(deckInfo!.count > 0)
+        XCTAssertEqual(deckInfo?[0].collectionId!, "iosTest")
+    }
+
+    func testFetchingDeckCards() {
+        let mock = ModckDataLoader()
+        mock.data = deckInfromationData
+        let deckController = DeckController(networkDataLoader: mock)
+
+        let expect = expectation(description: "Wait for deck information to return from API")
+
+        let deckInfo1 = DeckInformation(icon: "", tags: [""])
+        let decks = [deckInfo1]
+        deckController.fetchDeckCardsWithInfo(userID: "userId", decks: decks, completion: { _ in
+            expect.fulfill()
+        })
+
+        wait(for: [expect], timeout: 2)
+        XCTAssertTrue(deckController.decks.count > 0)
+        XCTAssertNotNil(deckController.decks[0].data)
+        XCTAssertTrue(deckController.decks[0].data!.count > 0)
+        XCTAssertEqual(deckController.decks[0].data?[0].front, "2c")
     }
 
     func testFetchingArchivedDecks() {

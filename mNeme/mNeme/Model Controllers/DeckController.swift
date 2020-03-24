@@ -98,11 +98,10 @@ class DeckController {
     //Fetch just deck information
     func fetchDeckInfo(userID: String, completion: @escaping ([DeckInformation]?) -> Void) {
         networkClient.fetch(userID, nil) { (results: [DeckInformation]?) in
-            guard let results = results else { return }
+            guard let results = results else { completion(nil); return }
             completion(results)
             return
         }
-        completion(nil)
     }
 
     // Fetches the cards for the deck using deck information
