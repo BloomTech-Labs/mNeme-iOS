@@ -33,7 +33,6 @@ class CreateCardTableViewCell: UITableViewCell, UITextViewDelegate {
     @IBAction func addCardButtonTapped(_ sender: Any) {
         if let frontTV = addFrontTV.text, !frontTV.isEmpty, frontTV != "Write on the front!", let backTV = addBackTV.text, !backTV.isEmpty, backTV != "Write on the back!" {
             delegate?.addCardWasTapped(frontText: frontTV, backtext: backTV)
-//            clearCardViews()
         } else {
             let alert = UIAlertController(title: "Your card needs a front and back!", message: "Add some info to each section.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Sounds Good!", style: .default, handler: nil))

@@ -326,6 +326,10 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7h3-Sz-al8">
                                                             <rect key="frame" x="8.9999999999999982" y="14.333333333333329" width="19.333333333333329" height="22"/>
                                                             <state key="normal" image="square" catalog="system"/>
+                                                            <state key="selected" image="checkmark.square.fill" catalog="system"/>
+                                                            <connections>
+                                                                <action selector="privateDeckButtonTapped:" destination="6Co-dg-dy7" eventType="touchUpInside" id="EFb-69-Jzc"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                 </stackView>
@@ -341,6 +345,10 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="myy-9D-D0N">
                                                             <rect key="frame" x="6.9999999999999982" y="14.333333333333329" width="19.333333333333329" height="22"/>
                                                             <state key="normal" image="square" catalog="system"/>
+                                                            <state key="selected" image="checkmark.square.fill" catalog="system"/>
+                                                            <connections>
+                                                                <action selector="publicDeckButtonTapped:" destination="6Co-dg-dy7" eventType="touchUpInside" id="yr0-xH-ZpM"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                 </stackView>
@@ -382,10 +390,11 @@
                                         <constraint firstItem="oOQ-Kt-thl" firstAttribute="top" secondItem="5dx-lm-MIo" secondAttribute="bottom" constant="8" id="Nal-va-gPB"/>
                                         <constraint firstItem="ymm-j5-B5t" firstAttribute="leading" secondItem="I35-7A-Msu" secondAttribute="leading" constant="148" id="Nr1-F2-Y6A"/>
                                         <constraint firstItem="xOe-dy-VAG" firstAttribute="leading" secondItem="I35-7A-Msu" secondAttribute="leading" constant="20" id="O1M-FN-Xfl"/>
-                                        <constraint firstItem="ico-XY-i6u" firstAttribute="leading" secondItem="I35-7A-Msu" secondAttribute="leading" constant="20" id="O5i-yY-rSr"/>
+                                        <constraint firstItem="ico-XY-i6u" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="I35-7A-Msu" secondAttribute="leading" constant="20" symbolic="YES" id="O5i-yY-rSr"/>
                                         <constraint firstItem="mYq-EQ-Sna" firstAttribute="top" secondItem="ymm-j5-B5t" secondAttribute="bottom" constant="8" id="OCr-a1-0SY"/>
                                         <constraint firstItem="L9m-YB-NeA" firstAttribute="leading" secondItem="5dx-lm-MIo" secondAttribute="trailing" constant="20.333333333333314" id="RFx-02-t6Z"/>
                                         <constraint firstAttribute="trailing" secondItem="xOe-dy-VAG" secondAttribute="trailing" constant="20" id="SbH-iS-Cr1"/>
+                                        <constraint firstItem="ymm-j5-B5t" firstAttribute="leading" secondItem="ico-XY-i6u" secondAttribute="trailing" constant="87" id="TCj-Ye-kL0"/>
                                         <constraint firstItem="ymm-j5-B5t" firstAttribute="trailing" secondItem="3Ks-XI-ydQ" secondAttribute="trailing" id="Ukd-ig-EiH"/>
                                         <constraint firstAttribute="bottom" secondItem="xOe-dy-VAG" secondAttribute="bottom" constant="8" id="Wcb-B4-ddx"/>
                                         <constraint firstItem="5dx-lm-MIo" firstAttribute="leading" secondItem="I35-7A-Msu" secondAttribute="leading" constant="20" id="Whw-DJ-RSW"/>

@@ -78,6 +78,7 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
         cardTableView.dataSource = self
         setupTags()
         cardTableView.reloadData()
+        privateCheckBoxButton.isSelected = true // set automatically for current release canvas
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -90,8 +91,19 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
     
     // MARK: - IB Actions
     
+    @IBAction func privateDeckButtonTapped(_ sender: Any) {
+    }
+    
+    @IBAction func publicDeckButtonTapped(_ sender: Any) {
+    }
+    
+    
     @IBAction func backTapped(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        if (indexOfDeck != nil) {
+            return
+        } else {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     @IBAction func doneTapped(_ sender: Any) {
@@ -212,6 +224,8 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
             //Editing a deck
         } else {
             navBar.topItem?.title = "Edit deck"
+            let textAttribute = [NSAttributedString.Key.foregroundColor: UIColor.mNeme.orangeBlaze]
+            backBarButton.setTitleTextAttributes(textAttribute, for: .normal)
             self.deckIconTF.isUserInteractionEnabled = false
             self.productTagsCollection.action = .noAction
             self.deckTagsTF.isHidden = true
@@ -265,9 +279,6 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
     private func parseAllCards() {
         self.archivedCards = cards.filter({ $0.archived == true})
         self.unarchivedCards = cards.filter({ $0.archived == false || $0.archived == nil })
-        
-        //        self.updatedDeck?.data = self.unarchivedCards + self.archivedCards
-        //        deckController?.decks[indexOfDeck ?? 0].data = self.updatedDeck?.data
         
         print("\(unarchivedCards.count) unarchived cards")
         print("\(archivedCards.count) archived cards")
@@ -376,6 +387,8 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
                 cell.addBackTV.text = "Write on the back!"
                 cell.addBackTV.textColor = UIColor.lightGray
                 
+                cell.addCardButton.setTitleColor(UIColor.mNeme.orangeBlaze, for: .normal)
+                
                 return cell
             }
         } else if indexPath.section == 1 {
@@ -415,9 +428,6 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
         if indexPath.section == 0 || indexPath.section == 2 {
             return nil
         } else {
-            
-            
-            
             var archived = false
             var archive = "Archive"
             

@@ -68,12 +68,22 @@ class DeckCardViewController: UIViewController {
     private var backLabel: UILabel?
     private var showingBack = false {
         didSet {
-            if self.showingBack {
-                showRatingStuff()
-                hideFrontViews()
+            if demo == true {
+                if self.showingBack {
+                    showDemoDeckRatingStuff()
+                    hideFrontViews()
+                } else {
+                    hideRatingStuff()
+                    showFrontViews()
+                }
             } else {
-                hideRatingStuff()
-                showFrontViews()
+                if self.showingBack {
+                    hideFrontViews()
+                    showRealDeckRatingStuff()
+                } else {
+                    hideRatingStuff()
+                    showFrontViews()
+                }
             }
         }
     }
@@ -101,20 +111,20 @@ class DeckCardViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         setDeck()
         updateTitle()
-        updateDeckText()
+        updateDeckView()
     }
     
     // MARK: - IB Actions
     @IBAction func backACard(_ sender: UIButton) {
         guard currentCardIndex < currentCardTotal-1 else { return }
         currentCardIndex += 1
-        updateDeckText()
+        updateDeckView()
     }
     
     @IBAction func forwardACard(_ sender: UIButton) {
         guard currentCardIndex > 0 else { return }
         currentCardIndex -= 1
-        updateDeckText()
+        updateDeckView()
     }
     
     @IBAction func backButtonTapped(_ sender: UIButton) {
@@ -142,14 +152,14 @@ class DeckCardViewController: UIViewController {
                 self.allowedToFlip = true
                 self.nextCardButton.isHidden = true
                 self.flip()
-                self.updateDeckText()
+                self.updateDeckView()
             }))
             
             alert.addAction(UIAlertAction(title: "Stay here", style: .cancel, handler: { action in
                 self.allowedToFlip = true
                 self.nextCardButton.isHidden = true
                 self.flip()
-                self.updateDeckText()
+                self.updateDeckView()
             }))
             
             self.present(alert, animated: true)
@@ -159,7 +169,7 @@ class DeckCardViewController: UIViewController {
         allowedToFlip = true
         nextCardButton.isHidden = true
         flip()
-        updateDeckText()
+        updateDeckView()
     }
     
     @objc func flip() {
@@ -175,7 +185,9 @@ class DeckCardViewController: UIViewController {
     // MARK: - Private Functions
     private func setupViews() {
         updateTitle()
-        
+        backButton.setTitleColor(UIColor.mNeme.orangeBlaze, for: .normal)
+        editButton.setTitleColor(UIColor.mNeme.orangeBlaze, for: .normal)
+        tapToFlipLabel.textColor = .darkGray
         frontLabel = UILabel(frame: CGRect(x: self.containerView.frame.width, y: self.containerView.frame.height/2, width: 80, height: 50))
         backLabel = UILabel(frame: CGRect(x: self.containerView.frame.width, y: self.containerView.frame.height/2, width: 80, height: 50))
         containerView.addSubview(frontLabel!)
@@ -211,11 +223,9 @@ class DeckCardViewController: UIViewController {
         }
     }
     
-    private func updateDeckText() {
+    private func updateDeckView() {
         if demo == false {
             let currentCardInfo = cards[currentCardIndex]
-            frontLabel?.text = nil
-            backLabel?.text = nil
             frontLabel?.text = currentCardInfo.front
             backLabel?.text = currentCardInfo.back
         } else {
@@ -275,7 +285,7 @@ class DeckCardViewController: UIViewController {
         tutorialLabel.isHidden = true
     }
     
-    private func showRatingStuff() {
+    private func showDemoDeckRatingStuff() {
         tapLeft.isHidden = false
         tapRight.isHidden = false
         tapMid.isHidden = false
@@ -295,6 +305,17 @@ class DeckCardViewController: UIViewController {
         badRating?.isHidden = true
         okayRating?.isHidden = true
         greatRating?.isHidden = true
+    }
+    
+    private func showRealDeckRatingStuff() {
+        tapLeft.isHidden = true
+        tapRight.isHidden = true
+        tapMid.isHidden = true
+        tutorialLabel.isHidden = true
+        wellKnownQuestion?.isHidden = false
+        badRating?.isHidden = false
+        okayRating?.isHidden = false
+        greatRating?.isHidden = false
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
