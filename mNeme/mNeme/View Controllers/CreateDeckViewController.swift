@@ -67,6 +67,9 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var tagsLabel: UILabel!
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var privateCheckBoxButton: UIButton!
+    @IBOutlet weak var publicCheckboxButton: UIButton!
+    @IBOutlet weak var noTagsLabel: UILabel!
     
     // MARK: - View Lifecycle
     override func viewDidLoad() {
@@ -92,8 +95,16 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func doneTapped(_ sender: Any) {
-        guard let deckName = deckNameTF.text, !deckName.isEmpty, let deckIcon = deckIconTF.text, !deckIcon.isEmpty, let userController = userController, let user = userController.user, let deckController = deckController else { return }
-        guard cards.count > 0 else { return }
+        guard let deckName = deckNameTF.text, !deckName.isEmpty, let deckIcon = deckIconTF.text, !deckIcon.isEmpty, let userController = userController, let user = userController.user, let deckController = deckController else {
+            let deckRequirementsAlert = UIAlertController(title: "More info needed!", message: "Your deck needs a name, icon, and at least 1 card!", preferredStyle: .alert)
+            deckRequirementsAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            self.present(deckRequirementsAlert, animated: true)
+            return }
+        guard cards.count > 0 else {
+            let cardRequirementAlert = UIAlertController(title: "Add a card to your deck!", message: "", preferredStyle: .alert)
+            cardRequirementAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            self.present(cardRequirementAlert, animated: true)
+            return }
         
         if let deck = deck {
             
@@ -188,12 +199,15 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
         topView.layer.backgroundColor = UIColor.mNeme.orangeBlaze.cgColor
         navBar.barTintColor = UIColor.mNeme.orangeBlaze
         navBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        privateCheckBoxButton.tintColor = UIColor.mNeme.orangeBlaze
+        publicCheckboxButton.tintColor = UIColor.mNeme.orangeBlaze
         cardTableView.keyboardDismissMode = .onDrag
         
         // Creating a deck
         if indexOfDeck == nil {
             navBar.topItem?.title = "Create a deck"
             self.tagsLabel.isHidden = true
+            self.noTagsLabel.isHidden = true
             
             //Editing a deck
         } else {
@@ -202,6 +216,11 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
             self.productTagsCollection.action = .noAction
             self.deckTagsTF.isHidden = true
             self.containerView.isHidden = true
+            if deck?.deckInformation.tags.count == 0 {
+                self.noTagsLabel.isHidden = false
+            } else {
+                self.noTagsLabel.isHidden = true
+            }
         }
         cardTableView.rowHeight = UITableView.automaticDimension
         cardTableView.estimatedRowHeight = 215
@@ -247,9 +266,9 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
         self.archivedCards = cards.filter({ $0.archived == true})
         self.unarchivedCards = cards.filter({ $0.archived == false || $0.archived == nil })
         
-//        self.updatedDeck?.data = self.unarchivedCards + self.archivedCards
-//        deckController?.decks[indexOfDeck ?? 0].data = self.updatedDeck?.data
-       
+        //        self.updatedDeck?.data = self.unarchivedCards + self.archivedCards
+        //        deckController?.decks[indexOfDeck ?? 0].data = self.updatedDeck?.data
+        
         print("\(unarchivedCards.count) unarchived cards")
         print("\(archivedCards.count) archived cards")
         print("\(cards.count) cards (full set)")
@@ -383,7 +402,7 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
                     cell.backCardTV.textColor = UIColor.black
                     cell.dividerView.layer.backgroundColor = UIColor.black.cgColor
                 }
-        
+                
                 return cell
             }
         } else {
@@ -396,6 +415,9 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
         if indexPath.section == 0 || indexPath.section == 2 {
             return nil
         } else {
+            
+            
+            
             var archived = false
             var archive = "Archive"
             
@@ -428,7 +450,7 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
                 
                 self.deckController?.archiveCard(deck: deck, user: user, card: card, completion: {
                     self.deckController?.decks[self.indexOfDeck ?? 0].data? = self.updatedDeck!.data!
-
+                    
                     DispatchQueue.main.async {
                         tableView.reloadData()
                     }
@@ -440,28 +462,42 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
                 // logic for delete
                 guard let user = self.userController?.user, let deck = self.deckController?.decks[self.indexOfDeck ?? 0], let cardToDelete = deck.data?[indexPath.row] else { return }
                 
-                let deleteDeckAlert = UIAlertController(title: "Are you sure you want to delete this deck?", message: "", preferredStyle: .actionSheet)
+                let deleteDeckAlert = UIAlertController(title: "Are you sure you want to delete this card?", message: "", preferredStyle: .actionSheet)
                 deleteDeckAlert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
-                    for card in self.newCards {
-                        if card == cardToDelete {
-                            guard let newCardIndex = self.newCards.firstIndex(of: card) else { return }
-                            self.newCards.remove(at: newCardIndex)
-                            self.updatedDeck?.data?.remove(at: indexPath.row)
-                            self.deckController?.decks[self.indexOfDeck ?? 0].data?.remove(at: indexPath.row)
-                            tableView.reloadData()
-                            return
+                    if self.cards.count > 1 {
+                        
+                        
+                        for card in self.newCards {
+                            if card == cardToDelete {
+                                guard let newCardIndex = self.newCards.firstIndex(of: card) else { return }
+                                self.newCards.remove(at: newCardIndex)
+                                self.updatedDeck?.data?.remove(at: indexPath.row)
+                                self.deckController?.decks[self.indexOfDeck ?? 0].data?.remove(at: indexPath.row)
+                                tableView.reloadData()
+                                return
+                            }
+                        }
+                        
+                        self.updatedDeck?.data?.remove(at: indexPath.row)
+                        tableView.reloadData()
+                        self.deckController?.deleteCardFromServer(user: user, deck: deck, card: cardToDelete)
+                        deleteDeckAlert.dismiss(animated: true, completion: nil)
+                    } else {
+                        deleteDeckAlert.dismiss(animated: true) {
+                            let minimumCardAlert = UIAlertController(title: "Your deck needs at least one card!", message: "", preferredStyle: .alert)
+                            minimumCardAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { (action) in
+                                DispatchQueue.main.async {
+                                    tableView.reloadData()
+                                }
+                            }))
+                            self.present(minimumCardAlert, animated: true)
                         }
                     }
-                    self.updatedDeck?.data?.remove(at: indexPath.row)
-                    tableView.reloadData()
-                    self.deckController?.deleteCardFromServer(user: user, deck: deck, card: cardToDelete)
-                    deleteDeckAlert.dismiss(animated: true, completion: nil)
                 }))
                 deleteDeckAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
                     tableView.reloadData()
                 }))
                 self.present(deleteDeckAlert, animated: true)
-                
             }
             deleteButton.backgroundColor = UIColor.red
             let swipeActions = UISwipeActionsConfiguration(actions: [deleteButton,archiveButton])
@@ -469,7 +505,7 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
-
+    
     
     // MARK: - TextView Delegate
     func textViewDidBeginEditing(_ textView: UITextView) {
