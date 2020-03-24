@@ -11,20 +11,11 @@ import UIKit
 class DeckSearchViewController: UIViewController {
 
     @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var bottomImageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         topView.layer.backgroundColor = UIColor.mNeme.orangeBlaze.cgColor
+        bottomImageView.image = UIImage(named: "Basketball-Mastery-Illustrations")
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
