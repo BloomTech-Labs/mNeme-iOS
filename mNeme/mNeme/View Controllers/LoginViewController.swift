@@ -148,11 +148,11 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
      }
      
      private func bottomImageViewandLabel() {
+          
+          bottomImageView.image = UIImage(named: "Banner Illustration")
           if signingUp {
-               bottomImageView.image = UIImage(named: "Basketball-Mastery-Illustrations")
                bottomTextLabel.text = "Join mNeme Today"
           } else {
-               bottomImageView.image = UIImage(named: "Banner Illustration")
                bottomTextLabel.text = "The best way to study efficiently 😎"
           }
      }
