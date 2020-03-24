@@ -224,6 +224,7 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
             //Editing a deck
         } else {
             navBar.topItem?.title = "Edit deck"
+            doneBarButton.title = "Done"
             let textAttribute = [NSAttributedString.Key.foregroundColor: UIColor.mNeme.orangeBlaze]
             backBarButton.setTitleTextAttributes(textAttribute, for: .normal)
             self.deckIconTF.isUserInteractionEnabled = false
