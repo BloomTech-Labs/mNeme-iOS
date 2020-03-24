@@ -26,6 +26,22 @@ class DeckController {
 
     // MARK: - Networking
     // Getting All Demo Decks & their names
+    func getAllDemoDecks(completion: @escaping () -> Void) {
+        let dispatchGroup = DispatchGroup()
+        getDemoDecks {
+            for deck in self.demoDecks {
+                dispatchGroup.enter()
+                self.getDemoDeckCards(deckName: deck.deckName) {
+                    dispatchGroup.leave()
+                }
+            }
+        }
+        dispatchGroup.notify(queue: .main) {
+            print("Finished fetching Demo Decks")
+            completion()
+        }
+    }
+
     func getDemoDecks(completion: @escaping () -> Void) {
 
         var request = URLRequest(url: baseURL)
@@ -107,12 +123,13 @@ class DeckController {
     }
     
     // Fetch decks
-    func fetchDecks(userID: String) {
+    func fetchDecks(userID: String, completion: @escaping () -> Void) {
         fetchDeckInfo(userID: userID) { deckInfos in
             if let decks = deckInfos {
                 if !decks.isEmpty {
                     self.fetchDeckCardsWithInfo(userID: userID, decks: decks) { result in
                         print(result)
+                        completion()
                     }
                 }
             }
@@ -122,18 +139,15 @@ class DeckController {
     // Fetching archived decks
     func fetchArchivedDecks(userID: String, completion: @escaping () -> Void) {
         networkClient.fetch(userID, nil, true) { (results: [DeckInformation]?) in
-            if let results = results {
-                if !results.isEmpty {
-                    for deck in results {
-                        let archivedDeck = Deck(deckInfo: deck)
-                        self.archivedDecks.append(archivedDeck)
-                    }
-                    completion()
-                } else {
-                    completion()
+            if let results = results,
+                !results.isEmpty {
+                for deck in results {
+                    let archivedDeck = Deck(deckInfo: deck)
+                    self.archivedDecks.append(archivedDeck)
                 }
+                completion()
             } else {
-                print("Fetch not working")
+                completion()
             }
         }
     }

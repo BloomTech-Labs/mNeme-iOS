@@ -164,23 +164,12 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
           let user = User(uid)
           userController.user = user
           userController.getUserPreferences {
-               self.deckController.getDemoDecks {
-                    for decks in self.deckController.demoDecks {
-                         self.deckCardsDispatchGroup.enter()
-                         self.deckController.getDemoDeckCards(deckName: decks.deckName) {
-                              self.deckCardsDispatchGroup.leave()
-                         }
-                    }
-               }
                self.deckCardsDispatchGroup.enter()
-               self.deckController.fetchArchivedDecks(userID: user.id) {
-                    print("finished getting archived decks")
-                    self.deckCardsDispatchGroup.leave()
-               }
-               //self.deckCardsDispatchGroup.enter()
-               self.deckController.fetchDecks(userID: user.id)
-                    //print("finished getting normal decks")
-                    //self.deckCardsDispatchGroup.leave()
+               self.deckController.getAllDemoDecks { self.deckCardsDispatchGroup.leave() }
+               self.deckCardsDispatchGroup.enter()
+               self.deckController.fetchArchivedDecks(userID: user.id) { self.deckCardsDispatchGroup.leave() }
+               self.deckCardsDispatchGroup.enter()
+               self.deckController.fetchDecks(userID: user.id) { self.deckCardsDispatchGroup.leave() }
 
                self.deckCardsDispatchGroup.notify(queue: .main) {
                     DispatchQueue.main.async {
