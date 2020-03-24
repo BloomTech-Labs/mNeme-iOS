@@ -78,28 +78,43 @@ class DeckController {
             completion()
         }
     }
-    
-    // Fetching decks
-    func fetchDecks(userID: String, completion: @escaping () -> Void) {
-        let deckGroup = DispatchGroup()
+
+    //Fetch just deck information
+    func fetchDeckInfo(userID: String, completion: @escaping ([DeckInformation]?) -> Void) {
         networkClient.fetch(userID, nil) { (results: [DeckInformation]?) in
-            if let results = results {
-                if !results.isEmpty {
-                    for deck in results {
-                        deckGroup.enter()
-                        self.networkClient.fetch(userID, deck.collectionId) { (result: Deck?) in
-                            self.decks.append(result!)
-                            deckGroup.leave()
-                        }
+            guard let results = results else { return }
+            completion(results)
+            return
+        }
+        completion(nil)
+    }
+
+    // Fetches the cards for the deck using deck information
+    func fetchDeckCardsWithInfo(userID: String, decks: [DeckInformation], completion: @escaping(String) -> Void) {
+        let deckGroup = DispatchGroup()
+        for deck in decks {
+            deckGroup.enter()
+            self.networkClient.fetch(userID, deck.collectionId) { (result: Deck?) in
+                if let result = result {
+                    self.decks.append(result)
+                    deckGroup.leave()
+                } else { completion("\(deck.collectionId!) cards did not fetch") }
+            }
+        }
+        deckGroup.notify(queue: .main) {
+            completion("Finished Fetching decks")
+        }
+    }
+    
+    // Fetch decks
+    func fetchDecks(userID: String) {
+        fetchDeckInfo(userID: userID) { deckInfos in
+            if let decks = deckInfos {
+                if !decks.isEmpty {
+                    self.fetchDeckCardsWithInfo(userID: userID, decks: decks) { result in
+                        print(result)
                     }
-                    deckGroup.notify(queue: .main) {
-                        completion()
-                    }
-                } else {
-                    completion()
                 }
-            } else {
-                print("Fetch not working")
             }
         }
     }
