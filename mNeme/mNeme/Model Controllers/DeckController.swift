@@ -26,6 +26,22 @@ class DeckController {
 
     // MARK: - Networking
     // Getting All Demo Decks & their names
+    func getAllDemoDecks(completion: @escaping () -> Void) {
+        let dispatchGroup = DispatchGroup()
+        getDemoDecks {
+            for deck in self.demoDecks {
+                dispatchGroup.enter()
+                self.getDemoDeckCards(deckName: deck.deckName) {
+                    dispatchGroup.leave()
+                }
+            }
+        }
+        dispatchGroup.notify(queue: .main) {
+            print("Finished fetching Demo Decks")
+            completion()
+        }
+    }
+
     func getDemoDecks(completion: @escaping () -> Void) {
 
         var request = URLRequest(url: baseURL)
@@ -78,28 +94,43 @@ class DeckController {
             completion()
         }
     }
-    
-    // Fetching decks
-    func fetchDecks(userID: String, completion: @escaping () -> Void) {
-        let deckGroup = DispatchGroup()
+
+    //Fetch just deck information
+    func fetchDeckInfo(userID: String, completion: @escaping ([DeckInformation]?) -> Void) {
         networkClient.fetch(userID, nil) { (results: [DeckInformation]?) in
-            if let results = results {
-                if !results.isEmpty {
-                    for deck in results {
-                        deckGroup.enter()
-                        self.networkClient.fetch(userID, deck.collectionId) { (result: Deck?) in
-                            self.decks.append(result!)
-                            deckGroup.leave()
-                        }
-                    }
-                    deckGroup.notify(queue: .main) {
+            guard let results = results else { completion(nil); return }
+            completion(results)
+            return
+        }
+    }
+
+    // Fetches the cards for the deck using deck information
+    func fetchDeckCardsWithInfo(userID: String, decks: [DeckInformation], completion: @escaping(String) -> Void) {
+        let deckGroup = DispatchGroup()
+        for deck in decks {
+            deckGroup.enter()
+            self.networkClient.fetch(userID, deck.collectionId) { (result: Deck?) in
+                if let result = result {
+                    self.decks.append(result)
+                    deckGroup.leave()
+                } else { completion("\(deck.collectionId!) cards did not fetch") }
+            }
+        }
+        deckGroup.notify(queue: .main) {
+            completion("Finished Fetching decks")
+        }
+    }
+    
+    // Fetch decks
+    func fetchDecks(userID: String, completion: @escaping () -> Void) {
+        fetchDeckInfo(userID: userID) { deckInfos in
+            if let decks = deckInfos {
+                if !decks.isEmpty {
+                    self.fetchDeckCardsWithInfo(userID: userID, decks: decks) { result in
+                        print(result)
                         completion()
                     }
-                } else {
-                    completion()
                 }
-            } else {
-                print("Fetch not working")
             }
         }
     }
@@ -107,18 +138,15 @@ class DeckController {
     // Fetching archived decks
     func fetchArchivedDecks(userID: String, completion: @escaping () -> Void) {
         networkClient.fetch(userID, nil, true) { (results: [DeckInformation]?) in
-            if let results = results {
-                if !results.isEmpty {
-                    for deck in results {
-                        let archivedDeck = Deck(deckInfo: deck)
-                        self.archivedDecks.append(archivedDeck)
-                    }
-                    completion()
-                } else {
-                    completion()
+            if let results = results,
+                !results.isEmpty {
+                for deck in results {
+                    let archivedDeck = Deck(deckInfo: deck)
+                    self.archivedDecks.append(archivedDeck)
                 }
+                completion()
             } else {
-                print("Fetch not working")
+                completion()
             }
         }
     }

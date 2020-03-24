@@ -16,7 +16,7 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
      // MARK: - Properties
      let userController = UserController()
      let deckCardsDispatchGroup = DispatchGroup()
-     let demoDeckController = DeckController()
+     let deckController = DeckController()
      var signingUp = false
      
      let pleaseWaitAlert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
@@ -164,24 +164,13 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
           let user = User(uid)
           userController.user = user
           userController.getUserPreferences {
-               self.demoDeckController.getDemoDecks {
-                    for decks in self.demoDeckController.demoDecks {
-                         self.deckCardsDispatchGroup.enter()
-                         self.demoDeckController.getDemoDeckCards(deckName: decks.deckName) {
-                              self.deckCardsDispatchGroup.leave()
-                         }
-                    }
-               }
                self.deckCardsDispatchGroup.enter()
-               self.demoDeckController.fetchArchivedDecks(userID: user.id) {
-                    print("finished getting archived decks")
-                    self.deckCardsDispatchGroup.leave()
-               }
+               self.deckController.getAllDemoDecks { self.deckCardsDispatchGroup.leave() }
                self.deckCardsDispatchGroup.enter()
-               self.demoDeckController.fetchDecks(userID: user.id) {
-                    print("finished getting normal decks")
-                    self.deckCardsDispatchGroup.leave()
-               }
+               self.deckController.fetchArchivedDecks(userID: user.id) { self.deckCardsDispatchGroup.leave() }
+               self.deckCardsDispatchGroup.enter()
+               self.deckController.fetchDecks(userID: user.id) { self.deckCardsDispatchGroup.leave() }
+
                self.deckCardsDispatchGroup.notify(queue: .main) {
                     DispatchQueue.main.async {
                          print("done Fetching")
@@ -310,7 +299,7 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
           if segue.identifier == "MainSegue" {
                if let destinationVC = segue.destination as? TabViewController {
                     destinationVC.userController = self.userController
-                    destinationVC.demoDeckController = self.demoDeckController
+                    destinationVC.demoDeckController = self.deckController
                }
           }
      }
