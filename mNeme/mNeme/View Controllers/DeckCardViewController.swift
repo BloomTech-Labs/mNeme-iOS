@@ -225,9 +225,14 @@ class DeckCardViewController: UIViewController {
     
     private func updateDeckView() {
         if demo == false {
-            let currentCardInfo = cards[currentCardIndex]
-            frontLabel?.text = currentCardInfo.front
-            backLabel?.text = currentCardInfo.back
+            if currentCardTotal > 0 {
+                let currentCardInfo = cards[currentCardIndex]
+                frontLabel?.text = currentCardInfo.front
+                backLabel?.text = currentCardInfo.back
+            } else {
+                frontLabel?.text = "No cards to study"
+                backLabel?.text = "Add active cards to your deck"
+            }
         } else {
             let currentCardInfo = demoDeck?.data?[currentCardIndex]
             frontLabel?.text = currentCardInfo?.data.front
