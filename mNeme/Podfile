@@ -13,6 +13,7 @@ pod 'SOTabBar'
 pod 'GoogleSignIn'
 pod 'FacebookLogin'
 pod 'FacebookCore'
+pod 'TaggerKit'
   target 'mNemeTests' do
     inherit! :search_paths
     # Pods for testing

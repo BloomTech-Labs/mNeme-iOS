@@ -8,12 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		13F5F34F9C9627ECA701EC5C /* Pods_mNemeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11354B8AFCA77E9B1CE8292E /* Pods_mNemeTests.framework */; };
+		4B0FCE0A24106A1E00192BCC /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0FCE0924106A1E00192BCC /* Deck.swift */; };
 		4B58980E2405914A00ECCD03 /* MockDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58980D2405914A00ECCD03 /* MockDeck.swift */; };
+		4B67E981242140F700FFF9FD /* DeckSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B67E980242140F700FFF9FD /* DeckSearchViewController.swift */; };
 		4B8A2A3123FCA5C700116BF9 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B8A2A3023FCA5C700116BF9 /* Login.storyboard */; };
 		4BDE6C972406FAA300DF8AB1 /* DeckTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDE6C962406FAA300DF8AB1 /* DeckTableViewCell.swift */; };
+		4BE956F8241C5163008FFC1B /* CreateCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE956F7241C5163008FFC1B /* CreateCardTableViewCell.swift */; };
 		6E1A19C692A40780C18AE71F /* Pods_mNeme.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 625928B0143B44879A17FF25 /* Pods_mNeme.framework */; };
 		954AB142240439C100FD385F /* DeckCard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 954AB141240439C100FD385F /* DeckCard.storyboard */; };
 		954AB14424043D8D00FD385F /* DeckCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954AB14324043D8D00FD385F /* DeckCardViewController.swift */; };
+		95608CD02429159F00D65A50 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95608CCF2429159F00D65A50 /* GoogleService-Info.plist */; };
+		95608CD12429159F00D65A50 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95608CCF2429159F00D65A50 /* GoogleService-Info.plist */; };
+		95608CD22429159F00D65A50 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95608CCF2429159F00D65A50 /* GoogleService-Info.plist */; };
 		95773B8823FF032A009B4EFE /* Onboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95773B8723FF032A009B4EFE /* Onboard.storyboard */; };
 		95773B8A23FF041A009B4EFE /* PreLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95773B8923FF041A009B4EFE /* PreLoginViewController.swift */; };
 		95773B9823FF4119009B4EFE /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95773B8C23FF4114009B4EFE /* Roboto-Black.ttf */; };
@@ -28,8 +34,8 @@
 		95773BA123FF4119009B4EFE /* Roboto-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95773B9523FF4118009B4EFE /* Roboto-LightItalic.ttf */; };
 		95773BA223FF4119009B4EFE /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95773B9623FF4118009B4EFE /* Roboto-Medium.ttf */; };
 		95773BA323FF4119009B4EFE /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95773B9723FF4118009B4EFE /* Roboto-Light.ttf */; };
-		958A6B0A23FDBAA300FDC959 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 958A6B0923FDBAA200FDC959 /* GoogleService-Info.plist */; };
 		958A6B0C23FDE17700FDC959 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958A6B0B23FDE17700FDC959 /* LoginViewController.swift */; };
+		95BE7411241093E9008FE54D /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BE7410241093E9008FE54D /* CardTableViewCell.swift */; };
 		95EEEAE123FB45DA00B283E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EEEAE023FB45DA00B283E9 /* AppDelegate.swift */; };
 		95EEEAE323FB45DA00B283E9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EEEAE223FB45DA00B283E9 /* SceneDelegate.swift */; };
 		95EEEAE823FB45DA00B283E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95EEEAE623FB45DA00B283E9 /* Main.storyboard */; };
@@ -40,10 +46,14 @@
 		95EEEB0623FB45DC00B283E9 /* mNemeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EEEB0523FB45DC00B283E9 /* mNemeUITests.swift */; };
 		BB1FAD05240F19D600D9887F /* ProfileScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1FAD04240F19D600D9887F /* ProfileScrollViewController.swift */; };
 		BB1FAD07240F246200D9887F /* NotificationName+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1FAD06240F246200D9887F /* NotificationName+Extension.swift */; };
-		BB20E8E82406EC9700B60F24 /* DemoDeckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB20E8E72406EC9700B60F24 /* DemoDeckController.swift */; };
+		BB1FAD0924106A6B00D9887F /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1FAD0824106A6B00D9887F /* NetworkClient.swift */; };
+		BB1FAD0B2410758700D9887F /* MockDeckJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1FAD0A2410758700D9887F /* MockDeckJSON.swift */; };
+		BB20E8E82406EC9700B60F24 /* DeckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB20E8E72406EC9700B60F24 /* DeckController.swift */; };
+		BB2821E82422D35F00C5B813 /* DeckControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2821E72422D35F00C5B813 /* DeckControllerTests.swift */; };
+		BB2821EA2423D57B00C5B813 /* MockDemoDeckJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2821E92423D57B00C5B813 /* MockDemoDeckJSON.swift */; };
 		BB3A205024086A37007D6C86 /* DesignableUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3A204F24086A37007D6C86 /* DesignableUITextField.swift */; };
 		BBD8A2E923FDDD8E00F5534E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2E823FDDD8E00F5534E /* ProfileViewController.swift */; };
-		BBD8A2EB23FDDDE600F5534E /* DeckCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2EA23FDDDE600F5534E /* DeckCreateViewController.swift */; };
+		BBD8A2EB23FDDDE600F5534E /* CreateDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2EA23FDDDE600F5534E /* CreateDeckViewController.swift */; };
 		BBD8A2ED23FDDE0500F5534E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2EC23FDDE0500F5534E /* HomeViewController.swift */; };
 		BBD8A2EF23FDDF5D00F5534E /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2EE23FDDF5D00F5534E /* TabViewController.swift */; };
 		BBD8A2F123FDE4BE00F5534E /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8A2F023FDE4BD00F5534E /* UIColor+Extension.swift */; };
@@ -78,13 +88,17 @@
 		0C61661E270DF9F177148EA4 /* Pods-mNemeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mNemeTests.release.xcconfig"; path = "Target Support Files/Pods-mNemeTests/Pods-mNemeTests.release.xcconfig"; sourceTree = "<group>"; };
 		11354B8AFCA77E9B1CE8292E /* Pods_mNemeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mNemeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E7E4BC2E3DF3D2666993AC0 /* Pods-mNemeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mNemeTests.debug.xcconfig"; path = "Target Support Files/Pods-mNemeTests/Pods-mNemeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4B0FCE0924106A1E00192BCC /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		4B58980D2405914A00ECCD03 /* MockDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDeck.swift; sourceTree = "<group>"; };
+		4B67E980242140F700FFF9FD /* DeckSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckSearchViewController.swift; sourceTree = "<group>"; };
 		4B8A2A3023FCA5C700116BF9 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		4BDE6C962406FAA300DF8AB1 /* DeckTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckTableViewCell.swift; sourceTree = "<group>"; };
+		4BE956F7241C5163008FFC1B /* CreateCardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCardTableViewCell.swift; sourceTree = "<group>"; };
 		5A231593762C0B0497140987 /* Pods-mNeme.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mNeme.debug.xcconfig"; path = "Target Support Files/Pods-mNeme/Pods-mNeme.debug.xcconfig"; sourceTree = "<group>"; };
 		625928B0143B44879A17FF25 /* Pods_mNeme.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mNeme.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		954AB141240439C100FD385F /* DeckCard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DeckCard.storyboard; sourceTree = "<group>"; };
 		954AB14324043D8D00FD385F /* DeckCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCardViewController.swift; sourceTree = "<group>"; };
+		95608CCF2429159F00D65A50 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		95773B8723FF032A009B4EFE /* Onboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboard.storyboard; sourceTree = "<group>"; };
 		95773B8923FF041A009B4EFE /* PreLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreLoginViewController.swift; sourceTree = "<group>"; };
 		95773B8C23FF4114009B4EFE /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
@@ -99,8 +113,8 @@
 		95773B9523FF4118009B4EFE /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-LightItalic.ttf"; sourceTree = "<group>"; };
 		95773B9623FF4118009B4EFE /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		95773B9723FF4118009B4EFE /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
-		958A6B0923FDBAA200FDC959 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		958A6B0B23FDE17700FDC959 /* LoginViewController.swift */ = {isa = PBXFileReference; indentWidth = 5; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		95BE7410241093E9008FE54D /* CardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
 		95EEEADD23FB45DA00B283E9 /* mNeme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mNeme.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95EEEAE023FB45DA00B283E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95EEEAE223FB45DA00B283E9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -118,10 +132,14 @@
 		96E43B73731FDF6ABC35B793 /* Pods-mNeme.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mNeme.release.xcconfig"; path = "Target Support Files/Pods-mNeme/Pods-mNeme.release.xcconfig"; sourceTree = "<group>"; };
 		BB1FAD04240F19D600D9887F /* ProfileScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScrollViewController.swift; sourceTree = "<group>"; };
 		BB1FAD06240F246200D9887F /* NotificationName+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+Extension.swift"; sourceTree = "<group>"; };
-		BB20E8E72406EC9700B60F24 /* DemoDeckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoDeckController.swift; sourceTree = "<group>"; };
+		BB1FAD0824106A6B00D9887F /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		BB1FAD0A2410758700D9887F /* MockDeckJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDeckJSON.swift; sourceTree = "<group>"; };
+		BB20E8E72406EC9700B60F24 /* DeckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckController.swift; sourceTree = "<group>"; };
+		BB2821E72422D35F00C5B813 /* DeckControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckControllerTests.swift; sourceTree = "<group>"; };
+		BB2821E92423D57B00C5B813 /* MockDemoDeckJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDemoDeckJSON.swift; sourceTree = "<group>"; };
 		BB3A204F24086A37007D6C86 /* DesignableUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableUITextField.swift; sourceTree = "<group>"; };
 		BBD8A2E823FDDD8E00F5534E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		BBD8A2EA23FDDDE600F5534E /* DeckCreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCreateViewController.swift; sourceTree = "<group>"; };
+		BBD8A2EA23FDDDE600F5534E /* CreateDeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDeckViewController.swift; sourceTree = "<group>"; };
 		BBD8A2EC23FDDE0500F5534E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		BBD8A2EE23FDDF5D00F5534E /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		BBD8A2F023FDE4BD00F5534E /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -172,7 +190,7 @@
 				95EEEAE223FB45DA00B283E9 /* SceneDelegate.swift */,
 				BBD8A304240449D500F5534E /* HTTPMethod.swift */,
 				95EEEAF123FB45DC00B283E9 /* Info.plist */,
-				958A6B0923FDBAA200FDC959 /* GoogleService-Info.plist */,
+				95608CCF2429159F00D65A50 /* GoogleService-Info.plist */,
 				95EEEAEC23FB45DC00B283E9 /* Assets.xcassets */,
 				95773B8B23FF40FA009B4EFE /* Fonts */,
 			);
@@ -196,6 +214,7 @@
 			children = (
 				95EEEAE923FB45DA00B283E9 /* mNeme.xcdatamodeld */,
 				BBD8A2F424008A8500F5534E /* User.swift */,
+				4B0FCE0924106A1E00192BCC /* Deck.swift */,
 				4B58980D2405914A00ECCD03 /* MockDeck.swift */,
 			);
 			path = Models;
@@ -207,9 +226,12 @@
 				BBD8A2E823FDDD8E00F5534E /* ProfileViewController.swift */,
 				BB1FAD04240F19D600D9887F /* ProfileScrollViewController.swift */,
 				4BDE6C962406FAA300DF8AB1 /* DeckTableViewCell.swift */,
-				BBD8A2EA23FDDDE600F5534E /* DeckCreateViewController.swift */,
+				BBD8A2EA23FDDDE600F5534E /* CreateDeckViewController.swift */,
+				4BE956F7241C5163008FFC1B /* CreateCardTableViewCell.swift */,
+				95BE7410241093E9008FE54D /* CardTableViewCell.swift */,
 				BBD8A2EC23FDDE0500F5534E /* HomeViewController.swift */,
 				BBD8A2EE23FDDF5D00F5534E /* TabViewController.swift */,
+				4B67E980242140F700FFF9FD /* DeckSearchViewController.swift */,
 				958A6B0B23FDE17700FDC959 /* LoginViewController.swift */,
 				95773B8923FF041A009B4EFE /* PreLoginViewController.swift */,
 				954AB14324043D8D00FD385F /* DeckCardViewController.swift */,
@@ -224,6 +246,7 @@
 				BBD8A2FF240447E200F5534E /* NetworkDataLoader.swift */,
 				BB3A204F24086A37007D6C86 /* DesignableUITextField.swift */,
 				BB1FAD06240F246200D9887F /* NotificationName+Extension.swift */,
+				BB1FAD0824106A6B00D9887F /* NetworkClient.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -288,8 +311,11 @@
 				95EEEAFA23FB45DC00B283E9 /* mNemeTests.swift */,
 				95EEEAFC23FB45DC00B283E9 /* Info.plist */,
 				BBD8A2F924043E7100F5534E /* MockUserJSON.swift */,
+				BB1FAD0A2410758700D9887F /* MockDeckJSON.swift */,
+				BB2821E92423D57B00C5B813 /* MockDemoDeckJSON.swift */,
 				BBD8A2FB240444A800F5534E /* MockDataLoader.swift */,
 				BBD8A2FD2404459B00F5534E /* UserPreferencesTests.swift */,
+				BB2821E72422D35F00C5B813 /* DeckControllerTests.swift */,
 			);
 			path = mNemeTests;
 			sourceTree = "<group>";
@@ -320,7 +346,7 @@
 			isa = PBXGroup;
 			children = (
 				BBD8A3012404490B00F5534E /* UserController.swift */,
-				BB20E8E72406EC9700B60F24 /* DemoDeckController.swift */,
+				BB20E8E72406EC9700B60F24 /* DeckController.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -456,12 +482,12 @@
 				95773BA123FF4119009B4EFE /* Roboto-LightItalic.ttf in Resources */,
 				95773BA223FF4119009B4EFE /* Roboto-Medium.ttf in Resources */,
 				95773B9923FF4119009B4EFE /* Roboto-Thin.ttf in Resources */,
-				958A6B0A23FDBAA300FDC959 /* GoogleService-Info.plist in Resources */,
 				4B8A2A3123FCA5C700116BF9 /* Login.storyboard in Resources */,
 				95EEEAF023FB45DC00B283E9 /* LaunchScreen.storyboard in Resources */,
 				95773BA323FF4119009B4EFE /* Roboto-Light.ttf in Resources */,
 				95EEEAED23FB45DC00B283E9 /* Assets.xcassets in Resources */,
 				95773B9823FF4119009B4EFE /* Roboto-Black.ttf in Resources */,
+				95608CD02429159F00D65A50 /* GoogleService-Info.plist in Resources */,
 				95773B9A23FF4119009B4EFE /* Roboto-ThinItalic.ttf in Resources */,
 				95773B9D23FF4119009B4EFE /* Roboto-BlackItalic.ttf in Resources */,
 				95773B8823FF032A009B4EFE /* Onboard.storyboard in Resources */,
@@ -476,6 +502,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95608CD12429159F00D65A50 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,6 +510,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95608CD22429159F00D65A50 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -633,14 +661,18 @@
 				958A6B0C23FDE17700FDC959 /* LoginViewController.swift in Sources */,
 				BB1FAD05240F19D600D9887F /* ProfileScrollViewController.swift in Sources */,
 				95EEEAEB23FB45DA00B283E9 /* mNeme.xcdatamodeld in Sources */,
+				BB1FAD0924106A6B00D9887F /* NetworkClient.swift in Sources */,
 				95EEEAE123FB45DA00B283E9 /* AppDelegate.swift in Sources */,
+				4BE956F8241C5163008FFC1B /* CreateCardTableViewCell.swift in Sources */,
 				954AB14424043D8D00FD385F /* DeckCardViewController.swift in Sources */,
 				BBD8A2E923FDDD8E00F5534E /* ProfileViewController.swift in Sources */,
-				BB20E8E82406EC9700B60F24 /* DemoDeckController.swift in Sources */,
+				BB20E8E82406EC9700B60F24 /* DeckController.swift in Sources */,
+				95BE7411241093E9008FE54D /* CardTableViewCell.swift in Sources */,
 				BBD8A3022404490B00F5534E /* UserController.swift in Sources */,
+				4B67E981242140F700FFF9FD /* DeckSearchViewController.swift in Sources */,
 				BBD8A300240447E200F5534E /* NetworkDataLoader.swift in Sources */,
 				95773B8A23FF041A009B4EFE /* PreLoginViewController.swift in Sources */,
-				BBD8A2EB23FDDDE600F5534E /* DeckCreateViewController.swift in Sources */,
+				BBD8A2EB23FDDDE600F5534E /* CreateDeckViewController.swift in Sources */,
 				BBD8A305240449D500F5534E /* HTTPMethod.swift in Sources */,
 				4BDE6C972406FAA300DF8AB1 /* DeckTableViewCell.swift in Sources */,
 				4B58980E2405914A00ECCD03 /* MockDeck.swift in Sources */,
@@ -650,6 +682,7 @@
 				BB3A205024086A37007D6C86 /* DesignableUITextField.swift in Sources */,
 				BBD8A2ED23FDDE0500F5534E /* HomeViewController.swift in Sources */,
 				BBD8A2F524008A8500F5534E /* User.swift in Sources */,
+				4B0FCE0A24106A1E00192BCC /* Deck.swift in Sources */,
 				BBD8A2F123FDE4BE00F5534E /* UIColor+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -658,9 +691,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB2821E82422D35F00C5B813 /* DeckControllerTests.swift in Sources */,
+				BB2821EA2423D57B00C5B813 /* MockDemoDeckJSON.swift in Sources */,
 				BBD8A2FA24043E7100F5534E /* MockUserJSON.swift in Sources */,
 				BBD8A2FE2404459B00F5534E /* UserPreferencesTests.swift in Sources */,
 				95EEEAFB23FB45DC00B283E9 /* mNemeTests.swift in Sources */,
+				BB1FAD0B2410758700D9887F /* MockDeckJSON.swift in Sources */,
 				BBD8A2FC240444A800F5534E /* MockDataLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -834,7 +870,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lambdaschool.mNeme;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lambdaschool.mneme-labs";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -853,7 +889,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lambdaschool.mNeme;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lambdaschool.mneme-labs";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -45,17 +45,41 @@ class UserPreferencesTests: XCTestCase {
 
         wait(for: [expect], timeout: 2)
 
-        XCTAssertNotNil(controller.user?.data)
-    }
-    
-    func testGetDeckData() {
-
-        let controller = MockDemoDeckController()
-        controller.decodeMockData(deckLength: .short)
-        
-        XCTAssertEqual(controller.deck?.data[0].id, "9qzYSx8CK7AgLaOAgZ4a")
-        
-        
+        XCTAssertEqual(controller.user?.id, "r4Ok4g9OA5UHtpXnDRqF5XFCduH3")
     }
 
+    func testPutUserData() {
+        let mock = ModckDataLoader()
+        mock.data = userChangedData
+
+        let controller = UserController(networkDataLoader: mock)
+        controller.user = User("r4Ok4g9OA5UHtpXnDRqF5XFCduH3")
+
+        let expect = expectation(description: "Wait for User Preferences to return from API")
+        let userData = UserData(id: "r4Ok4g9OA5UHtpXnDRqF5XFCduH3",
+                                notificationFrequency: "Don't send me notifications",
+                                favSubjects: "Math", studyFrequency: "Once a day",
+                                MobileOrDesktop: "Mobile",
+                                customOrPremade: "pre-made")
+
+
+        let shouldUpdateUser = controller.shouldUpdateUserWith(subjects: userData.favSubjects,
+                                                              studyFrequency: userData.studyFrequency,
+                                                              mobileOrDesktop: userData.MobileOrDesktop,
+                                                              customOrPremade: userData.customOrPremade,
+                                                              notificationFrequency: userData.notificationFrequency)
+
+        XCTAssertTrue(shouldUpdateUser)
+
+        let userChanges: [String: UserData?] = ["changes" : userData]
+        controller.putUserPreferences(userChanges) {
+            expect.fulfill()
+        }
+
+        wait(for: [expect], timeout: 2)
+
+        XCTAssertEqual(userData.favSubjects, "Math")
+        XCTAssertEqual(userData.MobileOrDesktop, "Mobile")
+        XCTAssertEqual(userData.customOrPremade, "pre-made")
+    }
 }
