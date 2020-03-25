@@ -229,6 +229,7 @@ class DeckController {
         }
     }
     
+    // Fetching cards when they are active / unarchived
     func fetchCardsWhenUnarchived(userID: String, deckCollectionID: String, index: Int, completion: @escaping(Bool) -> Void) {
         print(deckCollectionID)
         // Check for card data return
