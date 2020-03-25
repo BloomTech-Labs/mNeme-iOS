@@ -130,7 +130,7 @@ class DeckController {
                         print(result)
                         completion()
                     }
-                }
+                } else {completion()}
             }
         }
     }
