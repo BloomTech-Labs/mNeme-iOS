@@ -56,11 +56,16 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
      
      override func viewDidAppear(_ animated: Bool) {
           super.viewDidAppear(true)
-          if Auth.auth().currentUser != nil {
-               self.present(self.pleaseWaitAlert, animated: true, completion: nil)
-               if let uid = Auth.auth().currentUser?.uid {
-                    self.signInWithAuthResultUID(uid: uid)
-                    
+          if signingUp {
+                if Auth.auth().currentUser != nil {
+                   try? Auth.auth().signOut()
+               }
+          } else {
+               if Auth.auth().currentUser != nil {
+                    self.present(self.pleaseWaitAlert, animated: true, completion: nil)
+                    if let uid = Auth.auth().currentUser?.uid {
+                         self.signInWithAuthResultUID(uid: uid)
+                    }
                }
           }
      }

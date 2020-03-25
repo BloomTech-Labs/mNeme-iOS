@@ -126,22 +126,21 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
             
             if didChangName == true && didAddCard == true {
                 
-                deckController.addCardsToServer(user: user, name: deck.deckInformation.collectionId ?? "", cards: newCards) { (deck) in
-                    print("\(String(describing: deck.deckInformation.deckName)) has added cards to server")
-                }
-                
                 deckController.editDeckCards(deck: deck, user: user, cards: self.cards) { (deck) in
                     print("\(String(describing: deck.deckInformation.deckName)) has updated cards in server")
                 }
                 
-                deckController.editDeckName(deck: deck, user: user, updatedDeckName: deckName) { (deckInfo) in
-                    //update controller
-                    deckController.decks[self.indexOfDeck!].data = self.updatedDeck?.data
-                    deckController.decks[self.indexOfDeck!].deckInformation = deckInfo
-                    
-                    DispatchQueue.main.async {
-                        self.clearViews()
-                        self.dismiss(animated: true, completion: nil)
+                deckController.addCardsToServer(user: user, name: deck.deckInformation.collectionId ?? "", cards: newCards) { (deck) in
+                    print("\(String(describing: deck.deckInformation.deckName)) has added cards to server")
+                    self.updatedDeck = deck
+                    deckController.editDeckName(deck: deck, user: user, updatedDeckName: deckName) { (deckInfo) in
+                        //update controller
+                        self.deckController?.decks[self.indexOfDeck ?? 0].deckInformation = deckInfo
+                        
+                        DispatchQueue.main.async {
+                            self.clearViews()
+                            self.dismiss(animated: true, completion: nil)
+                        }
                     }
                 }
             } else if didChangName == true {
@@ -168,15 +167,11 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
                 
                 deckController.addCardsToServer(user: user, name: deck.deckInformation.collectionId ?? "", cards: newCards) { (deck) in
                     print("\(String(describing: deck.deckInformation.deckName)) has added cards to server")
-                }
-                
-                // update controller
-                guard let updatedDeck = self.updatedDeck else { return }
-                deckController.decks[self.indexOfDeck!] = updatedDeck
-                
-                DispatchQueue.main.async {
-                    self.clearViews()
-                    self.dismiss(animated: true, completion: nil)
+                    self.updatedDeck = deck
+                    DispatchQueue.main.async {
+                        self.clearViews()
+                        self.dismiss(animated: true, completion: nil)
+                    }
                 }
             } else {
                 deckController.editDeckCards(deck: deck, user: user, cards: self.cards) { (updatedDeck) in
@@ -271,6 +266,7 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
     
     private func clearViews() {
         cards = []
+        newCards = []
         deckTagsTF.text = ""
         deckNameTF.text = ""
         deckIconTF.text = ""
