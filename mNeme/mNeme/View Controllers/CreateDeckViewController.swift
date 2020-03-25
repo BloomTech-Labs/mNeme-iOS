@@ -109,6 +109,7 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func doneTapped(_ sender: Any) {
+        
         guard let deckName = deckNameTF.text, !deckName.isEmpty, let deckIcon = deckIconTF.text, !deckIcon.isEmpty, let userController = userController, let user = userController.user, let deckController = deckController else {
             
             let deckRequirementsAlert = UIAlertController(title: "More info needed!", message: "Your deck needs a name, icon, and at least 1 card!", preferredStyle: .alert)
@@ -137,8 +138,8 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
                 deckController.addCardsToServer(user: user, name: deck.deckInformation.collectionId ?? "", cards: newCards) { (deck) in
                     print("\(String(describing: deck.deckInformation.deckName)) has added cards to server")
                     //update controller with new cards
-                    guard let updatedDeck = self.updatedDeck else { return }
-                    deckController.decks[self.indexOfDeck!] = updatedDeck
+                
+                    deckController.decks[self.indexOfDeck!] = deck
                     
                     deckController.editDeckName(deck: deck, user: user, updatedDeckName: deckName) { (deckInfo) in
                         //update controller with new name
@@ -175,8 +176,7 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
                 deckController.addCardsToServer(user: user, name: deck.deckInformation.collectionId ?? "", cards: newCards) { (deck) in
                     print("\(String(describing: deck.deckInformation.deckName)) has added cards to server")
                     //update controller with new cards
-                    guard let updatedDeck = self.updatedDeck else { return }
-                    deckController.decks[self.indexOfDeck!] = updatedDeck
+                    deckController.decks[self.indexOfDeck!] = deck
                     
                     DispatchQueue.main.async {
                         self.clearViews()
@@ -197,6 +197,10 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
                 }
             }
         } else { //If creating a deck
+            
+             //This fixes edit card problem, need to find better solution
+            self.deckNameTF.becomeFirstResponder()
+            
             deckController.createDeck(user: user, name: deckName, icon: deckIcon, tags: tags, cards: cards) {
                 DispatchQueue.main.async {
                     self.clearViews()
@@ -275,7 +279,7 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     private func clearViews() {
-        cards = []
+//        cards = []
         newCards = []
         deckTagsTF.text = ""
         deckNameTF.text = ""
@@ -565,9 +569,17 @@ extension CreateDeckViewController: CreateCardTableViewCellDelegate {
 extension CreateDeckViewController: CardTableViewCellDelegate {
     func cardWasEdited(index: Int, text: String, side: frontOrBack) {
         if side == .front {
-            updatedDeck?.data?[index].front = text
+            if indexOfDeck != nil { // If editing
+                updatedDeck?.data?[index].front = text
+            } else if !cards.isEmpty{ // If creating
+                self.cards[index].front = text
+            }
         } else {
-            updatedDeck?.data?[index].back = text
+            if indexOfDeck != nil { // If editing
+                updatedDeck?.data?[index].back = text
+            } else if !cards.isEmpty{ // If creating
+                self.cards[index].back = text
+            }
         }
     }
 }
