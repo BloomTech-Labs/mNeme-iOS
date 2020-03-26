@@ -147,7 +147,7 @@ class DeckCardViewController: UIViewController {
         guard currentCardIndex > 0 else {
             let alert = UIAlertController(title: "You've reached the end of the deck!", message: "Would you like to reset the deck or stay here?", preferredStyle: .alert)
             
-            alert.addAction(UIAlertAction(title: "Reset", style: .default, handler: { action in
+            alert.addAction(UIAlertAction(title: "Restart", style: .default, handler: { action in
                 self.currentCardIndex = self.currentCardTotal - 1
                 self.allowedToFlip = true
                 self.nextCardButton.isHidden = true

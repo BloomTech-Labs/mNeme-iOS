@@ -451,7 +451,7 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
                 
                 //Creating archive alert
                 let cannotArchiveAlert = UIAlertController(title: "Can't archive a new card", message: "", preferredStyle: .alert)
-                cannotArchiveAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                cannotArchiveAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
                 
                 guard let user = self.userController?.user, let deck = self.updatedDeck else {
                     //If they try to archive a card when creating a deck
@@ -525,7 +525,7 @@ class CreateDeckViewController: UIViewController, UITableViewDelegate, UITableVi
                         //Decks need at least one card in them
                         deleteDeckAlert.dismiss(animated: true) {
                             let minimumCardAlert = UIAlertController(title: "Your deck needs at least one card!", message: "", preferredStyle: .alert)
-                            minimumCardAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { (action) in
+                            minimumCardAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
                                 DispatchQueue.main.async {
                                     tableView.reloadData()
                                 }
