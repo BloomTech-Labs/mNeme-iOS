@@ -39,7 +39,7 @@ The following features were built for responsive CRUD functionality for flashcar
 3. Users should be able to seamlessly view the cards inside of a deck and manipulate as needed for studying
 
 <img src="https://i.ibb.co/cJr05m4/Screen-Shot-2020-03-25-at-4-52-31-PM.png" width = "200" /> <img src="https://i.ibb.co/RpKM4RY/Screen-Shot-2020-03-26-at-12-09-38-PM.png" width = "200" /><img src="https://i.ibb.co/6J4nqsj/Screen-Shot-2020-03-26-at-12-10-38-PM.png" width = "200" /><img src="https://i.ibb.co/JrsdBgh/Screen-Shot-2020-03-26-at-12-10-24-PM.png" width = "200" />
-<img src="https://i.ibb.co/7zDYYNf/Screen-Shot-2020-03-26-at-12-06-48-PM.png" width = "200" /><img src="https://i.ibb.co/9vTvFjG/Screen-Shot-2020-03-26-at-12-12-02-PM.png" width = "200" /><img src="https://i.ibb.co/Z1BPNTr/Screen-Shot-2020-03-26-at-12-13-31-PM.png" width = "200" />
+<img src="https://i.ibb.co/7zDYYNf/Screen-Shot-2020-03-26-at-12-06-48-PM.png" width = "200" /><img src="https://i.ibb.co/9vTvFjG/Screen-Shot-2020-03-26-at-12-12-02-PM.png" width = "200" /><img src="https://i.ibb.co/Z1BPNTr/Screen-Shot-2020-03-26-at-12-13-31-PM.png" width = "200" /><img src="https://i.ibb.co/dBd3NMn/Screen-Shot-2020-03-26-at-12-13-20-PM.png" width = "200" />
 
 ### Features
 
@@ -61,6 +61,7 @@ Firebase Auth
 - GoogleSignIn
 - FacebookLogin
 - FacebookCore
+- TaggerKit
 
 ## Requirements
 
