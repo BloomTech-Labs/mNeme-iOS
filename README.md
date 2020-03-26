@@ -32,9 +32,14 @@ You can find the deployed project at [Testflight](https://testflight.apple.com/j
 
 The general overview of the iOS nMeme app is to allow users to create, study and share flashcards.
 
-For the current version 1.0 of the iOS app, nMeme is focused on creating a solid foundation for a streamlined user experience. Users need an easy, intuitive and accessible way to create an account and access their home dashboard. Users need to be able to set up preferences about study subjects and preferred study methods to get the most out of their study experience.
+For the current version 1.1 of the iOS app, Users can create and study flashcards while at their desk and on the go.
+The following features were built for responsive CRUD functionality for flashcards and deck
+1. Users should be able to easily create, edit, archive and delete a card
+2. Users should be able to easily create, edit, archive, and delete a deck
+3. Users should be able to seamlessly view the cards inside of a deck and manipulate as needed for studying
 
-<img src="https://i.ibb.co/Z2JD9bX/Screen-Shot-2020-03-01-at-3-34-51-PM.png" width = "200" /> <img src="https://i.ibb.co/tJNxWH2/Screen-Shot-2020-03-01-at-3-36-06-PM.png" width = "200" /><img src="https://i.ibb.co/Khrvgq7/Screen-Shot-2020-03-01-at-3-37-35-PM.png" width = "200" />
+<img src="https://i.ibb.co/cJr05m4/Screen-Shot-2020-03-25-at-4-52-31-PM.png" width = "200" /> <img src="https://i.ibb.co/RpKM4RY/Screen-Shot-2020-03-26-at-12-09-38-PM.png" width = "200" /><img src="https://i.ibb.co/6J4nqsj/Screen-Shot-2020-03-26-at-12-10-38-PM.png" width = "200" /><img src="https://i.ibb.co/JrsdBgh/Screen-Shot-2020-03-26-at-12-10-24-PM.png" width = "200" />
+<img src="https://i.ibb.co/7zDYYNf/Screen-Shot-2020-03-26-at-12-06-48-PM.png" width = "200" /><img src="https://i.ibb.co/9vTvFjG/Screen-Shot-2020-03-26-at-12-12-02-PM.png" width = "200" /><img src="https://i.ibb.co/Z1BPNTr/Screen-Shot-2020-03-26-at-12-13-31-PM.png" width = "200" />
 
 ### Features
 
