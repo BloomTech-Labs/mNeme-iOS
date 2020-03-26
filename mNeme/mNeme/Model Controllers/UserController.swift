@@ -22,19 +22,14 @@ class UserController {
 
     // MARK: - Network methods
     func getUserPreferences(completion: @escaping () -> Void ) {
-        guard let user = user else {
-            completion()
-            return
-        }
+        guard let user = user else { completion(); return }
 
         let requestURL = baseURL.appendingPathComponent(user.id)
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.get.rawValue
 
         dataLoader.loadData(using: request) { data, response, error in
-            if let error = error {
-                NSLog("Error fetching data: \(error)")
-            }
+            if let _ = error { completion(); return }
 
             guard let data = data else { completion(); return }
 
@@ -50,10 +45,7 @@ class UserController {
     }
 
     func putUserPreferences(_ changes: [String: UserData?], completion: @escaping () -> Void) {
-        guard let user = user else {
-            completion()
-            return
-        }
+        guard let user = user else { completion(); return }
 
         let requestURL = baseURL.appendingPathComponent(user.id)
         var request = URLRequest(url: requestURL)
@@ -110,7 +102,6 @@ class UserController {
         if updatedUserData != user.data {
             user.data = updatedUserData
             return true
-        }
-        return false
+        } else { return false }
     }
 }

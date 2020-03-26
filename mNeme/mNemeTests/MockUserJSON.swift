@@ -22,6 +22,20 @@ let userWithData = """
 }
 """.data(using: .utf8)!
 
+let userChangedData = """
+{
+  "id": "r4Ok4g9OA5UHtpXnDRqF5XFCduH3",
+  "data": {
+    "customOrPremade": "pre-made",
+    "id": "r4Ok4g9OA5UHtpXnDRqF5XFCduH3",
+    "notificationFrequency": "Don't send me notifications",
+    "favSubjects": "Math",
+    "studyFrequency": "Once a day",
+    "MobileOrDesktop": "Mobile"
+  }
+}
+""".data(using: .utf8)!
+
 let deckData = """
 {
 "deckName": "mNeme",

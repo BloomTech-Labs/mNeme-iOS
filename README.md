@@ -5,11 +5,11 @@ You can find the deployed project at [Testflight](https://testflight.apple.com/j
 ## Contributors
 
 
-|                                       [Student 1](https://github.com/)                                        |                                       [Student 2](https://github.com/)                                        |                                       [Student 3](https://github.com/)                                        |                                       [Student 4](https://github.com/)                                        |                                       [Student 5](https://github.com/)                                        |
-| :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|                      [<img src="https://i.ibb.co/6mN3Qm3/IMG-20190124-WA0000.jpg" width = "200" />](https://github.com/)                       |                      [<img src="https://i.ibb.co/wWHbhfV/nar.jpg" width = "200" />](https://github.com/)                       |                      [<img src="https://i.ibb.co/XLdx0pS/image-11-33-55-AM.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |
-|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)             |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) |
+|                                       [Dennis Rudolph](https://github.com/drudolpho)                                        |                                       [Niranjan Kumar](https://github.com/narmkumar)                                        |                                       [Skyler Suzuki](https://github.com/skysuzuki)                                        |
+| :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
+|                      [<img src="https://i.ibb.co/6mN3Qm3/IMG-20190124-WA0000.jpg" width = "200" />](https://github.com/)                       |                      [<img src="https://i.ibb.co/wWHbhfV/nar.jpg" width = "200" />](https://github.com/)                       |                      [<img src="https://i.ibb.co/XLdx0pS/image-11-33-55-AM.png" width = "200" />](https://github.com/)                       |
+|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/drudolpho)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/narmkumar)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/skysuzuki)            |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/dennis-rudolph-279797169/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/narkumar/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/skyler-suzuki-a2352188/) |
 
 
 [![Swift Version][swift-image]][swift-url]
@@ -25,25 +25,30 @@ You can find the deployed project at [Testflight](https://testflight.apple.com/j
 
 [mNeme iOS Trello Board](https://trello.com/b/AZ7wMHHm/mneme-ios)
 
-[Product Canvas](https://www.notion.so/iOS-Release-v1-0-Labs-21-Profile-Preferences-and-Demo-Deck-cb46e5e40d9d4638bfda5ad0542e047c)
+[Product Canvas](https://www.notion.so/iOS-Release-v1-1-Labs-21-Flashcard-and-Deck-Full-CRUD-da58678161d54992b7305dbc890d839f)
 
 [Figma](https://www.figma.com/file/Wp3OFlKGGV1jiLSaLWO5tN/mNeme?node-id=197%3A0)
 
 
 The general overview of the iOS nMeme app is to allow users to create, study and share flashcards.
 
-For the current version 1.0 of the iOS app, nMeme is focused on creating a solid foundation for a streamlined user experience. Users need an easy, intuitive and accessible way to create an account and access their home dashboard. Users need to be able to set up preferences about study subjects and preferred study methods to get the most out of their study experience.
+For the current version 1.1 of the iOS app, Users can create and study flashcards while at their desk and on the go.
+The following features were built for responsive CRUD functionality for flashcards and deck
 
-<img src="https://i.ibb.co/Z2JD9bX/Screen-Shot-2020-03-01-at-3-34-51-PM.png" width = "200" /> <img src="https://i.ibb.co/tJNxWH2/Screen-Shot-2020-03-01-at-3-36-06-PM.png" width = "200" /><img src="https://i.ibb.co/Khrvgq7/Screen-Shot-2020-03-01-at-3-37-35-PM.png" width = "200" />
+<img src="https://i.ibb.co/cJr05m4/Screen-Shot-2020-03-25-at-4-52-31-PM.png" width = "200" /> <img src="https://i.ibb.co/RpKM4RY/Screen-Shot-2020-03-26-at-12-09-38-PM.png" width = "200" /><img src="https://i.ibb.co/6J4nqsj/Screen-Shot-2020-03-26-at-12-10-38-PM.png" width = "200" /><img src="https://i.ibb.co/JrsdBgh/Screen-Shot-2020-03-26-at-12-10-24-PM.png" width = "200" />
+<img src="https://i.ibb.co/7zDYYNf/Screen-Shot-2020-03-26-at-12-06-48-PM.png" width = "200" /><img src="https://i.ibb.co/9vTvFjG/Screen-Shot-2020-03-26-at-12-12-02-PM.png" width = "200" /><img src="https://i.ibb.co/Z1BPNTr/Screen-Shot-2020-03-26-at-12-13-31-PM.png" width = "200" /><img src="https://i.ibb.co/dBd3NMn/Screen-Shot-2020-03-26-at-12-13-20-PM.png" width = "200" />
 
 ### Features
 
 -    Responsive sign-up/ login authentication process using Firebase with login of their choice (FB, Google, Email)
 -    Demo deck that can be viewed and flipped through to understand the flow of studying
 -    Home dashboard framework implemented, where future metrics will be housed
--    User preferences can be set up and saved, pushing information up to our database for data collection 
+-    User preferences can be set up and saved, pushing information up to our database for data collection
+-    Users should be able to easily create, edit, archive and delete a card
+-    Users should be able to easily create, edit, archive, and delete a deck
+-    Users should be able to seamlessly view the cards inside of a deck and manipulate as needed for studying
 
-### Authentication API here
+### Authentication API
 
 Firebase Auth
 
@@ -56,6 +61,7 @@ Firebase Auth
 - GoogleSignIn
 - FacebookLogin
 - FacebookCore
+- TaggerKit
 
 ## Requirements
 
