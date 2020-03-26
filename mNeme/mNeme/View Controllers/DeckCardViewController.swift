@@ -147,7 +147,7 @@ class DeckCardViewController: UIViewController {
         guard currentCardIndex > 0 else {
             let alert = UIAlertController(title: "You've reached the end of the deck!", message: "Would you like to reset the deck or stay here?", preferredStyle: .alert)
             
-            alert.addAction(UIAlertAction(title: "Reset", style: .default, handler: { action in
+            alert.addAction(UIAlertAction(title: "Restart", style: .default, handler: { action in
                 self.currentCardIndex = self.currentCardTotal - 1
                 self.allowedToFlip = true
                 self.nextCardButton.isHidden = true
@@ -225,9 +225,14 @@ class DeckCardViewController: UIViewController {
     
     private func updateDeckView() {
         if demo == false {
-            let currentCardInfo = cards[currentCardIndex]
-            frontLabel?.text = currentCardInfo.front
-            backLabel?.text = currentCardInfo.back
+            if currentCardTotal > 0 {
+                let currentCardInfo = cards[currentCardIndex]
+                frontLabel?.text = currentCardInfo.front
+                backLabel?.text = currentCardInfo.back
+            } else {
+                frontLabel?.text = "No cards to study"
+                backLabel?.text = "Add active cards to your deck"
+            }
         } else {
             let currentCardInfo = demoDeck?.data?[currentCardIndex]
             frontLabel?.text = currentCardInfo?.data.front

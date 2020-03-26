@@ -159,7 +159,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             switch indexPath.section {
             case 0:
                 let noArchiveAlert = UIAlertController(title: "Cannot archive a Demo Deck", message: "", preferredStyle: .alert)
-                noArchiveAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                noArchiveAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
+                    DispatchQueue.main.async {
+                        tableView.reloadData()
+                    }
+                }))
                 self.present(noArchiveAlert, animated: true)
             case 1:
                 guard let deck = self.deckController?.decks[indexPath.row] else { return }
@@ -193,7 +197,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }))
             
             let noDeletionAlert = UIAlertController(title: "Cannot delete Demo Deck", message: "", preferredStyle: .alert)
-            noDeletionAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+            noDeletionAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
+                DispatchQueue.main.async {
+                    tableView.reloadData()
+                }
+            }))
             
             switch indexPath.section {
             case 0:

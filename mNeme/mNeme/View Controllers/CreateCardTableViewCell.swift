@@ -35,7 +35,7 @@ class CreateCardTableViewCell: UITableViewCell, UITextViewDelegate {
             delegate?.addCardWasTapped(frontText: frontTV, backtext: backTV)
         } else {
             let alert = UIAlertController(title: "Your card needs a front and back!", message: "Add some info to each section.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Sounds Good!", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
             parentViewController?.present(alert, animated: true)
         }
     }

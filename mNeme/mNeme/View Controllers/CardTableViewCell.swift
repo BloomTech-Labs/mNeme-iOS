@@ -19,21 +19,22 @@ enum frontOrBack {
 
 class CardTableViewCell: UITableViewCell {
 
+    // MARK: - IB Outlets
     @IBOutlet weak var frontCardTV: UITextView!
     @IBOutlet weak var backCardTV: UITextView!
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var dividerView: UIView!
     
+    // MARK: - Properties
     var index: Int?
-    
     var delegate: CardTableViewCellDelegate?
     
+    // MARK: - View Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
         frontCardTV.delegate = self
         backCardTV.delegate = self
     }
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         frontCardTV.centerVertically()
@@ -41,6 +42,7 @@ class CardTableViewCell: UITableViewCell {
     }
 }
 
+// MARK: - Extensions
 extension CardTableViewCell: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         guard let text = textView.text, let index = index else { return }
