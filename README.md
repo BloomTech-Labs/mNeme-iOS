@@ -25,7 +25,7 @@ You can find the deployed project at [Testflight](https://testflight.apple.com/j
 
 [mNeme iOS Trello Board](https://trello.com/b/AZ7wMHHm/mneme-ios)
 
-[Product Canvas](https://www.notion.so/iOS-Release-v1-0-Labs-21-Profile-Preferences-and-Demo-Deck-cb46e5e40d9d4638bfda5ad0542e047c)
+[Product Canvas](https://www.notion.so/iOS-Release-v1-1-Labs-21-Flashcard-and-Deck-Full-CRUD-da58678161d54992b7305dbc890d839f)
 
 [Figma](https://www.figma.com/file/Wp3OFlKGGV1jiLSaLWO5tN/mNeme?node-id=197%3A0)
 
@@ -34,9 +34,6 @@ The general overview of the iOS nMeme app is to allow users to create, study and
 
 For the current version 1.1 of the iOS app, Users can create and study flashcards while at their desk and on the go.
 The following features were built for responsive CRUD functionality for flashcards and deck
-1. Users should be able to easily create, edit, archive and delete a card
-2. Users should be able to easily create, edit, archive, and delete a deck
-3. Users should be able to seamlessly view the cards inside of a deck and manipulate as needed for studying
 
 <img src="https://i.ibb.co/cJr05m4/Screen-Shot-2020-03-25-at-4-52-31-PM.png" width = "200" /> <img src="https://i.ibb.co/RpKM4RY/Screen-Shot-2020-03-26-at-12-09-38-PM.png" width = "200" /><img src="https://i.ibb.co/6J4nqsj/Screen-Shot-2020-03-26-at-12-10-38-PM.png" width = "200" /><img src="https://i.ibb.co/JrsdBgh/Screen-Shot-2020-03-26-at-12-10-24-PM.png" width = "200" />
 <img src="https://i.ibb.co/7zDYYNf/Screen-Shot-2020-03-26-at-12-06-48-PM.png" width = "200" /><img src="https://i.ibb.co/9vTvFjG/Screen-Shot-2020-03-26-at-12-12-02-PM.png" width = "200" /><img src="https://i.ibb.co/Z1BPNTr/Screen-Shot-2020-03-26-at-12-13-31-PM.png" width = "200" /><img src="https://i.ibb.co/dBd3NMn/Screen-Shot-2020-03-26-at-12-13-20-PM.png" width = "200" />
@@ -46,9 +43,12 @@ The following features were built for responsive CRUD functionality for flashcar
 -    Responsive sign-up/ login authentication process using Firebase with login of their choice (FB, Google, Email)
 -    Demo deck that can be viewed and flipped through to understand the flow of studying
 -    Home dashboard framework implemented, where future metrics will be housed
--    User preferences can be set up and saved, pushing information up to our database for data collection 
+-    User preferences can be set up and saved, pushing information up to our database for data collection
+-    Users should be able to easily create, edit, archive and delete a card
+-    Users should be able to easily create, edit, archive, and delete a deck
+-    Users should be able to seamlessly view the cards inside of a deck and manipulate as needed for studying
 
-### Authentication API here
+### Authentication API
 
 Firebase Auth
 
